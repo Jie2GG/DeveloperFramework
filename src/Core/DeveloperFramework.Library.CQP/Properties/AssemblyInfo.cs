@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("DeveloperFramework.Libarary.CQP")]
+[assembly: AssemblyTitle("DeveloperFramework.Library.CQP")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DeveloperFramework.Libarary.CQP")]
+[assembly: AssemblyProduct("DeveloperFramework.Library.CQP")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("ade66481-a6eb-4b75-aff0-773ccd9df98a")]
+[assembly: Guid("90443a10-c0b0-4e22-94df-1eff5d82dc70")]
 
 // 程序集的版本信息由下列四个值组成: 
 //
