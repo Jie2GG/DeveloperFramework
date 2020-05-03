@@ -1,4 +1,4 @@
-﻿using DeveloperFramework.Utility;
+using DeveloperFramework.Utility;
 using System;
 using System.Collections.Generic;
 using System.IO;
