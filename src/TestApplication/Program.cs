@@ -16,9 +16,10 @@ namespace TestApplication
 
 		static void Main (string[] args)
 		{
-			object value = new DynamicLibrary ("app.dll").InvokeFunction<AppInfo> ("AppInfo");
+			var lib= new DynamicLibrary ("app.dll");
+			lib.InvokeFunction<AppInfo> ("AppInfo");
 			//OtherUtility.GetAbsolutePath ("C:\\app.dll", "app.dll");
-
+			Console.WriteLine (lib.ResultMessage);
 			Console.ReadKey ();
 		}
 	}
