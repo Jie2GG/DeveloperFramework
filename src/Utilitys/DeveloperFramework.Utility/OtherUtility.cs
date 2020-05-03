@@ -33,6 +33,11 @@ namespace DeveloperFramework.Utility
 			baseDirectory = GetFormatPath (baseDirectory);
 			filePath = GetFormatPath (filePath);
 
+			if (Path.IsPathRooted (filePath))
+			{
+				return filePath;
+			}
+
 			List<string> relativePath = new List<string> (baseDirectory.Split (Path.DirectorySeparatorChar));
 			string[] fileDirectories = filePath.Split (Path.DirectorySeparatorChar);
 

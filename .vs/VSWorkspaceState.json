@@ -2,10 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\src",
+    "\\src\\Core",
+    "\\src\\Core\\DeveloperFramework.CQP",
+    "\\src\\Core\\DeveloperFramework.Library.CQP",
     "\\src\\TestApplication",
+    "\\src\\Utilitys",
+    "\\src\\Utilitys\\DeveloperFramework.Utility",
     "\\src\\Win32",
     "\\src\\Win32\\DeveloperFramework.Win32.LibraryCLR"
   ],
-  "SelectedNode": "\\src\\TestApplication\\Program.cs",
+  "SelectedNode": "\\src\\Core\\DeveloperFramework.Library.CQP\\CQPDynamicLibrary.cs",
   "PreviewInSolutionExplorer": false
 }

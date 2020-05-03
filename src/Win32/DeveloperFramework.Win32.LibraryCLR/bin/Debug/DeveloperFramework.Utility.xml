@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DeveloperFramework.Utility</name>
+    </assembly>
+    <members>
+        <member name="T:DeveloperFramework.Utility.OtherUtility">
+            <summary>
+            其它实用工具
+            </summary>
+        </member>
+        <member name="M:DeveloperFramework.Utility.OtherUtility.GetAbsolutePath(System.String,System.String)">
+            <summary>
+            基于指定的父路径将相对路径转换为绝对路径
+            </summary>
+            <param name="baseDirectory">基础父路径</param>
+            <param name="filePath">需要转换的相对路径</param>
+            <returns>转换后的绝对路径</returns>
+        </member>
+        <member name="M:DeveloperFramework.Utility.OtherUtility.GetFormatPath(System.String)">
+            <summary>
+            获取格式化后的路径
+            </summary>
+            <param name="path">需要格式化的路径字符串</param>
+            <returns>格式化后的路径</returns>
+        </member>
+    </members>
+</doc>

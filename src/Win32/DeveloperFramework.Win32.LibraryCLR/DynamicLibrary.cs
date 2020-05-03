@@ -19,6 +19,7 @@ namespace DeveloperFramework.Win32.LibraryCLR
 		private static readonly List<string> _baseDirectories;
 		private readonly IntPtr _hModule;
 		private readonly string _libraryPath;
+		private readonly string _libraryDirectory;
 		private bool _isDispose;
 		#endregion
 
@@ -27,6 +28,28 @@ namespace DeveloperFramework.Win32.LibraryCLR
 		/// 获取当前加载动态链接库 (DLL) 的路径
 		/// </summary>
 		public string LibraryPath => this._libraryPath;
+		/// <summary>
+		/// 获取当前加载动态链接库 (DLL) 的目录
+		/// </summary>
+		public string LibraryDirectory => this._libraryDirectory;
+		/// <summary>
+		/// 获取当前实例 <see cref="DynamicLibrary"/> 执行过程中的结果代码
+		/// </summary>
+		public int ResultCode => Kernel32.GetLastError ();
+		/// <summary>
+		/// 获取当前实例 <see cref="DynamicLibrary"/> 执行过程中的详细信息
+		/// </summary>
+		public string ResultMessage
+		{
+			get
+			{
+				int errorCode = this.ResultCode;
+				IntPtr temp = IntPtr.Zero;
+				string msg = null;
+				Kernel32.FormatMessageA (0x1300, ref temp, errorCode, 0, ref msg, 255, ref temp);
+				return msg;
+			}
+		}
 		#endregion
 
 		#region --构造函数--
@@ -47,9 +70,12 @@ namespace DeveloperFramework.Win32.LibraryCLR
 				string fullPath = OtherUtility.GetAbsolutePath (item, libFileName);
 				if (File.Exists (fullPath))
 				{
+					// 初始化属性
 					this._isDispose = false;
 					this._libraryPath = fullPath;
+					this._libraryDirectory = Path.GetDirectoryName (fullPath);
 
+					// 加载动态库
 					this._hModule = Kernel32.LoadLibraryA (fullPath);
 					if (this._hModule.ToInt64 () == 0)
 					{
