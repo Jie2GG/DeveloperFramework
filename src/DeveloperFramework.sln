@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeveloperFramework.CQP", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeveloperFramework.Libarary.CQP", "Core\DeveloperFramework.Libarary.CQP\DeveloperFramework.Libarary.CQP.csproj", "{ADE66481-A6EB-4B75-AFF0-773CCD9DF98A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeveloperFramework.Simulator.CQP", "DeveloperFramework.Simulator.CQP\DeveloperFramework.Simulator.CQP.csproj", "{B326C1D9-D4E0-4842-985E-F1B2F505F058}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeveloperFramework.Simulator.CQP", "Core\DeveloperFramework.Simulator.CQP\DeveloperFramework.Simulator.CQP.csproj", "{B326C1D9-D4E0-4842-985E-F1B2F505F058}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
