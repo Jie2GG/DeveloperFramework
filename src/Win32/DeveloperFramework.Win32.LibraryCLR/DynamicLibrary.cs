@@ -81,6 +81,7 @@ namespace DeveloperFramework.Win32.LibraryCLR
 		public object InvokeFunction<TDelegate> (string funcName, params object[] args)
 			where TDelegate : Delegate
 		{
+
 			return this.InvokeFunction (typeof (TDelegate), funcName, args);
 		}
 		/// <summary>
@@ -108,7 +109,6 @@ namespace DeveloperFramework.Win32.LibraryCLR
 			{
 				throw new MissingMethodException ($"尝试访问不存在的公开函数 { funcName }");
 			}
-
 			Delegate callback = Marshal.GetDelegateForFunctionPointer (funPtr, funcType);
 			if (callback == null)
 			{
