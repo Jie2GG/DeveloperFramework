@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\src",
+    "\\src\\TestApplication",
     "\\src\\Win32",
     "\\src\\Win32\\DeveloperFramework.Win32.LibraryCLR"
   ],
+  "SelectedNode": "\\src\\TestApplication\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
