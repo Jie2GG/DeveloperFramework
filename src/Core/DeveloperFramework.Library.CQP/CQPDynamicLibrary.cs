@@ -1,4 +1,5 @@
-﻿using DeveloperFramework.Utility;
+﻿using DeveloperFramework.LibraryModel.CQP;
+using DeveloperFramework.Utility;
 using DeveloperFramework.Win32.LibraryCLR;
 using Newtonsoft.Json;
 using System;
@@ -25,6 +26,10 @@ namespace DeveloperFramework.Library.CQP
 		/// 获取当前加载 Json 的路径
 		/// </summary>
 		public string JsonPath => this._jsonPath;
+		/// <summary>
+		/// 获取当前加载 酷Q(C/C++) 动态库的定义信息
+		/// </summary>
+		public CQPAppInfo AppInfo => this._appInfo;
 		#endregion
 
 		#region --委托--
@@ -34,6 +39,19 @@ namespace DeveloperFramework.Library.CQP
 		private delegate int CQ_Exit ();
 		private delegate int CQ_AppEnable ();
 		private delegate int CQ_AppDisable ();
+		private delegate int CQ_PrivateMessage (int subType, int msgId, long fromQQ, string msg, int font);
+		private delegate int CQ_GroupMessage (int subType, int msgId, long fromGroup, long fromQQ, string fromAnonymous, string msg, int font);
+		private delegate int CQ_DiscussMessage (int subType, int msgId, long fromDiscuss, long fromQQ, string msg, int font);
+		private delegate int CQ_GroupUpload (int subType, int sendTime, long fromGroup, long fromQQ, string file);
+		private delegate int CQ_GroupManagerChange (int subType, int sendTime, long fromGroup, long beingOperateQQ);
+		private delegate int CQ_GroupMemberDecrease (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ);
+		private delegate int CQ_GroupMemberIncrease (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ);
+		private delegate int CQ_GroupBanSpeak (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ, long duration);
+		private delegate int CQ_FriendAdd (int subType, int sendTime, long fromQQ);
+		private delegate int CQ_FriendAddRequest (int subType, int sendTime, long fromQQ, string msg, string responseFlag);
+		private delegate int CQ_GroupAddRequest (int subType, int sendTime, long fromGroup, long fromQQ, string msg, string responseFlag);
+		private delegate int CQ_MenuCall ();
+		private delegate string CQ_StatusCall ();
 		#endregion
 
 		#region --构造函数--
@@ -131,6 +149,108 @@ namespace DeveloperFramework.Library.CQP
 			}
 
 			return (int)this.InvokeFunction<CQ_AppDisable> (appEvent.Function);
+		}
+		/// <summary>
+		/// 调用 <see cref="CQ_PrivateMessage"/> 方法
+		/// </summary>
+		/// <param name="appEvent">目标事件信息</param>
+		/// <param name="subType">事件类型</param>
+		/// <param name="fromQQ">来源QQ</param>
+		/// <param name="msg">消息内容</param>
+		/// <param name="font">字体指针</param>
+		/// <returns>返回函数处理结果</returns>
+		public CQPAppEventHandleType InvokeCQPrivateMessage (CQPAppEvent appEvent, CQPAppEventPrivateMessageType subType, QQ fromQQ, Message msg, IntPtr font)
+		{
+			if (appEvent is null)
+			{
+				throw new ArgumentNullException (nameof (appEvent));
+			}
+
+			if (fromQQ is null)
+			{
+				throw new ArgumentNullException (nameof (fromQQ));
+			}
+
+			if (msg is null)
+			{
+				throw new ArgumentNullException (nameof (msg));
+			}
+
+			return (CQPAppEventHandleType)(int)this.InvokeFunction<CQ_PrivateMessage> (appEvent.Function, (int)subType, msg.Id, fromQQ.Id, msg.Text, font.ToInt32 ());
+		}
+		/// <summary>
+		/// 调用 <see cref="CQ_GroupMessage"/> 方法
+		/// </summary>
+		/// <param name="appEvent">目标事件信息</param>
+		/// <param name="subType">事件类型</param>
+		/// <param name="fromGroup">来源群</param>
+		/// <param name="fromQQ">来源QQ</param>
+		/// <param name="fromAnonymous">来源匿名</param>
+		/// <param name="msg">消息内容</param>
+		/// <param name="font">字体指针</param>
+		/// <returns>返回函数处理结果</returns>
+		public CQPAppEventHandleType InvokeCQGroupMessage (CQPAppEvent appEvent, CQPAppEventGroupMessageType subType, Group fromGroup, QQ fromQQ, Anonymous fromAnonymous, Message msg, IntPtr font)
+		{
+			if (appEvent is null)
+			{
+				throw new ArgumentNullException (nameof (appEvent));
+			}
+
+			if (fromGroup is null)
+			{
+				throw new ArgumentNullException (nameof (fromGroup));
+			}
+
+			if (fromQQ is null)
+			{
+				throw new ArgumentNullException (nameof (fromQQ));
+			}
+
+			if (fromAnonymous is null)
+			{
+				throw new ArgumentNullException (nameof (fromAnonymous));
+			}
+
+			if (msg is null)
+			{
+				throw new ArgumentNullException (nameof (msg));
+			}
+
+			return (CQPAppEventHandleType)(int)this.InvokeFunction<CQ_GroupMessage> (appEvent.Function, (int)subType, msg.Id, fromGroup.Id, fromQQ.Id, fromAnonymous.ToBase64String (), msg.Text, font.ToInt32 ());
+		}
+		/// <summary>
+		/// 调用 <see cref="CQ_DiscussMessage"/> 方法
+		/// </summary>
+		/// <param name="appEvent">目标事件信息</param>
+		/// <param name="subType">事件类型</param>
+		/// <param name="fromDiscuss">来源讨论组</param>
+		/// <param name="fromQQ">来源QQ</param>
+		/// <param name="msg">消息内容</param>
+		/// <param name="font">字体指针</param>
+		/// <returns>返回函数处理结果</returns>
+		public CQPAppEventHandleType InvokeCQDiscussMessage (CQPAppEvent appEvent, CQPAppEventDiscussMessageType subType, Discuss fromDiscuss, QQ fromQQ, Message msg, IntPtr font)
+		{
+			if (appEvent is null)
+			{
+				throw new ArgumentNullException (nameof (appEvent));
+			}
+
+			if (fromDiscuss is null)
+			{
+				throw new ArgumentNullException (nameof (fromDiscuss));
+			}
+
+			if (fromQQ is null)
+			{
+				throw new ArgumentNullException (nameof (fromQQ));
+			}
+
+			if (msg is null)
+			{
+				throw new ArgumentNullException (nameof (msg));
+			}
+
+			return (CQPAppEventHandleType)(int)this.InvokeFunction<CQ_DiscussMessage> (appEvent.Function, subType, msg.Id, fromDiscuss.Id, fromQQ.Id, msg.Text, font.ToInt32 ());
 		}
 		#endregion
 	}

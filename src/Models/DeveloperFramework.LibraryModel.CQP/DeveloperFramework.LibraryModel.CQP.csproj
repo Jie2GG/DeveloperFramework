@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{90443A10-C0B0-4E22-94DF-1EFF5D82DC70}</ProjectGuid>
+    <ProjectGuid>{48E9268B-A98C-44A1-A66A-25E1DD119D4C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DeveloperFramework.Library.CQP</RootNamespace>
-    <AssemblyName>DeveloperFramework.Library.CQP</AssemblyName>
+    <RootNamespace>DeveloperFramework.LibraryModel.CQP</RootNamespace>
+    <AssemblyName>DeveloperFramework.LibraryModel.CQP</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -21,7 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,35 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CQPAppAuth.cs" />
-    <Compile Include="CQPAppEvent.cs" />
-    <Compile Include="CQPAppEventDiscussMessageType.cs" />
-    <Compile Include="CQPAppEventGroupMessageType.cs" />
-    <Compile Include="CQPAppEventPrivateMessageType.cs" />
-    <Compile Include="CQPAppEventHandleType.cs" />
-    <Compile Include="CQPAppEventType.cs" />
-    <Compile Include="CQPAppMenu.cs" />
-    <Compile Include="CQPAppStatus.cs" />
-    <Compile Include="CQPDynamicLibrary.cs" />
-    <Compile Include="CQPAppInfo.cs" />
+    <Compile Include="Anonymous.cs" />
+    <Compile Include="Discuss.cs" />
+    <Compile Include="Group.cs" />
+    <Compile Include="Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QQ.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Models\DeveloperFramework.LibraryModel.CQP\DeveloperFramework.LibraryModel.CQP.csproj">
-      <Project>{48E9268B-A98C-44A1-A66A-25E1DD119D4C}</Project>
-      <Name>DeveloperFramework.LibraryModel.CQP</Name>
+    <ProjectReference Include="..\..\Utilitys\DeveloperFramework.Extension\DeveloperFramework.Extension.csproj">
+      <Project>{be1047f8-f698-4c93-9fa3-3849b1c9a922}</Project>
+      <Name>DeveloperFramework.Extension</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Utilitys\DeveloperFramework.Utility\DeveloperFramework.Utility.csproj">
-      <Project>{50587E04-23E2-4E97-A831-167D5C39D9E8}</Project>
-      <Name>DeveloperFramework.Utility</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Win32\DeveloperFramework.Win32.LibraryCLR\DeveloperFramework.Win32.LibraryCLR.csproj">
-      <Project>{fac17f0e-6b6f-4367-b43a-e532c07fd8e1}</Project>
-      <Name>DeveloperFramework.Win32.LibraryCLR</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
