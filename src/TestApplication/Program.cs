@@ -5,6 +5,8 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using DeveloperFramework.Library.CQP;
+using DeveloperFramework.LibraryModel.CQP;
 using DeveloperFramework.Utility;
 using DeveloperFramework.Win32.LibraryCLR;
 
@@ -14,12 +16,12 @@ namespace TestApplication
 	{
 		public delegate string AppInfo ();
 
-		static void Main (string[] args)
+		private static void Main (string[] args)
 		{
-			var lib= new DynamicLibrary ("app.dll");
-			lib.InvokeFunction<AppInfo> ("AppInfo");
-			//OtherUtility.GetAbsolutePath ("C:\\app.dll", "app.dll");
-			Console.WriteLine (lib.ResultMessage);
+			for (int i = 0; i < 10; i++)
+			{
+				Console.WriteLine (new Message (i.ToString ()).Id);
+			}
 			Console.ReadKey ();
 		}
 	}
