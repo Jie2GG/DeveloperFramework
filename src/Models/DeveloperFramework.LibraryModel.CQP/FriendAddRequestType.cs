@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeveloperFramework.Library.CQP
+namespace DeveloperFramework.LibraryModel.CQP
 {
 	/// <summary>
-	/// 描述 CQP 应用动态库的讨论组消息事件类型
+	/// 描述 CQP 应用动态库的好友添加请求事件类型
 	/// </summary>
-	public enum CQPAppEventDiscussMessageType
+	public enum FriendAddRequestType
 	{
 		/// <summary>
-		/// 讨论组
+		/// 好友添加请求
 		/// </summary>
-		Discuss = 1
+		FriendAddRequest = 1
 	}
 }

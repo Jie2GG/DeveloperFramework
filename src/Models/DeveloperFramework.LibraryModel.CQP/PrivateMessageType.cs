@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeveloperFramework.Library.CQP
+namespace DeveloperFramework.LibraryModel.CQP
 {
 	/// <summary>
 	/// 描述 CQP 应用动态库的私有消息事件类型
 	/// </summary>
-	public enum CQPAppEventPrivateMessageType
+	public enum PrivateMessageType
 	{
 		/// <summary>
 		/// 在线状态

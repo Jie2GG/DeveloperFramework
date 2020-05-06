@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\DeveloperFramework.LibraryModel.CQP.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -41,8 +42,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Anonymous.cs" />
+    <Compile Include="BanSpeakTimeSpan.cs" />
+    <Compile Include="DiscussMessageType.cs" />
+    <Compile Include="FriendAddRequestType.cs" />
+    <Compile Include="FriendAddType.cs" />
+    <Compile Include="GroupAddRequestType.cs" />
+    <Compile Include="GroupBanSpeakType.cs" />
+    <Compile Include="GroupManagerChangeType.cs" />
+    <Compile Include="GroupMemberDecreaseType.cs" />
+    <Compile Include="GroupMemberIncreaseType.cs" />
+    <Compile Include="GroupMessageType.cs" />
+    <Compile Include="GroupUploadType.cs" />
+    <Compile Include="HandleType.cs" />
+    <Compile Include="PrivateMessageType.cs" />
+    <Compile Include="GroupAnonymous.cs" />
     <Compile Include="Discuss.cs" />
+    <Compile Include="GroupFile.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

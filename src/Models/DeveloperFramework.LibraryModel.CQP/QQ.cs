@@ -84,7 +84,7 @@ namespace DeveloperFramework.LibraryModel.CQP
 		}
 		#endregion
 
-		#region --运算符--
+		#region --转换方法--
 		/// <summary>
 		/// 定义将 <see cref="QQ"/> 对象转换为 <see cref="long"/>
 		/// </summary>

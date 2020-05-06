@@ -47,10 +47,6 @@
   <ItemGroup>
     <Compile Include="CQPAppAuth.cs" />
     <Compile Include="CQPAppEvent.cs" />
-    <Compile Include="CQPAppEventDiscussMessageType.cs" />
-    <Compile Include="CQPAppEventGroupMessageType.cs" />
-    <Compile Include="CQPAppEventPrivateMessageType.cs" />
-    <Compile Include="CQPAppEventHandleType.cs" />
     <Compile Include="CQPAppEventType.cs" />
     <Compile Include="CQPAppMenu.cs" />
     <Compile Include="CQPAppStatus.cs" />
