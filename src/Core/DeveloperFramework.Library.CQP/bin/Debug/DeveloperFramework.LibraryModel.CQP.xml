@@ -59,6 +59,171 @@
             </summary>
             <param name="value">转换为 <see cref="T:System.TimeSpan"/> 的结构</param>
         </member>
+        <member name="T:DeveloperFramework.LibraryModel.CQP.DiscussMessageType">
+            <summary>
+            描述 CQP 应用动态库的讨论组消息事件类型
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.DiscussMessageType.Discuss">
+            <summary>
+            讨论组
+            </summary>
+        </member>
+        <member name="T:DeveloperFramework.LibraryModel.CQP.FriendAddRequestType">
+            <summary>
+            描述 CQP 应用动态库的好友添加请求事件类型
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.FriendAddRequestType.FriendAddRequest">
+            <summary>
+            好友添加请求
+            </summary>
+        </member>
+        <member name="T:DeveloperFramework.LibraryModel.CQP.FriendAddType">
+            <summary>
+            描述 CQP 应用动态库的好友已添加事件类型
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.FriendAddType.FriendAdd">
+            <summary>
+            好友已添加
+            </summary>
+        </member>
+        <member name="T:DeveloperFramework.LibraryModel.CQP.GroupAddRequestType">
+            <summary>
+            描述 CQP 应用动态库的群添加请求事件类型
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.GroupAddRequestType.OtherApplicant">
+            <summary>
+            其他人申请入群
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.GroupAddRequestType.AcceptInvitation">
+            <summary>
+            接受他人邀请入群
+            </summary>
+        </member>
+        <member name="T:DeveloperFramework.LibraryModel.CQP.GroupBanSpeakType">
+            <summary>
+            描述 CQP 应用动态库的群禁言事件类型
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.GroupBanSpeakType.RemoveBanSpeak">
+            <summary>
+            解除禁言
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.GroupBanSpeakType.BanSpeak">
+            <summary>
+            禁言
+            </summary>
+        </member>
+        <member name="T:DeveloperFramework.LibraryModel.CQP.GroupManagerChangeType">
+            <summary>
+            描述 CQP 应用动态库的群管理员改变事件类型
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.GroupManagerChangeType.CancelManager">
+            <summary>
+            取消管理员
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.GroupManagerChangeType.SetingManager">
+            <summary>
+            设置管理员
+            </summary>
+        </member>
+        <member name="T:DeveloperFramework.LibraryModel.CQP.GroupMemberDecreaseType">
+            <summary>
+            描述 CQP 应用动态库的群成员减少事件类型
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.GroupMemberDecreaseType.MemberExit">
+            <summary>
+            成员退出
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.GroupMemberDecreaseType.MemberRemove">
+            <summary>
+            成员移除
+            </summary>
+        </member>
+        <member name="T:DeveloperFramework.LibraryModel.CQP.GroupMemberIncreaseType">
+            <summary>
+            描述 CQP 应用动态库的群成员增加事件类型
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.GroupMemberIncreaseType.ManagerPass">
+            <summary>
+            管理员通过
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.GroupMemberIncreaseType.ManagerInvite">
+            <summary>
+            管理员邀请
+            </summary>
+        </member>
+        <member name="T:DeveloperFramework.LibraryModel.CQP.GroupMessageType">
+            <summary>
+            描述 CQP 应用动态库的群消息事件类型
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.GroupMessageType.Group">
+            <summary>
+            群消息
+            </summary>
+        </member>
+        <member name="T:DeveloperFramework.LibraryModel.CQP.GroupUploadType">
+            <summary>
+            描述 CQP 应用动态库的群文件上传事件类型
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.GroupUploadType.FileUpload">
+            <summary>
+            群文件上传
+            </summary>
+        </member>
+        <member name="T:DeveloperFramework.LibraryModel.CQP.HandleType">
+            <summary>
+            描述 CQP 应用动态库的返回类型
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.HandleType.Discard">
+            <summary>
+            忽略消息
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.HandleType.Intercept">
+            <summary>
+            拦截消息
+            </summary>
+        </member>
+        <member name="T:DeveloperFramework.LibraryModel.CQP.PrivateMessageType">
+            <summary>
+            描述 CQP 应用动态库的私有消息事件类型
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.PrivateMessageType.OnlineStatus">
+            <summary>
+            在线状态
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.PrivateMessageType.Group">
+            <summary>
+            群
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.PrivateMessageType.Discuss">
+            <summary>
+            讨论组
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.PrivateMessageType.Friend">
+            <summary>
+            好友
+            </summary>
+        </member>
         <member name="T:DeveloperFramework.LibraryModel.CQP.GroupAnonymous">
             <summary>
             描述 CQP 应用的 Anonymous 类型

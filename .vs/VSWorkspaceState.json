@@ -3,14 +3,14 @@
     "",
     "\\src",
     "\\src\\Core",
-    "\\src\\Core\\DeveloperFramework.CQP",
-    "\\src\\Core\\DeveloperFramework.Library.CQP",
-    "\\src\\TestApplication",
+    "\\src\\Core\\DeveloperFramework.Log.CQP",
+    "\\src\\Core\\DeveloperFramework.Log.CQP\\ViewModels",
+    "\\src\\Core\\DeveloperFramework.Log.CQP\\Views",
+    "\\src\\Models",
+    "\\src\\Models\\DeveloperFramework.LibraryModel.CQP",
     "\\src\\Utilitys",
-    "\\src\\Utilitys\\DeveloperFramework.Utility",
-    "\\src\\Win32",
-    "\\src\\Win32\\DeveloperFramework.Win32.LibraryCLR"
+    "\\src\\Utilitys\\DeveloperFramework.Extension"
   ],
-  "SelectedNode": "\\src\\Core\\DeveloperFramework.Library.CQP\\CQPDynamicLibrary.cs",
+  "SelectedNode": "\\src\\Core\\DeveloperFramework.Log.CQP\\Views\\LogWindow.xaml",
   "PreviewInSolutionExplorer": false
 }

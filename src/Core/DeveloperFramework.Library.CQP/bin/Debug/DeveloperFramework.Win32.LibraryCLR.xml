@@ -35,6 +35,13 @@
             </summary>
             <param name="libFileName">要加载的动态链接库 (DLL) 的路径</param>
         </member>
+        <member name="M:DeveloperFramework.Win32.LibraryCLR.DynamicLibrary.FunctionExist(System.String)">
+            <summary>
+            获取当前实例 <see cref="T:DeveloperFramework.Win32.LibraryCLR.DynamicLibrary"/> 指定的函数指针是否存在
+            </summary>
+            <param name="funcName">函数名称</param>
+            <returns>如果存在返回 <see langword="true"/>, 否则返回 <see langword="false"/></returns>
+        </member>
         <member name="M:DeveloperFramework.Win32.LibraryCLR.DynamicLibrary.GetFunction(System.String,System.Type)">
             <summary>
             获取当前实例 <see cref="T:DeveloperFramework.Win32.LibraryCLR.DynamicLibrary"/> 指定函数指针, 并转换为 <see cref="T:System.Delegate"/>

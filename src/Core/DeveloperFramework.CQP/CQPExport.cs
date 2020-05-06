@@ -9,10 +9,6 @@ namespace DeveloperFramework.CQP
 {
 	internal static class CQPExport
 	{
-		[DllExport (ExportName = nameof (CQ_sendPrivateMsg), CallingConvention = CallingConvention.StdCall)]
-		public static extern int CQ_sendPrivateMsg (int authCode, long qqId, IntPtr msg)
-		{
-
-		}
+		
 	}
 }
