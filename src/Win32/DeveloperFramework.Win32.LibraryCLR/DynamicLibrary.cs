@@ -94,6 +94,20 @@ namespace DeveloperFramework.Win32.LibraryCLR
 
 		#region --公开方法--
 		/// <summary>
+		/// 获取当前实例 <see cref="DynamicLibrary"/> 指定的函数指针是否存在
+		/// </summary>
+		/// <param name="funcName">函数名称</param>
+		/// <returns>如果存在返回 <see langword="true"/>, 否则返回 <see langword="false"/></returns>
+		public bool FunctionExist (string funcName)
+		{
+			if (this._isDispose)
+			{
+				throw new ObjectDisposedException (nameof (DynamicLibrary));
+			}
+
+			return this.GetFunctionPtr (funcName).ToInt64 () != 0;
+		}
+		/// <summary>
 		/// 获取当前实例 <see cref="DynamicLibrary"/> 指定函数指针, 并转换为 <see cref="Delegate"/>
 		/// </summary>
 		/// <param name="funcName">函数名称</param>
