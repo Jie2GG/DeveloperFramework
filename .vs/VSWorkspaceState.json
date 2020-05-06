@@ -2,10 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\TestApplication",
-    "\\src\\Win32",
-    "\\src\\Win32\\DeveloperFramework.Win32.LibraryCLR"
+    "\\src\\Core",
+    "\\src\\Core\\DeveloperFramework.Log.CQP",
+    "\\src\\Core\\DeveloperFramework.Log.CQP\\ViewModels",
+    "\\src\\Core\\DeveloperFramework.Log.CQP\\Views",
+    "\\src\\Models",
+    "\\src\\Models\\DeveloperFramework.LibraryModel.CQP",
+    "\\src\\Utilitys",
+    "\\src\\Utilitys\\DeveloperFramework.Extension"
   ],
-  "SelectedNode": "\\src\\TestApplication\\Program.cs",
+  "SelectedNode": "\\src\\Core\\DeveloperFramework.Log.CQP\\Views\\LogWindow.xaml",
   "PreviewInSolutionExplorer": false
 }

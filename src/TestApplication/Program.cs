@@ -5,6 +5,8 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using DeveloperFramework.Library.CQP;
+using DeveloperFramework.LibraryModel.CQP;
 using DeveloperFramework.Utility;
 using DeveloperFramework.Win32.LibraryCLR;
 
@@ -14,11 +16,12 @@ namespace TestApplication
 	{
 		public delegate string AppInfo ();
 
-		static void Main (string[] args)
+		private static void Main (string[] args)
 		{
-			object value = new DynamicLibrary ("app.dll").InvokeFunction<AppInfo> ("AppInfo");
-			//OtherUtility.GetAbsolutePath ("C:\\app.dll", "app.dll");
-
+			Console.WriteLine (new BanSpeakTimeSpan (30, 0, 0, 0));
+			Console.WriteLine (new BanSpeakTimeSpan (0, 0, 0, 0));
+			Console.WriteLine (new BanSpeakTimeSpan (29, 23, 59, 59));
+			Console.WriteLine (BanSpeakTimeSpan.MinValue);
 			Console.ReadKey ();
 		}
 	}

@@ -1,0 +1,6 @@
+D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Extension\bin\Debug\DeveloperFramework.Extension.dll
+D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Extension\bin\Debug\DeveloperFramework.Extension.pdb
+D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Extension\obj\Debug\DeveloperFramework.Extension.csproj.CoreCompileInputs.cache
+D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Extension\obj\Debug\DeveloperFramework.Extension.dll
+D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Extension\obj\Debug\DeveloperFramework.Extension.pdb
+D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Extension\obj\Debug\DeveloperFramework.Extension.csprojAssemblyReference.cache

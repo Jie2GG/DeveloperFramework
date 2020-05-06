@@ -33,6 +33,11 @@ namespace DeveloperFramework.Utility
 			baseDirectory = GetFormatPath (baseDirectory);
 			filePath = GetFormatPath (filePath);
 
+			if (Path.IsPathRooted (filePath))
+			{
+				return filePath;
+			}
+
 			List<string> relativePath = new List<string> (baseDirectory.Split (Path.DirectorySeparatorChar));
 			string[] fileDirectories = filePath.Split (Path.DirectorySeparatorChar);
 
@@ -99,6 +104,15 @@ namespace DeveloperFramework.Utility
 				builder.Remove (builder.Length - 1, 1);
 			}
 			return builder.ToString ();
+		}
+		/// <summary>
+		/// 获取当前时间戳
+		/// </summary>
+		/// <returns>返回当前时间戳</returns>
+		public static int GetTimeStamp ()
+		{
+			TimeSpan ts = new TimeSpan (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000);
+			return Convert.ToInt32 (ts.TotalSeconds);
 		}
 	}
 }

@@ -22,6 +22,12 @@ namespace DeveloperFramework.Win32.LibraryCLR
 
 		[DllImport (LibraryName, EntryPoint = nameof (GetProcAddress), CallingConvention = CallingConvention.StdCall)]
 		internal static extern IntPtr GetProcAddress (IntPtr hModule, string lpProcName);
+
+		[DllImport (LibraryName, EntryPoint = nameof (GetLastError), CallingConvention = CallingConvention.StdCall)]
+		internal static extern int GetLastError ();
+
+		[DllImport (LibraryName, EntryPoint = nameof (FormatMessageA), CallingConvention = CallingConvention.StdCall)]
+		internal static extern int FormatMessageA (int dwFlags, ref IntPtr lpSource, int dwMessageId, int dwLanageId, ref string lpBuffer, int nSize, ref IntPtr args);
 		#endregion
 	}
 }
