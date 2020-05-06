@@ -95,15 +95,18 @@ namespace DeveloperFramework.LibraryModel.CQP
 		#region --私有方法--
 		private static int GetMessageId ()
 		{
-			if (_privateId == int.MaxValue)
+			lock (typeof (Message))
 			{
-				_privateId = 0;
+				if (_privateId == int.MaxValue)
+				{
+					_privateId = 0;
+				}
+				return ++_privateId;
 			}
-			return ++_privateId;
 		}
 		#endregion
 
-		#region --运算符--
+		#region --转换方法--
 		/// <summary>
 		/// 定义将 <see cref="Message"/> 对象转换为 <see cref="string"/>
 		/// </summary>

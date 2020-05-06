@@ -18,10 +18,10 @@ namespace TestApplication
 
 		private static void Main (string[] args)
 		{
-			for (int i = 0; i < 10; i++)
-			{
-				Console.WriteLine (new Message (i.ToString ()).Id);
-			}
+			Console.WriteLine (new BanSpeakTimeSpan (30, 0, 0, 0));
+			Console.WriteLine (new BanSpeakTimeSpan (0, 0, 0, 0));
+			Console.WriteLine (new BanSpeakTimeSpan (29, 23, 59, 59));
+			Console.WriteLine (BanSpeakTimeSpan.MinValue);
 			Console.ReadKey ();
 		}
 	}
