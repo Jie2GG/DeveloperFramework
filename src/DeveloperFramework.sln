@@ -29,6 +29,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeveloperFramework.Extensio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeveloperFramework.Log.CQP", "Core\DeveloperFramework.Log.CQP\DeveloperFramework.Log.CQP.csproj", "{474D6975-787C-4CE3-B36D-589F5CCFB267}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWPFApplication", "TestWPFApplication\TestWPFApplication.csproj", "{43DCA599-50AD-4AB4-A063-25FA4FB7E37E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeveloperFramework.LogWindow", "DeveloperFramework.LogWindow\DeveloperFramework.LogWindow.csproj", "{11160E8D-2B7B-4BFA-9322-AC3A6CB50183}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +75,14 @@ Global
 		{474D6975-787C-4CE3-B36D-589F5CCFB267}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{474D6975-787C-4CE3-B36D-589F5CCFB267}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{474D6975-787C-4CE3-B36D-589F5CCFB267}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43DCA599-50AD-4AB4-A063-25FA4FB7E37E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43DCA599-50AD-4AB4-A063-25FA4FB7E37E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43DCA599-50AD-4AB4-A063-25FA4FB7E37E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43DCA599-50AD-4AB4-A063-25FA4FB7E37E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11160E8D-2B7B-4BFA-9322-AC3A6CB50183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11160E8D-2B7B-4BFA-9322-AC3A6CB50183}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11160E8D-2B7B-4BFA-9322-AC3A6CB50183}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11160E8D-2B7B-4BFA-9322-AC3A6CB50183}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

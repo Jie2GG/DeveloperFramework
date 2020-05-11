@@ -1,0 +1,5 @@
+D:\Project\DeveloperFramework\src\TestWPFApplication\obj\Debug\TestWPFApplication.csprojAssemblyReference.cache
+D:\Project\DeveloperFramework\src\TestWPFApplication\obj\Debug\MainWindow.g.cs
+D:\Project\DeveloperFramework\src\TestWPFApplication\obj\Debug\App.g.cs
+D:\Project\DeveloperFramework\src\TestWPFApplication\obj\Debug\TestWPFApplication_MarkupCompile.cache
+D:\Project\DeveloperFramework\src\TestWPFApplication\obj\Debug\TestWPFApplication_MarkupCompile.lref

@@ -10,6 +10,15 @@
         "runtime": {
           "lib/net20/_._": {}
         }
+      },
+      "DeveloperFramework.Extension/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/DeveloperFramework.Extension.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DeveloperFramework.Extension.dll": {}
+        }
       }
     },
     ".NETFramework,Version=v4.7.2/win": {
@@ -20,6 +29,15 @@
         },
         "runtime": {
           "lib/net20/_._": {}
+        }
+      },
+      "DeveloperFramework.Extension/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/DeveloperFramework.Extension.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DeveloperFramework.Extension.dll": {}
         }
       }
     },
@@ -32,6 +50,15 @@
         "runtime": {
           "lib/net20/_._": {}
         }
+      },
+      "DeveloperFramework.Extension/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/DeveloperFramework.Extension.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DeveloperFramework.Extension.dll": {}
+        }
       }
     },
     ".NETFramework,Version=v4.7.2/win-x86": {
@@ -42,6 +69,15 @@
         },
         "runtime": {
           "lib/net20/_._": {}
+        }
+      },
+      "DeveloperFramework.Extension/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/DeveloperFramework.Extension.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DeveloperFramework.Extension.dll": {}
         }
       }
     }
@@ -109,10 +145,16 @@
         "tools/raw/lib/netstd/DllExport.dll",
         "tools/raw/lib/netstd/DllExport.xml"
       ]
+    },
+    "DeveloperFramework.Extension/1.0.0": {
+      "type": "project",
+      "path": "../../Utilitys/DeveloperFramework.Extension/DeveloperFramework.Extension.csproj",
+      "msbuildProject": "../../Utilitys/DeveloperFramework.Extension/DeveloperFramework.Extension.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.7.2": [
+      "DeveloperFramework.Extension >= 1.0.0",
       "DllExport >= 1.7.0"
     ]
   },
@@ -142,7 +184,11 @@
       },
       "frameworks": {
         "net472": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Project\\DeveloperFramework\\src\\Utilitys\\DeveloperFramework.Extension\\DeveloperFramework.Extension.csproj": {
+              "projectPath": "D:\\Project\\DeveloperFramework\\src\\Utilitys\\DeveloperFramework.Extension\\DeveloperFramework.Extension.csproj"
+            }
+          }
         }
       }
     },
