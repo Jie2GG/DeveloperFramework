@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ILogObserver.cs" />
-    <Compile Include="Log.cs" />
+    <Compile Include="LogCenter.cs" />
     <Compile Include="LogItem.cs" />
     <Compile Include="LogLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

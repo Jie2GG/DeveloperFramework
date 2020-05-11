@@ -1,0 +1,36 @@
+{
+	"ret": 1,
+	"apiver": 9,
+	"name": "复读机应用 for C#",
+	"version": "1.0.0",
+	"version_id": 1,
+	"author": "Jie2GG",
+	"description": "WIKI所使用的 Demo",
+	"event": [
+		{
+			"id": 1,
+			"type": 2,
+			"name": "群消息处理",
+			"function": "eventGroupMsg",
+			"priority": 30000
+		}
+	],
+	"menu": [
+		{
+			"name": "打开Demo窗体",
+			"function": "menuOpenWindow"
+		}
+	],
+	"status": [
+		{
+			"id": 1,
+			"name": "统计发送",
+			"title": "SEND",
+			"function": "statusUpMsgCount",
+			"period": "1000"
+		}
+	],
+	"auth": [
+		101 // 发送群消息
+	]
+}
