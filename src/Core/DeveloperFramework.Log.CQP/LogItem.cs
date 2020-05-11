@@ -30,25 +30,38 @@ namespace DeveloperFramework.Log.CQP
 		/// <summary>
 		/// 获取当前实例的执行状态
 		/// </summary>
-		public bool State { get; }
+		public bool? State { get; }
 		/// <summary>
 		/// 获取当前实例描述耗费时长
 		/// </summary>
-		public TimeSpan TimeConsuming { get; }
+		public TimeSpan? TimeConsuming { get; }
 		/// <summary>
 		/// 获取当前实例的等级
 		/// </summary>
 		public LogLevel Level { get; }
 
-		public LogItem (LogLevel level, string from, string type, string content, bool state, TimeSpan time)
+		public LogItem (LogLevel level, string from, string type, object content, bool? state, TimeSpan? timeConsuming)
 		{
 			this.Level = level;
 			this.From = from;
 			this.Type = type;
-			this.Content = content;
 			this.State = state;
-			this.TimeConsuming = time;
+			this.TimeConsuming = timeConsuming;
 			this.Time = DateTime.Now;
+
+
+			if (content is string)
+			{
+				this.Content = (string)content;
+			}
+			else if (content is Exception)
+			{
+				this.Content = ((Exception)content).ToString ();
+			}
+			else
+			{
+				this.Content = content.ToString ();
+			}
 		}
 	}
 }

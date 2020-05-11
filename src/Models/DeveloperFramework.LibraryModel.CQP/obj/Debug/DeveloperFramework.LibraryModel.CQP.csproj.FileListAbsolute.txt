@@ -1,3 +1,4 @@
+D:\Project\DeveloperFramework\src\Models\DeveloperFramework.LibraryModel.CQP\bin\Debug\DeveloperFramework.LibraryModel.CQP.xml
 D:\Project\DeveloperFramework\src\Models\DeveloperFramework.LibraryModel.CQP\bin\Debug\DeveloperFramework.LibraryModel.CQP.dll
 D:\Project\DeveloperFramework\src\Models\DeveloperFramework.LibraryModel.CQP\bin\Debug\DeveloperFramework.LibraryModel.CQP.pdb
 D:\Project\DeveloperFramework\src\Models\DeveloperFramework.LibraryModel.CQP\bin\Debug\DeveloperFramework.Extension.dll
@@ -7,4 +8,3 @@ D:\Project\DeveloperFramework\src\Models\DeveloperFramework.LibraryModel.CQP\obj
 D:\Project\DeveloperFramework\src\Models\DeveloperFramework.LibraryModel.CQP\obj\Debug\DeveloperFramework.LibraryModel.CQP.csproj.CopyComplete
 D:\Project\DeveloperFramework\src\Models\DeveloperFramework.LibraryModel.CQP\obj\Debug\DeveloperFramework.LibraryModel.CQP.dll
 D:\Project\DeveloperFramework\src\Models\DeveloperFramework.LibraryModel.CQP\obj\Debug\DeveloperFramework.LibraryModel.CQP.pdb
-D:\Project\DeveloperFramework\src\Models\DeveloperFramework.LibraryModel.CQP\bin\Debug\DeveloperFramework.LibraryModel.CQP.xml

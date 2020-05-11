@@ -1,6 +1,9 @@
-D:\Project\DeveloperFramework\src\Core\DeveloperFramework.CQP\obj\Debug\DeveloperFramework.CQP.csprojAssemblyReference.cache
-D:\Project\DeveloperFramework\src\Core\DeveloperFramework.CQP\obj\Debug\DeveloperFramework.CQP.csproj.CoreCompileInputs.cache
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.CQP\bin\Debug\CQP.dll
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.CQP\bin\Debug\CQP.pdb
+D:\Project\DeveloperFramework\src\Core\DeveloperFramework.CQP\obj\Debug\DeveloperFramework.CQP.csprojAssemblyReference.cache
+D:\Project\DeveloperFramework\src\Core\DeveloperFramework.CQP\obj\Debug\DeveloperFramework.CQP.csproj.CoreCompileInputs.cache
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.CQP\obj\Debug\CQP.dll
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.CQP\obj\Debug\CQP.pdb
+D:\Project\DeveloperFramework\src\Core\DeveloperFramework.CQP\bin\Debug\DeveloperFramework.Extension.dll
+D:\Project\DeveloperFramework\src\Core\DeveloperFramework.CQP\bin\Debug\DeveloperFramework.Extension.pdb
+D:\Project\DeveloperFramework\src\Core\DeveloperFramework.CQP\obj\Debug\DeveloperFramework.CQP.csproj.CopyComplete

@@ -1,6 +1,5 @@
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Simulator.CQP\bin\Debug\DeveloperFramework.Simulator.CQP.dll
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Simulator.CQP\bin\Debug\DeveloperFramework.Simulator.CQP.pdb
-D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Simulator.CQP\obj\Debug\DeveloperFramework.Simulator.CQP.csprojAssemblyReference.cache
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Simulator.CQP\obj\Debug\DeveloperFramework.Simulator.CQP.csproj.CoreCompileInputs.cache
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Simulator.CQP\obj\Debug\DeveloperFramework.Simulator.CQP.dll
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Simulator.CQP\obj\Debug\DeveloperFramework.Simulator.CQP.pdb
