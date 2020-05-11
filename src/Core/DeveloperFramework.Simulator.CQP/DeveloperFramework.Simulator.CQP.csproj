@@ -46,9 +46,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Win32\DeveloperFramework.Win32.LibraryCLR\DeveloperFramework.Win32.LibraryCLR.csproj">
+      <Project>{FAC17F0E-6B6F-4367-B43A-E532C07FD8E1}</Project>
+      <Name>DeveloperFramework.Win32.LibraryCLR</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DeveloperFramework.CQP\DeveloperFramework.CQP.csproj">
+      <Project>{d8c2082a-bb97-4e4c-8cec-d016e71240c2}</Project>
+      <Name>DeveloperFramework.CQP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DeveloperFramework.Library.CQP\DeveloperFramework.Library.CQP.csproj">
       <Project>{90443A10-C0B0-4E22-94DF-1EFF5D82DC70}</Project>
       <Name>DeveloperFramework.Library.CQP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DeveloperFramework.Log.CQP\DeveloperFramework.Log.CQP.csproj">
+      <Project>{474D6975-787C-4CE3-B36D-589F5CCFB267}</Project>
+      <Name>DeveloperFramework.Log.CQP</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

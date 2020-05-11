@@ -6,19 +6,30 @@ namespace DeveloperFramework.Log.CQP
 	/// <summary>
 	/// 表示记录程序运行时结果的日志中心类
 	/// </summary>
-	public class Log
+	public class LogCenter
 	{
-		#region --字段--
+		#region --常量--
 		private const string DefaultFrom = "框架";
+		#endregion
+
+		#region --字段--
+		private static readonly LogCenter _instance = new Lazy<LogCenter> (() => new LogCenter ()).Value;
 		private readonly Collection<LogItem> _cache;
 		private readonly Collection<ILogObserver> _observers;
+		#endregion
+
+		#region --属性--
+		/// <summary>
+		/// 获取 <see cref="LogCenter"/> 类的唯一指示
+		/// </summary>
+		public static LogCenter Instance => _instance;
 		#endregion
 
 		#region --构造函数--
 		/// <summary>
 		/// 初始化 <see cref="this"/> 类的新实例
 		/// </summary>
-		private Log ()
+		private LogCenter ()
 		{
 			this._cache = new Collection<LogItem> ();
 			this._observers = new Collection<ILogObserver> ();

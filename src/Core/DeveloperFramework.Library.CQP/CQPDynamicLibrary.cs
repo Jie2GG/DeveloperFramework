@@ -30,6 +30,10 @@ namespace DeveloperFramework.Library.CQP
 		/// 获取当前加载 酷Q(C/C++) 动态库的定义信息
 		/// </summary>
 		public CQPAppInfo AppInfo => this._appInfo;
+		/// <summary>
+		/// 获取当前 酷Q(C/C++) 动态库的授权码, 该码由 <see cref="CQPDynamicLibrary.InvokeInitialize"/> 方法授权
+		/// </summary>
+		public int AppAuthCode { get; private set; }
 		#endregion
 
 		#region --委托--
@@ -96,6 +100,7 @@ namespace DeveloperFramework.Library.CQP
 		/// <returns>操作成功返回 0</returns>
 		public int InvokeInitialize (int authCode)
 		{
+			this.AppAuthCode = authCode;
 			return this.GetFunction<CQ_Initialize> ("Initialize") (authCode);
 		}
 		/// <summary>

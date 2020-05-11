@@ -59,6 +59,10 @@
       <Project>{474d6975-787c-4ce3-b36d-589f5ccfb267}</Project>
       <Name>DeveloperFramework.Log.CQP</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core\DeveloperFramework.Simulator.CQP\DeveloperFramework.Simulator.CQP.csproj">
+      <Project>{b326c1d9-d4e0-4842-985e-f1b2f505f058}</Project>
+      <Name>DeveloperFramework.Simulator.CQP</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
