@@ -42,7 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CQPSimulator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DeveloperFramework.Library.CQP\DeveloperFramework.Library.CQP.csproj">
+      <Project>{90443A10-C0B0-4E22-94DF-1EFF5D82DC70}</Project>
+      <Name>DeveloperFramework.Library.CQP</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

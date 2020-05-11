@@ -74,6 +74,12 @@
       <Wz>1</Wz>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Utilitys\DeveloperFramework.Extension\DeveloperFramework.Extension.csproj">
+      <Project>{be1047f8-f698-4c93-9fa3-3849b1c9a922}</Project>
+      <Name>DeveloperFramework.Extension</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ImportGroup Label=".NET DllExport">
     <Import Project="$(SolutionDir)packages\DllExport.1.7.0\tools\net.r_eg.DllExport.targets" Condition="Exists($([MSBuild]::Escape('$(SolutionDir)packages\DllExport.1.7.0\tools\net.r_eg.DllExport.targets')))" Label="8337224c9ad9e356" />

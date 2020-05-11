@@ -1,15 +1,6 @@
-D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Log.CQP\obj\Debug\Views\LogWindow.g.cs
-D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Log.CQP\obj\Debug\GeneratedInternalTypeHelper.g.cs
-D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Log.CQP\obj\Debug\DeveloperFramework.Log.CQP_MarkupCompile.cache
-D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Log.CQP\obj\Debug\DeveloperFramework.Log.CQP_MarkupCompile.lref
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Log.CQP\bin\Debug\DeveloperFramework.Log.CQP.dll
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Log.CQP\bin\Debug\DeveloperFramework.Log.CQP.pdb
-D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Log.CQP\bin\Debug\Prism.dll
-D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Log.CQP\bin\Debug\Prism.xml
-D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Log.CQP\obj\Debug\Views\LogWindow.baml
-D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Log.CQP\obj\Debug\DeveloperFramework.Log.CQP.g.resources
+D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Log.CQP\obj\Debug\DeveloperFramework.Log.CQP.csprojAssemblyReference.cache
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Log.CQP\obj\Debug\DeveloperFramework.Log.CQP.csproj.CoreCompileInputs.cache
-D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Log.CQP\obj\Debug\DeveloperFramework.Log.CQP.csproj.CopyComplete
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Log.CQP\obj\Debug\DeveloperFramework.Log.CQP.dll
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Log.CQP\obj\Debug\DeveloperFramework.Log.CQP.pdb
-D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Log.CQP\obj\Debug\DeveloperFramework.Log.CQP.csprojAssemblyReference.cache

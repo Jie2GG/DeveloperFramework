@@ -6,6 +6,7 @@ D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Library.CQP\bin\Debug\
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Library.CQP\bin\Debug\Newtonsoft.Json.dll
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Library.CQP\bin\Debug\DeveloperFramework.Extension.dll
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Library.CQP\bin\Debug\DeveloperFramework.LibraryModel.CQP.pdb
+D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Library.CQP\bin\Debug\DeveloperFramework.LibraryModel.CQP.xml
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Library.CQP\bin\Debug\DeveloperFramework.Utility.pdb
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Library.CQP\bin\Debug\DeveloperFramework.Utility.xml
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Library.CQP\bin\Debug\DeveloperFramework.Win32.LibraryCLR.pdb
@@ -17,4 +18,3 @@ D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Library.CQP\obj\Debug\
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Library.CQP\obj\Debug\DeveloperFramework.Library.CQP.csproj.CopyComplete
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Library.CQP\obj\Debug\DeveloperFramework.Library.CQP.dll
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Library.CQP\obj\Debug\DeveloperFramework.Library.CQP.pdb
-D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Library.CQP\bin\Debug\DeveloperFramework.LibraryModel.CQP.xml

@@ -27,7 +27,11 @@
         },
         "frameworks": {
           "net472": {
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\Project\\DeveloperFramework\\src\\Utilitys\\DeveloperFramework.Extension\\DeveloperFramework.Extension.csproj": {
+                "projectPath": "D:\\Project\\DeveloperFramework\\src\\Utilitys\\DeveloperFramework.Extension\\DeveloperFramework.Extension.csproj"
+              }
+            }
           }
         }
       },
@@ -51,6 +55,17 @@
         "win-x86": {
           "#import": []
         }
+      }
+    },
+    "D:\\Project\\DeveloperFramework\\src\\Utilitys\\DeveloperFramework.Extension\\DeveloperFramework.Extension.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Project\\DeveloperFramework\\src\\Utilitys\\DeveloperFramework.Extension\\DeveloperFramework.Extension.csproj",
+        "projectName": "DeveloperFramework.Extension",
+        "projectPath": "D:\\Project\\DeveloperFramework\\src\\Utilitys\\DeveloperFramework.Extension\\DeveloperFramework.Extension.csproj"
+      },
+      "frameworks": {
+        "net472": {}
       }
     }
   }
