@@ -25,3 +25,4 @@ D:\Project\DeveloperFramework\src\TestApplication\bin\Debug\DeveloperFramework.L
 D:\Project\DeveloperFramework\src\TestApplication\bin\Debug\DeveloperFramework.Utility.pdb
 D:\Project\DeveloperFramework\src\TestApplication\bin\Debug\DeveloperFramework.Utility.xml
 D:\Project\DeveloperFramework\src\TestApplication\bin\Debug\DeveloperFramework.Extension.pdb
+D:\Project\DeveloperFramework\src\TestApplication\bin\Debug\CQP.dll

@@ -1,6 +1,5 @@
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Log.CQP\bin\Debug\DeveloperFramework.Log.CQP.dll
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Log.CQP\bin\Debug\DeveloperFramework.Log.CQP.pdb
-D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Log.CQP\obj\Debug\DeveloperFramework.Log.CQP.csprojAssemblyReference.cache
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Log.CQP\obj\Debug\DeveloperFramework.Log.CQP.csproj.CoreCompileInputs.cache
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Log.CQP\obj\Debug\DeveloperFramework.Log.CQP.dll
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Log.CQP\obj\Debug\DeveloperFramework.Log.CQP.pdb

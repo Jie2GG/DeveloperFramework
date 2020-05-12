@@ -17,7 +17,7 @@ namespace DeveloperFramework.Win32.LibraryCLR
 	{
 		#region --字段--
 		private static readonly List<string> _baseDirectories;
-		private readonly IntPtr _hModule;
+		private IntPtr _hModule;
 		private readonly string _libraryPath;
 		private readonly string _libraryDirectory;
 		private bool _isDispose;
@@ -32,24 +32,6 @@ namespace DeveloperFramework.Win32.LibraryCLR
 		/// 获取当前加载动态链接库 (DLL) 的目录
 		/// </summary>
 		public string LibraryDirectory => this._libraryDirectory;
-		/// <summary>
-		/// 获取当前实例 <see cref="DynamicLibrary"/> 执行过程中的结果代码
-		/// </summary>
-		public int ResultCode => Kernel32.GetLastError ();
-		/// <summary>
-		/// 获取当前实例 <see cref="DynamicLibrary"/> 执行过程中的详细信息
-		/// </summary>
-		public string ResultMessage
-		{
-			get
-			{
-				int errorCode = this.ResultCode;
-				IntPtr temp = IntPtr.Zero;
-				string msg = null;
-				Kernel32.FormatMessageA (0x1300, ref temp, errorCode, 0, ref msg, 255, ref temp);
-				return msg;
-			}
-		}
 		#endregion
 
 		#region --构造函数--
@@ -81,7 +63,6 @@ namespace DeveloperFramework.Win32.LibraryCLR
 					this._hModule = Kernel32.LoadLibraryA (fullPath);
 					if (this._hModule.ToInt64 () == 0)
 					{
-						Dispose ();
 						throw new FileLoadException ($"试图加载格式不正确的程序集 {fullPath}");
 					}
 					return;
@@ -90,9 +71,36 @@ namespace DeveloperFramework.Win32.LibraryCLR
 
 			throw new FileNotFoundException ("无法找到指定的程序集", libFileName);
 		}
+		/// <summary>
+		/// 释放 <see cref="DynamicLibrary"/> 类所使用的资源
+		/// </summary>
+		~DynamicLibrary ()
+		{
+			Dispose ();
+		}
 		#endregion
 
 		#region --公开方法--
+		/// <summary>
+		/// 获取当前实例 <see cref="DynamicLibrary"/> 执行过程中的结果代码
+		/// </summary>
+		/// <returns>返回从操作系统底层获取的结果代码</returns>
+		public int GetResultCode ()
+		{
+			return Kernel32.GetLastError ();
+		}
+		/// <summary>
+		/// 获取当前实例 <see cref="DynamicLibrary"/> 执行过程中的详细信息
+		/// </summary>
+		/// <returns>返回从操作系统底层获取的详细执行信息</returns>
+		public string GetResultMessage ()
+		{
+			int errorCode = this.GetResultCode ();
+			IntPtr temp = IntPtr.Zero;
+			string msg = null;
+			Kernel32.FormatMessageA (0x1300, ref temp, errorCode, 0, ref msg, 255, ref temp);
+			return msg;
+		}
 		/// <summary>
 		/// 获取当前实例 <see cref="DynamicLibrary"/> 指定的函数指针是否存在
 		/// </summary>
@@ -187,9 +195,12 @@ namespace DeveloperFramework.Win32.LibraryCLR
 			if (!this._isDispose)
 			{
 				this._isDispose = true;
-
+			}
+			if (this._hModule.ToInt64 () != 0)
+			{
 				// 释放指针
-				Kernel32.FreeLibrary (this._hModule);   // 加载失败, 释放指针
+				Kernel32.FreeLibrary (this._hModule);
+				this._hModule = IntPtr.Zero;
 			}
 		}
 		/// <summary>

@@ -20,6 +20,9 @@ namespace DeveloperFramework.Win32.LibraryCLR
 		[DllImport (LibraryName, EntryPoint = nameof (FreeLibrary), CallingConvention = CallingConvention.StdCall)]
 		internal static extern int FreeLibrary (IntPtr hModule);
 
+		[DllImport (LibraryName, EntryPoint = nameof (FreeLibraryAndExitThread), CallingConvention = CallingConvention.StdCall)]
+		internal static extern int FreeLibraryAndExitThread (IntPtr hLibModule, int dwExitCode);
+
 		[DllImport (LibraryName, EntryPoint = nameof (GetProcAddress), CallingConvention = CallingConvention.StdCall)]
 		internal static extern IntPtr GetProcAddress (IntPtr hModule, string lpProcName);
 

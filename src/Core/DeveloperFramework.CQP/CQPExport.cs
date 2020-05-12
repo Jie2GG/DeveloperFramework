@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DeveloperFramework.Extension;
+using DeveloperFramework.LibraryModel.CQP.Dynamic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -14,6 +16,7 @@ namespace DeveloperFramework.CQP
 	{
 		#region --字段--
 		private static readonly CQPExport _instace = new Lazy<CQPExport> (() => new CQPExport ()).Value;
+		private static readonly Encoding _defaultEncoding = Encoding.GetEncoding ("GB18030");
 		#endregion
 
 		#region --属性--
@@ -21,6 +24,10 @@ namespace DeveloperFramework.CQP
 		/// 获取当前 <see cref="CQPExport"/> 类的唯一实例
 		/// </summary>
 		public static CQPExport Instance => CQPExport._instace;
+		/// <summary>
+		/// 获取或设置当前实例的函数处理过程
+		/// </summary>
+		public IFuncProcess FuncProcess { get; set; }
 		#endregion
 
 		#region --构造函数--
@@ -31,10 +38,16 @@ namespace DeveloperFramework.CQP
 		#endregion
 
 		#region --导出方法--
+		[CQPAuth (AppAuth = AppAuth.sendPrivateMsssage)]
 		[DllExport (ExportName = nameof (CQ_sendPrivateMsg), CallingConvention = CallingConvention.StdCall)]
-		private static int CQ_sendPrivateMsg (int authCode, long qqId, IntPtr msg)
+		public static int CQ_sendPrivateMsg (int authCode, long qqId, IntPtr msg)
 		{
-			return 0;
+			if (Instance.FuncProcess != null)
+			{
+				return Instance.FuncProcess.GetProcess<int> (authCode, nameof (CQ_sendPrivateMsg), qqId, msg.PtrToString (_defaultEncoding));
+			}
+
+			return -1;
 		}
 		#endregion
 	}

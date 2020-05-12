@@ -43,9 +43,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CQPSimulator.cs" />
+    <Compile Include="CQPSimulatorApp.cs" />
+    <Compile Include="Domain\FunctionBindingAttribute.cs" />
+    <Compile Include="Domain\Command\ICommand.cs" />
+    <Compile Include="Domain\Command\Command.cs" />
+    <Compile Include="Domain\Command\SendPrivateMsgCommand.cs" />
+    <Compile Include="Domain\CompositeInvoker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Models\DeveloperFramework.LibraryModel.CQP\DeveloperFramework.LibraryModel.CQP.csproj">
+      <Project>{48e9268b-a98c-44a1-a66a-25e1dd119d4c}</Project>
+      <Name>DeveloperFramework.LibraryModel.CQP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Win32\DeveloperFramework.Win32.LibraryCLR\DeveloperFramework.Win32.LibraryCLR.csproj">
       <Project>{FAC17F0E-6B6F-4367-B43A-E532C07FD8E1}</Project>
       <Name>DeveloperFramework.Win32.LibraryCLR</Name>
