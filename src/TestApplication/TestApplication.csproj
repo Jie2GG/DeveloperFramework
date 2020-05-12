@@ -55,6 +55,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core\DeveloperFramework.CQP\DeveloperFramework.CQP.csproj">
+      <Project>{D8C2082A-BB97-4E4C-8CEC-D016E71240C2}</Project>
+      <Name>DeveloperFramework.CQP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\DeveloperFramework.Library.CQP\DeveloperFramework.Library.CQP.csproj">
+      <Project>{90443a10-c0b0-4e22-94df-1eff5d82dc70}</Project>
+      <Name>DeveloperFramework.Library.CQP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core\DeveloperFramework.Log.CQP\DeveloperFramework.Log.CQP.csproj">
       <Project>{474d6975-787c-4ce3-b36d-589f5ccfb267}</Project>
       <Name>DeveloperFramework.Log.CQP</Name>
@@ -62,6 +70,14 @@
     <ProjectReference Include="..\Core\DeveloperFramework.Simulator.CQP\DeveloperFramework.Simulator.CQP.csproj">
       <Project>{b326c1d9-d4e0-4842-985e-f1b2f505f058}</Project>
       <Name>DeveloperFramework.Simulator.CQP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\DeveloperFramework.LibraryModel.CQP\DeveloperFramework.LibraryModel.CQP.csproj">
+      <Project>{48e9268b-a98c-44a1-a66a-25e1dd119d4c}</Project>
+      <Name>DeveloperFramework.LibraryModel.CQP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Win32\DeveloperFramework.Win32.LibraryCLR\DeveloperFramework.Win32.LibraryCLR.csproj">
+      <Project>{fac17f0e-6b6f-4367-b43a-e532c07fd8e1}</Project>
+      <Name>DeveloperFramework.Win32.LibraryCLR</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

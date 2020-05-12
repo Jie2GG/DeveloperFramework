@@ -61,7 +61,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CQPAuthAttribute.cs" />
     <Compile Include="CQPExport.cs" />
+    <Compile Include="IFuncProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +77,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Models\DeveloperFramework.LibraryModel.CQP\DeveloperFramework.LibraryModel.CQP.csproj">
+      <Project>{48E9268B-A98C-44A1-A66A-25E1DD119D4C}</Project>
+      <Name>DeveloperFramework.LibraryModel.CQP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Utilitys\DeveloperFramework.Extension\DeveloperFramework.Extension.csproj">
       <Project>{be1047f8-f698-4c93-9fa3-3849b1c9a922}</Project>
       <Name>DeveloperFramework.Extension</Name>

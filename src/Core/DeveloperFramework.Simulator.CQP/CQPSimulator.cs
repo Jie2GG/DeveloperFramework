@@ -1,10 +1,15 @@
 ﻿using DeveloperFramework.CQP;
 using DeveloperFramework.Library.CQP;
+using DeveloperFramework.LibraryModel.CQP.Dynamic;
 using DeveloperFramework.Log.CQP;
+using DeveloperFramework.Simulator.CQP.Domain;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -14,11 +19,14 @@ namespace DeveloperFramework.Simulator.CQP
 	/// <summary>
 	/// 表示 CQP 应用模拟器
 	/// </summary>
-	public class CQPSimulator
+	public class CQPSimulator : IFuncProcess
 	{
 		#region --常量--
-		private const string STR_SIMULATOR_INIT = "初始化";
-		private const string STR_APPLOAD = "应用加载";
+		public const string STR_SIMULATOR_INIT = "初始化";
+		public const string STR_APPLOAD = "应用加载";
+		public const string STR_APPUNLOAD = "应用卸载";
+		public const string STR_APPPERMISSIONS = "权限检查";
+		public const string STR_APPSENDING = "发送";
 		#endregion
 
 		#region --字段--
@@ -30,7 +38,7 @@ namespace DeveloperFramework.Simulator.CQP
 		/// <summary>
 		/// 获取当前实例加载的 <see cref="CQPDynamicLibrary"/> 集合
 		/// </summary>
-		public List<CQPDynamicLibrary> Libraries { get; }
+		public List<CQPSimulatorApp> CQPApps { get; }
 		/// <summary>
 		/// 获取当前实例的应用路径
 		/// </summary>
@@ -55,7 +63,10 @@ namespace DeveloperFramework.Simulator.CQP
 			}
 
 			this.AddDirectory = appDirectory;
-			this.Libraries = new List<CQPDynamicLibrary> ();
+			this.CQPApps = new List<CQPSimulatorApp> ();
+
+			// 设置 CQExport 服务
+			CQPExport.Instance.FuncProcess = this;
 		}
 		#endregion
 
@@ -65,13 +76,12 @@ namespace DeveloperFramework.Simulator.CQP
 		/// </summary>
 		public void Start ()
 		{
-			LogCenter.Instance.InfoSuccess (STR_APPLOAD, "应用加载开始");
-
 			if (this.IsStart)
 			{
 				return;
 			}
 
+			LogCenter.Instance.InfoSuccess (STR_APPLOAD, "应用加载开始");
 			string[] pathes = Directory.GetDirectories (this.AddDirectory);
 			foreach (string path in pathes)
 			{
@@ -105,8 +115,8 @@ namespace DeveloperFramework.Simulator.CQP
 						LogCenter.Instance.Error (STR_APPLOAD, $"应用 {appId} 的 Initialize 方法未返回 0");
 					}
 
-					// 加入列表
-					this.Libraries.Add (library);
+					// 存入实例列表
+					this.CQPApps.Add (new CQPSimulatorApp (authCode, appId, library));
 
 					LogCenter.Instance.InfoSuccess (STR_APPLOAD, $"应用: {appId} 加载成功");
 				}
@@ -116,8 +126,88 @@ namespace DeveloperFramework.Simulator.CQP
 				}
 			}
 
-			LogCenter.Instance.InfoSuccess (STR_APPLOAD, $"应用加载结束. 加载成功: {this.Libraries.Count} 个, 失败: {this.Libraries.Count - pathes.Length} 个");
+			LogCenter.Instance.InfoSuccess (STR_APPLOAD, $"应用加载结束. 加载成功: {this.CQPApps.Count} 个, 失败: {this.CQPApps.Count - pathes.Length} 个");
+			this.IsStart = true;
 		}
+		/// <summary>
+		/// 停止 <see cref="CQPSimulator"/>
+		/// </summary>
+		public void Stop ()
+		{
+			if (!IsStart)
+			{
+				return;
+			}
+
+			LogCenter.Instance.InfoSuccess (STR_APPUNLOAD, $"应用卸载开始");
+			for (int i = 0; i < this.CQPApps.Count; i++)
+			{
+				CQPSimulatorApp app = this.CQPApps[i];
+
+				string appId = app.AppId;
+
+				// 调用 CQExit 函数
+				foreach (AppEvent appEvent in app.Library.AppInfo.Events.Where (temp => temp.Type == AppEventType.CQExit))
+				{
+					try
+					{
+						app.Library.InvokeCQExit (appEvent);
+					}
+					catch (Exception ex)
+					{
+						LogCenter.Instance.Error (STR_APPUNLOAD, $"应用: {appId} 卸载失败, 原因: {ex.Message}");
+					}
+				}
+
+				LogCenter.Instance.InfoSuccess (STR_APPUNLOAD, $"应用: {appId} 卸载成功");
+
+				// 销毁对象
+				app.Library.Dispose ();
+			}
+			LogCenter.Instance.InfoSuccess (STR_APPUNLOAD, $"应用卸载结束");
+		}
+
+		public TOut GetProcess<TOut> (int authCode, [CallerMemberName] string funcName = null, params object[] objs)
+		{
+			CQPSimulatorApp app = this.CQPApps.Where (temp => temp.AuthCode == authCode).FirstOrDefault ();
+
+			if (app != null)
+			{
+				Type type = typeof (CQPExport);
+				MethodInfo method = type.GetMethod (funcName, BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
+				if (method != null)
+				{
+					bool allowed = true;    // 默认允许执行运算
+
+					CQPAuthAttribute auth = method.GetCustomAttribute<CQPAuthAttribute> ();
+					if (auth != null)   // 表示需要进行权限校验
+					{
+						if (!app.Library.AppInfo.Auth.Contains (auth.AppAuth))
+						{
+							allowed = false;
+						}
+					}
+
+					if (!allowed)
+					{
+						LogCenter.Instance.Info (app.Library.AppInfo.Name, STR_APPPERMISSIONS, $"应用无权执行此操作", null, null);
+					}
+					else
+					{
+						// 寻找对应的算法进行处理
+						TOut result = (TOut)CompositeInvoker.GetCommandHandle (app, funcName, objs).Execute ();
+					}
+				}
+			}
+			else
+			{
+				LogCenter.Instance.Error (STR_APPPERMISSIONS, $"检测到非法调用 Api 已阻止. 请使用 Initialize 下发的授权码.");
+			}
+
+
+			return default;
+		}
+
 		#endregion
 	}
 }

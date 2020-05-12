@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,32 +46,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BanSpeakTimeSpan.cs" />
-    <Compile Include="DiscussMessageType.cs" />
-    <Compile Include="FriendAddRequestType.cs" />
-    <Compile Include="FriendAddType.cs" />
-    <Compile Include="GroupAddRequestType.cs" />
-    <Compile Include="GroupBanSpeakType.cs" />
-    <Compile Include="GroupManagerChangeType.cs" />
-    <Compile Include="GroupMemberDecreaseType.cs" />
-    <Compile Include="GroupMemberIncreaseType.cs" />
-    <Compile Include="GroupMessageType.cs" />
-    <Compile Include="GroupUploadType.cs" />
-    <Compile Include="HandleType.cs" />
-    <Compile Include="PrivateMessageType.cs" />
-    <Compile Include="GroupAnonymous.cs" />
-    <Compile Include="Discuss.cs" />
-    <Compile Include="GroupFile.cs" />
-    <Compile Include="Group.cs" />
-    <Compile Include="Message.cs" />
+    <Compile Include="DynamicInfo\BanSpeakTimeSpan.cs" />
+    <Compile Include="DynamicInfo\AppAuth.cs" />
+    <Compile Include="DynamicInfo\AppEvent.cs" />
+    <Compile Include="DynamicInfo\AppEventType.cs" />
+    <Compile Include="DynamicInfo\AppInfo.cs" />
+    <Compile Include="DynamicInfo\AppMenu.cs" />
+    <Compile Include="DynamicInfo\AppStatus.cs" />
+    <Compile Include="DynamicInfo\DiscussMessageType.cs" />
+    <Compile Include="DynamicInfo\FriendAddRequestType.cs" />
+    <Compile Include="DynamicInfo\FriendAddType.cs" />
+    <Compile Include="DynamicInfo\GroupAddRequestType.cs" />
+    <Compile Include="DynamicInfo\GroupBanSpeakType.cs" />
+    <Compile Include="DynamicInfo\GroupManagerChangeType.cs" />
+    <Compile Include="DynamicInfo\GroupMemberDecreaseType.cs" />
+    <Compile Include="DynamicInfo\GroupMemberIncreaseType.cs" />
+    <Compile Include="DynamicInfo\GroupMessageType.cs" />
+    <Compile Include="DynamicInfo\GroupUploadType.cs" />
+    <Compile Include="DynamicInfo\HandleType.cs" />
+    <Compile Include="DynamicInfo\PrivateMessageType.cs" />
+    <Compile Include="DynamicInfo\GroupAnonymous.cs" />
+    <Compile Include="DynamicInfo\Discuss.cs" />
+    <Compile Include="DynamicInfo\GroupFile.cs" />
+    <Compile Include="DynamicInfo\Group.cs" />
+    <Compile Include="DynamicInfo\Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QQ.cs" />
+    <Compile Include="DynamicInfo\QQ.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Utilitys\DeveloperFramework.Extension\DeveloperFramework.Extension.csproj">
       <Project>{be1047f8-f698-4c93-9fa3-3849b1c9a922}</Project>
       <Name>DeveloperFramework.Extension</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

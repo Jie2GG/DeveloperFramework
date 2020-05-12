@@ -19,21 +19,28 @@
             获取当前加载动态链接库 (DLL) 的目录
             </summary>
         </member>
-        <member name="P:DeveloperFramework.Win32.LibraryCLR.DynamicLibrary.ResultCode">
-            <summary>
-            获取当前实例 <see cref="T:DeveloperFramework.Win32.LibraryCLR.DynamicLibrary"/> 执行过程中的结果代码
-            </summary>
-        </member>
-        <member name="P:DeveloperFramework.Win32.LibraryCLR.DynamicLibrary.ResultMessage">
-            <summary>
-            获取当前实例 <see cref="T:DeveloperFramework.Win32.LibraryCLR.DynamicLibrary"/> 执行过程中的详细信息
-            </summary>
-        </member>
         <member name="M:DeveloperFramework.Win32.LibraryCLR.DynamicLibrary.#ctor(System.String)">
             <summary>
             初始化 <see cref="T:DeveloperFramework.Win32.LibraryCLR.DynamicLibrary"/> 类的新实例, 并加载指定的动态链接库 (DLL)
             </summary>
             <param name="libFileName">要加载的动态链接库 (DLL) 的路径</param>
+        </member>
+        <member name="M:DeveloperFramework.Win32.LibraryCLR.DynamicLibrary.Finalize">
+            <summary>
+            释放 <see cref="T:DeveloperFramework.Win32.LibraryCLR.DynamicLibrary"/> 类所使用的资源
+            </summary>
+        </member>
+        <member name="M:DeveloperFramework.Win32.LibraryCLR.DynamicLibrary.GetResultCode">
+            <summary>
+            获取当前实例 <see cref="T:DeveloperFramework.Win32.LibraryCLR.DynamicLibrary"/> 执行过程中的结果代码
+            </summary>
+            <returns>返回从操作系统底层获取的结果代码</returns>
+        </member>
+        <member name="M:DeveloperFramework.Win32.LibraryCLR.DynamicLibrary.GetResultMessage">
+            <summary>
+            获取当前实例 <see cref="T:DeveloperFramework.Win32.LibraryCLR.DynamicLibrary"/> 执行过程中的详细信息
+            </summary>
+            <returns>返回从操作系统底层获取的详细执行信息</returns>
         </member>
         <member name="M:DeveloperFramework.Win32.LibraryCLR.DynamicLibrary.FunctionExist(System.String)">
             <summary>
