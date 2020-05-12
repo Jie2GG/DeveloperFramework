@@ -45,13 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CQPAppAuth.cs" />
-    <Compile Include="CQPAppEvent.cs" />
-    <Compile Include="CQPAppEventType.cs" />
-    <Compile Include="CQPAppMenu.cs" />
-    <Compile Include="CQPAppStatus.cs" />
     <Compile Include="CQPDynamicLibrary.cs" />
-    <Compile Include="CQPAppInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -13,6 +13,13 @@
 			"name": "群消息处理",
 			"function": "eventGroupMsg",
 			"priority": 30000
+		},
+		{
+			"id": 2,
+			"type": 21,
+			"name": "私聊消息",
+			"function": "eventPrivateMsg",
+			"priority": 30000
 		}
 	],
 	"menu": [
@@ -31,6 +38,7 @@
 		}
 	],
 	"auth": [
-		101 // 发送群消息
+		101, // 发送群消息
+		106
 	]
 }

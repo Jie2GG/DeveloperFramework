@@ -19,6 +19,18 @@
         "runtime": {
           "bin/placeholder/DeveloperFramework.Extension.dll": {}
         }
+      },
+      "DeveloperFramework.LibraryModel.CQP/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "DeveloperFramework.Extension": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DeveloperFramework.LibraryModel.CQP.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DeveloperFramework.LibraryModel.CQP.dll": {}
+        }
       }
     },
     ".NETFramework,Version=v4.7.2/win": {
@@ -38,6 +50,18 @@
         },
         "runtime": {
           "bin/placeholder/DeveloperFramework.Extension.dll": {}
+        }
+      },
+      "DeveloperFramework.LibraryModel.CQP/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "DeveloperFramework.Extension": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DeveloperFramework.LibraryModel.CQP.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DeveloperFramework.LibraryModel.CQP.dll": {}
         }
       }
     },
@@ -59,6 +83,18 @@
         "runtime": {
           "bin/placeholder/DeveloperFramework.Extension.dll": {}
         }
+      },
+      "DeveloperFramework.LibraryModel.CQP/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "DeveloperFramework.Extension": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DeveloperFramework.LibraryModel.CQP.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DeveloperFramework.LibraryModel.CQP.dll": {}
+        }
       }
     },
     ".NETFramework,Version=v4.7.2/win-x86": {
@@ -78,6 +114,18 @@
         },
         "runtime": {
           "bin/placeholder/DeveloperFramework.Extension.dll": {}
+        }
+      },
+      "DeveloperFramework.LibraryModel.CQP/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "DeveloperFramework.Extension": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DeveloperFramework.LibraryModel.CQP.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DeveloperFramework.LibraryModel.CQP.dll": {}
         }
       }
     }
@@ -150,11 +198,17 @@
       "type": "project",
       "path": "../../Utilitys/DeveloperFramework.Extension/DeveloperFramework.Extension.csproj",
       "msbuildProject": "../../Utilitys/DeveloperFramework.Extension/DeveloperFramework.Extension.csproj"
+    },
+    "DeveloperFramework.LibraryModel.CQP/1.0.0": {
+      "type": "project",
+      "path": "../../Models/DeveloperFramework.LibraryModel.CQP/DeveloperFramework.LibraryModel.CQP.csproj",
+      "msbuildProject": "../../Models/DeveloperFramework.LibraryModel.CQP/DeveloperFramework.LibraryModel.CQP.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.7.2": [
       "DeveloperFramework.Extension >= 1.0.0",
+      "DeveloperFramework.LibraryModel.CQP >= 1.0.0",
       "DllExport >= 1.7.0"
     ]
   },
@@ -185,6 +239,9 @@
       "frameworks": {
         "net472": {
           "projectReferences": {
+            "D:\\Project\\DeveloperFramework\\src\\Models\\DeveloperFramework.LibraryModel.CQP\\DeveloperFramework.LibraryModel.CQP.csproj": {
+              "projectPath": "D:\\Project\\DeveloperFramework\\src\\Models\\DeveloperFramework.LibraryModel.CQP\\DeveloperFramework.LibraryModel.CQP.csproj"
+            },
             "D:\\Project\\DeveloperFramework\\src\\Utilitys\\DeveloperFramework.Extension\\DeveloperFramework.Extension.csproj": {
               "projectPath": "D:\\Project\\DeveloperFramework\\src\\Utilitys\\DeveloperFramework.Extension\\DeveloperFramework.Extension.csproj"
             }
