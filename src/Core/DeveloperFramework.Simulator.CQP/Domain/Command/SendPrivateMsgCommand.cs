@@ -13,41 +13,41 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 	/// 发送私聊消息命令
 	/// </summary>
 	[FunctionBinding (Function = nameof (CQPExport.CQ_sendPrivateMsg))]
-	public class SendPrivateMsgCommand : Command
+	public class SendPrivateMsgCommand : AbstractCommand
 	{
-		/// <summary>
-		/// 获取当前实例的来源QQ
-		/// </summary>
+		#region --属性--
 		public long FromQQ { get; }
-		/// <summary>
-		/// 获取当前实例的消息内容
-		/// </summary>
 		public string Message { get; }
+		#endregion
 
-		/// <summary>
-		/// 初始化 <see cref="SendPrivateMsgCommand"/> 类的新实例
-		/// </summary>
-		/// <param name="app">相关联的应用 <see cref="CQPSimulatorApp"/></param>
-		/// <param name="qqId">相关联的 QQ号</param>
-		/// <param name="msg">相关联的消息内容</param>
-		public SendPrivateMsgCommand (CQPSimulatorApp app, long qqId, string msg)
-			: base (app)
+		#region --构造函数--
+		public SendPrivateMsgCommand (CQPSimulator simulator, CQPSimulatorApp app, bool isAuth, long qqId, string msg)
+			: base (simulator, app, isAuth)
 		{
 			this.FromQQ = qqId;
 			this.Message = msg;
 		}
+		#endregion
 
-		/// <summary>
-		/// 处理命令的详细过程
-		/// </summary>
-		/// <returns>返回处理结果</returns>
-		public override object Execute ()
+		#region --公开方法--
+		public override object ExecuteHaveAuth ()
 		{
 			AppInfo appInfo = this.App.Library.AppInfo;
 
-			LogCenter.Instance.InfoSending (appInfo.Name, CQPSimulator.STR_APPSENDING, $"向 [QQ: {this.FromQQ}] 发送消息: {this.Message}", null, null);
+			// 将消息存入缓存池
+			Message msg = this.Message;
 			
-			return 0;
+
+			LogCenter.Instance.InfoSending (appInfo.Name, CQPSimulator.STR_APPSENDING, $"向 [QQ: {this.FromQQ}] 发送消息: {this.Message}", null, null);
+			return msg.Id;	// 返回消息 Id 用于撤回
 		}
+
+		public override object ExecuteHaveNoAuth ()
+		{
+			AppInfo appInfo = this.App.Library.AppInfo;
+			LogCenter.Instance.Info (appInfo.Name, CQPSimulator.STR_APPPERMISSIONS, $"检测到 Api 调用未经授权, 请检查 app.json 是否赋予权限", null, null);
+			return -1;
+		}
+		#endregion
 	}
 }

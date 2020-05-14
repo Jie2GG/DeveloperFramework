@@ -1,9 +1,10 @@
 ﻿using DeveloperFramework.CQP;
 using DeveloperFramework.Library.CQP;
-using DeveloperFramework.LibraryModel.CQP.Dynamic;
+using DeveloperFramework.LibraryModel.CQP;
 using DeveloperFramework.Log.CQP;
 using DeveloperFramework.Simulator.CQP.Domain;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -13,6 +14,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace DeveloperFramework.Simulator.CQP
 {
@@ -40,6 +42,10 @@ namespace DeveloperFramework.Simulator.CQP
 		/// </summary>
 		public List<CQPSimulatorApp> CQPApps { get; }
 		/// <summary>
+		/// 获取当前实例的消息缓存池
+		/// </summary>
+		public ConcurrentDictionary<int, CQPSimulatorMessage> MessageCaches { get; }
+		/// <summary>
 		/// 获取当前实例的应用路径
 		/// </summary>
 		public string AddDirectory { get; }
@@ -64,6 +70,7 @@ namespace DeveloperFramework.Simulator.CQP
 
 			this.AddDirectory = appDirectory;
 			this.CQPApps = new List<CQPSimulatorApp> ();
+			this.MessageCaches = new ConcurrentDictionary<int, CQPSimulatorMessage> ();
 
 			// 设置 CQExport 服务
 			CQPExport.Instance.FuncProcess = this;
@@ -166,47 +173,48 @@ namespace DeveloperFramework.Simulator.CQP
 			}
 			LogCenter.Instance.InfoSuccess (STR_APPUNLOAD, $"应用卸载结束");
 		}
-
-		public TOut GetProcess<TOut> (int authCode, [CallerMemberName] string funcName = null, params object[] objs)
+		/// <summary>
+		/// 获取函数处理过程
+		/// </summary>
+		/// <param name="authCode">应用授权码</param>
+		/// <param name="funcName">函数名称</param>
+		/// <param name="objs">函数参数列表</param>
+		/// <returns>返回值</returns>
+		public object GetProcess (int authCode, [CallerMemberName] string funcName = null, params object[] objs)
 		{
-			CQPSimulatorApp app = this.CQPApps.Where (temp => temp.AuthCode == authCode).FirstOrDefault ();
-
-			if (app != null)
+			// 获取方法
+			MethodInfo method = typeof (CQPExport).GetMethod (funcName, BindingFlags.Static | BindingFlags.Public);
+			if (method == null)
 			{
-				Type type = typeof (CQPExport);
-				MethodInfo method = type.GetMethod (funcName, BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
-				if (method != null)
-				{
-					bool allowed = true;    // 默认允许执行运算
+				throw new MissingMethodException (nameof (CQPExport), funcName);
+			}
 
-					CQPAuthAttribute auth = method.GetCustomAttribute<CQPAuthAttribute> ();
-					if (auth != null)   // 表示需要进行权限校验
-					{
-						if (!app.Library.AppInfo.Auth.Contains (auth.AppAuth))
-						{
-							allowed = false;
-						}
-					}
+			// 获取应用实例
+			CQPSimulatorApp app = this.CQPApps.Where (temp => temp.AuthCode == authCode).FirstOrDefault ();
+			bool isAuth = false;
 
-					if (!allowed)
-					{
-						LogCenter.Instance.Info (app.Library.AppInfo.Name, STR_APPPERMISSIONS, $"应用无权执行此操作", null, null);
-					}
-					else
-					{
-						// 寻找对应的算法进行处理
-						TOut result = (TOut)CompositeInvoker.GetCommandHandle (app, funcName, objs).Execute ();
-					}
-				}
+			if (app == null)
+			{
+				LogCenter.Instance.Error (STR_APPPERMISSIONS, $"检测到非法的 Api 调用, 已阻止. 请确保调用的 Api 使用了 Initialize 下发的授权码");
 			}
 			else
 			{
-				LogCenter.Instance.Error (STR_APPPERMISSIONS, $"检测到非法调用 Api 已阻止. 请使用 Initialize 下发的授权码.");
+				isAuth = true;  // 默认允许调用
+
+				// 获取方法是否标记了应用权限校验
+				CQPAuthAttribute auth = method.GetCustomAttribute<CQPAuthAttribute> ();
+				if (auth != null)
+				{
+					// 校验权限
+					isAuth = app.Library.AppInfo.Auth.Contains (auth.AppAuth);
+				}
 			}
 
-
-			return default;
+			return new CompositeInvoker (this, app, isAuth).GetCommandHandle (funcName, objs).Execute ();
 		}
+		#endregion
+
+		#region --私有方法--
 
 		#endregion
 	}

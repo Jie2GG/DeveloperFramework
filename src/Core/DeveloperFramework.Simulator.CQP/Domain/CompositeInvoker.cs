@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,16 +12,39 @@ namespace DeveloperFramework.Simulator.CQP.Domain
 	/// <summary>
 	/// 接收命令复合调用程序
 	/// </summary>
-	public static class CompositeInvoker
+	public class CompositeInvoker
 	{
 		#region --字段--
-		private static readonly Assembly ExecuteAssembly;
+		private static readonly Assembly ExecuteAssembly = Assembly.GetAssembly (typeof (ICommand));
+		#endregion
+
+		#region --属性--
+		/// <summary>
+		/// 获取当前实例关联的 <see cref="CQPSimulator"/>
+		/// </summary>
+		public CQPSimulator Simulator { get; }
+		/// <summary>
+		/// 获取当前实例关联的 <see cref="CQPSimulatorApp"/>
+		/// </summary>
+		public CQPSimulatorApp App { get; }
+		/// <summary>
+		/// 获取当前实例表示权限验证是否通过
+		/// </summary>
+		public bool IsAuth { get; }
 		#endregion
 
 		#region --构造函数--
-		static CompositeInvoker ()
+		/// <summary>
+		/// 初始化 <see cref="CompositeInvoker"/> 类的新实例
+		/// </summary>
+		/// <param name="simulator">相关联的 <see cref="CQPSimulator"/></param>
+		/// <param name="app">相关联的 <see cref="CQPSimulatorApp"/></param>
+		/// <param name="isAuth">表示验证授权是否通过</param>
+		public CompositeInvoker (CQPSimulator simulator, CQPSimulatorApp app, bool isAuth)
 		{
-			ExecuteAssembly = Assembly.GetAssembly (typeof (ICommand));
+			Simulator = simulator;
+			this.App = app;
+			this.IsAuth = isAuth;
 		}
 		#endregion
 
@@ -32,7 +56,7 @@ namespace DeveloperFramework.Simulator.CQP.Domain
 		/// <param name="funcName">触发此操作的函数名称</param>
 		/// <param name="objs">附加的参数列表</param>
 		/// <returns>返回指定的命令处理程序</returns>
-		public static ICommand GetCommandHandle (CQPSimulatorApp app, string funcName, params object[] objs)
+		public ICommand GetCommandHandle (string funcName, params object[] objs)
 		{
 			foreach (Type type in ExecuteAssembly.GetTypes ())
 			{
@@ -47,20 +71,18 @@ namespace DeveloperFramework.Simulator.CQP.Domain
 				{
 					if (attribute.Function.Equals (funcName))
 					{
-						object[] param = new object[objs.Length + 1];
-						param[0] = app;
-						for (int i = 1; i < param.Length; i++)
-						{
-							param[i] = objs[i - 1];
-						}
+						object[] param = new object[objs.Length + 3];
+						param[0] = this.Simulator;
+						param[1] = this.App;
+						param[2] = this.IsAuth;
+						Array.Copy (objs, 0, param, param.Length - objs.Length, objs.Length);
 
 						return (ICommand)Activator.CreateInstance (type, param);
 					}
 				}
 			}
 
-			// TODO: 返回默认处理命令
-			
+			throw new MissingManifestResourceException ($"无法找到用于适配: {funcName} 的程序集命令");
 		}
 		#endregion
 	}

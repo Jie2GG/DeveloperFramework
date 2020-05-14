@@ -15,17 +15,30 @@ using DeveloperFramework.Simulator.CQP.Domain;
 
 namespace TestApplication
 {
-	class Program
+	public class Program : ILogObserver
 	{
-		static void Main (string[] args)
+		public static void Main (string[] args)
 		{
+			LogCenter.Instance.AddObserver (new Program ());
+
 			CQPSimulator simulator = new CQPSimulator (Path.Combine (AppDomain.CurrentDomain.BaseDirectory, "dev"));
 			simulator.Start ();
-			var lib = simulator.CQPApps[0].Library;
-			lib.InvokeCQPrivateMessage (lib.AppInfo.Events[1], PrivateMessageType.Friend, 947295340L, "发送的消息", IntPtr.Zero);
+
 			simulator.Stop ();
-			//Console.WriteLine (nameof (CQPExport.CQ_sendPrivateMsg));
 			Console.Read ();
+		}
+
+		public void Initialize (ICollection<LogItem> logs)
+		{
+			foreach (var item in logs)
+			{
+				ReceiveLog (item);
+			}
+		}
+
+		public void ReceiveLog (LogItem log)
+		{
+			Console.WriteLine (log);
 		}
 	}
 }
