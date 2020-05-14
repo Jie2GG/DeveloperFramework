@@ -44,7 +44,43 @@ namespace DeveloperFramework.CQP
 		{
 			if (Instance.FuncProcess != null)
 			{
-				return Instance.FuncProcess.GetProcess<int> (authCode, nameof (CQ_sendPrivateMsg), qqId, msg.PtrToString (_defaultEncoding));
+				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_sendPrivateMsg), qqId, msg.PtrToString (_defaultEncoding));
+			}
+
+			return -1;
+		}
+
+		[CQPAuth (AppAuth = AppAuth.SendGroupMessage)]
+		[DllExport (ExportName = nameof (CQ_sendGroupMsg), CallingConvention = CallingConvention.StdCall)]
+		public static int CQ_sendGroupMsg (int authCode, long groupId, IntPtr msg)
+		{
+			if (Instance.FuncProcess != null)
+			{
+				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_sendGroupMsg), groupId, msg.PtrToString (_defaultEncoding));
+			}
+
+			return -1;
+		}
+
+		[CQPAuth (AppAuth = AppAuth.sendDiscussMessage)]
+		[DllExport (ExportName = nameof (CQ_sendDiscussMsg), CallingConvention = CallingConvention.StdCall)]
+		public static int CQ_sendDiscussMsg (int authcode, long discussId, IntPtr msg)
+		{
+			if (Instance.FuncProcess != null)
+			{
+				return (int)Instance.FuncProcess.GetProcess (authcode, nameof (CQ_sendDiscussMsg), discussId, msg.PtrToString (_defaultEncoding));
+			}
+
+			return -1;
+		}
+
+		[CQPAuth (AppAuth = AppAuth.deleteMsg)]
+		[DllExport (ExportName = nameof (CQ_deleteMsg), CallingConvention = CallingConvention.StdCall)]
+		public static int CQ_deleteMsg (int authCode, long msgId)
+		{
+			if (Instance.FuncProcess != null)
+			{
+				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_deleteMsg), msgId);
 			}
 
 			return -1;

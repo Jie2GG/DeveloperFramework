@@ -44,9 +44,13 @@
   <ItemGroup>
     <Compile Include="CQPSimulator.cs" />
     <Compile Include="CQPSimulatorApp.cs" />
+    <Compile Include="CQPSimulatorMessage.cs" />
+    <Compile Include="Domain\Command\DeleteMsgCommand.cs" />
+    <Compile Include="Domain\Command\SendDiscussMsgCommand.cs" />
+    <Compile Include="Domain\Command\SendGroupMsgCommand.cs" />
     <Compile Include="Domain\FunctionBindingAttribute.cs" />
     <Compile Include="Domain\Command\ICommand.cs" />
-    <Compile Include="Domain\Command\Command.cs" />
+    <Compile Include="Domain\Command\AbstractCommand.cs" />
     <Compile Include="Domain\Command\SendPrivateMsgCommand.cs" />
     <Compile Include="Domain\CompositeInvoker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
