@@ -53,6 +53,10 @@
       <Project>{48E9268B-A98C-44A1-A66A-25E1DD119D4C}</Project>
       <Name>DeveloperFramework.LibraryModel.CQP</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Utilitys\DeveloperFramework.Extension\DeveloperFramework.Extension.csproj">
+      <Project>{BE1047F8-F698-4C93-9FA3-3849B1C9A922}</Project>
+      <Name>DeveloperFramework.Extension</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Utilitys\DeveloperFramework.Utility\DeveloperFramework.Utility.csproj">
       <Project>{50587E04-23E2-4E97-A831-167D5C39D9E8}</Project>
       <Name>DeveloperFramework.Utility</Name>

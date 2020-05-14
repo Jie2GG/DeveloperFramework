@@ -17,6 +17,6 @@ namespace DeveloperFramework.CQP
 		/// </summary>
 		/// <param name="objs">传入的欲处理对象</param>
 		/// <returns>返回指定的结果</returns>
-		TOut GetProcess<TOut> (int authCode, [CallerMemberName] string funcName = null, params object[] objs);
+		object GetProcess (int authCode, [CallerMemberName] string funcName = null, params object[] objs);
 	}
 }

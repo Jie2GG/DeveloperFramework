@@ -1,4 +1,5 @@
-﻿using DeveloperFramework.LibraryModel.CQP.Dynamic;
+﻿using DeveloperFramework.Extension;
+using DeveloperFramework.LibraryModel.CQP;
 using DeveloperFramework.Utility;
 using DeveloperFramework.Win32.LibraryCLR;
 using Newtonsoft.Json;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +21,7 @@ namespace DeveloperFramework.Library.CQP
 		#region --字段--
 		private readonly string _jsonPath;
 		private readonly AppInfo _appInfo;
+		private static readonly Encoding _defaultEncoding = Encoding.GetEncoding ("GB18030");
 		#endregion
 
 		#region --属性--
@@ -39,17 +42,17 @@ namespace DeveloperFramework.Library.CQP
 		private delegate int CQ_Exit ();
 		private delegate int CQ_AppEnable ();
 		private delegate int CQ_AppDisable ();
-		private delegate int CQ_PrivateMessage (int subType, int msgId, long fromQQ, string msg, int font);
-		private delegate int CQ_GroupMessage (int subType, int msgId, long fromGroup, long fromQQ, string fromAnonymous, string msg, int font);
-		private delegate int CQ_DiscussMessage (int subType, int msgId, long fromDiscuss, long fromQQ, string msg, int font);
-		private delegate int CQ_GroupUpload (int subType, int sendTime, long fromGroup, long fromQQ, string file);
+		private delegate int CQ_PrivateMessage (int subType, int msgId, long fromQQ, IntPtr msg, int font);
+		private delegate int CQ_GroupMessage (int subType, int msgId, long fromGroup, long fromQQ, IntPtr fromAnonymous, IntPtr msg, int font);
+		private delegate int CQ_DiscussMessage (int subType, int msgId, long fromDiscuss, long fromQQ, IntPtr msg, int font);
+		private delegate int CQ_GroupUpload (int subType, int sendTime, long fromGroup, long fromQQ, IntPtr file);
 		private delegate int CQ_GroupManagerChange (int subType, int sendTime, long fromGroup, long beingOperateQQ);
 		private delegate int CQ_GroupMemberDecrease (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ);
 		private delegate int CQ_GroupMemberIncrease (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ);
 		private delegate int CQ_GroupBanSpeak (int subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ, long duration);
 		private delegate int CQ_FriendAdd (int subType, int sendTime, long fromQQ);
-		private delegate int CQ_FriendAddRequest (int subType, int sendTime, long fromQQ, string msg, string responseFlag);
-		private delegate int CQ_GroupAddRequest (int subType, int sendTime, long fromGroup, long fromQQ, string msg, string responseFlag);
+		private delegate int CQ_FriendAddRequest (int subType, int sendTime, long fromQQ, IntPtr msg, IntPtr responseFlag);
+		private delegate int CQ_GroupAddRequest (int subType, int sendTime, long fromGroup, long fromQQ, IntPtr msg, IntPtr responseFlag);
 		private delegate int CQ_Menu ();
 		private delegate string CQ_Status ();
 		#endregion
@@ -215,7 +218,15 @@ namespace DeveloperFramework.Library.CQP
 				throw new ArgumentException ($"函数信息不是 {AppEventType.PrivateMessage} 类型", nameof (appEvent));
 			}
 
-			return (HandleType)this.GetFunction<CQ_PrivateMessage> (appEvent.Function) ((int)subType, msg.Id, fromQQ, msg, font.ToInt32 ());
+			GCHandle msgHandle = ((string)msg).GetGCHandle (_defaultEncoding);
+			try
+			{
+				return (HandleType)this.GetFunction<CQ_PrivateMessage> (appEvent.Function) ((int)subType, msg.Id, fromQQ, msgHandle.AddrOfPinnedObject (), font.ToInt32 ());
+			}
+			finally
+			{
+				msgHandle.Free ();
+			}
 		}
 		/// <summary>
 		/// 调用 <see cref="CQ_GroupMessage"/> 方法
@@ -262,7 +273,17 @@ namespace DeveloperFramework.Library.CQP
 				throw new ArgumentException ($"函数信息不是 {AppEventType.GroupMessage} 类型", nameof (appEvent));
 			}
 
-			return (HandleType)this.GetFunction<CQ_GroupMessage> (appEvent.Function) ((int)subType, msg.Id, fromGroup, fromQQ, fromAnonymous.ToBase64String (), msg, font.ToInt32 ());
+			GCHandle anonymousHandle = fromAnonymous.ToBase64String ().GetGCHandle (_defaultEncoding);
+			GCHandle msgHandle = ((string)msg).GetGCHandle (_defaultEncoding);
+			try
+			{
+				return (HandleType)this.GetFunction<CQ_GroupMessage> (appEvent.Function) ((int)subType, msg.Id, fromGroup, fromQQ, anonymousHandle.AddrOfPinnedObject (), msgHandle.AddrOfPinnedObject (), font.ToInt32 ());
+			}
+			finally
+			{
+				anonymousHandle.Free ();
+				msgHandle.Free ();
+			}
 		}
 		/// <summary>
 		/// 调用 <see cref="CQ_DiscussMessage"/> 方法
@@ -303,7 +324,15 @@ namespace DeveloperFramework.Library.CQP
 				throw new ArgumentException ($"函数信息不是 {AppEventType.DiscussMessage} 类型", nameof (appEvent));
 			}
 
-			return (HandleType)this.GetFunction<CQ_DiscussMessage> (appEvent.Function) ((int)subType, msg.Id, fromDiscuss, fromQQ, msg, font.ToInt32 ());
+			GCHandle msgHandle = ((string)msg).GetGCHandle (_defaultEncoding);
+			try
+			{
+				return (HandleType)this.GetFunction<CQ_DiscussMessage> (appEvent.Function) ((int)subType, msg.Id, fromDiscuss, fromQQ, msgHandle.AddrOfPinnedObject (), font.ToInt32 ());
+			}
+			finally
+			{
+				msgHandle.Free ();
+			}
 		}
 		/// <summary>
 		/// 调用 <see cref="CQ_GroupUpload"/> 方法
@@ -344,7 +373,16 @@ namespace DeveloperFramework.Library.CQP
 				throw new ArgumentException ($"函数信息不是 {AppEventType.GroupFileUpload} 类型", nameof (appEvent));
 			}
 
-			return (HandleType)this.GetFunction<CQ_GroupUpload> (appEvent.Function) ((int)subType, sendTime, fromGroup, fromQQ, file.ToBase64String ());
+			GCHandle fileHandle = file.ToBase64String ().GetGCHandle (_defaultEncoding);
+
+			try
+			{
+				return (HandleType)this.GetFunction<CQ_GroupUpload> (appEvent.Function) ((int)subType, sendTime, fromGroup, fromQQ, fileHandle.AddrOfPinnedObject ());
+			}
+			finally
+			{
+				fileHandle.Free ();
+			}
 		}
 		/// <summary>
 		/// 调用 <see cref="CQ_GroupManagerChange"/> 方法
@@ -573,7 +611,17 @@ namespace DeveloperFramework.Library.CQP
 				throw new ArgumentException ($"函数信息不是 {AppEventType.FriendAddRequest} 类型", nameof (appEvent));
 			}
 
-			return (HandleType)this.GetFunction<CQ_FriendAddRequest> (appEvent.Function) ((int)subType, sendTime, fromQQ, appendMsg, responseFlag);
+			GCHandle msgHandle = appendMsg.GetGCHandle (_defaultEncoding);
+			GCHandle flagHandle = responseFlag.GetGCHandle (_defaultEncoding);
+			try
+			{
+				return (HandleType)this.GetFunction<CQ_FriendAddRequest> (appEvent.Function) ((int)subType, sendTime, fromQQ, msgHandle.AddrOfPinnedObject (), flagHandle.AddrOfPinnedObject ());
+			}
+			finally
+			{
+				msgHandle.Free ();
+				flagHandle.Free ();
+			}
 		}
 		/// <summary>
 		/// 调用 <see cref="CQ_FriendAddRequest"/> 方法
@@ -620,7 +668,17 @@ namespace DeveloperFramework.Library.CQP
 				throw new ArgumentException ($"函数信息不是 {AppEventType.GroupAddRequest} 类型", nameof (appEvent));
 			}
 
-			return (HandleType)this.GetFunction<CQ_GroupAddRequest> (appEvent.Function) ((int)subType, sendTime, fromGroup, fromQQ, appendMsg, responseFlag);
+			GCHandle msgHandle = appendMsg.GetGCHandle (_defaultEncoding);
+			GCHandle flagHandle = responseFlag.GetGCHandle (_defaultEncoding);
+			try
+			{
+				return (HandleType)this.GetFunction<CQ_GroupAddRequest> (appEvent.Function) ((int)subType, sendTime, fromGroup, fromQQ, msgHandle.AddrOfPinnedObject (), flagHandle.AddrOfPinnedObject ());
+			}
+			finally
+			{
+				msgHandle.Free ();
+				flagHandle.Free ();
+			}
 		}
 		/// <summary>
 		/// 调用 <see cref="CQ_Menu"/> 方法
