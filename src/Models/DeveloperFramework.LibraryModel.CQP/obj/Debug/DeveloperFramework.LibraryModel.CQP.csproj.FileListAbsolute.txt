@@ -10,3 +10,6 @@ D:\Project\DeveloperFramework\src\Models\DeveloperFramework.LibraryModel.CQP\obj
 D:\Project\DeveloperFramework\src\Models\DeveloperFramework.LibraryModel.CQP\obj\Debug\DeveloperFramework.LibraryModel.CQP.pdb
 D:\Project\DeveloperFramework\src\Models\DeveloperFramework.LibraryModel.CQP\bin\Debug\Newtonsoft.Json.dll
 D:\Project\DeveloperFramework\src\Models\DeveloperFramework.LibraryModel.CQP\bin\Debug\Newtonsoft.Json.xml
+D:\Project\DeveloperFramework\src\Models\DeveloperFramework.LibraryModel.CQP\bin\Debug\DeveloperFramework.Utility.dll
+D:\Project\DeveloperFramework\src\Models\DeveloperFramework.LibraryModel.CQP\bin\Debug\DeveloperFramework.Utility.pdb
+D:\Project\DeveloperFramework\src\Models\DeveloperFramework.LibraryModel.CQP\bin\Debug\DeveloperFramework.Utility.xml

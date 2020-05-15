@@ -3,6 +3,7 @@ using DeveloperFramework.Library.CQP;
 using DeveloperFramework.LibraryModel.CQP;
 using DeveloperFramework.Log.CQP;
 using DeveloperFramework.Simulator.CQP.Domain;
+using DeveloperFramework.Utility;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -33,7 +34,6 @@ namespace DeveloperFramework.Simulator.CQP
 
 		#region --字段--
 		private static readonly Regex appIdRegex = new Regex (@"(?:[a-z]*)\.(?:[a-z\-_]*)\.(?:[a-zA-Z0-9\.\-_]*)", RegexOptions.Compiled);
-		private static readonly Random appRandom = new Random ();
 		#endregion
 
 		#region --属性--
@@ -42,9 +42,9 @@ namespace DeveloperFramework.Simulator.CQP
 		/// </summary>
 		public List<CQPSimulatorApp> CQPApps { get; }
 		/// <summary>
-		/// 获取当前实例的消息缓存池
+		/// 获取当前实例的数据池 <see cref="CQPSimulatorDataPool"/>
 		/// </summary>
-		public ConcurrentDictionary<int, CQPSimulatorMessage> MessageCaches { get; }
+		public CQPSimulatorDataPool DataPool { get; }
 		/// <summary>
 		/// 获取当前实例的应用路径
 		/// </summary>
@@ -70,7 +70,7 @@ namespace DeveloperFramework.Simulator.CQP
 
 			this.AddDirectory = appDirectory;
 			this.CQPApps = new List<CQPSimulatorApp> ();
-			this.MessageCaches = new ConcurrentDictionary<int, CQPSimulatorMessage> ();
+			this.DataPool = new CQPSimulatorDataPool ();
 
 			// 设置 CQExport 服务
 			CQPExport.Instance.FuncProcess = this;
@@ -114,7 +114,7 @@ namespace DeveloperFramework.Simulator.CQP
 						continue;
 					}
 
-					int authCode = appRandom.Next (int.MaxValue);
+					int authCode = RandomUtility.RandomInt32 (1, int.MaxValue);
 					// 传递验证码
 					int resCode = library.InvokeInitialize (authCode);
 					if (resCode != 0)

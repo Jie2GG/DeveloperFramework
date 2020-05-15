@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DeveloperFramework.Utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,22 @@ namespace DeveloperFramework.LibraryModel.CQP
 		/// 获取当前实例的唯一标识 (QQ号)
 		/// </summary>
 		public long Id { get; private set; }
+		/// <summary>
+		/// 获取当前实例的昵称
+		/// </summary>
+		public string Nick { get; }
+		/// <summary>
+		/// 获取当前实例描述的年龄
+		/// </summary>
+		public int Age { get; }
+		/// <summary>
+		/// 获取当前实例描述的所在地
+		/// </summary>
+		public string Area { get; }
+		/// <summary>
+		/// 获取当前实例所描述的性别
+		/// </summary>
+		public Sex Sex { get; }
 		#endregion
 
 		#region --构造函数--
@@ -32,13 +49,46 @@ namespace DeveloperFramework.LibraryModel.CQP
 		/// <param name="id">当前实例指定的 Id</param>
 		/// <exception cref="ArgumentOutOfRangeException">id 小于 <see cref="MinValue"/></exception>
 		public QQ (long id)
+			: this (id, RandomUtility.RandomName (), 0, null, Sex.Man)
+		{
+
+		}
+		/// <summary>
+		/// 初始化 <see cref="QQ"/> 类的新实例
+		/// </summary>
+		/// <param name="id">当前实例指定的 Id</param>
+		/// <param name="nick">当前实例的昵称</param>
+		/// <param name="age">当前实例的年龄</param>
+		/// <param name="area">当前实例的地区</param>
+		/// <param name="sex">当前实例的性别</param>
+		/// <exception cref="ArgumentOutOfRangeException">id 小于 <see cref="MinValue"/></exception>
+		public QQ (long id, string nick, int age, string area, Sex sex)
 		{
 			if (id < QQ.MinValue)
 			{
 				throw new ArgumentOutOfRangeException (nameof (id));
 			}
 
+			if (nick is null)
+			{
+				throw new ArgumentNullException (nameof (nick));
+			}
+
+			if (age < 0)
+			{
+				throw new ArgumentOutOfRangeException (nameof (age), age, "无法指定年龄小于 0 岁");
+			}
+
+			if (area is null)
+			{
+				throw new ArgumentNullException (nameof (area));
+			}
+
 			this.Id = id;
+			this.Nick = nick;
+			this.Age = age;
+			this.Area = area;
+			this.Sex = sex;
 		}
 		#endregion
 

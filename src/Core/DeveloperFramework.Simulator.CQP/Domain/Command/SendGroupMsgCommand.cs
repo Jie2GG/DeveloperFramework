@@ -1,5 +1,5 @@
 ﻿using DeveloperFramework.CQP;
-using DeveloperFramework.LibraryModel.CQP.Dynamic;
+using DeveloperFramework.LibraryModel.CQP;
 using DeveloperFramework.Log.CQP;
 using System;
 using System.Collections.Generic;
