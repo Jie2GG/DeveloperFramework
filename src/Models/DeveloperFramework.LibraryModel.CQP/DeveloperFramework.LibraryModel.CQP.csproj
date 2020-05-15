@@ -59,8 +59,10 @@
     <Compile Include="GroupAddRequestType.cs" />
     <Compile Include="GroupBanSpeakType.cs" />
     <Compile Include="GroupManagerChangeType.cs" />
+    <Compile Include="GroupMember.cs" />
     <Compile Include="GroupMemberDecreaseType.cs" />
     <Compile Include="GroupMemberIncreaseType.cs" />
+    <Compile Include="GroupMemberType.cs" />
     <Compile Include="GroupMessageType.cs" />
     <Compile Include="GroupUploadType.cs" />
     <Compile Include="HandleType.cs" />
@@ -72,11 +74,16 @@
     <Compile Include="Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QQ.cs" />
+    <Compile Include="Sex.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Utilitys\DeveloperFramework.Extension\DeveloperFramework.Extension.csproj">
       <Project>{be1047f8-f698-4c93-9fa3-3849b1c9a922}</Project>
       <Name>DeveloperFramework.Extension</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Utilitys\DeveloperFramework.Utility\DeveloperFramework.Utility.csproj">
+      <Project>{50587E04-23E2-4E97-A831-167D5C39D9E8}</Project>
+      <Name>DeveloperFramework.Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

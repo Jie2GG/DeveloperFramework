@@ -5,16 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeveloperFramework.Simulator.CQP
+namespace DeveloperFramework.SimulatorModel.CQP
 {
 	/// <summary>
-	/// 描述 CQP 应用模拟器的消息
+	/// 描述 CQP 应用模拟器的缓存消息类
 	/// </summary>
-	public class CQPSimulatorMessage
+	public class MessageCache
 	{
 		#region --属性--
 		/// <summary>
-		/// 获取当前实例的消息对象 <see cref="LibraryModel.CQP.Dynamic.Message"/>
+		/// 获取当前实例的消息对象 <see cref="LibraryModel.CQP.Message"/>
 		/// </summary>
 		public Message Message { get; }
 		/// <summary>
@@ -25,10 +25,10 @@ namespace DeveloperFramework.Simulator.CQP
 
 		#region --构造函数--
 		/// <summary>
-		/// 初始化 <see cref="CQPSimulatorMessage"/> 类的新实例
+		/// 初始化 <see cref="MessageCache"/> 类的新实例
 		/// </summary>
-		/// <param name="message">描述消息的 <see cref="LibraryModel.CQP.Dynamic.Message"/> 对象</param>
-		public CQPSimulatorMessage (Message message)
+		/// <param name="message">描述消息的 <see cref="LibraryModel.CQP.Message"/> 对象</param>
+		public MessageCache (Message message)
 		{
 			this.Message = message ?? throw new ArgumentNullException (nameof (message));
 			this.SendTime = DateTime.Now;
@@ -44,7 +44,7 @@ namespace DeveloperFramework.Simulator.CQP
 		{
 			TimeSpan span = this.SendTime - DateTime.Now;
 			return span.TotalMinutes >= 2;
-		} 
+		}
 		#endregion
 	}
 }

@@ -1,4 +1,4 @@
-﻿using DeveloperFramework.LibraryModel.CQP.Dynamic;
+﻿using DeveloperFramework.LibraryModel.CQP;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

@@ -30,5 +30,36 @@
             </summary>
             <returns>返回当前时间戳</returns>
         </member>
+        <member name="T:DeveloperFramework.Utility.RandomUtility">
+            <summary>
+            伪随机数使用工具
+            </summary>
+        </member>
+        <member name="M:DeveloperFramework.Utility.RandomUtility.RandomInt32(System.Int32,System.Int32)">
+            <summary>
+            获取一个指定范围的随机 <see cref="T:System.Int32"/> 数
+            </summary>
+            <param name="minValue">随机数的下限值 (包含此值)</param>
+            <param name="maxValue">随机数的上限值 (不包含此值)</param>
+            <returns>返回随机的 <see cref="T:System.Int32"/> 值</returns>
+        </member>
+        <member name="M:DeveloperFramework.Utility.RandomUtility.RandomAge">
+            <summary>
+            获取一个指定随机的年龄,  其范围是 0 ~ 120
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DeveloperFramework.Utility.RandomUtility.RandomName">
+            <summary>
+            获取一个随机的名字
+            </summary>
+            <returns>返回名字字符串</returns>
+        </member>
+        <member name="M:DeveloperFramework.Utility.RandomUtility.RendomArea">
+            <summary>
+            获取一个随机的地区
+            </summary>
+            <returns></returns>
+        </member>
     </members>
 </doc>

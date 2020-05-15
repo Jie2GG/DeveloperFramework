@@ -23,13 +23,23 @@
       "DeveloperFramework.LibraryModel.CQP/1.0.0": {
         "type": "project",
         "dependencies": {
-          "DeveloperFramework.Extension": "1.0.0"
+          "DeveloperFramework.Extension": "1.0.0",
+          "DeveloperFramework.Utility": "1.0.0"
         },
         "compile": {
           "bin/placeholder/DeveloperFramework.LibraryModel.CQP.dll": {}
         },
         "runtime": {
           "bin/placeholder/DeveloperFramework.LibraryModel.CQP.dll": {}
+        }
+      },
+      "DeveloperFramework.Utility/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/DeveloperFramework.Utility.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DeveloperFramework.Utility.dll": {}
         }
       }
     },
@@ -55,13 +65,23 @@
       "DeveloperFramework.LibraryModel.CQP/1.0.0": {
         "type": "project",
         "dependencies": {
-          "DeveloperFramework.Extension": "1.0.0"
+          "DeveloperFramework.Extension": "1.0.0",
+          "DeveloperFramework.Utility": "1.0.0"
         },
         "compile": {
           "bin/placeholder/DeveloperFramework.LibraryModel.CQP.dll": {}
         },
         "runtime": {
           "bin/placeholder/DeveloperFramework.LibraryModel.CQP.dll": {}
+        }
+      },
+      "DeveloperFramework.Utility/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/DeveloperFramework.Utility.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DeveloperFramework.Utility.dll": {}
         }
       }
     },
@@ -87,13 +107,23 @@
       "DeveloperFramework.LibraryModel.CQP/1.0.0": {
         "type": "project",
         "dependencies": {
-          "DeveloperFramework.Extension": "1.0.0"
+          "DeveloperFramework.Extension": "1.0.0",
+          "DeveloperFramework.Utility": "1.0.0"
         },
         "compile": {
           "bin/placeholder/DeveloperFramework.LibraryModel.CQP.dll": {}
         },
         "runtime": {
           "bin/placeholder/DeveloperFramework.LibraryModel.CQP.dll": {}
+        }
+      },
+      "DeveloperFramework.Utility/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/DeveloperFramework.Utility.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DeveloperFramework.Utility.dll": {}
         }
       }
     },
@@ -119,13 +149,23 @@
       "DeveloperFramework.LibraryModel.CQP/1.0.0": {
         "type": "project",
         "dependencies": {
-          "DeveloperFramework.Extension": "1.0.0"
+          "DeveloperFramework.Extension": "1.0.0",
+          "DeveloperFramework.Utility": "1.0.0"
         },
         "compile": {
           "bin/placeholder/DeveloperFramework.LibraryModel.CQP.dll": {}
         },
         "runtime": {
           "bin/placeholder/DeveloperFramework.LibraryModel.CQP.dll": {}
+        }
+      },
+      "DeveloperFramework.Utility/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/DeveloperFramework.Utility.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DeveloperFramework.Utility.dll": {}
         }
       }
     }
@@ -203,6 +243,11 @@
       "type": "project",
       "path": "../../Models/DeveloperFramework.LibraryModel.CQP/DeveloperFramework.LibraryModel.CQP.csproj",
       "msbuildProject": "../../Models/DeveloperFramework.LibraryModel.CQP/DeveloperFramework.LibraryModel.CQP.csproj"
+    },
+    "DeveloperFramework.Utility/1.0.0": {
+      "type": "project",
+      "path": "../../Utilitys/DeveloperFramework.Utility/DeveloperFramework.Utility.csproj",
+      "msbuildProject": "../../Utilitys/DeveloperFramework.Utility/DeveloperFramework.Utility.csproj"
     }
   },
   "projectFileDependencyGroups": {
