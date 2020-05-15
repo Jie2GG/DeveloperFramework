@@ -44,7 +44,7 @@
   <ItemGroup>
     <Compile Include="CQPSimulator.cs" />
     <Compile Include="CQPSimulatorApp.cs" />
-    <Compile Include="CQPSimulatorMessage.cs" />
+    <Compile Include="CQPSimulatorDataPool.cs" />
     <Compile Include="Domain\Command\DeleteMsgCommand.cs" />
     <Compile Include="Domain\Command\SendDiscussMsgCommand.cs" />
     <Compile Include="Domain\Command\SendGroupMsgCommand.cs" />
@@ -59,6 +59,14 @@
     <ProjectReference Include="..\..\Models\DeveloperFramework.LibraryModel.CQP\DeveloperFramework.LibraryModel.CQP.csproj">
       <Project>{48e9268b-a98c-44a1-a66a-25e1dd119d4c}</Project>
       <Name>DeveloperFramework.LibraryModel.CQP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Models\DeveloperFramework.SimulatorModel.CQP\DeveloperFramework.SimulatorModel.CQP.csproj">
+      <Project>{D8AF951E-B2D8-4CB8-82B6-DBB5DB685004}</Project>
+      <Name>DeveloperFramework.SimulatorModel.CQP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Utilitys\DeveloperFramework.Utility\DeveloperFramework.Utility.csproj">
+      <Project>{50587E04-23E2-4E97-A831-167D5C39D9E8}</Project>
+      <Name>DeveloperFramework.Utility</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Win32\DeveloperFramework.Win32.LibraryCLR\DeveloperFramework.Win32.LibraryCLR.csproj">
       <Project>{FAC17F0E-6B6F-4367-B43A-E532C07FD8E1}</Project>

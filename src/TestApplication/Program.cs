@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using DeveloperFramework.CQP;
-using DeveloperFramework.LibraryModel.CQP.Dynamic;
+using DeveloperFramework.LibraryModel.CQP;
 using DeveloperFramework.Log.CQP;
 using DeveloperFramework.Simulator.CQP;
 using DeveloperFramework.Simulator.CQP.Domain;
@@ -19,12 +21,13 @@ namespace TestApplication
 	{
 		public static void Main (string[] args)
 		{
-			LogCenter.Instance.AddObserver (new Program ());
+			//LogCenter.Instance.AddObserver (new Program ());
 
-			CQPSimulator simulator = new CQPSimulator (Path.Combine (AppDomain.CurrentDomain.BaseDirectory, "dev"));
-			simulator.Start ();
+			//CQPSimulator simulator = new CQPSimulator (Path.Combine (AppDomain.CurrentDomain.BaseDirectory, "dev"));
+			//simulator.Start ();
 
-			simulator.Stop ();
+			//simulator.Stop ();
+			
 			Console.Read ();
 		}
 
