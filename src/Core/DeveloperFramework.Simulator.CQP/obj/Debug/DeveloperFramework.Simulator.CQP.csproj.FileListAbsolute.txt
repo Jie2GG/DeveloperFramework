@@ -25,3 +25,5 @@ D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Simulator.CQP\bin\Debu
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Simulator.CQP\obj\Debug\DeveloperFramework.Simulator.CQP.csproj.CopyComplete
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Simulator.CQP\obj\Debug\DeveloperFramework.Simulator.CQP.dll
 D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Simulator.CQP\obj\Debug\DeveloperFramework.Simulator.CQP.pdb
+D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Simulator.CQP\bin\Debug\Bogus.dll
+D:\Project\DeveloperFramework\src\Core\DeveloperFramework.Simulator.CQP\bin\Debug\Bogus.xml

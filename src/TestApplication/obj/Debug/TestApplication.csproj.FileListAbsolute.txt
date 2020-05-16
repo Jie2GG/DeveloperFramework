@@ -12,7 +12,6 @@ D:\Project\DeveloperFramework\src\TestApplication\bin\Debug\DeveloperFramework.W
 D:\Project\DeveloperFramework\src\TestApplication\bin\Debug\DeveloperFramework.Extension.dll
 D:\Project\DeveloperFramework\src\TestApplication\bin\Debug\DeveloperFramework.Utility.dll
 D:\Project\DeveloperFramework\src\TestApplication\bin\Debug\Newtonsoft.Json.dll
-D:\Project\DeveloperFramework\src\TestApplication\bin\Debug\DeveloperFramework.SimulatorModel.CQP.dll
 D:\Project\DeveloperFramework\src\TestApplication\bin\Debug\DeveloperFramework.Library.CQP.pdb
 D:\Project\DeveloperFramework\src\TestApplication\bin\Debug\DeveloperFramework.Log.CQP.pdb
 D:\Project\DeveloperFramework\src\TestApplication\bin\Debug\DeveloperFramework.Simulator.CQP.pdb
@@ -24,7 +23,8 @@ D:\Project\DeveloperFramework\src\TestApplication\bin\Debug\DeveloperFramework.E
 D:\Project\DeveloperFramework\src\TestApplication\bin\Debug\DeveloperFramework.Utility.pdb
 D:\Project\DeveloperFramework\src\TestApplication\bin\Debug\DeveloperFramework.Utility.xml
 D:\Project\DeveloperFramework\src\TestApplication\bin\Debug\Newtonsoft.Json.xml
-D:\Project\DeveloperFramework\src\TestApplication\bin\Debug\DeveloperFramework.SimulatorModel.CQP.pdb
 D:\Project\DeveloperFramework\src\TestApplication\obj\Debug\TestApplication.csproj.CopyComplete
 D:\Project\DeveloperFramework\src\TestApplication\obj\Debug\TestApplication.exe
 D:\Project\DeveloperFramework\src\TestApplication\obj\Debug\TestApplication.pdb
+D:\Project\DeveloperFramework\src\TestApplication\bin\Debug\Bogus.dll
+D:\Project\DeveloperFramework\src\TestApplication\bin\Debug\Bogus.xml

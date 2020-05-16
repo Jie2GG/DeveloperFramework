@@ -539,6 +539,29 @@
             获取当前群成员是否允许修改群名片
             </summary>
         </member>
+        <member name="M:DeveloperFramework.LibraryModel.CQP.GroupMember.#ctor(DeveloperFramework.LibraryModel.CQP.Group,DeveloperFramework.LibraryModel.CQP.QQ)">
+            <summary>
+            初始化 <see cref="T:DeveloperFramework.LibraryModel.CQP.GroupMember"/> 类的新实例
+            </summary>
+            <param name="group">关联的群对象</param>
+            <param name="qq">关联的QQ对象</param>
+        </member>
+        <member name="M:DeveloperFramework.LibraryModel.CQP.GroupMember.#ctor(DeveloperFramework.LibraryModel.CQP.Group,DeveloperFramework.LibraryModel.CQP.QQ,System.String,System.DateTime,System.DateTime,System.String,DeveloperFramework.LibraryModel.CQP.GroupMemberType,System.String,System.DateTime,System.Boolean,System.Boolean)">
+            <summary>
+            初始化 <see cref="T:DeveloperFramework.LibraryModel.CQP.GroupMember"/> 类的新实例
+            </summary>
+            <param name="group">关联的群对象</param>
+            <param name="qq">关联的QQ对象</param>
+            <param name="card">群名片</param>
+            <param name="joinTime">加入时间</param>
+            <param name="lastSpeakTime">最后发言时间</param>
+            <param name="level">群等级</param>
+            <param name="memberType">成员类型</param>
+            <param name="exclusiveTitle">专属头衔</param>
+            <param name="exclusiveTitleExpirationnTime">专属头衔过期时间</param>
+            <param name="isBadRecord">是否为不良记录成员</param>
+            <param name="isAllowEditorCard">是否允许修改群名片</param>
+        </member>
         <member name="T:DeveloperFramework.LibraryModel.CQP.GroupMemberDecreaseType">
             <summary>
             描述 CQP 应用动态库的群成员减少事件类型
@@ -929,6 +952,11 @@
             获取当前实例的唯一标识 (群号)
             </summary>
         </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.Group.Members">
+            <summary>
+            获取当前实例的群成员信息集合
+            </summary>
+        </member>
         <member name="M:DeveloperFramework.LibraryModel.CQP.Group.#ctor(System.Int64)">
             <summary>
             初始化 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 类的新实例
@@ -1069,6 +1097,11 @@
             获取当前实例的详细信息
             </summary>
         </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.Message.SendTime">
+            <summary>
+            获取当前实例的发送时间
+            </summary>
+        </member>
         <member name="M:DeveloperFramework.LibraryModel.CQP.Message.#cctor">
             <summary>
             初始化 <see cref="T:DeveloperFramework.LibraryModel.CQP.Message"/> 静态类的数据
@@ -1206,7 +1239,6 @@
             初始化 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 类的新实例
             </summary>
             <param name="id">当前实例指定的 Id</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">id 小于 <see cref="F:DeveloperFramework.LibraryModel.CQP.QQ.MinValue"/></exception>
         </member>
         <member name="M:DeveloperFramework.LibraryModel.CQP.QQ.#ctor(System.Int64,System.String,System.Int32,System.String,DeveloperFramework.LibraryModel.CQP.Sex)">
             <summary>
