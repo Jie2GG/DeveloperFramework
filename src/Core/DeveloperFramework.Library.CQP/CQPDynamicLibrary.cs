@@ -196,16 +196,11 @@ namespace DeveloperFramework.Library.CQP
 		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
 		/// <exception cref="MissingMethodException">尝试访问未公开的函数</exception>
 		/// <returns>返回函数处理结果</returns>
-		public HandleType InvokeCQPrivateMessage (AppEvent appEvent, PrivateMessageType subType, QQ fromQQ, Message msg, IntPtr font)
+		public int InvokeCQPrivateMessage (AppEvent appEvent, PrivateMessageType subType, int msgId, long fromQQ, string msg, IntPtr font)
 		{
 			if (appEvent is null)
 			{
 				throw new ArgumentNullException (nameof (appEvent));
-			}
-
-			if (fromQQ is null)
-			{
-				throw new ArgumentNullException (nameof (fromQQ));
 			}
 
 			if (msg is null)
@@ -221,7 +216,7 @@ namespace DeveloperFramework.Library.CQP
 			GCHandle msgHandle = ((string)msg).GetGCHandle (_defaultEncoding);
 			try
 			{
-				return (HandleType)this.GetFunction<CQ_PrivateMessage> (appEvent.Function) ((int)subType, msg.Id, fromQQ, msgHandle.AddrOfPinnedObject (), font.ToInt32 ());
+				return this.GetFunction<CQ_PrivateMessage> (appEvent.Function) ((int)subType, msgId, fromQQ, msgHandle.AddrOfPinnedObject (), font.ToInt32 ());
 			}
 			finally
 			{
@@ -241,21 +236,11 @@ namespace DeveloperFramework.Library.CQP
 		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
 		/// <exception cref="MissingMethodException">尝试访问未公开的函数</exception>
 		/// <returns>返回函数处理结果</returns>
-		public HandleType InvokeCQGroupMessage (AppEvent appEvent, GroupMessageType subType, Group fromGroup, QQ fromQQ, GroupAnonymous fromAnonymous, Message msg, IntPtr font)
+		public int InvokeCQGroupMessage (AppEvent appEvent, GroupMessageType subType, int msgId, long fromGroup, long fromQQ, string fromAnonymous, string msg, IntPtr font)
 		{
 			if (appEvent is null)
 			{
 				throw new ArgumentNullException (nameof (appEvent));
-			}
-
-			if (fromGroup is null)
-			{
-				throw new ArgumentNullException (nameof (fromGroup));
-			}
-
-			if (fromQQ is null)
-			{
-				throw new ArgumentNullException (nameof (fromQQ));
 			}
 
 			if (fromAnonymous is null)
@@ -273,11 +258,11 @@ namespace DeveloperFramework.Library.CQP
 				throw new ArgumentException ($"函数信息不是 {AppEventType.GroupMessage} 类型", nameof (appEvent));
 			}
 
-			GCHandle anonymousHandle = fromAnonymous.ToBase64String ().GetGCHandle (_defaultEncoding);
+			GCHandle anonymousHandle = fromAnonymous.GetGCHandle (_defaultEncoding);
 			GCHandle msgHandle = ((string)msg).GetGCHandle (_defaultEncoding);
 			try
 			{
-				return (HandleType)this.GetFunction<CQ_GroupMessage> (appEvent.Function) ((int)subType, msg.Id, fromGroup, fromQQ, anonymousHandle.AddrOfPinnedObject (), msgHandle.AddrOfPinnedObject (), font.ToInt32 ());
+				return this.GetFunction<CQ_GroupMessage> (appEvent.Function) ((int)subType, msgId, fromGroup, fromQQ, anonymousHandle.AddrOfPinnedObject (), msgHandle.AddrOfPinnedObject (), font.ToInt32 ());
 			}
 			finally
 			{
@@ -297,21 +282,11 @@ namespace DeveloperFramework.Library.CQP
 		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
 		/// <exception cref="MissingMethodException">尝试访问未公开的函数</exception>
 		/// <returns>返回函数处理结果</returns>
-		public HandleType InvokeCQDiscussMessage (AppEvent appEvent, DiscussMessageType subType, Discuss fromDiscuss, QQ fromQQ, Message msg, IntPtr font)
+		public int InvokeCQDiscussMessage (AppEvent appEvent, DiscussMessageType subType, int msgId, long fromDiscuss, long fromQQ, string msg, IntPtr font)
 		{
 			if (appEvent is null)
 			{
 				throw new ArgumentNullException (nameof (appEvent));
-			}
-
-			if (fromDiscuss is null)
-			{
-				throw new ArgumentNullException (nameof (fromDiscuss));
-			}
-
-			if (fromQQ is null)
-			{
-				throw new ArgumentNullException (nameof (fromQQ));
 			}
 
 			if (msg is null)
@@ -327,7 +302,7 @@ namespace DeveloperFramework.Library.CQP
 			GCHandle msgHandle = ((string)msg).GetGCHandle (_defaultEncoding);
 			try
 			{
-				return (HandleType)this.GetFunction<CQ_DiscussMessage> (appEvent.Function) ((int)subType, msg.Id, fromDiscuss, fromQQ, msgHandle.AddrOfPinnedObject (), font.ToInt32 ());
+				return this.GetFunction<CQ_DiscussMessage> (appEvent.Function) ((int)subType, msgId, fromDiscuss, fromQQ, msgHandle.AddrOfPinnedObject (), font.ToInt32 ());
 			}
 			finally
 			{
@@ -346,21 +321,11 @@ namespace DeveloperFramework.Library.CQP
 		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
 		/// <exception cref="MissingMethodException">尝试访问未公开的函数</exception>
 		/// <returns>返回函数处理结果</returns>
-		public HandleType InvokeCQGroupUpload (AppEvent appEvent, GroupUploadType subType, int sendTime, Group fromGroup, QQ fromQQ, GroupFile file)
+		public int InvokeCQGroupUpload (AppEvent appEvent, GroupUploadType subType, int sendTime, long fromGroup, long fromQQ, string file)
 		{
 			if (appEvent is null)
 			{
 				throw new ArgumentNullException (nameof (appEvent));
-			}
-
-			if (fromGroup is null)
-			{
-				throw new ArgumentNullException (nameof (fromGroup));
-			}
-
-			if (fromQQ is null)
-			{
-				throw new ArgumentNullException (nameof (fromQQ));
 			}
 
 			if (file is null)
@@ -373,11 +338,11 @@ namespace DeveloperFramework.Library.CQP
 				throw new ArgumentException ($"函数信息不是 {AppEventType.GroupFileUpload} 类型", nameof (appEvent));
 			}
 
-			GCHandle fileHandle = file.ToBase64String ().GetGCHandle (_defaultEncoding);
+			GCHandle fileHandle = file.GetGCHandle (_defaultEncoding);
 
 			try
 			{
-				return (HandleType)this.GetFunction<CQ_GroupUpload> (appEvent.Function) ((int)subType, sendTime, fromGroup, fromQQ, fileHandle.AddrOfPinnedObject ());
+				return this.GetFunction<CQ_GroupUpload> (appEvent.Function) ((int)subType, sendTime, fromGroup, fromQQ, fileHandle.AddrOfPinnedObject ());
 			}
 			finally
 			{
@@ -395,21 +360,11 @@ namespace DeveloperFramework.Library.CQP
 		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
 		/// <exception cref="MissingMethodException">尝试访问未公开的函数</exception>
 		/// <returns>返回函数处理结果</returns>
-		public HandleType InvokeCQGroupManagerChange (AppEvent appEvent, GroupManagerChangeType subType, int sendTime, Group fromGroup, QQ beingOperateQQ)
+		public int InvokeCQGroupManagerChange (AppEvent appEvent, GroupManagerChangeType subType, int sendTime, long fromGroup, long beingOperateQQ)
 		{
 			if (appEvent is null)
 			{
 				throw new ArgumentNullException (nameof (appEvent));
-			}
-
-			if (fromGroup is null)
-			{
-				throw new ArgumentNullException (nameof (fromGroup));
-			}
-
-			if (beingOperateQQ is null)
-			{
-				throw new ArgumentNullException (nameof (beingOperateQQ));
 			}
 
 			if (appEvent.Type != AppEventType.GroupManagerChange)
@@ -417,7 +372,7 @@ namespace DeveloperFramework.Library.CQP
 				throw new ArgumentException ($"函数信息不是 {AppEventType.GroupManagerChange} 类型", nameof (appEvent));
 			}
 
-			return (HandleType)this.GetFunction<CQ_GroupManagerChange> (appEvent.Function) ((int)subType, sendTime, fromGroup, beingOperateQQ);
+			return this.GetFunction<CQ_GroupManagerChange> (appEvent.Function) ((int)subType, sendTime, fromGroup, beingOperateQQ);
 		}
 		/// <summary>
 		/// 调用 <see cref="CQ_GroupMemberDecrease"/> 方法
@@ -431,26 +386,11 @@ namespace DeveloperFramework.Library.CQP
 		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
 		/// <exception cref="MissingMethodException">尝试访问未公开的函数</exception>
 		/// <returns>返回函数处理结果</returns>
-		public HandleType InvokeCQGroupMemberDecrease (AppEvent appEvent, GroupMemberDecreaseType subType, int sendTime, Group fromGroup, QQ fromQQ, QQ beingOperateQQ)
+		public int InvokeCQGroupMemberDecrease (AppEvent appEvent, GroupMemberDecreaseType subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ)
 		{
 			if (appEvent is null)
 			{
 				throw new ArgumentNullException (nameof (appEvent));
-			}
-
-			if (fromGroup is null)
-			{
-				throw new ArgumentNullException (nameof (fromGroup));
-			}
-
-			if (fromQQ is null)
-			{
-				throw new ArgumentNullException (nameof (fromQQ));
-			}
-
-			if (beingOperateQQ is null)
-			{
-				throw new ArgumentNullException (nameof (beingOperateQQ));
 			}
 
 			if (appEvent.Type != AppEventType.GroupMemberDecrease)
@@ -458,7 +398,7 @@ namespace DeveloperFramework.Library.CQP
 				throw new ArgumentException ($"函数信息不是 {AppEventType.GroupMemberDecrease} 类型", nameof (appEvent));
 			}
 
-			return (HandleType)this.GetFunction<CQ_GroupMemberDecrease> (appEvent.Function) ((int)subType, sendTime, fromGroup, fromQQ, beingOperateQQ);
+			return this.GetFunction<CQ_GroupMemberDecrease> (appEvent.Function) ((int)subType, sendTime, fromGroup, fromQQ, beingOperateQQ);
 		}
 		/// <summary>
 		/// 调用 <see cref="CQ_GroupMemberIncrease"/> 方法
@@ -472,26 +412,11 @@ namespace DeveloperFramework.Library.CQP
 		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
 		/// <exception cref="MissingMethodException">尝试访问未公开的函数</exception>
 		/// <returns>返回函数处理结果</returns>
-		public HandleType InvokeCQGroupMemberIncrease (AppEvent appEvent, GroupMemberIncreaseType subType, int sendTime, Group fromGroup, QQ fromQQ, QQ beingOperateQQ)
+		public int InvokeCQGroupMemberIncrease (AppEvent appEvent, GroupMemberIncreaseType subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ)
 		{
 			if (appEvent is null)
 			{
 				throw new ArgumentNullException (nameof (appEvent));
-			}
-
-			if (fromGroup is null)
-			{
-				throw new ArgumentNullException (nameof (fromGroup));
-			}
-
-			if (fromQQ is null)
-			{
-				throw new ArgumentNullException (nameof (fromQQ));
-			}
-
-			if (beingOperateQQ is null)
-			{
-				throw new ArgumentNullException (nameof (beingOperateQQ));
 			}
 
 			if (appEvent.Type != AppEventType.GroupMemberIncrease)
@@ -499,7 +424,7 @@ namespace DeveloperFramework.Library.CQP
 				throw new ArgumentException ($"函数信息不是 {AppEventType.GroupMemberIncrease} 类型", nameof (appEvent));
 			}
 
-			return (HandleType)this.GetFunction<CQ_GroupMemberIncrease> (appEvent.Function) ((int)subType, sendTime, fromGroup, fromQQ, beingOperateQQ);
+			return this.GetFunction<CQ_GroupMemberIncrease> (appEvent.Function) ((int)subType, sendTime, fromGroup, fromQQ, beingOperateQQ);
 		}
 		/// <summary>
 		/// 调用 <see cref="CQ_GroupBanSpeak"/> 方法
@@ -514,26 +439,11 @@ namespace DeveloperFramework.Library.CQP
 		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
 		/// <exception cref="MissingMethodException">尝试访问未公开的函数</exception>
 		/// <returns>返回函数处理结果</returns>
-		public HandleType InvokeCQGroupBanSpeak (AppEvent appEvent, GroupBanSpeakType subType, int sendTime, Group fromGroup, QQ fromQQ, QQ beingOperateQQ, BanSpeakTimeSpan duration)
+		public int InvokeCQGroupBanSpeak (AppEvent appEvent, GroupBanSpeakType subType, int sendTime, long fromGroup, long fromQQ, long beingOperateQQ, long duration)
 		{
 			if (appEvent is null)
 			{
 				throw new ArgumentNullException (nameof (appEvent));
-			}
-
-			if (fromGroup is null)
-			{
-				throw new ArgumentNullException (nameof (fromGroup));
-			}
-
-			if (fromQQ is null)
-			{
-				throw new ArgumentNullException (nameof (fromQQ));
-			}
-
-			if (beingOperateQQ is null)
-			{
-				throw new ArgumentNullException (nameof (beingOperateQQ));
 			}
 
 			if (appEvent.Type != AppEventType.GroupMemberBanSpeak)
@@ -541,7 +451,7 @@ namespace DeveloperFramework.Library.CQP
 				throw new ArgumentException ($"函数信息不是 {AppEventType.GroupMemberBanSpeak} 类型", nameof (appEvent));
 			}
 
-			return (HandleType)this.GetFunction<CQ_GroupBanSpeak> (appEvent.Function) ((int)subType, sendTime, fromGroup, fromQQ, beingOperateQQ, duration);
+			return this.GetFunction<CQ_GroupBanSpeak> (appEvent.Function) ((int)subType, sendTime, fromGroup, fromQQ, beingOperateQQ, duration);
 		}
 		/// <summary>
 		/// 调用 <see cref="CQ_FriendAdd"/> 方法
@@ -553,16 +463,11 @@ namespace DeveloperFramework.Library.CQP
 		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
 		/// <exception cref="MissingMethodException">尝试访问未公开的函数</exception>
 		/// <returns>返回函数处理结果</returns>
-		public HandleType InvokeCQFriendAdd (AppEvent appEvent, FriendAddType subType, int sendTime, QQ fromQQ)
+		public int InvokeCQFriendAdd (AppEvent appEvent, FriendAddType subType, int sendTime, long fromQQ)
 		{
 			if (appEvent is null)
 			{
 				throw new ArgumentNullException (nameof (appEvent));
-			}
-
-			if (fromQQ is null)
-			{
-				throw new ArgumentNullException (nameof (fromQQ));
 			}
 
 			if (appEvent.Type != AppEventType.FriendAdd)
@@ -570,7 +475,7 @@ namespace DeveloperFramework.Library.CQP
 				throw new ArgumentException ($"函数信息不是 {AppEventType.FriendAdd} 类型", nameof (appEvent));
 			}
 
-			return (HandleType)this.GetFunction<CQ_FriendAdd> (appEvent.Function) ((int)subType, sendTime, fromQQ);
+			return this.GetFunction<CQ_FriendAdd> (appEvent.Function) ((int)subType, sendTime, fromQQ);
 		}
 		/// <summary>
 		/// 调用 <see cref="CQ_FriendAddRequest"/> 方法
@@ -584,16 +489,11 @@ namespace DeveloperFramework.Library.CQP
 		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
 		/// <exception cref="MissingMethodException">尝试访问未公开的函数</exception>
 		/// <returns>返回函数处理结果</returns>
-		public HandleType InvokeCQFriendAddRequest (AppEvent appEvent, FriendAddRequestType subType, int sendTime, QQ fromQQ, string appendMsg, string responseFlag)
+		public int InvokeCQFriendAddRequest (AppEvent appEvent, FriendAddRequestType subType, int sendTime, long fromQQ, string appendMsg, string responseFlag)
 		{
 			if (appEvent is null)
 			{
 				throw new ArgumentNullException (nameof (appEvent));
-			}
-
-			if (fromQQ is null)
-			{
-				throw new ArgumentNullException (nameof (fromQQ));
 			}
 
 			if (appendMsg is null)
@@ -615,7 +515,7 @@ namespace DeveloperFramework.Library.CQP
 			GCHandle flagHandle = responseFlag.GetGCHandle (_defaultEncoding);
 			try
 			{
-				return (HandleType)this.GetFunction<CQ_FriendAddRequest> (appEvent.Function) ((int)subType, sendTime, fromQQ, msgHandle.AddrOfPinnedObject (), flagHandle.AddrOfPinnedObject ());
+				return this.GetFunction<CQ_FriendAddRequest> (appEvent.Function) ((int)subType, sendTime, fromQQ, msgHandle.AddrOfPinnedObject (), flagHandle.AddrOfPinnedObject ());
 			}
 			finally
 			{
@@ -636,21 +536,11 @@ namespace DeveloperFramework.Library.CQP
 		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
 		/// <exception cref="MissingMethodException">尝试访问未公开的函数</exception>
 		/// <returns>返回函数处理结果</returns>
-		public HandleType InvokeCQGroupAddRequest (AppEvent appEvent, GroupAddRequestType subType, int sendTime, Group fromGroup, QQ fromQQ, string appendMsg, string responseFlag)
+		public int InvokeCQGroupAddRequest (AppEvent appEvent, GroupAddRequestType subType, int sendTime, long fromGroup, long fromQQ, string appendMsg, string responseFlag)
 		{
 			if (appEvent is null)
 			{
 				throw new ArgumentNullException (nameof (appEvent));
-			}
-
-			if (fromGroup is null)
-			{
-				throw new ArgumentNullException (nameof (fromGroup));
-			}
-
-			if (fromQQ is null)
-			{
-				throw new ArgumentNullException (nameof (fromQQ));
 			}
 
 			if (appendMsg is null)
@@ -672,7 +562,7 @@ namespace DeveloperFramework.Library.CQP
 			GCHandle flagHandle = responseFlag.GetGCHandle (_defaultEncoding);
 			try
 			{
-				return (HandleType)this.GetFunction<CQ_GroupAddRequest> (appEvent.Function) ((int)subType, sendTime, fromGroup, fromQQ, msgHandle.AddrOfPinnedObject (), flagHandle.AddrOfPinnedObject ());
+				return this.GetFunction<CQ_GroupAddRequest> (appEvent.Function) ((int)subType, sendTime, fromGroup, fromQQ, msgHandle.AddrOfPinnedObject (), flagHandle.AddrOfPinnedObject ());
 			}
 			finally
 			{

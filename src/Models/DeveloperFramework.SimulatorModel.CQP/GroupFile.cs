@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeveloperFramework.LibraryModel.CQP
+namespace DeveloperFramework.SimulatorModel.CQP
 {
 	/// <summary>
 	/// 描述 CQP 应用的 File 类型
 	/// </summary>
-	public class GroupFile : IEquatable<GroupFile>
+	public class GroupFile
 	{
 		#region --字段--
 		private static int _privateId;
@@ -67,50 +67,6 @@ namespace DeveloperFramework.LibraryModel.CQP
 				writer.Write_Ex (this.Id);
 				return Convert.ToBase64String (writer.ToArray ());
 			}
-		}
-		/// <summary>
-		/// 指示当前对象是否等于同一类型的另一个对象
-		/// </summary>
-		/// <param name="other">一个与此对象进行比较的对象</param>
-		/// <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-		public bool Equals (GroupFile other)
-		{
-			if (other is null)
-			{
-				return false;
-			}
-
-			return this.Id == other.Id && this.Name.Equals (other.Name) && this.Guid.Equals (other.Guid) && this.Size == other.Size;
-		}
-		/// <summary>
-		/// 指示当前对象是否等于同一类型的另一个对象
-		/// </summary>
-		/// <param name="obj">一个与此对象进行比较的对象</param>
-		/// <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-		public override bool Equals (object obj)
-		{
-			return this.Equals (obj as GroupFile);
-		}
-		/// <summary>
-		/// 返回此实例的哈希代码
-		/// </summary>
-		/// <returns>32 位有符号整数哈希代码</returns>
-		public override int GetHashCode ()
-		{
-			return this.Id.GetHashCode () & this.Name.GetHashCode () & this.Guid.GetHashCode () & this.Size.GetHashCode ();
-		}
-		/// <summary>
-		/// 返回表示当前对象的字符串
-		/// </summary>
-		/// <returns>表示当前对象的字符串</returns>
-		public override string ToString ()
-		{
-			StringBuilder builder = new StringBuilder ();
-			builder.AppendLine ($"ID: {this.Id}");
-			builder.AppendLine ($"名称: {this.Name}");
-			builder.AppendLine ($"标识 (GUID): {this.Guid}");
-			builder.AppendLine ($"大小: {this.Size}");
-			return builder.ToString ();
 		}
 		#endregion
 

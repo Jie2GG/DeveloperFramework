@@ -42,11 +42,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GroupCache.cs" />
+    <Compile Include="Discuss.cs" />
+    <Compile Include="Friend.cs" />
+    <Compile Include="FriendCollection.cs" />
+    <Compile Include="Group.cs" />
+    <Compile Include="GroupAnonymous.cs" />
+    <Compile Include="GroupCollection.cs" />
+    <Compile Include="GroupFile.cs" />
+    <Compile Include="GroupMember.cs" />
+    <Compile Include="GroupMemberCollection.cs" />
+    <Compile Include="GroupMemberType.cs" />
+    <Compile Include="HandleType.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="QQ.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MessageCache.cs" />
+    <Compile Include="Sex.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Utilitys\DeveloperFramework.Extension\DeveloperFramework.Extension.csproj">
+      <Project>{BE1047F8-F698-4C93-9FA3-3849B1C9A922}</Project>
+      <Name>DeveloperFramework.Extension</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DeveloperFramework.LibraryModel.CQP\DeveloperFramework.LibraryModel.CQP.csproj">
       <Project>{48E9268B-A98C-44A1-A66A-25E1DD119D4C}</Project>
       <Name>DeveloperFramework.LibraryModel.CQP</Name>

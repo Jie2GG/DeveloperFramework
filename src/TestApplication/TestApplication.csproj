@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bogus, Version=29.0.2.0, Culture=neutral, PublicKeyToken=fa1bb3f3f218129a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bogus.29.0.2\lib\net40\Bogus.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -53,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\DeveloperFramework.CQP\DeveloperFramework.CQP.csproj">
@@ -74,6 +78,10 @@
     <ProjectReference Include="..\Models\DeveloperFramework.LibraryModel.CQP\DeveloperFramework.LibraryModel.CQP.csproj">
       <Project>{48e9268b-a98c-44a1-a66a-25e1dd119d4c}</Project>
       <Name>DeveloperFramework.LibraryModel.CQP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilitys\DeveloperFramework.Utility\DeveloperFramework.Utility.csproj">
+      <Project>{50587E04-23E2-4E97-A831-167D5C39D9E8}</Project>
+      <Name>DeveloperFramework.Utility</Name>
     </ProjectReference>
     <ProjectReference Include="..\Win32\DeveloperFramework.Win32.LibraryCLR\DeveloperFramework.Win32.LibraryCLR.csproj">
       <Project>{fac17f0e-6b6f-4367-b43a-e532c07fd8e1}</Project>

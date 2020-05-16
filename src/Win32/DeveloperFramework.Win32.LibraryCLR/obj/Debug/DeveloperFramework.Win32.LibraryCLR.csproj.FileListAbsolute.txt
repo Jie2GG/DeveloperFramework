@@ -9,3 +9,5 @@ D:\Project\DeveloperFramework\src\Win32\DeveloperFramework.Win32.LibraryCLR\obj\
 D:\Project\DeveloperFramework\src\Win32\DeveloperFramework.Win32.LibraryCLR\obj\Debug\DeveloperFramework.Win32.LibraryCLR.csproj.CopyComplete
 D:\Project\DeveloperFramework\src\Win32\DeveloperFramework.Win32.LibraryCLR\obj\Debug\DeveloperFramework.Win32.LibraryCLR.dll
 D:\Project\DeveloperFramework\src\Win32\DeveloperFramework.Win32.LibraryCLR\obj\Debug\DeveloperFramework.Win32.LibraryCLR.pdb
+D:\Project\DeveloperFramework\src\Win32\DeveloperFramework.Win32.LibraryCLR\bin\Debug\Bogus.dll
+D:\Project\DeveloperFramework\src\Win32\DeveloperFramework.Win32.LibraryCLR\bin\Debug\Bogus.xml

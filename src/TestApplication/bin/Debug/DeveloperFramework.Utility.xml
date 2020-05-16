@@ -37,29 +37,48 @@
         </member>
         <member name="M:DeveloperFramework.Utility.RandomUtility.RandomInt32(System.Int32,System.Int32)">
             <summary>
-            获取一个指定范围的随机 <see cref="T:System.Int32"/> 数
+            获取指定范围内的随机整数值
             </summary>
-            <param name="minValue">随机数的下限值 (包含此值)</param>
-            <param name="maxValue">随机数的上限值 (不包含此值)</param>
-            <returns>返回随机的 <see cref="T:System.Int32"/> 值</returns>
+            <param name="minValue">最小值</param>
+            <param name="maxValue">最大值</param>
+            <returns>范围内随机值</returns>
         </member>
         <member name="M:DeveloperFramework.Utility.RandomUtility.RandomAge">
             <summary>
-            获取一个指定随机的年龄,  其范围是 0 ~ 120
+            获取随机年龄
             </summary>
-            <returns></returns>
+            <returns>随机年龄</returns>
         </member>
         <member name="M:DeveloperFramework.Utility.RandomUtility.RandomName">
             <summary>
-            获取一个随机的名字
+            获取随机姓名
             </summary>
-            <returns>返回名字字符串</returns>
+            <returns>随机姓名</returns>
         </member>
-        <member name="M:DeveloperFramework.Utility.RandomUtility.RendomArea">
+        <member name="M:DeveloperFramework.Utility.RandomUtility.RandomWord">
             <summary>
-            获取一个随机的地区
+            获取随机单词
             </summary>
-            <returns></returns>
+            <returns>随机单词</returns>
+        </member>
+        <member name="M:DeveloperFramework.Utility.RandomUtility.RandomArea">
+            <summary>
+            获取随机完整的地址
+            </summary>
+            <returns>随机地址</returns>
+        </member>
+        <member name="M:DeveloperFramework.Utility.RandomUtility.RandomEnum``1">
+            <summary>
+            获取随机的指定枚举
+            </summary>
+            <typeparam name="T">获取结果的枚举类型</typeparam>
+            <returns>随机的枚举值</returns>
+        </member>
+        <member name="M:DeveloperFramework.Utility.RandomUtility.RandomDateTime">
+            <summary>
+            获取随机时间
+            </summary>
+            <returns>随机时间</returns>
         </member>
     </members>
 </doc>

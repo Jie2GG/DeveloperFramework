@@ -4,3 +4,7 @@ D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\bin\Debug\
 D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\obj\Debug\DeveloperFramework.Utility.csproj.CoreCompileInputs.cache
 D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\obj\Debug\DeveloperFramework.Utility.dll
 D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\obj\Debug\DeveloperFramework.Utility.pdb
+D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\bin\Debug\Bogus.dll
+D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\bin\Debug\Bogus.xml
+D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\obj\Debug\DeveloperFramework.Utility.csprojAssemblyReference.cache
+D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\obj\Debug\DeveloperFramework.Utility.csproj.CopyComplete
