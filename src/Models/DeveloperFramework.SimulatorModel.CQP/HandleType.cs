@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeveloperFramework.LibraryModel.CQP
+namespace DeveloperFramework.SimulatorModel.CQP
 {
 	/// <summary>
-	/// 描述 CQP 应用动态库的返回类型
+	/// 描述 处理类型 枚举
 	/// </summary>
 	public enum HandleType
 	{

@@ -13,3 +13,5 @@ D:\Project\DeveloperFramework\src\Models\DeveloperFramework.LibraryModel.CQP\bin
 D:\Project\DeveloperFramework\src\Models\DeveloperFramework.LibraryModel.CQP\bin\Debug\DeveloperFramework.Utility.dll
 D:\Project\DeveloperFramework\src\Models\DeveloperFramework.LibraryModel.CQP\bin\Debug\DeveloperFramework.Utility.pdb
 D:\Project\DeveloperFramework\src\Models\DeveloperFramework.LibraryModel.CQP\bin\Debug\DeveloperFramework.Utility.xml
+D:\Project\DeveloperFramework\src\Models\DeveloperFramework.LibraryModel.CQP\bin\Debug\Bogus.dll
+D:\Project\DeveloperFramework\src\Models\DeveloperFramework.LibraryModel.CQP\bin\Debug\Bogus.xml

@@ -17,9 +17,9 @@ namespace DeveloperFramework.Simulator.CQP
 		/// <summary>
 		/// 获取当前数据池中的缓存消息集合
 		/// </summary>
-		public ConcurrentBag<MessageCache> MessagesCollection { get; }
+		public ConcurrentBag<Message> MessagesCollection { get; }
 		/// <summary>
-		/// 获取当前数据池中的缓存 <see cref="QQ"/> 集合
+		/// 获取当前数据池中的缓存 <see cref="LibraryModel.CQP.QQ"/> 集合
 		/// </summary>
 		public ConcurrentBag<QQ> QQCollection { get; }
 		/// <summary>

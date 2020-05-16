@@ -59,22 +59,13 @@
     <Compile Include="GroupAddRequestType.cs" />
     <Compile Include="GroupBanSpeakType.cs" />
     <Compile Include="GroupManagerChangeType.cs" />
-    <Compile Include="GroupMember.cs" />
     <Compile Include="GroupMemberDecreaseType.cs" />
     <Compile Include="GroupMemberIncreaseType.cs" />
     <Compile Include="GroupMemberType.cs" />
     <Compile Include="GroupMessageType.cs" />
     <Compile Include="GroupUploadType.cs" />
-    <Compile Include="HandleType.cs" />
     <Compile Include="PrivateMessageType.cs" />
-    <Compile Include="GroupAnonymous.cs" />
-    <Compile Include="Discuss.cs" />
-    <Compile Include="GroupFile.cs" />
-    <Compile Include="Group.cs" />
-    <Compile Include="Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QQ.cs" />
-    <Compile Include="Sex.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Utilitys\DeveloperFramework.Extension\DeveloperFramework.Extension.csproj">
