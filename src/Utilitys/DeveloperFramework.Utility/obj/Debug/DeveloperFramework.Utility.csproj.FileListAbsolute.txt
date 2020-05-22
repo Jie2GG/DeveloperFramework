@@ -5,3 +5,16 @@ D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\obj\Debug\
 D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\obj\Debug\DeveloperFramework.Utility.dll
 D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\obj\Debug\DeveloperFramework.Utility.pdb
 D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\obj\Debug\DeveloperFramework.Utility.csprojAssemblyReference.cache
+D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\obj\Debug\DeveloperFramework.Utility.csproj.CopyComplete
+D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\bin\Debug\DeveloperFramework.Extension.dll
+D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\bin\Debug\DeveloperFramework.Extension.pdb
+D:\文稿\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\obj\Debug\DeveloperFramework.Utility.csprojAssemblyReference.cache
+D:\文稿\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\obj\Debug\DeveloperFramework.Utility.csproj.CoreCompileInputs.cache
+D:\文稿\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\obj\Debug\DeveloperFramework.Utility.dll
+D:\文稿\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\obj\Debug\DeveloperFramework.Utility.pdb
+D:\文稿\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\bin\Debug\DeveloperFramework.Utility.xml
+D:\文稿\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\bin\Debug\DeveloperFramework.Utility.dll
+D:\文稿\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\bin\Debug\DeveloperFramework.Utility.pdb
+D:\文稿\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\bin\Debug\DeveloperFramework.Extension.dll
+D:\文稿\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\bin\Debug\DeveloperFramework.Extension.pdb
+D:\文稿\DeveloperFramework\src\Utilitys\DeveloperFramework.Utility\obj\Debug\DeveloperFramework.Utility.csproj.CopyComplete

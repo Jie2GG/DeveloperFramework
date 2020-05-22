@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DeveloperFramework.Extension;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -111,8 +112,7 @@ namespace DeveloperFramework.Utility
 		/// <returns>返回当前时间戳</returns>
 		public static int GetTimeStamp ()
 		{
-			TimeSpan ts = new TimeSpan (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000);
-			return Convert.ToInt32 (ts.TotalSeconds);
+			return DateTime.Now.ToTimeStamp ();
 		}
 	}
 }

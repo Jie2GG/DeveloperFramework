@@ -4,3 +4,9 @@ D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Extension\obj\Debu
 D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Extension\obj\Debug\DeveloperFramework.Extension.dll
 D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Extension\obj\Debug\DeveloperFramework.Extension.pdb
 D:\Project\DeveloperFramework\src\Utilitys\DeveloperFramework.Extension\obj\Debug\DeveloperFramework.Extension.csprojAssemblyReference.cache
+D:\文稿\DeveloperFramework\src\Utilitys\DeveloperFramework.Extension\bin\Debug\DeveloperFramework.Extension.dll
+D:\文稿\DeveloperFramework\src\Utilitys\DeveloperFramework.Extension\bin\Debug\DeveloperFramework.Extension.pdb
+D:\文稿\DeveloperFramework\src\Utilitys\DeveloperFramework.Extension\obj\Debug\DeveloperFramework.Extension.csprojAssemblyReference.cache
+D:\文稿\DeveloperFramework\src\Utilitys\DeveloperFramework.Extension\obj\Debug\DeveloperFramework.Extension.csproj.CoreCompileInputs.cache
+D:\文稿\DeveloperFramework\src\Utilitys\DeveloperFramework.Extension\obj\Debug\DeveloperFramework.Extension.dll
+D:\文稿\DeveloperFramework\src\Utilitys\DeveloperFramework.Extension\obj\Debug\DeveloperFramework.Extension.pdb

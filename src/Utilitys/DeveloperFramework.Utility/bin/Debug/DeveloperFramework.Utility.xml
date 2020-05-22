@@ -30,5 +30,91 @@
             </summary>
             <returns>返回当前时间戳</returns>
         </member>
+        <member name="T:DeveloperFramework.Utility.RandomUtility">
+            <summary>
+            随机实用程序
+            </summary>
+        </member>
+        <member name="M:DeveloperFramework.Utility.RandomUtility.RandomInt32(System.Int32,System.Int32)">
+            <summary>
+            随机获取一个32位整数
+            </summary>
+            <param name="minValue">随机范围的最小值. 默认 <see cref="F:System.Int32.MinValue"/></param>
+            <param name="maxValue">随机范围的最大值 (不包含此值). 默认 <see cref="F:System.Int32.MaxValue"/></param>
+            <returns>一个32位整数</returns>
+        </member>
+        <member name="M:DeveloperFramework.Utility.RandomUtility.RandomInt64(System.Int64,System.Int64)">
+            <summary>
+            随机获取一个64位整数
+            </summary>
+            <param name="minValue">随机范围的最小值. 默认 <see cref="F:System.Int64.MinValue"/></param>
+            <param name="maxValue">随机范围的最大值 (不包含此值). 默认 <see cref="F:System.Int64.MaxValue"/></param>
+            <returns>一个64位整数</returns>
+        </member>
+        <member name="M:DeveloperFramework.Utility.RandomUtility.RandomName">
+            <summary>
+            随机获取一个姓名
+            </summary>
+            <returns>姓名字符串</returns>
+        </member>
+        <member name="M:DeveloperFramework.Utility.RandomUtility.RandomNick">
+            <summary>
+            随机获取一个昵称
+            </summary>
+            <returns>随机一个昵称</returns>
+        </member>
+        <member name="M:DeveloperFramework.Utility.RandomUtility.RandomGroupName">
+            <summary>
+            随机获取一个群名称
+            </summary>
+            <returns>获取的群名称</returns>
+        </member>
+        <member name="M:DeveloperFramework.Utility.RandomUtility.RandomChar">
+            <summary>
+            随机获取一个汉字
+            </summary>
+            <returns>随机的汉字</returns>
+        </member>
+        <member name="M:DeveloperFramework.Utility.RandomUtility.RandomSymbol">
+            <summary>
+            随机获取一个特殊符号
+            </summary>
+            <returns>特殊符号</returns>
+        </member>
+        <member name="M:DeveloperFramework.Utility.RandomUtility.RandomArea">
+            <summary>
+            随机获取一个地址字符串
+            </summary>
+            <returns>地址字符串</returns>
+        </member>
+        <member name="M:DeveloperFramework.Utility.RandomUtility.RandomEnum``1">
+            <summary>
+            随机获取一个指定类型的枚举值
+            </summary>
+            <typeparam name="T">随机的枚举类型</typeparam>
+            <returns>这个类型随机的枚举值</returns>
+        </member>
+        <member name="M:DeveloperFramework.Utility.RandomUtility.RandomBoolean">
+            <summary>
+            随机获取一个布尔值
+            </summary>
+            <returns>随机布尔值</returns>
+        </member>
+        <member name="M:DeveloperFramework.Utility.RandomUtility.RandomElement``1(``0[])">
+            <summary>
+            随机返回多个参数的任意值
+            </summary>
+            <typeparam name="T">要返回的值类型</typeparam>
+            <param name="values">要返回类型的值数组</param>
+            <returns>随机返回的值</returns>
+        </member>
+        <member name="M:DeveloperFramework.Utility.RandomUtility.RandomDateTime(System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <summary>
+            随机获取一个时间日期
+            </summary>
+            <param name="minValue">随机范围最小值. 默认: <see cref="F:System.DateTime.MinValue"/></param>
+            <param name="maxValue">随机范围最大值 (不包含此值). 默认: <see cref="F:System.DateTime.MaxValue"/></param>
+            <returns>一个日期时间值</returns>
+        </member>
     </members>
 </doc>

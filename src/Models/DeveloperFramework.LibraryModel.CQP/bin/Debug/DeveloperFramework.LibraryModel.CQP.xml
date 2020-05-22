@@ -59,6 +59,351 @@
             </summary>
             <param name="value">转换为 <see cref="T:System.TimeSpan"/> 的结构</param>
         </member>
+        <member name="T:DeveloperFramework.LibraryModel.CQP.AppAuth">
+            <summary>
+            描述 CQP 应用动态库的权限枚举
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.GetCookiesOrCsrfToken">
+            <summary>
+            [敏感]取Cookies
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.GetRecord">
+            <summary>
+            接收语音
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.SendGroupMessage">
+            <summary>
+            发送群消息
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.sendDiscussMessage">
+            <summary>
+            发送讨论组消息
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.sendPrivateMsssage">
+            <summary>
+            发送私聊消息
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.sendLike">
+            <summary>
+            [敏感]发送赞
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.setGroupKick">
+            <summary>
+            置群员移除
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.setGroupBan">
+            <summary>
+            置群员禁言
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.setGroupAdmin">
+            <summary>
+            置群管理员
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.setGroupWholeBan">
+            <summary>
+            置全群禁言
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.setGroupAnonymousBan">
+            <summary>
+            置匿名群员禁言
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.setGroupAnonymous">
+            <summary>
+            置群匿名设置
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.setGroupCard">
+            <summary>
+            置群成员名片
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.setGroupLeave">
+            <summary>
+            [敏感]置群退出
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.setGroupSpecialTitle">
+            <summary>
+            置群成员专属头衔
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.getGroupMemberInfo">
+            <summary>
+            取群成员信息
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.getStrangerInfo">
+            <summary>
+            取陌生人信息
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.getGroupInfo">
+            <summary>
+            取群信息
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.setDiscussLeave">
+            <summary>
+            置讨论组退出
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.setFriendAddRequest">
+            <summary>
+            置好友添加请求
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.setGroupAddRequest">
+            <summary>
+            置群添加请求
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.getGroupMemberList">
+            <summary>
+            取群成员列表
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.getGroupList">
+            <summary>
+            取群列表
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.getFriendList">
+            <summary>
+            取好友列表
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppAuth.deleteMsg">
+            <summary>
+            撤回消息
+            </summary>
+        </member>
+        <member name="T:DeveloperFramework.LibraryModel.CQP.AppEvent">
+            <summary>
+            描述 CQP 应用动态库的事件信息
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.AppEvent.Id">
+            <summary>
+            事件ID
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.AppEvent.Type">
+            <summary>
+            事件类型
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.AppEvent.Name">
+            <summary>
+            事件名称
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.AppEvent.Function">
+            <summary>
+            事件函数
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.AppEvent.Priority">
+            <summary>
+            事件优先级
+            </summary>
+        </member>
+        <member name="T:DeveloperFramework.LibraryModel.CQP.AppEventType">
+            <summary>
+            描述 CQP 应用动态库的事件类型
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppEventType.GroupMessage">
+            <summary>
+            群消息事件
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppEventType.DiscussMessage">
+            <summary>
+            讨论组消息事件
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppEventType.GroupFileUpload">
+            <summary>
+            群文件上传事件
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppEventType.PrivateMessage">
+            <summary>
+            私聊消息事件
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppEventType.GroupManagerChange">
+            <summary>
+            群管理员变动事件
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppEventType.GroupMemberDecrease">
+            <summary>
+            群成员减少事件
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppEventType.GroupMemberIncrease">
+            <summary>
+            群成员增加事件
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppEventType.GroupMemberBanSpeak">
+            <summary>
+            群禁言事件
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppEventType.FriendAdd">
+            <summary>
+            好友已添加事件
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppEventType.FriendAddRequest">
+            <summary>
+            好友添加请求
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppEventType.GroupAddRequest">
+            <summary>
+            群添加请求
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppEventType.CQStartup">
+            <summary>
+            酷Q启动事件
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppEventType.CQExit">
+            <summary>
+            酷Q退出事件
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppEventType.CQAppEnable">
+            <summary>
+            应用启用事件
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.LibraryModel.CQP.AppEventType.CQAppDisable">
+            <summary>
+            应用停用事件
+            </summary>
+        </member>
+        <member name="T:DeveloperFramework.LibraryModel.CQP.AppInfo">
+            <summary>
+            描述 CQP 应用动态库的基础信息
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.AppInfo.ResultCode">
+            <summary>
+            返回码
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.AppInfo.ApiVersion">
+            <summary>
+            Api版本
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.AppInfo.Name">
+            <summary>
+            应用名称
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.AppInfo.Version">
+            <summary>
+            应用版本
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.AppInfo.VersionId">
+            <summary>
+            应用顺序版本
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.AppInfo.Author">
+            <summary>
+            应用作者
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.AppInfo.Description">
+            <summary>
+            应用详情
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.AppInfo.Events">
+            <summary>
+            应用事件集合
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.AppInfo.Menus">
+            <summary>
+            应用菜单集合
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.AppInfo.Statues">
+            <summary>
+            应用悬浮窗集合
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.AppInfo.Auth">
+            <summary>
+            应用权限集合
+            </summary>
+        </member>
+        <member name="T:DeveloperFramework.LibraryModel.CQP.AppMenu">
+            <summary>
+            描述 CQP 应用动态库的菜单信息
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.AppMenu.Name">
+            <summary>
+            菜单名称
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.AppMenu.Function">
+            <summary>
+            菜单函数
+            </summary>
+        </member>
+        <member name="T:DeveloperFramework.LibraryModel.CQP.AppStatus">
+            <summary>
+            描述 CQP 应用动态库的悬浮窗状态信息
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.AppStatus.Id">
+            <summary>
+            悬浮窗ID
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.AppStatus.Name">
+            <summary>
+            悬浮窗名称
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.AppStatus.Title">
+            <summary>
+            悬浮窗标题
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.AppStatus.Function">
+            <summary>
+            悬浮窗函数
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.LibraryModel.CQP.AppStatus.Period">
+            <summary>
+            更新间隔时间 (单位ms (毫秒), 目前 CQP 仅支持 1000ms (1秒))
+            </summary>
+        </member>
         <member name="T:DeveloperFramework.LibraryModel.CQP.DiscussMessageType">
             <summary>
             描述 CQP 应用动态库的讨论组消息事件类型
@@ -184,21 +529,6 @@
             群文件上传
             </summary>
         </member>
-        <member name="T:DeveloperFramework.LibraryModel.CQP.HandleType">
-            <summary>
-            描述 CQP 应用动态库的返回类型
-            </summary>
-        </member>
-        <member name="F:DeveloperFramework.LibraryModel.CQP.HandleType.Discard">
-            <summary>
-            忽略消息
-            </summary>
-        </member>
-        <member name="F:DeveloperFramework.LibraryModel.CQP.HandleType.Intercept">
-            <summary>
-            拦截消息
-            </summary>
-        </member>
         <member name="T:DeveloperFramework.LibraryModel.CQP.PrivateMessageType">
             <summary>
             描述 CQP 应用动态库的私有消息事件类型
@@ -223,663 +553,6 @@
             <summary>
             好友
             </summary>
-        </member>
-        <member name="T:DeveloperFramework.LibraryModel.CQP.GroupAnonymous">
-            <summary>
-            描述 CQP 应用的 Anonymous 类型
-            </summary>
-        </member>
-        <member name="P:DeveloperFramework.LibraryModel.CQP.GroupAnonymous.Id">
-            <summary>
-            获取当前实例的匿名标识
-            </summary>
-        </member>
-        <member name="P:DeveloperFramework.LibraryModel.CQP.GroupAnonymous.Name">
-            <summary>
-            获取当前实例的匿名称号
-            </summary>
-        </member>
-        <member name="P:DeveloperFramework.LibraryModel.CQP.GroupAnonymous.Token">
-            <summary>
-            获取当前实例的执行令牌
-            </summary>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.GroupAnonymous.#ctor(System.Int64,System.String,System.Byte[])">
-            <summary>
-            初始化 <see cref="T:DeveloperFramework.LibraryModel.CQP.GroupAnonymous"/> 类的新实例
-            </summary>
-            <param name="id">匿名标识</param>
-            <param name="name">匿名称号</param>
-            <param name="token">匿名令牌</param>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.GroupAnonymous.ToBase64String">
-            <summary>
-            返回 Base64 字符串
-            </summary>
-            <returns>Base64 字符串</returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.GroupAnonymous.Equals(DeveloperFramework.LibraryModel.CQP.GroupAnonymous)">
-            <summary>
-            指示当前对象是否等于同一类型的另一个对象
-            </summary>
-            <param name="other">一个与此对象进行比较的对象</param>
-            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.GroupAnonymous.Equals(System.Object)">
-            <summary>
-            指示当前对象是否等于同一类型的另一个对象
-            </summary>
-            <param name="obj">一个与此对象进行比较的对象</param>
-            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.GroupAnonymous.GetHashCode">
-            <summary>
-            返回此实例的哈希代码
-            </summary>
-            <returns>32 位有符号整数哈希代码</returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.GroupAnonymous.ToString">
-            <summary>
-            返回表示当前对象的字符串
-            </summary>
-            <returns>表示当前对象的字符串</returns>
-        </member>
-        <member name="T:DeveloperFramework.LibraryModel.CQP.Discuss">
-            <summary>
-            描述 CQP 应用的 Discuss 类型
-            </summary>
-        </member>
-        <member name="F:DeveloperFramework.LibraryModel.CQP.Discuss.MinValue">
-            <summary>
-            表示当前实例 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 的最小值, 此字段为常数.
-            </summary>
-        </member>
-        <member name="P:DeveloperFramework.LibraryModel.CQP.Discuss.Id">
-            <summary>
-            获取当前实例的唯一标识 (群号)
-            </summary>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Discuss.#ctor(System.Int64)">
-            <summary>
-            初始化 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 类的新实例
-            </summary>
-            <param name="id">当前实例指定的 Id</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">id 小于 <see cref="F:DeveloperFramework.LibraryModel.CQP.Discuss.MinValue"/></exception>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Discuss.Equals(DeveloperFramework.LibraryModel.CQP.Discuss)">
-            <summary>
-            指示当前对象是否等于同一类型的另一个对象
-            </summary>
-            <param name="other">一个与此对象进行比较的对象</param>
-            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Discuss.Equals(System.Object)">
-            <summary>
-            指示当前对象是否等于同一类型的另一个对象
-            </summary>
-            <param name="obj">一个与此对象进行比较的对象</param>
-            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Discuss.GetHashCode">
-            <summary>
-            返回此实例的哈希代码
-            </summary>
-            <returns>32 位有符号整数哈希代码</returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Discuss.ToString">
-            <summary>
-            返回表示当前对象的字符串
-            </summary>
-            <returns>表示当前对象的字符串</returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Discuss.op_Implicit(DeveloperFramework.LibraryModel.CQP.Discuss)~System.Int64">
-            <summary>
-            定义将 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 对象转换为 <see cref="T:System.Int64"/>
-            </summary>
-            <param name="value">转换的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 对象</param>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Discuss.op_Implicit(DeveloperFramework.LibraryModel.CQP.Discuss)~System.String">
-            <summary>
-            定义将 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 对象转换为 <see cref="T:System.String"/>
-            </summary>
-            <param name="value">转换的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 对象</param>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Discuss.op_Equality(DeveloperFramework.LibraryModel.CQP.Discuss,DeveloperFramework.LibraryModel.CQP.Discuss)">
-            <summary>
-            确定两个指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 实例是否具有相同的值
-            </summary>
-            <param name="a">要比较的第一个对象</param>
-            <param name="b">要比较的第二个对象</param>
-            <returns>如果 a 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Discuss.op_Inequality(DeveloperFramework.LibraryModel.CQP.Discuss,DeveloperFramework.LibraryModel.CQP.Discuss)">
-            <summary>
-            确定两个指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 实例是否具有不同的值
-            </summary>
-            <param name="a">要比较的第一个对象</param>
-            <param name="b">要比较的第二个对象</param>
-            <returns>如果 a 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Discuss.op_Equality(DeveloperFramework.LibraryModel.CQP.Discuss,System.Int64)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 和 <see cref="T:System.String"/> 实例是否具有相同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:System.Int64"/> 对象</param>
-            <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Discuss.op_Inequality(DeveloperFramework.LibraryModel.CQP.Discuss,System.Int64)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 和 <see cref="T:System.String"/> 实例是否具有不同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:System.Int64"/> 对象</param>
-            <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Discuss.op_Equality(System.Int64,DeveloperFramework.LibraryModel.CQP.Discuss)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 和 <see cref="T:System.String"/> 实例是否具有相同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:System.Int64"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 对象</param>
-            <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Discuss.op_Inequality(System.Int64,DeveloperFramework.LibraryModel.CQP.Discuss)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 和 <see cref="T:System.String"/> 实例是否具有不同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:System.Int64"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 对象</param>
-            <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Discuss.op_Equality(DeveloperFramework.LibraryModel.CQP.Discuss,System.String)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 和 <see cref="T:System.String"/> 实例是否具有相同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:System.String"/> 对象</param>
-            <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Discuss.op_Inequality(DeveloperFramework.LibraryModel.CQP.Discuss,System.String)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 和 <see cref="T:System.String"/> 实例是否具有不同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:System.String"/> 对象</param>
-            <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Discuss.op_Equality(System.String,DeveloperFramework.LibraryModel.CQP.Discuss)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 和 <see cref="T:System.String"/> 实例是否具有相同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:System.String"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 对象</param>
-            <returns>如果 a 是与 b.Id 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Discuss.op_Inequality(System.String,DeveloperFramework.LibraryModel.CQP.Discuss)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 和 <see cref="T:System.String"/> 实例是否具有不同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:System.String"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Discuss"/> 对象</param>
-            <returns>如果 a 是与 b.Id 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
-        </member>
-        <member name="T:DeveloperFramework.LibraryModel.CQP.GroupFile">
-            <summary>
-            描述 CQP 应用的 File 类型
-            </summary>
-        </member>
-        <member name="P:DeveloperFramework.LibraryModel.CQP.GroupFile.Id">
-            <summary>
-            获取当前实例的全局唯一标识
-            </summary>
-        </member>
-        <member name="P:DeveloperFramework.LibraryModel.CQP.GroupFile.Name">
-            <summary>
-            获取当前实例的名称
-            </summary>
-        </member>
-        <member name="P:DeveloperFramework.LibraryModel.CQP.GroupFile.Guid">
-            <summary>
-            获取当前实例的 GUID
-            </summary>
-        </member>
-        <member name="P:DeveloperFramework.LibraryModel.CQP.GroupFile.Size">
-            <summary>
-            获取当前实例的字节数
-            </summary>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.GroupFile.#ctor(System.String,System.String,System.Int64)">
-            <summary>
-            初始化 <see cref="T:DeveloperFramework.LibraryModel.CQP.GroupFile"/> 类的新实例
-            </summary>
-            <param name="name">文件名</param>
-            <param name="guid">文件 GUID</param>
-            <param name="size">文件大小</param>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.GroupFile.ToBase64String">
-            <summary>
-            返回 Base64 字符串
-            </summary>
-            <returns>Base64 字符串</returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.GroupFile.Equals(DeveloperFramework.LibraryModel.CQP.GroupFile)">
-            <summary>
-            指示当前对象是否等于同一类型的另一个对象
-            </summary>
-            <param name="other">一个与此对象进行比较的对象</param>
-            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.GroupFile.Equals(System.Object)">
-            <summary>
-            指示当前对象是否等于同一类型的另一个对象
-            </summary>
-            <param name="obj">一个与此对象进行比较的对象</param>
-            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.GroupFile.GetHashCode">
-            <summary>
-            返回此实例的哈希代码
-            </summary>
-            <returns>32 位有符号整数哈希代码</returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.GroupFile.ToString">
-            <summary>
-            返回表示当前对象的字符串
-            </summary>
-            <returns>表示当前对象的字符串</returns>
-        </member>
-        <member name="T:DeveloperFramework.LibraryModel.CQP.Group">
-            <summary>
-            描述 CQP 应用的 Group 类型
-            </summary>
-        </member>
-        <member name="F:DeveloperFramework.LibraryModel.CQP.Group.MinValue">
-            <summary>
-            表示当前实例 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 的最小值, 此字段为常数.
-            </summary>
-        </member>
-        <member name="P:DeveloperFramework.LibraryModel.CQP.Group.Id">
-            <summary>
-            获取当前实例的唯一标识 (群号)
-            </summary>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Group.#ctor(System.Int64)">
-            <summary>
-            初始化 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 类的新实例
-            </summary>
-            <param name="id">当前实例指定的 Id</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">id 小于 <see cref="F:DeveloperFramework.LibraryModel.CQP.Group.MinValue"/></exception>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Group.Equals(DeveloperFramework.LibraryModel.CQP.Group)">
-            <summary>
-            指示当前对象是否等于同一类型的另一个对象
-            </summary>
-            <param name="other">一个与此对象进行比较的对象</param>
-            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Group.Equals(System.Object)">
-            <summary>
-            指示当前对象是否等于同一类型的另一个对象
-            </summary>
-            <param name="obj">一个与此对象进行比较的对象</param>
-            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Group.GetHashCode">
-            <summary>
-            返回此实例的哈希代码
-            </summary>
-            <returns>32 位有符号整数哈希代码</returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Group.ToString">
-            <summary>
-            返回表示当前对象的字符串
-            </summary>
-            <returns>表示当前对象的字符串</returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Group.op_Implicit(DeveloperFramework.LibraryModel.CQP.Group)~System.Int64">
-            <summary>
-            定义将 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 对象转换为 <see cref="T:System.Int64"/>
-            </summary>
-            <param name="value">转换的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 对象</param>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Group.op_Implicit(DeveloperFramework.LibraryModel.CQP.Group)~System.String">
-            <summary>
-            定义将 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 对象转换为 <see cref="T:System.String"/>
-            </summary>
-            <param name="value">转换的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 对象</param>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Group.op_Equality(DeveloperFramework.LibraryModel.CQP.Group,DeveloperFramework.LibraryModel.CQP.Group)">
-            <summary>
-            确定两个指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 实例是否具有相同的值
-            </summary>
-            <param name="a">要比较的第一个对象</param>
-            <param name="b">要比较的第二个对象</param>
-            <returns>如果 a 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Group.op_Inequality(DeveloperFramework.LibraryModel.CQP.Group,DeveloperFramework.LibraryModel.CQP.Group)">
-            <summary>
-            确定两个指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 实例是否具有不同的值
-            </summary>
-            <param name="a">要比较的第一个对象</param>
-            <param name="b">要比较的第二个对象</param>
-            <returns>如果 a 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Group.op_Equality(DeveloperFramework.LibraryModel.CQP.Group,System.Int64)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 和 <see cref="T:System.String"/> 实例是否具有相同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:System.Int64"/> 对象</param>
-            <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Group.op_Inequality(DeveloperFramework.LibraryModel.CQP.Group,System.Int64)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 和 <see cref="T:System.String"/> 实例是否具有不同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:System.Int64"/> 对象</param>
-            <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Group.op_Equality(System.Int64,DeveloperFramework.LibraryModel.CQP.Group)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 和 <see cref="T:System.String"/> 实例是否具有相同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:System.Int64"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 对象</param>
-            <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Group.op_Inequality(System.Int64,DeveloperFramework.LibraryModel.CQP.Group)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 和 <see cref="T:System.String"/> 实例是否具有不同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:System.Int64"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 对象</param>
-            <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Group.op_Equality(DeveloperFramework.LibraryModel.CQP.Group,System.String)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 和 <see cref="T:System.String"/> 实例是否具有相同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:System.String"/> 对象</param>
-            <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Group.op_Inequality(DeveloperFramework.LibraryModel.CQP.Group,System.String)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 和 <see cref="T:System.String"/> 实例是否具有不同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:System.String"/> 对象</param>
-            <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Group.op_Equality(System.String,DeveloperFramework.LibraryModel.CQP.Group)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 和 <see cref="T:System.String"/> 实例是否具有相同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:System.String"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 对象</param>
-            <returns>如果 a 是与 b.Id 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Group.op_Inequality(System.String,DeveloperFramework.LibraryModel.CQP.Group)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 和 <see cref="T:System.String"/> 实例是否具有不同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:System.String"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Group"/> 对象</param>
-            <returns>如果 a 是与 b.Id 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
-        </member>
-        <member name="T:DeveloperFramework.LibraryModel.CQP.Message">
-            <summary>
-            描述 CQP 应用的 Discuss 类型
-            </summary>
-        </member>
-        <member name="P:DeveloperFramework.LibraryModel.CQP.Message.Id">
-            <summary>
-            获取当前实例的唯一标识
-            </summary>
-        </member>
-        <member name="P:DeveloperFramework.LibraryModel.CQP.Message.Text">
-            <summary>
-            获取当前实例的详细信息
-            </summary>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Message.#cctor">
-            <summary>
-            初始化 <see cref="T:DeveloperFramework.LibraryModel.CQP.Message"/> 静态类的数据
-            </summary>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Message.#ctor(System.String)">
-            <summary>
-            初始化 <see cref="T:DeveloperFramework.LibraryModel.CQP.Message"/> 类的新实例
-            </summary>
-            <param name="text">消息内容</param>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Message.Equals(DeveloperFramework.LibraryModel.CQP.Message)">
-            <summary>
-            指示当前对象是否等于同一类型的另一个对象
-            </summary>
-            <param name="other">一个与此对象进行比较的对象</param>
-            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Message.Equals(System.Object)">
-            <summary>
-            指示当前对象是否等于同一类型的另一个对象
-            </summary>
-            <param name="obj">一个与此对象进行比较的对象</param>
-            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Message.GetHashCode">
-            <summary>
-            返回此实例的哈希代码
-            </summary>
-            <returns>32 位有符号整数哈希代码</returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Message.ToString">
-            <summary>
-            返回表示当前对象的字符串
-            </summary>
-            <returns>表示当前对象的字符串</returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Message.op_Implicit(DeveloperFramework.LibraryModel.CQP.Message)~System.String">
-            <summary>
-            定义将 <see cref="T:DeveloperFramework.LibraryModel.CQP.Message"/> 对象转换为 <see cref="T:System.String"/>
-            </summary>
-            <param name="value">转换 <see cref="T:DeveloperFramework.LibraryModel.CQP.Message"/> 对象</param>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Message.op_Implicit(System.String)~DeveloperFramework.LibraryModel.CQP.Message">
-            <summary>
-            定义将 <see cref="T:System.String"/> 对象转换为 <see cref="T:DeveloperFramework.LibraryModel.CQP.Message"/>
-            </summary>
-            <param name="value">转换 <see cref="T:System.String"/> 对象</param>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Message.op_Equality(DeveloperFramework.LibraryModel.CQP.Message,DeveloperFramework.LibraryModel.CQP.Message)">
-            <summary>
-            确定两个指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Message"/> 实例是否具有相同的值
-            </summary>
-            <param name="a">要比较的第一个对象</param>
-            <param name="b">要比较的第二个对象</param>
-            <returns>如果 a 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Message.op_Inequality(DeveloperFramework.LibraryModel.CQP.Message,DeveloperFramework.LibraryModel.CQP.Message)">
-            <summary>
-            确定两个指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Message"/> 实例是否具有不同的值
-            </summary>
-            <param name="a">要比较的第一个对象</param>
-            <param name="b">要比较的第二个对象</param>
-            <returns>如果 a 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Message.op_Equality(DeveloperFramework.LibraryModel.CQP.Message,System.String)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Message"/> 和 <see cref="T:System.String"/> 实例是否具有相同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Message"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:System.String"/> 对象</param>
-            <returns>如果 a.Text 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Message.op_Inequality(DeveloperFramework.LibraryModel.CQP.Message,System.String)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Message"/> 和 <see cref="T:System.String"/> 实例是否具有不同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Message"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:System.String"/> 对象</param>
-            <returns>如果 a.Text 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Message.op_Equality(System.String,DeveloperFramework.LibraryModel.CQP.Message)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Message"/> 和 <see cref="T:System.String"/> 实例是否具有相同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:System.String"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Message"/> 对象</param>
-            <returns>如果 a 是与 b.Text 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.Message.op_Inequality(System.String,DeveloperFramework.LibraryModel.CQP.Message)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Message"/> 和 <see cref="T:System.String"/> 实例是否具有不同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:System.String"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.Message"/> 对象</param>
-            <returns>如果 a 是与 b.Text 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
-        </member>
-        <member name="T:DeveloperFramework.LibraryModel.CQP.QQ">
-            <summary>
-            描述 CQP 应用的 QQ 类型
-            </summary>
-        </member>
-        <member name="F:DeveloperFramework.LibraryModel.CQP.QQ.MinValue">
-            <summary>
-            表示当前实例 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 的最小值, 此字段为常数. 并且此值作为系统默认标识
-            </summary>
-        </member>
-        <member name="P:DeveloperFramework.LibraryModel.CQP.QQ.Id">
-            <summary>
-            获取当前实例的唯一标识 (QQ号)
-            </summary>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.QQ.#ctor(System.Int64)">
-            <summary>
-            初始化 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 类的新实例
-            </summary>
-            <param name="id">当前实例指定的 Id</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">id 小于 <see cref="F:DeveloperFramework.LibraryModel.CQP.QQ.MinValue"/></exception>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.QQ.Equals(DeveloperFramework.LibraryModel.CQP.QQ)">
-            <summary>
-            指示当前对象是否等于同一类型的另一个对象
-            </summary>
-            <param name="other">一个与此对象进行比较的对象</param>
-            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.QQ.Equals(System.Object)">
-            <summary>
-            指示当前对象是否等于同一类型的另一个对象
-            </summary>
-            <param name="obj">一个与此对象进行比较的对象</param>
-            <returns>如果当前对象等于 other 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.QQ.GetHashCode">
-            <summary>
-            返回此实例的哈希代码
-            </summary>
-            <returns>32 位有符号整数哈希代码</returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.QQ.ToString">
-            <summary>
-            返回表示当前对象的字符串
-            </summary>
-            <returns>表示当前对象的字符串</returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.QQ.op_Implicit(DeveloperFramework.LibraryModel.CQP.QQ)~System.Int64">
-            <summary>
-            定义将 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 对象转换为 <see cref="T:System.Int64"/>
-            </summary>
-            <param name="value">转换的 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 对象</param>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.QQ.op_Implicit(DeveloperFramework.LibraryModel.CQP.QQ)~System.String">
-            <summary>
-            定义将 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 对象转换为 <see cref="T:System.String"/>
-            </summary>
-            <param name="value">转换的 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 对象</param>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.QQ.op_Equality(DeveloperFramework.LibraryModel.CQP.QQ,DeveloperFramework.LibraryModel.CQP.QQ)">
-            <summary>
-            确定两个指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 实例是否具有相同的值
-            </summary>
-            <param name="a">要比较的第一个对象</param>
-            <param name="b">要比较的第二个对象</param>
-            <returns>如果 a 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.QQ.op_Inequality(DeveloperFramework.LibraryModel.CQP.QQ,DeveloperFramework.LibraryModel.CQP.QQ)">
-            <summary>
-            确定两个指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 实例是否具有不同的值
-            </summary>
-            <param name="a">要比较的第一个对象</param>
-            <param name="b">要比较的第二个对象</param>
-            <returns>如果 a 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.QQ.op_Equality(DeveloperFramework.LibraryModel.CQP.QQ,System.Int64)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 和 <see cref="T:System.String"/> 实例是否具有相同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:System.Int64"/> 对象</param>
-            <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.QQ.op_Inequality(DeveloperFramework.LibraryModel.CQP.QQ,System.Int64)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 和 <see cref="T:System.String"/> 实例是否具有不同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:System.Int64"/> 对象</param>
-            <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.QQ.op_Equality(System.Int64,DeveloperFramework.LibraryModel.CQP.QQ)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 和 <see cref="T:System.String"/> 实例是否具有相同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:System.Int64"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 对象</param>
-            <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.QQ.op_Inequality(System.Int64,DeveloperFramework.LibraryModel.CQP.QQ)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 和 <see cref="T:System.String"/> 实例是否具有不同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:System.Int64"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 对象</param>
-            <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.QQ.op_Equality(DeveloperFramework.LibraryModel.CQP.QQ,System.String)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 和 <see cref="T:System.String"/> 实例是否具有相同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:System.String"/> 对象</param>
-            <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.QQ.op_Inequality(DeveloperFramework.LibraryModel.CQP.QQ,System.String)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 和 <see cref="T:System.String"/> 实例是否具有不同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:System.String"/> 对象</param>
-            <returns>如果 a.Id 是与 b 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.QQ.op_Equality(System.String,DeveloperFramework.LibraryModel.CQP.QQ)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 和 <see cref="T:System.String"/> 实例是否具有相同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:System.String"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 对象</param>
-            <returns>如果 a 是与 b.Id 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-        </member>
-        <member name="M:DeveloperFramework.LibraryModel.CQP.QQ.op_Inequality(System.String,DeveloperFramework.LibraryModel.CQP.QQ)">
-            <summary>
-            确定指定的 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 和 <see cref="T:System.String"/> 实例是否具有不同的值
-            </summary>
-            <param name="a">要比较的 <see cref="T:System.String"/> 对象</param>
-            <param name="b">要比较的 <see cref="T:DeveloperFramework.LibraryModel.CQP.QQ"/> 对象</param>
-            <returns>如果 a 是与 b.Id 相同的值，或两者均为 <see langword="null"/>，则为 <see langword="false"/>；否则为 <see langword="true"/></returns>
         </member>
     </members>
 </doc>

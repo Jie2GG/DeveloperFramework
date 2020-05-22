@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DeveloperFramework.LibraryModel.CQP</RootNamespace>
     <AssemblyName>DeveloperFramework.LibraryModel.CQP</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\DeveloperFramework.LibraryModel.CQP.xml</DocumentationFile>
     <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,8 +33,12 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,6 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BanSpeakTimeSpan.cs" />
+    <Compile Include="AppAuth.cs" />
+    <Compile Include="AppEvent.cs" />
+    <Compile Include="AppEventType.cs" />
+    <Compile Include="AppInfo.cs" />
+    <Compile Include="AppMenu.cs" />
+    <Compile Include="AppStatus.cs" />
     <Compile Include="DiscussMessageType.cs" />
     <Compile Include="FriendAddRequestType.cs" />
     <Compile Include="FriendAddType.cs" />
@@ -54,21 +66,22 @@
     <Compile Include="GroupMemberIncreaseType.cs" />
     <Compile Include="GroupMessageType.cs" />
     <Compile Include="GroupUploadType.cs" />
-    <Compile Include="HandleType.cs" />
     <Compile Include="PrivateMessageType.cs" />
-    <Compile Include="GroupAnonymous.cs" />
-    <Compile Include="Discuss.cs" />
-    <Compile Include="GroupFile.cs" />
-    <Compile Include="Group.cs" />
-    <Compile Include="Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QQ.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Utilitys\DeveloperFramework.Extension\DeveloperFramework.Extension.csproj">
       <Project>{be1047f8-f698-4c93-9fa3-3849b1c9a922}</Project>
       <Name>DeveloperFramework.Extension</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Utilitys\DeveloperFramework.Utility\DeveloperFramework.Utility.csproj">
+      <Project>{50587E04-23E2-4E97-A831-167D5C39D9E8}</Project>
+      <Name>DeveloperFramework.Utility</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

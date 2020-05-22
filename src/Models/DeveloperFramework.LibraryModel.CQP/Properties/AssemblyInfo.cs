@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("DeveloperFramework.LibraryModel.CQP")]
+[assembly: AssemblyTitle("DeveloperFramework.LibraryModel.CQP.Dynamic")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DeveloperFramework.LibraryModel.CQP")]
+[assembly: AssemblyProduct("DeveloperFramework.LibraryModel.CQP.Dynamic")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
