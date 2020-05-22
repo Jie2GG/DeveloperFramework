@@ -11,7 +11,7 @@ namespace DeveloperFramework.SimulatorModel.CQP
 	/// <summary>
 	/// 描述 QQ 类型
 	/// </summary>
-	public class QQ
+	public class QQ : IEquatable<QQ>
 	{
 		#region --常量--
 		private const int _minValue = 10000;
@@ -21,7 +21,7 @@ namespace DeveloperFramework.SimulatorModel.CQP
 		/// <summary>
 		/// 表示当前实例 <see cref="QQ"/> 的最小值, 此字段为常数. 并且此值作为系统默认标识
 		/// </summary>
-		public static readonly QQ MinValue = new QQ (10000, "系统消息", Sex.Man, 14);
+		public static readonly long MinValue = 10000;
 		/// <summary>
 		/// 获取或设置当前实例的唯一标识 (QQ号)
 		/// </summary>
@@ -84,6 +84,37 @@ namespace DeveloperFramework.SimulatorModel.CQP
 		public virtual string ToBase64String ()
 		{
 			return Convert.ToBase64String (this.ToByteArray ());
+		}
+		/// <summary>
+		/// 指示当前对象是否等于同一类型的另一个对象
+		/// </summary>
+		/// <param name="obj">一个与此对象进行比较的对象</param>
+		/// <returns>如果当前对象等于 obj 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+		public bool Equals (QQ obj)
+		{
+			if (obj == null)
+			{
+				return false;
+			}
+
+			return this.Id.Equals (obj.Id) && this.Nick.Equals (obj.Nick) && ((int)this.Sex).Equals ((int)obj.Sex) && this.Age.Equals (obj.Age);
+		}
+		/// <summary>
+		/// 指示当前对象是否等于同一类型的另一个对象
+		/// </summary>
+		/// <param name="obj">一个与此对象进行比较的对象</param>
+		/// <returns>如果当前对象等于 obj 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+		public override bool Equals (object obj)
+		{
+			return this.Equals (obj as QQ);
+		}
+		/// <summary>
+		/// 返回此实例的哈希代码
+		/// </summary>
+		/// <returns>32 位有符号整数哈希代码</returns>
+		public override int GetHashCode ()
+		{
+			return this.Id.GetHashCode () & this.Nick.GetHashCode () & this.Sex.GetHashCode () & this.Age.GetHashCode ();
 		}
 		#endregion
 
