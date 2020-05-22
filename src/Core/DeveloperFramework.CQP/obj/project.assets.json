@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    ".NETFramework,Version=v4.7.2": {
+    ".NETFramework,Version=v4.8": {
       "DllExport/1.7.0": {
         "type": "package",
         "compile": {
@@ -35,6 +35,9 @@
       },
       "DeveloperFramework.Utility/1.0.0": {
         "type": "project",
+        "dependencies": {
+          "DeveloperFramework.Extension": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/DeveloperFramework.Utility.dll": {}
         },
@@ -43,7 +46,7 @@
         }
       }
     },
-    ".NETFramework,Version=v4.7.2/win": {
+    ".NETFramework,Version=v4.8/win": {
       "DllExport/1.7.0": {
         "type": "package",
         "compile": {
@@ -77,6 +80,9 @@
       },
       "DeveloperFramework.Utility/1.0.0": {
         "type": "project",
+        "dependencies": {
+          "DeveloperFramework.Extension": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/DeveloperFramework.Utility.dll": {}
         },
@@ -85,7 +91,7 @@
         }
       }
     },
-    ".NETFramework,Version=v4.7.2/win-x64": {
+    ".NETFramework,Version=v4.8/win-x64": {
       "DllExport/1.7.0": {
         "type": "package",
         "compile": {
@@ -119,6 +125,9 @@
       },
       "DeveloperFramework.Utility/1.0.0": {
         "type": "project",
+        "dependencies": {
+          "DeveloperFramework.Extension": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/DeveloperFramework.Utility.dll": {}
         },
@@ -127,7 +136,7 @@
         }
       }
     },
-    ".NETFramework,Version=v4.7.2/win-x86": {
+    ".NETFramework,Version=v4.8/win-x86": {
       "DllExport/1.7.0": {
         "type": "package",
         "compile": {
@@ -161,6 +170,9 @@
       },
       "DeveloperFramework.Utility/1.0.0": {
         "type": "project",
+        "dependencies": {
+          "DeveloperFramework.Extension": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/DeveloperFramework.Utility.dll": {}
         },
@@ -251,51 +263,51 @@
     }
   },
   "projectFileDependencyGroups": {
-    ".NETFramework,Version=v4.7.2": [
+    ".NETFramework,Version=v4.8": [
       "DeveloperFramework.Extension >= 1.0.0",
       "DeveloperFramework.LibraryModel.CQP >= 1.0.0",
       "DllExport >= 1.7.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Administrator\\.nuget\\packages\\": {}
+    "C:\\Users\\JieGG\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Project\\DeveloperFramework\\src\\Core\\DeveloperFramework.CQP\\DeveloperFramework.CQP.csproj",
+      "projectUniqueName": "D:\\文稿\\DeveloperFramework\\src\\Core\\DeveloperFramework.CQP\\DeveloperFramework.CQP.csproj",
       "projectName": "DeveloperFramework.CQP",
-      "projectPath": "D:\\Project\\DeveloperFramework\\src\\Core\\DeveloperFramework.CQP\\DeveloperFramework.CQP.csproj",
-      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "D:\\Project\\DeveloperFramework\\src\\Core\\DeveloperFramework.CQP\\obj\\",
+      "projectPath": "D:\\文稿\\DeveloperFramework\\src\\Core\\DeveloperFramework.CQP\\DeveloperFramework.CQP.csproj",
+      "packagesPath": "C:\\Users\\JieGG\\.nuget\\packages\\",
+      "outputPath": "D:\\文稿\\DeveloperFramework\\src\\Core\\DeveloperFramework.CQP\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
-        "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\JieGG\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net472"
+        "net48"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net472": {
+        "net48": {
           "projectReferences": {
-            "D:\\Project\\DeveloperFramework\\src\\Models\\DeveloperFramework.LibraryModel.CQP\\DeveloperFramework.LibraryModel.CQP.csproj": {
-              "projectPath": "D:\\Project\\DeveloperFramework\\src\\Models\\DeveloperFramework.LibraryModel.CQP\\DeveloperFramework.LibraryModel.CQP.csproj"
+            "D:\\文稿\\DeveloperFramework\\src\\Models\\DeveloperFramework.LibraryModel.CQP\\DeveloperFramework.LibraryModel.CQP.csproj": {
+              "projectPath": "D:\\文稿\\DeveloperFramework\\src\\Models\\DeveloperFramework.LibraryModel.CQP\\DeveloperFramework.LibraryModel.CQP.csproj"
             },
-            "D:\\Project\\DeveloperFramework\\src\\Utilitys\\DeveloperFramework.Extension\\DeveloperFramework.Extension.csproj": {
-              "projectPath": "D:\\Project\\DeveloperFramework\\src\\Utilitys\\DeveloperFramework.Extension\\DeveloperFramework.Extension.csproj"
+            "D:\\文稿\\DeveloperFramework\\src\\Utilitys\\DeveloperFramework.Extension\\DeveloperFramework.Extension.csproj": {
+              "projectPath": "D:\\文稿\\DeveloperFramework\\src\\Utilitys\\DeveloperFramework.Extension\\DeveloperFramework.Extension.csproj"
             }
           }
         }
       }
     },
     "frameworks": {
-      "net472": {
+      "net48": {
         "dependencies": {
           "DllExport": {
             "target": "Package",

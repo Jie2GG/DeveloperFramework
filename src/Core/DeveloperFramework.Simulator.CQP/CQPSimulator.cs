@@ -70,7 +70,8 @@ namespace DeveloperFramework.Simulator.CQP
 
 			this.AddDirectory = appDirectory;
 			this.CQPApps = new List<CQPSimulatorApp> ();
-			this.DataPool = new CQPSimulatorDataPool ();
+			this.DataPool = new CQPSimulatorDataPool ().Generate ();
+			LogCenter.Instance.InfoSuccess (STR_SIMULATOR_INIT, $"已加载 {this.DataPool.QQCollection.Count} 个QQ、{this.DataPool.FriendCollection.Count} 个好友、{this.DataPool.GroupCollection.Count} 个群");
 
 			// 设置 CQExport 服务
 			CQPExport.Instance.FuncProcess = this;
@@ -90,6 +91,7 @@ namespace DeveloperFramework.Simulator.CQP
 
 			LogCenter.Instance.InfoSuccess (STR_APPLOAD, "应用加载开始");
 			string[] pathes = Directory.GetDirectories (this.AddDirectory);
+			int failCount = 0;
 			foreach (string path in pathes)
 			{
 				string appId = Path.GetFileName (path);     // 获取最后一段字符串
@@ -111,15 +113,21 @@ namespace DeveloperFramework.Simulator.CQP
 						library.Dispose ();
 						// 写入日志
 						LogCenter.Instance.Warning (STR_APPLOAD, $"应用: {appId} 返回的 AppID 错误.");
+						failCount++;
 						continue;
 					}
 
-					int authCode = RandomUtility.RandomInt32 (1, int.MaxValue);
+					int authCode = RandomUtility.RandomInt32 (0);
 					// 传递验证码
 					int resCode = library.InvokeInitialize (authCode);
 					if (resCode != 0)
 					{
+						// 卸载 Library
+						library.Dispose ();
+						// 写入日志
 						LogCenter.Instance.Error (STR_APPLOAD, $"应用 {appId} 的 Initialize 方法未返回 0");
+						failCount++;
+						continue;
 					}
 
 					// 存入实例列表
@@ -212,10 +220,6 @@ namespace DeveloperFramework.Simulator.CQP
 
 			return new CompositeInvoker (this, app, isAuth).GetCommandHandle (funcName, objs).Execute ();
 		}
-		#endregion
-
-		#region --私有方法--
-
 		#endregion
 	}
 }

@@ -35,11 +35,10 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 			AppInfo appInfo = this.App.Library.AppInfo;
 
 			// 将消息存入缓存池
-			Message msg = this.Message;
 			
 
 			LogCenter.Instance.InfoSending (appInfo.Name, CQPSimulator.STR_APPSENDING, $"向 [QQ: {this.FromQQ}] 发送消息: {this.Message}", null, null);
-			return msg.Id;	// 返回消息 Id 用于撤回
+			return 0;	// 返回消息 Id 用于撤回
 		}
 
 		public override object ExecuteHaveNoAuth ()

@@ -34,11 +34,11 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 		{
 			AppInfo appInfo = this.App.Library.AppInfo;
 			// 将消息存入缓存池
-			Message msg = this.Message;
+			
 			
 
 			LogCenter.Instance.InfoSending (appInfo.Name, CQPSimulator.STR_APPSENDING, $"向 [群: {this.FromGroup}] 发送消息: {this.Message}", null, null);
-			return msg.Id;
+			return 0;
 		}
 
 		public override object ExecuteHaveNoAuth ()

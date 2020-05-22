@@ -17,9 +17,9 @@ namespace DeveloperFramework.SimulatorModel.CQP
 
 		#region --属性--
 		/// <summary>
-		/// 表示当前实例 <see cref="Discuss"/> 的最小值, 此字段为常数.
+		/// 表示当前实例 <see cref="Group"/> 的最小值.
 		/// </summary>
-		public static readonly Discuss MinValue = 10000;
+		public static readonly long MinValue = 10000;
 		/// <summary>
 		/// 获取或设置当前实例的唯一标识 (群号)
 		/// </summary>
