@@ -14,6 +14,23 @@ namespace DeveloperFramework.SimulatorModel.CQP
 	/// </summary>
 	public class GroupCollection : Collection<Group>
 	{
+		#region --构造函数--
+		/// <summary>
+		/// 初始化为空的 <see cref="GroupCollection"/> 类的新实例
+		/// </summary>
+		public GroupCollection ()
+			: base ()
+		{
+		}
+		/// <summary>
+		/// 新实例初始化 <see cref="GroupCollection"/> 包装指定列表的类
+		/// </summary>
+		/// <param name="list">用于包装由新的集合的列表</param>
+		public GroupCollection (IList<Group> list)
+			: base (list)
+		{ }
+		#endregion
+
 		#region --公开方法--
 		/// <summary>
 		/// 获取当前实例的 <see cref="byte"/> 数组

@@ -15,6 +15,23 @@ namespace DeveloperFramework.SimulatorModel.CQP
 	/// </summary>
 	public class FriendCollection : Collection<Friend>
 	{
+		#region --构造函数--
+		/// <summary>
+		/// 初始化为空的 <see cref="FriendCollection"/> 类的新实例
+		/// </summary>
+		public FriendCollection ()
+			: base ()
+		{
+		}
+		/// <summary>
+		/// 新实例初始化 <see cref="FriendCollection"/> 包装指定列表的类
+		/// </summary>
+		/// <param name="list">用于包装由新的集合的列表</param>
+		public FriendCollection (IList<Friend> list)
+			: base (list)
+		{ } 
+		#endregion
+
 		#region --公开方法--
 		/// <summary>
 		/// 获取当前实例的 Base64 字符串
@@ -31,7 +48,7 @@ namespace DeveloperFramework.SimulatorModel.CQP
 				}
 				return Convert.ToBase64String (writer.ToArray ());
 			}
-		} 
+		}
 		#endregion
 	}
 }

@@ -11,7 +11,7 @@ namespace DeveloperFramework.SimulatorModel.CQP
 	/// <summary>
 	/// 描述 群成员 类型
 	/// </summary>
-	public class GroupMember : QQ
+	public class GroupMember : QQ, IEquatable<GroupMember>
 	{
 		#region --属性--
 		/// <summary>
@@ -121,6 +121,41 @@ namespace DeveloperFramework.SimulatorModel.CQP
 				writer.Write_Ex (this.IsAllowEditorCard ? 1 : 0);
 				return writer.ToArray ();
 			}
+		}
+		/// <summary>
+		/// 指示当前对象是否等于同一类型的另一个对象
+		/// </summary>
+		/// <param name="obj">一个与此对象进行比较的对象</param>
+		/// <returns>如果当前对象等于 obj 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+		public bool Equals (GroupMember obj)
+		{
+			bool result = base.Equals (obj as QQ) && this.Group.Equals (obj.Group) && this.Card.Equals (obj.Card) && this.Area.Equals (obj.Area) && this.JoinTime.Equals (obj.JoinTime) && this.LastSpeakTime.Equals (obj.LastSpeakTime) && this.Level.Equals (obj.Level) && ((int)this.MemberType).Equals ((int)obj.MemberType) && this.ExclusiveTitle.Equals (obj.ExclusiveTitle) && this.IsAllowEditorCard.Equals (obj.IsAllowEditorCard) && this.IsBadRecord.Equals (obj.IsBadRecord);
+			if (!(this.ExclusiveTitleExpirationTime is null && obj.ExclusiveTitleExpirationTime is null))
+			{
+				result = result && (this.ExclusiveTitleExpirationTime.Value.Equals (obj.ExclusiveTitleExpirationTime.Value));
+			}
+			else
+			{
+				result = result && (this.ExclusiveTitleExpirationTime is null && obj.ExclusiveTitleExpirationTime is null);
+			}
+			return result;
+		}
+		/// <summary>
+		/// 指示当前对象是否等于同一类型的另一个对象
+		/// </summary>
+		/// <param name="obj">一个与此对象进行比较的对象</param>
+		/// <returns>如果当前对象等于 obj 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
+		public override bool Equals (object obj)
+		{
+			return this.Equals (obj as GroupMember);
+		}
+		/// <summary>
+		/// 返回此实例的哈希代码
+		/// </summary>
+		/// <returns>32 位有符号整数哈希代码</returns>
+		public override int GetHashCode ()
+		{
+			return base.GetHashCode () & this.Group.GetHashCode () & this.Card.GetHashCode () & this.Area.GetHashCode () & this.JoinTime.GetHashCode () & this.LastSpeakTime.GetHashCode () & this.Level.GetHashCode () & this.MemberType.GetHashCode () & this.ExclusiveTitle.GetHashCode () & this.ExclusiveTitleExpirationTime.GetHashCode () & this.IsAllowEditorCard.GetHashCode () & this.IsBadRecord.GetHashCode ();
 		}
 		#endregion
 	}

@@ -23,27 +23,13 @@ namespace TestApplication
 	{
 		public static void Main (string[] args)
 		{
-			//LogCenter.Instance.AddObserver (new Program ());
+			LogCenter.Instance.AddObserver (new Program ());
 
-			//CQPSimulator simulator = new CQPSimulator (Path.Combine (AppDomain.CurrentDomain.BaseDirectory, "dev"));
-			//simulator.Start ();
+			CQPSimulator simulator = new CQPSimulator (Path.Combine (AppDomain.CurrentDomain.BaseDirectory, "dev"));
+			simulator.Start ();
+			simulator.Stop ();
 
-			//simulator.Stop ();
-			//new Faker<QQ> ("zh_CN")
-			//	.RuleFor (p => p.Id, f => id)
-			//	.RuleFor (p => p.Nick, f => f.Name.FullName ())
-			//	.RuleFor (p => p.Age, f => f.Random.Number (1, 120))
-			//	.RuleFor (p => p.Area, f => f.Address.FullAddress ())
-			//	.RuleFor (p => p.Sex, f => f.PickRandom<Sex> ());
-
-			Faker faker = new Faker ("zh_CN");
-
-			for (int i = 0; i < 19; i++)
-			{
-				
-			}
-
-			Console.Read ();
+			Console.ReadKey ();
 		}
 
 		public void Initialize (ICollection<LogItem> logs)
