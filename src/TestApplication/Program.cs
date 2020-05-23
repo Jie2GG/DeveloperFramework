@@ -25,9 +25,9 @@ namespace TestApplication
 		{
 			LogCenter.Instance.AddObserver (new Program ());
 
-			CQPSimulator simulator = new CQPSimulator (Path.Combine (AppDomain.CurrentDomain.BaseDirectory, "dev"));
-			simulator.Start ();
-			simulator.Stop ();
+			//CQPSimulator simulator = new CQPSimulator (Path.Combine (AppDomain.CurrentDomain.BaseDirectory, "dev"));
+			//simulator.Start ();
+			//simulator.Stop ();
 
 			Console.ReadKey ();
 		}

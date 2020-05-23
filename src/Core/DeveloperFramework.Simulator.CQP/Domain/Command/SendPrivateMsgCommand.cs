@@ -1,6 +1,7 @@
 ﻿using DeveloperFramework.CQP;
 using DeveloperFramework.LibraryModel.CQP;
 using DeveloperFramework.Log.CQP;
+using DeveloperFramework.SimulatorModel.CQP;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,18 +35,31 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 		{
 			AppInfo appInfo = this.App.Library.AppInfo;
 
-			// 将消息存入缓存池
-			
+			// 核对来源QQ
+			QQ qq = base.Simulator.DataPool.QQCollection.Where (p => p.Id == this.FromQQ).FirstOrDefault ();
+			if (qq == null)
+			{
+				LogCenter.Instance.Info (appInfo.Name, CQPSimulator.STR_APP_SENDING, $"无法向 [QQ: {this.FromQQ}] 发送消息, 未查询到与该QQ的关系");
+				return CQPResult.CQP_SEND_NOT_RELATION;
+			}
+			else
+			{
+				LogCenter.Instance.InfoSending (appInfo.Name, CQPSimulator.STR_APP_SENDING, $"向 [QQ: {this.FromQQ}] 发送消息: {this.Message}");
 
-			LogCenter.Instance.InfoSending (appInfo.Name, CQPSimulator.STR_APPSENDING, $"向 [QQ: {this.FromQQ}] 发送消息: {this.Message}", null, null);
-			return 0;	// 返回消息 Id 用于撤回
+				Message msg = new Message (this.Message, qq);
+				this.Simulator.DataPool.MessageCollection.Add (msg);
+				return msg.Id;
+			}
 		}
 
 		public override object ExecuteHaveNoAuth ()
 		{
 			AppInfo appInfo = this.App.Library.AppInfo;
-			LogCenter.Instance.Info (appInfo.Name, CQPSimulator.STR_APPPERMISSIONS, $"检测到 Api 调用未经授权, 请检查 app.json 是否赋予权限", null, null);
-			return -1;
+
+			// 写入日志
+			LogCenter.Instance.Info (appInfo.Name, CQPSimulator.STR_APP_PERMISSIONS, $"检测到调用 Api [{nameof (CQPExport.CQ_sendPrivateMsg)}] 未经授权, 请检查 app.json 是否赋予权限", null, null);
+
+			return CQPResult.CQP_APP_NOT_AUTHORIZE;
 		}
 		#endregion
 	}

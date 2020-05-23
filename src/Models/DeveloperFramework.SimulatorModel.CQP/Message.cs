@@ -28,6 +28,18 @@ namespace DeveloperFramework.SimulatorModel.CQP
 		/// 获取当前实例的发送时间
 		/// </summary>
 		public DateTime SendTime { get; }
+		/// <summary>
+		/// 获取当前实例的来源群
+		/// </summary>
+		public Group FromGroup { get; }
+		/// <summary>
+		/// 获取当前实例的来源讨论组
+		/// </summary>
+		public Discuss FromDiscuss { get; }
+		/// <summary>
+		/// 获取当前实例的来源QQ
+		/// </summary>
+		public QQ FromQQ { get; }
 		#endregion
 
 		#region --构造函数--
@@ -41,8 +53,36 @@ namespace DeveloperFramework.SimulatorModel.CQP
 		/// <summary>
 		/// 初始化 <see cref="Message"/> 类的新实例
 		/// </summary>
-		/// <param name="text">消息内容</param>
-		public Message (string text)
+		/// <param name="text">相关联的消息字符串</param>
+		/// <param name="fromGroup">来源群</param>
+		/// <param name="fromQQ">来源QQ</param>
+		public Message (string text, Group fromGroup, QQ fromQQ)
+			: this (text, fromQQ)
+		{
+			this.FromGroup = fromGroup;
+		}
+		/// <summary>
+		/// 初始化 <see cref="Message"/> 类的新实例
+		/// </summary>
+		/// <param name="text">相关联的消息字符串</param>
+		/// <param name="fromDiscuss">来源讨论组</param>
+		/// /// <param name="fromQQ">来源QQ</param>
+		public Message (string text, Discuss fromDiscuss, QQ fromQQ)
+			: this (text, fromQQ)
+		{
+			this.FromDiscuss = fromDiscuss;
+		}
+		/// <summary>
+		/// 初始化 <see cref="Message"/> 类的新实例
+		/// </summary>
+		/// <param name="text">相关联的消息字符串</param>
+		/// <param name="fromQQ">来源QQ</param>
+		public Message (string text, QQ fromQQ)
+			: this (text)
+		{
+			this.FromQQ = fromQQ;
+		}
+		private Message (string text)
 		{
 			if (text is null)
 			{
@@ -77,14 +117,6 @@ namespace DeveloperFramework.SimulatorModel.CQP
 		public static implicit operator string (Message value)
 		{
 			return value.Text;
-		}
-		/// <summary>
-		/// 定义将 <see cref="string"/> 对象转换为 <see cref="Message"/>
-		/// </summary>
-		/// <param name="value">转换 <see cref="string"/> 对象</param>
-		public static implicit operator Message (string value)
-		{
-			return new Message (value);
 		}
 		#endregion
 	}

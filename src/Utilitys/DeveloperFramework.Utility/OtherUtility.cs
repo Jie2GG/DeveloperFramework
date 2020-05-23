@@ -106,13 +106,5 @@ namespace DeveloperFramework.Utility
 			}
 			return builder.ToString ();
 		}
-		/// <summary>
-		/// 获取当前时间戳
-		/// </summary>
-		/// <returns>返回当前时间戳</returns>
-		public static int GetTimeStamp ()
-		{
-			return DateTime.Now.ToTimeStamp ();
-		}
 	}
 }
