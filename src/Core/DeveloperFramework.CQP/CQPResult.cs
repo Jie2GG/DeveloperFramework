@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace DeveloperFramework.CQP
 {
 	/// <summary>
-	/// 描述 CQP.dll 动态库的错误代码
+	/// 描述 CQP.dll 动态库的回复值
 	/// </summary>
-	public static class CQPErrorCode
+	public static class CQPResult
 	{
 		/// <summary>
 		/// 操作成功完成

@@ -47,7 +47,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_sendPrivateMsg), qqId, msg.PtrToString (_defaultEncoding));
 			}
 
-			return CQPErrorCode.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_PROCESS_NOT_REISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.SendGroupMessage)]
@@ -59,7 +59,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_sendGroupMsg), groupId, msg.PtrToString (_defaultEncoding));
 			}
 
-			return CQPErrorCode.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_PROCESS_NOT_REISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.sendDiscussMessage)]
@@ -71,7 +71,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authcode, nameof (CQ_sendDiscussMsg), discussId, msg.PtrToString (_defaultEncoding));
 			}
 
-			return CQPErrorCode.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_PROCESS_NOT_REISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.deleteMsg)]
@@ -83,7 +83,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_deleteMsg), msgId);
 			}
 
-			return CQPErrorCode.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_PROCESS_NOT_REISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.sendLike)]
@@ -95,7 +95,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_sendLikeV2), qqId, count);
 			}
 
-			return CQPErrorCode.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_PROCESS_NOT_REISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.GetCookiesOrCsrfToken)]
@@ -128,7 +128,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_getCsrfToken));
 			}
 
-			return CQPErrorCode.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_PROCESS_NOT_REISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.GetRecord)]
@@ -180,7 +180,7 @@ namespace DeveloperFramework.CQP
 				return (long)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_getLoginQQ));
 			}
 
-			return CQPErrorCode.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_PROCESS_NOT_REISTER;
 		}
 
 		[DllExport (ExportName = nameof (CQ_getLoginNick), CallingConvention = CallingConvention.StdCall)]
@@ -211,7 +211,7 @@ namespace DeveloperFramework.CQP
 			{
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setGroupKick), groupId, qqId, refuses);
 			}
-			return CQPErrorCode.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_PROCESS_NOT_REISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.setGroupBan)]
@@ -222,7 +222,7 @@ namespace DeveloperFramework.CQP
 			{
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setGroupBan), groupId, qqId, time);
 			}
-			return CQPErrorCode.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_PROCESS_NOT_REISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.setGroupAdmin)]
@@ -233,7 +233,7 @@ namespace DeveloperFramework.CQP
 			{
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setGroupAdmin), groupId, qqId, isSet);
 			}
-			return CQPErrorCode.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_PROCESS_NOT_REISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.setGroupSpecialTitle)]
@@ -245,7 +245,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setGroupSpecialTitle), groupId, qqId, title.PtrToString (_defaultEncoding), durationTime);
 			}
 
-			return CQPErrorCode.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_PROCESS_NOT_REISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.setGroupWholeBan)]
@@ -257,7 +257,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setGroupWholeBan), groupId, isSet);
 			}
 
-			return CQPErrorCode.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_PROCESS_NOT_REISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.setGroupAnonymousBan)]
@@ -269,7 +269,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setGroupAnonymousBan), groupId, anonymous.PtrToString (_defaultEncoding), banTime);
 			}
 
-			return CQPErrorCode.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_PROCESS_NOT_REISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.setGroupAnonymous)]
@@ -281,7 +281,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setGroupAnonymous), groupId, isSet);
 			}
 
-			return CQPErrorCode.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_PROCESS_NOT_REISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.setGroupCard)]
@@ -293,7 +293,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setGroupCard), qqId, newCard.PtrToString (_defaultEncoding));
 			}
 
-			return CQPErrorCode.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_PROCESS_NOT_REISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.setGroupLeave)]
@@ -305,59 +305,239 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setGroupLeave), groupId, isDisband);
 			}
 
-			return CQPErrorCode.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_PROCESS_NOT_REISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.setDiscussLeave)]
 		[DllExport (ExportName = nameof (CQ_setDiscussLeave), CallingConvention = CallingConvention.StdCall)]
-		public static extern int CQ_setDiscussLeave (int authCode, long disscussId);
+		public static int CQ_setDiscussLeave (int authCode, long discussId)
+		{
+			if (Instance.FuncProcess != null)
+			{
+				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setDiscussLeave), discussId);
+			}
+
+			return CQPResult.CQP_PROCESS_NOT_REISTER;
+		}
 
 		[CQPAuth (AppAuth = AppAuth.setFriendAddRequest)]
 		[DllExport (ExportName = nameof (CQ_setFriendAddRequest), CallingConvention = CallingConvention.StdCall)]
-		public static extern int CQ_setFriendAddRequest (int authCode, IntPtr identifying, int requestType, IntPtr appendMsg);
+		public static int CQ_setFriendAddRequest (int authCode, IntPtr identifying, int requestType, IntPtr appendMsg)
+		{
+			if (Instance.FuncProcess != null)
+			{
+				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setFriendAddRequest), identifying.PtrToString (_defaultEncoding), requestType, appendMsg.PtrToString (_defaultEncoding));
+			}
+
+			return CQPResult.CQP_PROCESS_NOT_REISTER;
+		}
 
 		[CQPAuth (AppAuth = AppAuth.setGroupAddRequest)]
 		[DllExport (ExportName = nameof (CQ_setGroupAddRequestV2), CallingConvention = CallingConvention.StdCall)]
-		public static extern int CQ_setGroupAddRequestV2 (int authCode, IntPtr identifying, int requestType, int responseType, IntPtr appendMsg);
+		public static int CQ_setGroupAddRequestV2 (int authCode, IntPtr identifying, int requestType, int responseType, IntPtr appendMsg)
+		{
+			if (Instance.FuncProcess != null)
+			{
+				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setGroupAddRequestV2), identifying.PtrToString (_defaultEncoding), requestType, responseType, appendMsg.PtrToString (_defaultEncoding));
+			}
+
+			return CQPResult.CQP_PROCESS_NOT_REISTER;
+		}
 
 		[DllExport (ExportName = nameof (CQ_addLog), CallingConvention = CallingConvention.StdCall)]
-		public static extern int CQ_addLog (int authCode, int priority, IntPtr type, IntPtr msg);
+		public static int CQ_addLog (int authCode, int priority, IntPtr type, IntPtr msg)
+		{
+			if (Instance.FuncProcess != null)
+			{
+				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_addLog), priority, type.PtrToString (_defaultEncoding), msg.PtrToString (_defaultEncoding));
+			}
+
+			return CQPResult.CQP_PROCESS_NOT_REISTER;
+		}
 
 		[DllExport (ExportName = nameof (CQ_setFatal), CallingConvention = CallingConvention.StdCall)]
-		public static extern int CQ_setFatal (int authCode, IntPtr errorMsg);
+		public static int CQ_setFatal (int authCode, IntPtr errorMsg)
+		{
+			if (Instance.FuncProcess != null)
+			{
+				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setFatal), errorMsg.PtrToString (_defaultEncoding));
+			}
+
+			return CQPResult.CQP_PROCESS_NOT_REISTER;
+		}
 
 		[CQPAuth (AppAuth = AppAuth.getGroupMemberInfo)]
 		[DllExport (ExportName = nameof (CQ_getGroupMemberInfoV2), CallingConvention = CallingConvention.StdCall)]
-		public static extern IntPtr CQ_getGroupMemberInfoV2 (int authCode, long groudId, long qqId, bool isCache);
+		public static IntPtr CQ_getGroupMemberInfoV2 (int authCode, long groupId, long qqId, bool isCache)
+		{
+			if (Instance.FuncProcess != null)
+			{
+				string data = (string)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_getGroupMemberInfoV2), groupId, qqId, isCache);
+
+				GCHandle dataHandle = data.GetGCHandle (_defaultEncoding);
+				try
+				{
+					return dataHandle.AddrOfPinnedObject ();
+				}
+				finally
+				{
+					dataHandle.Free ();
+				}
+			}
+
+			return IntPtr.Zero;
+		}
 
 		[CQPAuth (AppAuth = AppAuth.getGroupMemberList)]
 		[DllExport (ExportName = nameof (CQ_getGroupMemberList), CallingConvention = CallingConvention.StdCall)]
-		public static extern IntPtr CQ_getGroupMemberList (int authCode, long groupId);
+		public static IntPtr CQ_getGroupMemberList (int authCode, long groupId)
+		{
+			if (Instance.FuncProcess != null)
+			{
+				string data = (string)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_getGroupMemberList), groupId);
+				GCHandle dataHandle = data.GetGCHandle (_defaultEncoding);
+				try
+				{
+					return dataHandle.AddrOfPinnedObject ();
+				}
+				finally
+				{
+					dataHandle.Free ();
+				}
+			}
+
+			return IntPtr.Zero;
+		}
 
 		[CQPAuth (AppAuth = AppAuth.getGroupList)]
 		[DllExport (ExportName = nameof (CQ_getGroupList), CallingConvention = CallingConvention.StdCall)]
-		public static extern IntPtr CQ_getGroupList (int authCode);
+		public static IntPtr CQ_getGroupList (int authCode)
+		{
+			if (Instance.FuncProcess != null)
+			{
+				string data = (string)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_getGroupList));
+
+				GCHandle dataHandle = data.GetGCHandle (_defaultEncoding);
+				try
+				{
+					return dataHandle.AddrOfPinnedObject ();
+				}
+				finally
+				{
+					dataHandle.Free ();
+				}
+			}
+
+			return IntPtr.Zero;
+		}
 
 		[CQPAuth (AppAuth = AppAuth.getStrangerInfo)]
 		[DllExport (ExportName = nameof (CQ_getStrangerInfo), CallingConvention = CallingConvention.StdCall)]
-		public static extern IntPtr CQ_getStrangerInfo (int authCode, long qqId, bool notCache);
+		public static IntPtr CQ_getStrangerInfo (int authCode, long qqId, bool notCache)
+		{
+			if (Instance.FuncProcess != null)
+			{
+				string data = (string)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_getStrangerInfo), qqId, notCache);
+				GCHandle dataHandle = data.GetGCHandle (_defaultEncoding);
+				try
+				{
+					return dataHandle.AddrOfPinnedObject ();
+				}
+				finally
+				{
+					dataHandle.Free ();
+				}
+			}
+
+			return IntPtr.Zero;
+		}
 
 		[DllExport (ExportName = nameof (CQ_canSendImage), CallingConvention = CallingConvention.StdCall)]
-		public static extern int CQ_canSendImage (int authCode);
+		public static int CQ_canSendImage (int authCode)
+		{
+			if (Instance.FuncProcess != null)
+			{
+				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_canSendImage));
+			}
+
+			return CQPResult.CQP_PROCESS_NOT_REISTER;
+		}
 
 		[DllExport (ExportName = nameof (CQ_canSendRecord), CallingConvention = CallingConvention.StdCall)]
-		public static extern int CQ_canSendRecord (int authCode);
+		public static int CQ_canSendRecord (int authCode)
+		{
+			if (Instance.FuncProcess != null)
+			{
+				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_canSendRecord));
+			}
+
+			return CQPResult.CQP_PROCESS_NOT_REISTER;
+		}
 
 		[DllExport (ExportName = nameof (CQ_getImage), CallingConvention = CallingConvention.StdCall)]
-		public static extern IntPtr CQ_getImage (int authCode, IntPtr file);
+		public static IntPtr CQ_getImage (int authCode, IntPtr file)
+		{
+			if (Instance.FuncProcess != null)
+			{
+				string data = (string)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_getImage), file.PtrToString (_defaultEncoding));
+
+				GCHandle dataHandle = data.GetGCHandle (_defaultEncoding);
+				try
+				{
+					return dataHandle.AddrOfPinnedObject ();
+				}
+				finally
+				{
+					dataHandle.Free ();
+				}
+			}
+
+			return IntPtr.Zero;
+		}
 
 		[CQPAuth (AppAuth = AppAuth.getGroupInfo)]
 		[DllExport (ExportName = nameof (CQ_getGroupInfo), CallingConvention = CallingConvention.StdCall)]
-		public static extern IntPtr CQ_getGroupInfo (int authCode, long groupId, bool notCache);
+		public static IntPtr CQ_getGroupInfo (int authCode, long groupId, bool notCache)
+		{
+			if (Instance.FuncProcess != null)
+			{
+				string data = (string)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_getGroupInfo), groupId, notCache);
+
+				GCHandle dataHandle = data.GetGCHandle (_defaultEncoding);
+				try
+				{
+					return dataHandle.AddrOfPinnedObject ();
+				}
+				finally
+				{
+					dataHandle.Free ();
+				}
+			}
+
+			return IntPtr.Zero;
+		}
 
 		[CQPAuth (AppAuth = AppAuth.getFriendList)]
 		[DllExport (ExportName = nameof (CQ_getFriendList), CallingConvention = CallingConvention.StdCall)]
-		public static extern IntPtr CQ_getFriendList (int authCode, bool reserved);
+		public static IntPtr CQ_getFriendList (int authCode, bool reserved)
+		{
+			if (Instance.FuncProcess != null)
+			{
+				string data = (string)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_getFriendList), reserved);
+
+				GCHandle dataHandle = data.GetGCHandle (_defaultEncoding);
+				try
+				{
+					return dataHandle.AddrOfPinnedObject ();
+				}
+				finally
+				{
+					dataHandle.Free ();
+				}
+			}
+
+			return IntPtr.Zero;
+		}
 		#endregion
 	}
 }
