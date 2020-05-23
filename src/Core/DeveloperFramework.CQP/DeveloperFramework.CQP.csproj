@@ -65,7 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CQPAuthAttribute.cs" />
-    <Compile Include="CQPErrorCode.cs" />
+    <Compile Include="CQPResult.cs" />
     <Compile Include="CQPExport.cs" />
     <Compile Include="IFuncProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
