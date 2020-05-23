@@ -26,6 +26,10 @@ namespace DeveloperFramework.Simulator.CQP
 
 		#region --属性--
 		/// <summary>
+		/// 获取当前数据池的机器人QQ
+		/// </summary>
+		public QQ RobotQQ { get; }
+		/// <summary>
 		/// 获取当前数据池的 QQ 数据列表
 		/// </summary>
 		public Collection<QQ> QQCollection { get; }
@@ -34,9 +38,13 @@ namespace DeveloperFramework.Simulator.CQP
 		/// </summary>
 		public FriendCollection FriendCollection { get; }
 		/// <summary>
-		/// 获取当前数据池的群列表数据
+		/// 获取当前数据池的群列表
 		/// </summary>
 		public GroupCollection GroupCollection { get; }
+		/// <summary>
+		/// 获取当前数据池的讨论组列表
+		/// </summary>
+		public DiscussCollection DiscussCollection { get; }
 		/// <summary>
 		/// 获取当前数据池用于存放已发送或接收到的未撤回的消息
 		/// </summary>
@@ -56,6 +64,11 @@ namespace DeveloperFramework.Simulator.CQP
 		}
 		#endregion
 
+		#region --公开方法--
+		/// <summary>
+		/// 生成已指定条件的数据
+		/// </summary>
+		/// <returns>当前数据池实例</returns>
 		public CQPSimulatorDataPool Generate ()
 		{
 			#region 好友生成
@@ -106,7 +119,7 @@ namespace DeveloperFramework.Simulator.CQP
 						long qqId = RandomUtility.RandomInt64 (QQ.MinValue, 100000000000);
 						QQ qq = this.QQCollection.Where (p => p.Id == qqId).FirstOrDefault ();
 
-						
+
 						if (qq != null)
 						{
 							string card = RandomUtility.RandomSymbol ();
@@ -171,6 +184,7 @@ namespace DeveloperFramework.Simulator.CQP
 			#endregion
 
 			return this;
-		}
+		} 
+		#endregion
 	}
 }
