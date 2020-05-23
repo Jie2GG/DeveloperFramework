@@ -19,5 +19,22 @@ namespace DeveloperFramework.CQP
 		/// 操作未注册
 		/// </summary>
 		public const int CQP_PROCESS_NOT_REISTER = -1;
+		/// <summary>
+		/// 应用未经授权
+		/// </summary>
+		public const int CQP_APP_NOT_AUTHORIZE = -10;
+		/// <summary>
+		/// 发送未找到关系
+		/// </summary>
+		public const int CQP_SEND_NOT_RELATION = -20;
+		/// <summary>
+		/// 未找到消息
+		/// </summary>
+		public const int CQP_MSG_NOT_FOUND = -30;
+		/// <summary>
+		/// 无法撤回, 权限不足
+		/// </summary>
+		public const int CQP_MSG_NOT_AUTHORIZE = -31;
+
 	}
 }

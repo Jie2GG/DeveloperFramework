@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Discuss.cs" />
+    <Compile Include="DiscussCollection.cs" />
     <Compile Include="Friend.cs" />
     <Compile Include="FriendCollection.cs" />
     <Compile Include="Group.cs" />
