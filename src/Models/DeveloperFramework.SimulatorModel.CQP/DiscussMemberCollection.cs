@@ -8,25 +8,22 @@ using System.Threading.Tasks;
 namespace DeveloperFramework.SimulatorModel.CQP
 {
 	/// <summary>
-	/// 描述 讨论组列表 类型
+	/// 描述 讨论组成员列表 类型
 	/// </summary>
-	public class DiscussCollection : Collection<Discuss>
+	public class DiscussMemberCollection : Collection<DiscussMember>
 	{
-		#region --构造函数--
 		/// <summary>
-		/// 初始化为空的 <see cref="FriendCollection"/> 类的新实例
+		/// 初始化为空的 <see cref="DiscussMemberCollection"/> 类的新实例
 		/// </summary>
-		public DiscussCollection ()
-		{
-		}
+		public DiscussMemberCollection ()
+			: base ()
+		{ }
 		/// <summary>
-		/// 新实例初始化 <see cref="FriendCollection"/> 包装指定列表的类
+		/// 新实例初始化 <see cref="GroupMemberCollection"/> 包装指定列表的类
 		/// </summary>
 		/// <param name="list">用于包装由新的集合的列表</param>
-		public DiscussCollection (IList<Discuss> list)
+		public DiscussMemberCollection (IList<DiscussMember> list)
 			: base (list)
-		{
-		} 
-		#endregion
+		{ }
 	}
 }
