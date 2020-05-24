@@ -397,7 +397,7 @@ namespace DeveloperFramework.Log.CQP
 		/// <param name="content">日志详细信息</param>
 		/// <param name="state">处理结果</param>
 		/// <param name="timeConsuming">处理耗费时长</param>
-		public void Error (string from, string type, object content, bool? state, TimeSpan? timeConsuming)
+		public void Error (string from, string type, object content, bool? state = null, TimeSpan? timeConsuming = null)
 		{
 			this.Write (LogLevel.Error, from, type, content, state, timeConsuming);
 		}

@@ -47,7 +47,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_sendPrivateMsg), qqId, msg.PtrToString (_defaultEncoding));
 			}
 
-			return CQPResult.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_APP_UNREGISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.SendGroupMessage)]
@@ -59,7 +59,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_sendGroupMsg), groupId, msg.PtrToString (_defaultEncoding));
 			}
 
-			return CQPResult.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_APP_UNREGISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.sendDiscussMessage)]
@@ -71,7 +71,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authcode, nameof (CQ_sendDiscussMsg), discussId, msg.PtrToString (_defaultEncoding));
 			}
 
-			return CQPResult.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_APP_UNREGISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.deleteMsg)]
@@ -83,7 +83,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_deleteMsg), msgId);
 			}
 
-			return CQPResult.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_APP_UNREGISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.sendLike)]
@@ -95,7 +95,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_sendLikeV2), qqId, count);
 			}
 
-			return CQPResult.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_APP_UNREGISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.GetCookiesOrCsrfToken)]
@@ -128,7 +128,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_getCsrfToken));
 			}
 
-			return CQPResult.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_APP_UNREGISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.GetRecord)]
@@ -180,7 +180,7 @@ namespace DeveloperFramework.CQP
 				return (long)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_getLoginQQ));
 			}
 
-			return CQPResult.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_APP_UNREGISTER;
 		}
 
 		[DllExport (ExportName = nameof (CQ_getLoginNick), CallingConvention = CallingConvention.StdCall)]
@@ -211,7 +211,7 @@ namespace DeveloperFramework.CQP
 			{
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setGroupKick), groupId, qqId, refuses);
 			}
-			return CQPResult.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_APP_UNREGISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.setGroupBan)]
@@ -222,7 +222,7 @@ namespace DeveloperFramework.CQP
 			{
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setGroupBan), groupId, qqId, time);
 			}
-			return CQPResult.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_APP_UNREGISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.setGroupAdmin)]
@@ -233,7 +233,7 @@ namespace DeveloperFramework.CQP
 			{
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setGroupAdmin), groupId, qqId, isSet);
 			}
-			return CQPResult.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_APP_UNREGISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.setGroupSpecialTitle)]
@@ -245,7 +245,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setGroupSpecialTitle), groupId, qqId, title.PtrToString (_defaultEncoding), durationTime);
 			}
 
-			return CQPResult.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_APP_UNREGISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.setGroupWholeBan)]
@@ -257,7 +257,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setGroupWholeBan), groupId, isSet);
 			}
 
-			return CQPResult.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_APP_UNREGISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.setGroupAnonymousBan)]
@@ -269,7 +269,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setGroupAnonymousBan), groupId, anonymous.PtrToString (_defaultEncoding), banTime);
 			}
 
-			return CQPResult.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_APP_UNREGISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.setGroupAnonymous)]
@@ -281,7 +281,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setGroupAnonymous), groupId, isSet);
 			}
 
-			return CQPResult.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_APP_UNREGISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.setGroupCard)]
@@ -293,7 +293,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setGroupCard), qqId, newCard.PtrToString (_defaultEncoding));
 			}
 
-			return CQPResult.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_APP_UNREGISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.setGroupLeave)]
@@ -305,7 +305,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setGroupLeave), groupId, isDisband);
 			}
 
-			return CQPResult.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_APP_UNREGISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.setDiscussLeave)]
@@ -317,7 +317,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setDiscussLeave), discussId);
 			}
 
-			return CQPResult.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_APP_UNREGISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.setFriendAddRequest)]
@@ -329,7 +329,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setFriendAddRequest), identifying.PtrToString (_defaultEncoding), requestType, appendMsg.PtrToString (_defaultEncoding));
 			}
 
-			return CQPResult.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_APP_UNREGISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.setGroupAddRequest)]
@@ -341,7 +341,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setGroupAddRequestV2), identifying.PtrToString (_defaultEncoding), requestType, responseType, appendMsg.PtrToString (_defaultEncoding));
 			}
 
-			return CQPResult.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_APP_UNREGISTER;
 		}
 
 		[DllExport (ExportName = nameof (CQ_addLog), CallingConvention = CallingConvention.StdCall)]
@@ -352,7 +352,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_addLog), priority, type.PtrToString (_defaultEncoding), msg.PtrToString (_defaultEncoding));
 			}
 
-			return CQPResult.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_APP_UNREGISTER;
 		}
 
 		[DllExport (ExportName = nameof (CQ_setFatal), CallingConvention = CallingConvention.StdCall)]
@@ -363,7 +363,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_setFatal), errorMsg.PtrToString (_defaultEncoding));
 			}
 
-			return CQPResult.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_APP_UNREGISTER;
 		}
 
 		[CQPAuth (AppAuth = AppAuth.getGroupMemberInfo)]
@@ -460,7 +460,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_canSendImage));
 			}
 
-			return CQPResult.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_APP_UNREGISTER;
 		}
 
 		[DllExport (ExportName = nameof (CQ_canSendRecord), CallingConvention = CallingConvention.StdCall)]
@@ -471,7 +471,7 @@ namespace DeveloperFramework.CQP
 				return (int)Instance.FuncProcess.GetProcess (authCode, nameof (CQ_canSendRecord));
 			}
 
-			return CQPResult.CQP_PROCESS_NOT_REISTER;
+			return CQPResult.CQP_APP_UNREGISTER;
 		}
 
 		[DllExport (ExportName = nameof (CQ_getImage), CallingConvention = CallingConvention.StdCall)]
