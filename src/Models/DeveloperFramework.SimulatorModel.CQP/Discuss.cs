@@ -24,6 +24,10 @@ namespace DeveloperFramework.SimulatorModel.CQP
 		/// 获取或设置当前实例的唯一标识 (群号)
 		/// </summary>
 		public long Id { get; set; }
+		/// <summary>
+		/// 获取当前实例的讨论组成员列表
+		/// </summary>
+		public DiscussMemberCollection MemberCollection { get; }
 		#endregion
 
 		#region --构造函数--
@@ -40,6 +44,8 @@ namespace DeveloperFramework.SimulatorModel.CQP
 			}
 
 			this.Id = id;
+
+			this.MemberCollection = new DiscussMemberCollection ();
 		}
 		#endregion
 

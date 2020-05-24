@@ -34,34 +34,57 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 		{
 			AppInfo appInfo = this.App.Library.AppInfo;
 
+			// 获取用来撤回消息的机器人QQ
+			QQ qq = this.Simulator.DataPool.RobotQQ;
+			// 根据消息 Id 查询是否存在目标消息
 			Message msg = this.Simulator.DataPool.MessageCollection.Where (p => p.Id == this.MsgId).FirstOrDefault ();
+
 			if (msg == null)
 			{
-				LogCenter.Instance.Info (appInfo.Name, CQPSimulator.STR_APP_SENDING, $"无法撤回消息 [ID: {this.MsgId}], 可能消息已撤回或消息不存在");
+				LogCenter.Instance.Info (appInfo.Name, CQPSimulator.STR_APP_SENDING, $"无法撤回消息 [ID: {this.MsgId}], 指定的消息不存在");
 				return CQPResult.CQP_MSG_NOT_FOUND;
 			}
 			else
 			{
-				if (msg.FromGroup != null)  // 如果是群消息
-				{
-					GroupMember member = msg.FromQQ as GroupMember;
-					if (!msg.FromQQ.Equals (this.Simulator.DataPool.RobotQQ) && (member.MemberType == GroupMemberType.Creator || member.MemberType == GroupMemberType.Manager))
-					{
-						// 群管理员撤回群成员的消息, 移除对象
-						while (!this.Simulator.DataPool.MessageCollection.TryTake (out Message outMsg)) ;
+				bool result = false;
 
-						LogCenter.Instance.InfoSuccess (appInfo.Name, CQPSimulator.STR_APP_DEL_MSG, $"撤回消息 [ID: {this.MsgId}]");
-						return 0;
+				// 如果是群消息
+				if (msg.FromGroup != null && msg.FromGroup == null)
+				{
+					// 获取当前机器人QQ在这个群的群成员信息
+					GroupMember robotMember = msg.FromGroup.MemberCollection.Where (p => p.Id == qq.Id).FirstOrDefault ();
+					// 获取当前消息发送者QQ的群成员信息
+					GroupMember fromMember = msg.FromQQ as GroupMember;
+
+					if (!robotMember.Equals (fromMember))
+					{
+						// 如果 机器人QQ是管理并且消息来源QQ是群主
+						if (robotMember.MemberType == GroupMemberType.Manager && fromMember.MemberType == GroupMemberType.Creator)
+						{
+							LogCenter.Instance.Info (appInfo.Name, CQPSimulator.STR_APP_DEL_MSG, $"无法撤回消息");
+							return CQPResult.CQP_MSG_NOT_AUTHORIZE;
+						}
+
+						// 如果 机器人QQ是群主并且消息来源QQ是管理或群成员 或者 机器人QQ是管理并且消息来源QQ是群成员
+						if ((robotMember.MemberType == GroupMemberType.Creator && (fromMember.MemberType == GroupMemberType.Normal || fromMember.MemberType == GroupMemberType.Manager)) || (robotMember.MemberType == GroupMemberType.Manager && (fromMember.MemberType == GroupMemberType.Normal)))
+						{
+							// 强制撤回消息
+							result = msg.Revocation (true);
+						}
 					}
 				}
-
-				TimeSpan span = DateTimeUtility.GetDateTimeInterval (DateTime.Now, msg.SendTime);
-				if (span.TotalSeconds <= 120)
+				else
 				{
-					// 消息时间未超时, 移除对象
-					while (!this.Simulator.DataPool.MessageCollection.TryTake (out Message outMsg)) ;
-					LogCenter.Instance.InfoSuccess (appInfo.Name, CQPSimulator.STR_APP_DEL_MSG, $"撤回消息 [ID: {this.MsgId}]");
-					return 0;
+					result = msg.Revocation (false);
+				}
+
+				if (result)
+				{
+					LogCenter.Instance.InfoSuccess (appInfo.Name, CQPSimulator.STR_APP_DEL_MSG, $"已撤回消息 [ID: {msg.Id}]");
+				}
+				else
+				{
+					LogCenter.Instance.Info (appInfo.Name, CQPSimulator.STR_APP_DEL_MSG, $"撤回消息 [ID: {msg.Id}] 失败, 消息已发送超过 2分钟");
 				}
 
 			}
@@ -76,7 +99,7 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 			AppInfo appInfo = this.App.Library.AppInfo;
 			LogCenter.Instance.Info (appInfo.Name, CQPSimulator.STR_APP_PERMISSIONS, $"检测到调用 Api [{nameof (CQPExport.CQ_deleteMsg)}] 未经授权, 请检查 app.json 是否赋予权限", null, null);
 			return CQPResult.CQP_APP_NOT_AUTHORIZE;
-		} 
+		}
 		#endregion
 	}
 }

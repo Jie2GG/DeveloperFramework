@@ -35,9 +35,11 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 		{
 			AppInfo appInfo = this.App.Library.AppInfo;
 
-
+			// 获取当前发送消息的机器人QQ
 			QQ qq = this.Simulator.DataPool.RobotQQ;
+			// 查询目标讨论组是否存在
 			Discuss discuss = this.Simulator.DataPool.DiscussCollection.Where (p => p.Id == this.FromDiscuss).FirstOrDefault ();
+
 			if (discuss == null)
 			{
 				LogCenter.Instance.Info (appInfo.Name, CQPSimulator.STR_APP_SENDING, $"无法向 [讨论组: {this.FromDiscuss}] 发送消息, 未查询到与该讨论组的关系");
@@ -47,6 +49,7 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 			{
 				LogCenter.Instance.InfoSending (appInfo.Name, CQPSimulator.STR_APP_SENDING, $"向 [讨论组: {this.FromDiscuss}] 发送消息: {this.Message}");
 
+				// 构建可撤回的消息
 				Message msg = new Message (this.Message, discuss, qq);
 				this.Simulator.DataPool.MessageCollection.Add (msg);
 				return msg.Id;
