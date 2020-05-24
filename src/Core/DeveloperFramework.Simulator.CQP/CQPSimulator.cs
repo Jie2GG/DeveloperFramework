@@ -26,12 +26,9 @@ namespace DeveloperFramework.Simulator.CQP
 	public class CQPSimulator : IFuncProcess
 	{
 		#region --常量--
-		public const string STR_SIMULATOR_INIT = "初始化";
-		public const string STR_APP_LOAD = "应用加载";
-		public const string STR_APP_UNLOAD = "应用卸载";
-		public const string STR_APP_PERMISSIONS = "权限检查";
-		public const string STR_APP_SENDING = "发送";
-		public const string STR_APP_DEL_MSG = "撤回消息";
+		public const string TYPE_INIT = "初始化";
+		public const string TYPE_APP_LOAD = "应用加载";
+		public const string TYPE_APP_UNLOAD = "应用卸载";
 		#endregion
 
 		#region --字段--
@@ -64,13 +61,13 @@ namespace DeveloperFramework.Simulator.CQP
 			if (!Directory.Exists (appDirectory))
 			{
 				Directory.CreateDirectory (appDirectory);
-				LogCenter.Instance.InfoSuccess (STR_SIMULATOR_INIT, $"已创建应用目录: {appDirectory}");
+				LogCenter.Instance.InfoSuccess (TYPE_INIT, $"已创建应用目录: {appDirectory}");
 			}
 
 			this.AddDirectory = appDirectory;
 			this.CQPApps = new List<CQPSimulatorApp> ();
 			this.DataPool = new CQPSimulatorDataPool ().Generate ();
-			LogCenter.Instance.InfoSuccess (STR_SIMULATOR_INIT, $"已加载 {this.DataPool.QQCollection.Count} 个QQ、{this.DataPool.FriendCollection.Count} 个好友、{this.DataPool.GroupCollection.Count} 个群");
+			LogCenter.Instance.InfoSuccess (TYPE_INIT, $"已加载 {this.DataPool.QQCollection.Count} 个QQ、{this.DataPool.FriendCollection.Count} 个好友、{this.DataPool.GroupCollection.Count} 个群");
 
 			// 设置 CQExport 服务
 			CQPExport.Instance.FuncProcess = this;
@@ -88,7 +85,7 @@ namespace DeveloperFramework.Simulator.CQP
 				return;
 			}
 
-			LogCenter.Instance.InfoSuccess (STR_APP_LOAD, "应用加载开始");
+			LogCenter.Instance.InfoSuccess (TYPE_APP_LOAD, "应用加载开始");
 			string[] pathes = Directory.GetDirectories (this.AddDirectory);
 			int failCount = 0;
 			foreach (string path in pathes)
@@ -111,7 +108,7 @@ namespace DeveloperFramework.Simulator.CQP
 						// 卸载 Library
 						library.Dispose ();
 						// 写入日志
-						LogCenter.Instance.Warning (STR_APP_LOAD, $"应用: {appId} 返回的 AppID 错误.");
+						LogCenter.Instance.Warning (TYPE_APP_LOAD, $"应用: {appId} 返回的 AppID 错误.");
 						failCount++;
 						continue;
 					}
@@ -124,7 +121,7 @@ namespace DeveloperFramework.Simulator.CQP
 						// 卸载 Library
 						library.Dispose ();
 						// 写入日志
-						LogCenter.Instance.Error (STR_APP_LOAD, $"应用 {appId} 的 Initialize 方法未返回 0");
+						LogCenter.Instance.Error (TYPE_APP_LOAD, $"应用 {appId} 的 Initialize 方法未返回 0");
 						failCount++;
 						continue;
 					}
@@ -132,15 +129,15 @@ namespace DeveloperFramework.Simulator.CQP
 					// 存入实例列表
 					this.CQPApps.Add (new CQPSimulatorApp (authCode, appId, library));
 
-					LogCenter.Instance.InfoSuccess (STR_APP_LOAD, $"应用: {appId} 加载成功");
+					LogCenter.Instance.InfoSuccess (TYPE_APP_LOAD, $"应用: {appId} 加载成功");
 				}
 				catch (Exception ex)
 				{
-					LogCenter.Instance.Warning (STR_APP_LOAD, $"应用: {appId} 加载失败, 原因: {ex.Message}");
+					LogCenter.Instance.Warning (TYPE_APP_LOAD, $"应用: {appId} 加载失败, 原因: {ex.Message}");
 				}
 			}
 
-			LogCenter.Instance.InfoSuccess (STR_APP_LOAD, $"应用加载结束. 加载成功: {this.CQPApps.Count} 个, 失败: {this.CQPApps.Count - pathes.Length} 个");
+			LogCenter.Instance.InfoSuccess (TYPE_APP_LOAD, $"应用加载结束. 加载成功: {this.CQPApps.Count} 个, 失败: {this.CQPApps.Count - pathes.Length} 个");
 			this._isStart = true;
 		}
 		/// <summary>
@@ -153,7 +150,7 @@ namespace DeveloperFramework.Simulator.CQP
 				return;
 			}
 
-			LogCenter.Instance.InfoSuccess (STR_APP_UNLOAD, $"应用卸载开始");
+			LogCenter.Instance.InfoSuccess (TYPE_APP_UNLOAD, $"应用卸载开始");
 			for (int i = 0; i < this.CQPApps.Count; i++)
 			{
 				CQPSimulatorApp app = this.CQPApps[i];
@@ -169,16 +166,16 @@ namespace DeveloperFramework.Simulator.CQP
 					}
 					catch (Exception ex)
 					{
-						LogCenter.Instance.Error (STR_APP_UNLOAD, $"应用: {appId} 卸载失败, 原因: {ex.Message}");
+						LogCenter.Instance.Error (TYPE_APP_UNLOAD, $"应用: {appId} 卸载失败, 原因: {ex.Message}");
 					}
 				}
 
-				LogCenter.Instance.InfoSuccess (STR_APP_UNLOAD, $"应用: {appId} 卸载成功");
+				LogCenter.Instance.InfoSuccess (TYPE_APP_UNLOAD, $"应用: {appId} 卸载成功");
 
 				// 销毁对象
 				app.Library.Dispose ();
 			}
-			LogCenter.Instance.InfoSuccess (STR_APP_UNLOAD, $"应用卸载结束");
+			LogCenter.Instance.InfoSuccess (TYPE_APP_UNLOAD, $"应用卸载结束");
 			this._isStart = false;
 		}
 		/// <summary>
@@ -203,7 +200,7 @@ namespace DeveloperFramework.Simulator.CQP
 
 			if (app == null)
 			{
-				LogCenter.Instance.Error (STR_APP_PERMISSIONS, $"检测到非法的 Api 调用, 已阻止. 请确保调用的 Api 使用了 Initialize 下发的授权码");
+				LogCenter.Instance.Error ($"检测到非法的 Api 调用, 已阻止. 请确保调用的 Api 使用了 Initialize 下发的授权码");
 			}
 			else
 			{

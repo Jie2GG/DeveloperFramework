@@ -17,27 +17,35 @@ namespace DeveloperFramework.SimulatorModel.CQP
 		private const int _minValue = 10000;
 		#endregion
 
+		#region --字段--
+		private DateTime _lastLinkTime;
+		#endregion
+
 		#region --属性--
 		/// <summary>
 		/// 表示当前实例 <see cref="QQ"/> 的最小值, 此字段为常数. 并且此值作为系统默认标识
 		/// </summary>
 		public static readonly long MinValue = 10000;
 		/// <summary>
-		/// 获取或设置当前实例的唯一标识 (QQ号)
+		/// 获取当前实例的唯一标识 (QQ号)
 		/// </summary>
-		public long Id { get; set; }
+		public long Id { get; }
 		/// <summary>
-		/// 获取或设置当前实例的昵称
+		/// 获取当前实例的昵称
 		/// </summary>
-		public string Nick { get; set; }
+		public string Nick { get; }
 		/// <summary>
-		/// 获取或设置当前实例的性别
+		/// 获取当前实例的性别
 		/// </summary>
-		public Sex Sex { get; set; }
+		public Sex Sex { get; }
 		/// <summary>
-		/// 获取或设置当前实例的年龄
+		/// 获取当前实例的年龄
 		/// </summary>
-		public int Age { get; set; }
+		public int Age { get; }
+		/// <summary>
+		/// 获取当前实例的赞数量
+		/// </summary>
+		public int LinkCount { get; private set; }
 		#endregion
 
 		#region --构造函数--
@@ -62,6 +70,39 @@ namespace DeveloperFramework.SimulatorModel.CQP
 		#endregion
 
 		#region --公开方法--
+		/// <summary>
+		/// 设置当前实例的赞数量
+		/// </summary>
+		/// <param name="count">赞数量</param>
+		/// <returns>设置赞成功返回 <see langword="true"/> 否则返回 <see langword="false"/></returns>
+		public bool SetLink (int count)
+		{
+			if (count <= 0)
+			{
+				throw new ArgumentOutOfRangeException (nameof (count), "点赞数量不能为 负数 或 零");
+			}
+
+			// 过了12点, 清零计数
+			if ((DateTime.Now.Day - _lastLinkTime.Day) == 1)
+			{
+				LinkCount = 0;
+			}
+
+			if (LinkCount < 10)
+			{
+				LinkCount += count;
+				if (LinkCount > 10)
+				{
+					LinkCount = 10;
+				}
+
+				_lastLinkTime = DateTime.Now;
+
+				return true;
+			}
+
+			return false;
+		}
 		/// <summary>
 		/// 获取当前实例的 <see cref="byte"/> 数组
 		/// </summary>

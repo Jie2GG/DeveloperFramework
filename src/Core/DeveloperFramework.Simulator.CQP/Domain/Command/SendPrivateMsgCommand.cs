@@ -16,6 +16,14 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 	[FunctionBinding (Function = nameof (CQPExport.CQ_sendPrivateMsg))]
 	public class SendPrivateMsgCommand : AbstractCommand
 	{
+		#region --常量--
+		public const string TYPE_SEND_MSG = "发送 (↑)";
+		/// <summary>
+		/// 未建立关系
+		/// </summary>
+		public const int RESULT_NO_RELATIONSHIP = -100;
+		#endregion
+
 		#region --属性--
 		public long FromQQ { get; }
 		public string Message { get; }
@@ -40,12 +48,12 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 
 			if (qq == null)
 			{
-				LogCenter.Instance.Info (appInfo.Name, CQPSimulator.STR_APP_SENDING, $"无法向 [QQ: {this.FromQQ}] 发送消息, 未查询到与该QQ的关系");
-				return CQPResult.CQP_SEND_NOT_RELATION;
+				LogCenter.Instance.Info (appInfo.Name, TYPE_SEND_MSG, $"无法向 [QQ: {this.FromQQ}] 发送消息, 未查询到与该QQ的关系");
+				return RESULT_NO_RELATIONSHIP;
 			}
 			else
 			{
-				LogCenter.Instance.InfoSending (appInfo.Name, CQPSimulator.STR_APP_SENDING, $"向 [QQ: {this.FromQQ}] 发送消息: {this.Message}");
+				LogCenter.Instance.InfoSending (appInfo.Name, TYPE_SEND_MSG, $"向 [QQ: {this.FromQQ}] 发送消息: {this.Message}");
 
 				// 构建可撤回消息
 				Message msg = new Message (this.Message, qq);
@@ -59,9 +67,9 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 			AppInfo appInfo = this.App.Library.AppInfo;
 
 			// 写入日志
-			LogCenter.Instance.Info (appInfo.Name, CQPSimulator.STR_APP_PERMISSIONS, $"检测到调用 Api [{nameof (CQPExport.CQ_sendPrivateMsg)}] 未经授权, 请检查 app.json 是否赋予权限", null, null);
+			LogCenter.Instance.Info (appInfo.Name, TYPE_CHECK_AUTHORIZATION, $"检测到调用 Api [{nameof (CQPExport.CQ_sendPrivateMsg)}] 未经授权, 请检查 app.json 是否赋予权限", null, null);
 
-			return CQPResult.CQP_APP_NOT_AUTHORIZE;
+			return RESULT_API_UNAUTHORIZED;
 		}
 		#endregion
 	}

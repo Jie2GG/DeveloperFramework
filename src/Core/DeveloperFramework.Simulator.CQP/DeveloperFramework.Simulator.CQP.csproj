@@ -51,6 +51,7 @@
     <Compile Include="Domain\Command\DeleteMsgCommand.cs" />
     <Compile Include="Domain\Command\SendDiscussMsgCommand.cs" />
     <Compile Include="Domain\Command\SendGroupMsgCommand.cs" />
+    <Compile Include="Domain\Command\SendLinkV2Command.cs" />
     <Compile Include="Domain\FunctionBindingAttribute.cs" />
     <Compile Include="Domain\Command\ICommand.cs" />
     <Compile Include="Domain\Command\AbstractCommand.cs" />

@@ -13,6 +13,22 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 	/// </summary>
 	public abstract class AbstractCommand : ICommand
 	{
+		#region --常量--
+		/// <summary>
+		/// 权限检查
+		/// </summary>
+		public const string TYPE_CHECK_AUTHORIZATION = "权限检查";
+
+		/// <summary>
+		/// 操作成功完成
+		/// </summary>
+		public const int RESULT_SUCCESS = 0;
+		/// <summary>
+		/// 接口未授权
+		/// </summary>
+		public const int RESULT_API_UNAUTHORIZED = -998;
+		#endregion
+
 		#region --属性--
 		/// <summary>
 		/// 获取当前实例关联的 <see cref="CQPSimulator"/>
