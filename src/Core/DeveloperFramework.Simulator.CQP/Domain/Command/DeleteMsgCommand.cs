@@ -17,6 +17,22 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 	[FunctionBinding (Function = nameof (CQPExport.CQ_deleteMsg))]
 	public class DeleteMsgCommand : AbstractCommand
 	{
+		#region --常量--
+		public const string TYPE_MSG_UNDO = "撤回消息";
+		/// <summary>
+		/// 消息未找到
+		/// </summary>
+		public const int RESULT_MSG_NOT_FOUND = -130;
+		/// <summary>
+		/// 消息未撤回
+		/// </summary>
+		public const int RESULT_MSG_NOT_AUTHORIZE = -131;
+		/// <summary>
+		/// 消息已过期
+		/// </summary>
+		public const int RESULT_MSG_OVERDUE = -132;
+		#endregion
+
 		#region --属性--
 		public long MsgId { get; }
 		#endregion
@@ -41,8 +57,8 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 
 			if (msg == null)
 			{
-				LogCenter.Instance.Info (appInfo.Name, CQPSimulator.STR_APP_SENDING, $"无法撤回消息 [ID: {this.MsgId}], 指定的消息不存在");
-				return CQPResult.CQP_MSG_NOT_FOUND;
+				LogCenter.Instance.Info (appInfo.Name, TYPE_MSG_UNDO, $"无法撤回消息 [ID: {this.MsgId}], 指定的消息不存在");
+				return RESULT_MSG_NOT_FOUND;
 			}
 			else
 			{
@@ -61,8 +77,8 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 						// 如果 机器人QQ是管理并且消息来源QQ是群主
 						if (robotMember.MemberType == GroupMemberType.Manager && fromMember.MemberType == GroupMemberType.Creator)
 						{
-							LogCenter.Instance.Info (appInfo.Name, CQPSimulator.STR_APP_DEL_MSG, $"无法撤回消息");
-							return CQPResult.CQP_MSG_NOT_AUTHORIZE;
+							LogCenter.Instance.Info (appInfo.Name, TYPE_MSG_UNDO, $"无法撤回消息");
+							return RESULT_MSG_NOT_AUTHORIZE;
 						}
 
 						// 如果 机器人QQ是群主并且消息来源QQ是管理或群成员 或者 机器人QQ是管理并且消息来源QQ是群成员
@@ -80,25 +96,23 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 
 				if (result)
 				{
-					LogCenter.Instance.InfoSuccess (appInfo.Name, CQPSimulator.STR_APP_DEL_MSG, $"已撤回消息 [ID: {msg.Id}]");
+					LogCenter.Instance.InfoSuccess (appInfo.Name, TYPE_MSG_UNDO, $"已撤回消息 [ID: {msg.Id}]");
+					return RESULT_SUCCESS;
 				}
 				else
 				{
-					LogCenter.Instance.Info (appInfo.Name, CQPSimulator.STR_APP_DEL_MSG, $"撤回消息 [ID: {msg.Id}] 失败, 消息已发送超过 2分钟");
+					LogCenter.Instance.Info (appInfo.Name, TYPE_MSG_UNDO, $"撤回消息 [ID: {msg.Id}] 失败, 消息已发送超过 2分钟");
+					return RESULT_MSG_OVERDUE;
 				}
 
 			}
-
-			LogCenter.Instance.Info (appInfo.Name, CQPSimulator.STR_APP_DEL_MSG, $"无法撤回消息 [ID: {this.MsgId}], 消息发送已超过 2分钟");
-
-			return CQPResult.CQP_MSG_NOT_AUTHORIZE;
 		}
 
 		public override object ExecuteHaveNoAuth ()
 		{
 			AppInfo appInfo = this.App.Library.AppInfo;
-			LogCenter.Instance.Info (appInfo.Name, CQPSimulator.STR_APP_PERMISSIONS, $"检测到调用 Api [{nameof (CQPExport.CQ_deleteMsg)}] 未经授权, 请检查 app.json 是否赋予权限", null, null);
-			return CQPResult.CQP_APP_NOT_AUTHORIZE;
+			LogCenter.Instance.Info (appInfo.Name, TYPE_CHECK_AUTHORIZATION, $"检测到调用 Api [{nameof (CQPExport.CQ_deleteMsg)}] 未经授权, 请检查 app.json 是否赋予权限", null, null);
+			return RESULT_API_UNAUTHORIZED;
 		}
 		#endregion
 	}

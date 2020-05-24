@@ -16,6 +16,14 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 	[FunctionBinding (Function = nameof (CQPExport.CQ_sendGroupMsg))]
 	public class SendGroupMsgCommand : AbstractCommand
 	{
+		#region --常量--
+		public const string TYPE_SEND_MSG = "发送 (↑)";
+		/// <summary>
+		/// 未建立关系
+		/// </summary>
+		public const int RESULT_NO_RELATIONSHIP = -110; 
+		#endregion
+
 		#region --属性--
 		public long FromGroup { get; }
 		public string Message { get; }
@@ -42,12 +50,12 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 
 			if (group == null)
 			{
-				LogCenter.Instance.Info (appInfo.Name, CQPSimulator.STR_APP_SENDING, $"无法向 [群: {this.FromGroup}] 发送消息, 未查询到与该群的关系");
-				return CQPResult.CQP_SEND_NOT_RELATION;
+				LogCenter.Instance.Info (appInfo.Name, TYPE_SEND_MSG, $"无法向 [群: {this.FromGroup}] 发送消息, 未查询到与该群的关系");
+				return RESULT_NO_RELATIONSHIP;
 			}
 			else
 			{
-				LogCenter.Instance.InfoSending (appInfo.Name, CQPSimulator.STR_APP_SENDING, $"向 [群: {this.FromGroup}] 发送消息: {this.Message}");
+				LogCenter.Instance.InfoSending (appInfo.Name, TYPE_SEND_MSG, $"向 [群: {this.FromGroup}] 发送消息: {this.Message}");
 
 				// 构建可撤回消息
 				Message msg = new Message (this.Message, group, qq);
@@ -59,8 +67,8 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 		public override object ExecuteHaveNoAuth ()
 		{
 			AppInfo appInfo = this.App.Library.AppInfo;
-			LogCenter.Instance.Info (appInfo.Name, CQPSimulator.STR_APP_PERMISSIONS, $"检测到调用 Api [{nameof (CQPExport.CQ_sendGroupMsg)}] 未经授权, 请检查 app.json 是否赋予权限", null, null);
-			return CQPResult.CQP_APP_NOT_AUTHORIZE;
+			LogCenter.Instance.Info (appInfo.Name, TYPE_SEND_MSG, $"检测到调用 Api [{nameof (CQPExport.CQ_sendGroupMsg)}] 未经授权, 请检查 app.json 是否赋予权限", null, null);
+			return RESULT_API_UNAUTHORIZED;
 		}
 		#endregion
 	}

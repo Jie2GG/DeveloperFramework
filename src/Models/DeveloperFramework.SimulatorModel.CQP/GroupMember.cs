@@ -15,49 +15,49 @@ namespace DeveloperFramework.SimulatorModel.CQP
 	{
 		#region --属性--
 		/// <summary>
-		/// 获取或设置当前实例成员的群
+		/// 获取当前实例成员的群
 		/// </summary>
-		public Group Group { get; set; }
+		public Group Group { get; }
 		/// <summary>
-		/// 获取或设置当前实例的群名片
+		/// 获取当前实例的群名片
 		/// </summary>
-		public string Card { get; set; }
+		public string Card { get; }
 		/// <summary>
-		/// 获取或设置当前实例成员的所在区域
+		/// 获取当前实例成员的所在区域
 		/// </summary>
-		public string Area { get; set; }
+		public string Area { get; }
 		/// <summary>
-		/// 获取或设置当前实例成员的加入时间
+		/// 获取当前实例成员的加入时间
 		/// </summary>
-		public DateTime JoinTime { get; set; }
+		public DateTime JoinTime { get; }
 		/// <summary>
-		/// 获取或设置当前实例成员的最后发言时间
+		/// 获取当前实例成员的最后发言时间
 		/// </summary>
-		public DateTime LastSpeakTime { get; set; }
+		public DateTime LastSpeakTime { get; }
 		/// <summary>
-		/// 获取或设置当前实例成员的成员等级
+		/// 获取当前实例成员的成员等级
 		/// </summary>
-		public string Level { get; set; }
+		public string Level { get; }
 		/// <summary>
-		/// 获取或设置当前实例成员的成员类型
+		/// 获取当前实例成员的成员类型
 		/// </summary>
-		public GroupMemberType MemberType { get; set; }
+		public GroupMemberType MemberType { get; }
 		/// <summary>
-		/// 获取或设置当前实例成员的专属头衔
+		/// 获取当前实例成员的专属头衔
 		/// </summary>
-		public string ExclusiveTitle { get; set; }
+		public string ExclusiveTitle { get; }
 		/// <summary>
-		/// 获取或设置当前实例成员专属头衔的过期时间
+		/// 获取当前实例成员专属头衔的过期时间
 		/// </summary>
-		public DateTime? ExclusiveTitleExpirationTime { get; set; }
+		public DateTime? ExclusiveTitleExpirationTime { get; }
 		/// <summary>
-		/// 获取或设置当前实例成员是否为不良记录群成员
+		/// 获取当前实例成员是否为不良记录群成员
 		/// </summary>
-		public bool IsBadRecord { get; set; }
+		public bool IsBadRecord { get; }
 		/// <summary>
-		/// 获取或设置当前实例成员是否允许其修改群名片
+		/// 获取当前实例成员是否允许其修改群名片
 		/// </summary>
-		public bool IsAllowEditorCard { get; set; }
+		public bool IsAllowEditorCard { get; }
 		#endregion
 
 		#region --构造函数--
