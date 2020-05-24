@@ -39,9 +39,9 @@ namespace DeveloperFramework.SimulatorModel.CQP
 		/// </summary>
 		public int MaxMemberCount { get; set; }
 		/// <summary>
-		/// 获取或设置当前实例的群成员列表
+		/// 获取当前实例的群成员列表
 		/// </summary>
-		public GroupMemberCollection MemberCollection { get; set; }
+		public GroupMemberCollection MemberCollection { get; }
 		#endregion
 
 		#region --构造函数--

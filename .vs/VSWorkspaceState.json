@@ -3,14 +3,17 @@
     "",
     "\\src",
     "\\src\\Core",
-    "\\src\\Core\\DeveloperFramework.Log.CQP",
-    "\\src\\Core\\DeveloperFramework.Log.CQP\\ViewModels",
-    "\\src\\Core\\DeveloperFramework.Log.CQP\\Views",
+    "\\src\\Core\\DeveloperFramework.CQP",
+    "\\src\\Core\\DeveloperFramework.Simulator.CQP",
+    "\\src\\Core\\DeveloperFramework.Simulator.CQP\\Domain",
+    "\\src\\Core\\DeveloperFramework.Simulator.CQP\\Domain\\Command",
     "\\src\\Models",
     "\\src\\Models\\DeveloperFramework.LibraryModel.CQP",
+    "\\src\\Models\\DeveloperFramework.SimulatorModel.CQP",
+    "\\src\\TestApplication",
     "\\src\\Utilitys",
-    "\\src\\Utilitys\\DeveloperFramework.Extension"
+    "\\src\\Utilitys\\DeveloperFramework.Utility"
   ],
-  "SelectedNode": "\\src\\Core\\DeveloperFramework.Log.CQP\\Views\\LogWindow.xaml",
+  "SelectedNode": "\\src\\TestApplication\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

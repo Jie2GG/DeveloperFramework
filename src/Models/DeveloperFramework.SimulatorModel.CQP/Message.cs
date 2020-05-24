@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DeveloperFramework.Utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,6 +41,10 @@ namespace DeveloperFramework.SimulatorModel.CQP
 		/// 获取当前实例的来源QQ
 		/// </summary>
 		public QQ FromQQ { get; }
+		/// <summary>
+		/// 获取当前实例是否已撤回消息
+		/// </summary>
+		public bool IsRevocation { get; private set; }
 		#endregion
 
 		#region --构造函数--
@@ -92,6 +97,24 @@ namespace DeveloperFramework.SimulatorModel.CQP
 			this.Id = GetMessageId ();
 			this.Text = text;
 			this.SendTime = DateTime.Now;
+		}
+		#endregion
+
+		#region --公开方法--
+		/// <summary>
+		/// 将当前实例做撤回处理
+		/// </summary>
+		/// <param name="coerce">是否强制撤回消息</param>
+		/// <returns>如果当前时间减去 <see cref="SendTime"/> 小于 2 或 coerce 为 <see langword="true"/> 则返回 <see langword="true"/> 否则返回 <see langword="false"/></returns>
+		public bool Revocation (bool coerce)
+		{
+			if (DateTimeUtility.GetDateTimeInterval (DateTime.Now, this.SendTime).TotalSeconds <= 120 || coerce)
+			{
+				this.IsRevocation = true;
+				return true;
+			}
+
+			return false;
 		}
 		#endregion
 

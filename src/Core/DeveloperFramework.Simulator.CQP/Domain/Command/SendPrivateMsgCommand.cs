@@ -35,8 +35,9 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 		{
 			AppInfo appInfo = this.App.Library.AppInfo;
 
-			// 核对来源QQ
+			// 在 QQ 列表中查询是否存在目标号码
 			QQ qq = base.Simulator.DataPool.QQCollection.Where (p => p.Id == this.FromQQ).FirstOrDefault ();
+
 			if (qq == null)
 			{
 				LogCenter.Instance.Info (appInfo.Name, CQPSimulator.STR_APP_SENDING, $"无法向 [QQ: {this.FromQQ}] 发送消息, 未查询到与该QQ的关系");
@@ -46,6 +47,7 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 			{
 				LogCenter.Instance.InfoSending (appInfo.Name, CQPSimulator.STR_APP_SENDING, $"向 [QQ: {this.FromQQ}] 发送消息: {this.Message}");
 
+				// 构建可撤回消息
 				Message msg = new Message (this.Message, qq);
 				this.Simulator.DataPool.MessageCollection.Add (msg);
 				return msg.Id;

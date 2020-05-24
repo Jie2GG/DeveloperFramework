@@ -36,7 +36,6 @@ namespace DeveloperFramework.Simulator.CQP
 
 		#region --字段--
 		private static readonly Regex _appIdRegex = new Regex (@"(?:[a-z]*)\.(?:[a-z\-_]*)\.(?:[a-zA-Z0-9\.\-_]*)", RegexOptions.Compiled);
-		private bool _isLogin = false;
 		private bool _isStart = false;
 		#endregion
 
@@ -53,10 +52,6 @@ namespace DeveloperFramework.Simulator.CQP
 		/// 获取当前实例的应用路径
 		/// </summary>
 		public string AddDirectory { get; }
-		/// <summary>
-		/// 获取或设置当前实例的登录QQ
-		/// </summary>
-		public QQ LoginQQ { get; set; }
 		#endregion
 
 		#region --构造函数--
@@ -84,38 +79,10 @@ namespace DeveloperFramework.Simulator.CQP
 
 		#region --公开方法--
 		/// <summary>
-		/// 登录 <see cref="CQPSimulator"/> 实例
-		/// </summary>
-		/// <param name="qq">用于登陆到模拟器的 <see cref="QQ"/> 实例</param>
-		public void Login (QQ qq)
-		{
-			if (!this._isLogin)
-			{
-				this.LoginQQ = qq;
-				this._isLogin = true;
-			}
-		}
-		/// <summary>
-		/// 登出 <see cref="CQPSimulator"/> 实例
-		/// </summary>
-		public void Logout ()
-		{
-			if (this._isLogin)
-			{
-				this.LoginQQ = null;
-				this._isLogin = false;
-			}
-		}
-		/// <summary>
 		/// 启动 <see cref="CQPSimulator"/>
 		/// </summary>
 		public void Start ()
 		{
-			if (!this._isLogin)
-			{
-				throw new InvalidOperationException ($"无法继续运行, 因为当前实例还未完成初始化");
-			}
-
 			if (this._isStart)
 			{
 				return;
@@ -181,11 +148,6 @@ namespace DeveloperFramework.Simulator.CQP
 		/// </summary>
 		public void Stop ()
 		{
-			if (!this._isLogin)
-			{
-				throw new InvalidOperationException ($"无法继续运行, 因为当前实例还未完成初始化");
-			}
-
 			if (!this._isStart)
 			{
 				return;
@@ -228,11 +190,6 @@ namespace DeveloperFramework.Simulator.CQP
 		/// <returns>返回值</returns>
 		public object GetProcess (int authCode, [CallerMemberName] string funcName = null, params object[] objs)
 		{
-			if (!this._isLogin)
-			{
-				throw new InvalidOperationException ($"无法继续运行, 因为当前实例还未完成初始化");
-			}
-
 			// 获取方法
 			MethodInfo method = typeof (CQPExport).GetMethod (funcName, BindingFlags.Static | BindingFlags.Public);
 			if (method == null)
