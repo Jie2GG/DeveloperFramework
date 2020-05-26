@@ -35,9 +35,9 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 		{
 			AppInfo appInfo = this.App.Library.AppInfo;
 
-			LogCenter.Instance.InfoSuccess (appInfo.Name, TYPE_GET_COOKIES, $"请求 Cookies (由于不考虑登录状况, 仅返回请求的域名)");
+			LogCenter.Instance.InfoSuccess (appInfo.Name, TYPE_GET_COOKIES, $"请求 Cookies (由于不考虑登录状况, 仅返回空字符串)");
 
-			return this.Domain;
+			return string.Empty;
 		}
 
 		public override object ExecuteHaveNoAuth ()
