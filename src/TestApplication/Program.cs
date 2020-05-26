@@ -29,6 +29,10 @@ namespace TestApplication
 			//simulator.Start ();
 			//simulator.Stop ();
 
+			CookieCollection cookie = new CookieCollection ();
+			cookie.Add (new Cookie ("userid", "abc123"));
+			byte[] buffer = HttpUtility.Get ("https://qun.qq.com/", ref cookie);
+			
 			Console.ReadKey ();
 		}
 
