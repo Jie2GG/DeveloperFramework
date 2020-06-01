@@ -11,26 +11,24 @@ using System.Threading.Tasks;
 namespace DeveloperFramework.Simulator.CQP.Domain.Command
 {
 	/// <summary>
-	/// 获取语音命令
+	/// 获取QQ陌生人信息命令
 	/// </summary>
-	[FunctionBinding(Function = nameof(CQPExport.CQ_getRecordV2))]
-	public class GetRecordV2Command : AbstractCommand
+	[FunctionBinding(Function = nameof(CQPExport.CQ_getStrangerInfo))]
+	public class GetStrangerInfoCommand : AbstractCommand
 	{
 		#region --常量--
-		public const string TYPE_GET_RECORD = "获取语音";
+		public const string TYPE_GET_STRANGER_INFO = "获取QQ陌生人信息";
 		#endregion
 
 		#region --属性--
-		public string File { get; }
-		public string Format { get; }
-        #endregion
+		public long QqId { get; }
+		#endregion
 
-        #region --构造函数--
-        public GetRecordV2Command (CQPSimulator simulator, CQPSimulatorApp app, bool isAuth, string file, string format)
+		#region --构造函数--
+		public GetStrangerInfoCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth, long qqId)
 			: base (simulator, app, isAuth)
 		{
-			this.File = file;
-			this.Format = format;
+			this.QqId = QqId;
 		}
         #endregion
 
@@ -38,14 +36,14 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
         public override object ExecuteHaveAuth ()
 		{
 			//AppInfo appInfo = this.App.Library.AppInfo;
-			//LogCenter.Instance.InfoSuccess(appInfo.Name, TYPE_GET_RECORD, "");
+			//LogCenter.Instance.InfoSuccess(appInfo.Name, TYPE_GET_STRANGER_INFO, "");
 			throw new NotImplementedException ();
 		}
 
 		public override object ExecuteHaveNoAuth ()
 		{
 			AppInfo appInfo = this.App.Library.AppInfo;
-			LogCenter.Instance.Info(appInfo.Name, TYPE_CHECK_AUTHORIZATION, $"检测到调用 Api [{nameof(CQPExport.CQ_getRecordV2)}] 未经授权, 请检查 app.json 是否赋予权限", null, null);
+			LogCenter.Instance.Info(appInfo.Name, TYPE_CHECK_AUTHORIZATION, $"检测到调用 Api [{nameof(CQPExport.CQ_getStrangerInfo)}] 未经授权, 请检查 app.json 是否赋予权限", null, null);
 			return RESULT_API_UNAUTHORIZED;
 		}
         #endregion
