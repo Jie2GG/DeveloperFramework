@@ -51,6 +51,7 @@
     <Compile Include="Domain\Command\DeleteMsgCommand.cs" />
     <Compile Include="Domain\Command\GetCookiesV2Command.cs" />
     <Compile Include="Domain\Command\GetCsrfTokenCommand.cs" />
+    <Compile Include="Domain\Command\GetRecordV2Command.cs" />
     <Compile Include="Domain\Command\SendDiscussMsgCommand.cs" />
     <Compile Include="Domain\Command\SendGroupMsgCommand.cs" />
     <Compile Include="Domain\Command\SendLinkV2Command.cs" />
