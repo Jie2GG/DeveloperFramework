@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace DeveloperFramework.Simulator.CQP.Domain.Command
 {
+	/// <summary>
+	/// 获取Cookies命令
+	/// </summary>
 	[FunctionBinding (Function = nameof (CQPExport.CQ_getCookiesV2))]
 	public class GetCookiesV2Command : AbstractCommand
 	{
@@ -43,7 +46,7 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 		public override object ExecuteHaveNoAuth ()
 		{
 			AppInfo appInfo = this.App.Library.AppInfo;
-			LogCenter.Instance.Info (appInfo.Name, TYPE_CHECK_AUTHORIZATION, $"检测到调用 Api [{nameof (CQPExport.CQ_deleteMsg)}] 未经授权, 请检查 app.json 是否赋予权限", null, null);
+			LogCenter.Instance.Warning (appInfo.Name, TYPE_CHECK_AUTHORIZATION, $"检测到调用 Api [{nameof (CQPExport.CQ_getCookiesV2)}] 未经授权, 请检查 app.json 是否赋予权限", null, null);
 			return RESULT_API_UNAUTHORIZED;
 		}
 		#endregion

@@ -17,7 +17,7 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 	public class SendGroupMsgCommand : AbstractCommand
 	{
 		#region --常量--
-		public const string TYPE_SEND_MSG = "发送 (↑)";
+		public const string TYPE_SEND_MSG = "[↑]群组消息";
 		/// <summary>
 		/// 未建立关系
 		/// </summary>
