@@ -60,6 +60,7 @@ namespace DeveloperFramework.Simulator.CQP
 			this.QQCollection = new Collection<QQ> ();
 			this.FriendCollection = new FriendCollection ();
 			this.GroupCollection = new GroupCollection ();
+			this.DiscussCollection = new DiscussCollection();
 			this.MessageCollection = new ConcurrentBag<Message> ();
 		}
 		#endregion

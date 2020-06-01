@@ -27,6 +27,7 @@ namespace DeveloperFramework.Simulator.CQP
 	{
 		#region --常量--
 		public const string TYPE_INIT = "初始化";
+		public const string TYPE_GROUP_MESSAGE = "[↓]群组消息";
 		public const string TYPE_APP_LOAD = "应用加载";
 		public const string TYPE_APP_UNLOAD = "应用卸载";
 		#endregion
@@ -49,6 +50,14 @@ namespace DeveloperFramework.Simulator.CQP
 		/// 获取当前实例的应用路径
 		/// </summary>
 		public string AddDirectory { get; }
+		/// <summary>
+		/// 获取当前实例是否许可发送图片
+		/// </summary>
+		public bool CanSendImage { get; }
+		/// <summary>
+		/// 获取当前实例是否许可发送语音
+		/// </summary>
+		public bool CanSendRecord { get; }
 		#endregion
 
 		#region --构造函数--
@@ -67,7 +76,7 @@ namespace DeveloperFramework.Simulator.CQP
 			this.AddDirectory = appDirectory;
 			this.CQPApps = new List<CQPSimulatorApp> ();
 			this.DataPool = new CQPSimulatorDataPool ().Generate ();
-			LogCenter.Instance.InfoSuccess (TYPE_INIT, $"已加载 {this.DataPool.QQCollection.Count} 个QQ、{this.DataPool.FriendCollection.Count} 个好友、{this.DataPool.GroupCollection.Count} 个群");
+			LogCenter.Instance.InfoSuccess (TYPE_INIT, $"已加载 {this.DataPool.QQCollection.Count} 个QQ、{this.DataPool.FriendCollection.Count} 个好友、{this.DataPool.GroupCollection.Count} 个群、{this.DataPool.DiscussCollection.Count} 个讨论组");
 
 			// 设置 CQExport 服务
 			CQPExport.Instance.FuncProcess = this;
@@ -137,8 +146,34 @@ namespace DeveloperFramework.Simulator.CQP
 				}
 			}
 
-			LogCenter.Instance.InfoSuccess (TYPE_APP_LOAD, $"应用加载结束. 加载成功: {this.CQPApps.Count} 个, 失败: {this.CQPApps.Count - pathes.Length} 个");
+			LogCenter.Instance.InfoSuccess (TYPE_APP_LOAD, $"应用加载结束. 加载成功: {this.CQPApps.Count} 个, 失败: {failCount} 个");
 			this._isStart = true;
+		}
+		/// <summary>
+		/// 群组消息事件调用
+		/// </summary>
+		public void GroupMessage(int msgId, long fromGroup, long fromQQ, string fromAnonymous, string msg, IntPtr font)
+		{
+			LogCenter.Instance.InfoSuccess(TYPE_GROUP_MESSAGE, msg);
+			for (int i = 0; i < this.CQPApps.Count; i++)
+			{
+				CQPSimulatorApp app = this.CQPApps[i];
+
+				string appId = app.AppId;
+
+				// 调用 CQExit 函数
+				foreach (AppEvent appEvent in app.Library.AppInfo.Events.Where(temp => temp.Type == AppEventType.GroupMessage))
+				{
+					try
+					{
+						app.Library.InvokeCQGroupMessage(appEvent, GroupMessageType.Group, msgId, fromGroup, fromQQ, fromAnonymous, msg, font);
+					}
+					catch (Exception ex)
+					{
+						LogCenter.Instance.Error(TYPE_APP_UNLOAD, $"应用: {appId} 事件调用失败, 原因: {ex.Message}");
+					}
+				}
+			}
 		}
 		/// <summary>
 		/// 停止 <see cref="CQPSimulator"/>
