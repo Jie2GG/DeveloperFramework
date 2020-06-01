@@ -11,26 +11,19 @@ using System.Threading.Tasks;
 namespace DeveloperFramework.Simulator.CQP.Domain.Command
 {
 	/// <summary>
-	/// 获取语音命令
+	/// 获取好友列表命令
 	/// </summary>
-	[FunctionBinding(Function = nameof(CQPExport.CQ_getRecordV2))]
-	public class GetRecordV2Command : AbstractCommand
+	[FunctionBinding(Function = nameof(CQPExport.CQ_getFriendList))]
+	public class GetFriendListCommand : AbstractCommand
 	{
 		#region --常量--
-		public const string TYPE_GET_RECORD = "获取语音";
+		public const string TYPE_GET_FRIENDLIST = "获取好友列表";
 		#endregion
 
-		#region --属性--
-		public string File { get; }
-		public string Format { get; }
-        #endregion
-
         #region --构造函数--
-        public GetRecordV2Command (CQPSimulator simulator, CQPSimulatorApp app, bool isAuth, string file, string format)
+        public GetFriendListCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth)
 			: base (simulator, app, isAuth)
 		{
-			this.File = file;
-			this.Format = format;
 		}
         #endregion
 
@@ -38,14 +31,14 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
         public override object ExecuteHaveAuth ()
 		{
 			//AppInfo appInfo = this.App.Library.AppInfo;
-			//LogCenter.Instance.InfoSuccess(appInfo.Name, TYPE_GET_RECORD, "");
-			throw new NotImplementedException ();
+			//LogCenter.Instance.InfoSuccess(appInfo.Name, TYPE_GET_FRIENDLIST, "");
+			return this.Simulator.DataPool.FriendCollection.ToBase64String();
 		}
 
 		public override object ExecuteHaveNoAuth ()
 		{
 			AppInfo appInfo = this.App.Library.AppInfo;
-			LogCenter.Instance.Info(appInfo.Name, TYPE_CHECK_AUTHORIZATION, $"检测到调用 Api [{nameof(CQPExport.CQ_getRecordV2)}] 未经授权, 请检查 app.json 是否赋予权限", null, null);
+			LogCenter.Instance.Info(appInfo.Name, TYPE_CHECK_AUTHORIZATION, $"检测到调用 Api [{nameof(CQPExport.CQ_getFriendList)}] 未经授权, 请检查 app.json 是否赋予权限", null, null);
 			return RESULT_API_UNAUTHORIZED;
 		}
         #endregion
