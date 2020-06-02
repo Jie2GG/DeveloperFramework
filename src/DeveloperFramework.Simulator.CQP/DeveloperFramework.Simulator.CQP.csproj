@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net4.8</TargetFramework>
+    <Platforms>x86</Platforms>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DeveloperFramework.CQP\DeveloperFramework.CQP.csproj" />
+    <ProjectReference Include="..\DeveloperFramework.Library.CQP\DeveloperFramework.Library.CQP.csproj" />
+    <ProjectReference Include="..\DeveloperFramework.LibraryModel.CQP\DeveloperFramework.LibraryModel.CQP.csproj" />
+    <ProjectReference Include="..\DeveloperFramework.Log.CQP\DeveloperFramework.Log.CQP.csproj" />
+    <ProjectReference Include="..\DeveloperFramework.SimulatorModel.CQP\DeveloperFramework.SimulatorModel.CQP.csproj" />
+    <ProjectReference Include="..\DeveloperFramework.Utility\DeveloperFramework.Utility.csproj" />
+  </ItemGroup>
+</Project>
