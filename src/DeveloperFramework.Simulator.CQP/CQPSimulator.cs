@@ -118,7 +118,7 @@ namespace DeveloperFramework.Simulator.CQP
 			Directory.CreateDirectory(Path.Combine(this.DataDirectory, "tmp"));
 			Directory.CreateDirectory(Path.Combine(this.DataDirectory, "tmp", "capp"));
 			Directory.CreateDirectory(this.RunningAppDirectory);
-			Directory.CreateDirectory(Path.Combine(this.DataDirectory, "data", $"{this.DataPool.RobotQQ.Id}"));
+			Directory.CreateDirectory(Path.Combine(this.DataDirectory, $"{this.DataPool.RobotQQ.Id}"));
 			LogCenter.Instance.InfoSuccess(TYPE_INIT, "已生成目录结构");
 
 			switch (coolqVersion)
