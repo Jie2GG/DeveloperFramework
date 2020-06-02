@@ -4,10 +4,12 @@
     <TargetFramework>net4.8</TargetFramework>
     <UseWPF>true</UseWPF>
     <Version>1.0.0</Version>
-    <Description>
-    </Description>
+    <Description></Description>
     <Copyright>Apache License 2.0</Copyright>
-    <Platforms>AnyCPU;x86</Platforms>
+    <Platforms>x86</Platforms>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Prism.Mef" Version="6.3.0" />

@@ -6,7 +6,10 @@
     <RootNamespace>DeveloperFramework.CQP</RootNamespace>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <Platforms>AnyCPU;x86</Platforms>
+    <Platforms>x86</Platforms>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup>
     <DllExportIdent>98608E9D-6E34-4223-8759-AB0A88D6CF8D</DllExportIdent>
