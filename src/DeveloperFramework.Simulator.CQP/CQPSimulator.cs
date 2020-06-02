@@ -97,7 +97,7 @@ namespace DeveloperFramework.Simulator.CQP
 			this.DataPool = new CQPSimulatorDataPool().Generate();
 			LogCenter.Instance.InfoSuccess(TYPE_INIT, "已建立数据池");
 
-			this.InstanceHash = DateTime.Now.Ticks.ToString("X");
+			this.InstanceHash = DateTime.Now.Ticks.ToString("X").ToLower();
 			this.AppDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "app");
 			this.DevAppDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "dev");
 			this.DataDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data");
@@ -156,7 +156,7 @@ namespace DeveloperFramework.Simulator.CQP
 			}
 
 			LogCenter.Instance.InfoSuccess(TYPE_APP_LOAD, "应用加载开始");
-			string[] pathes = Directory.GetDirectories(this.AppDirectory);
+			string[] pathes = Directory.GetDirectories(this.DevAppDirectory);
 			int failCount = 0;
 			foreach (string path in pathes)
 			{
