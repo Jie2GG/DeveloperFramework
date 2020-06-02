@@ -24,7 +24,7 @@ namespace TestApplication
 		{
 			LogCenter.Instance.AddObserver(new Program());
 			EnironmentSetup();
-			CQPSimulator simulator = new CQPSimulator(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "dev"));
+			CQPSimulator simulator = new CQPSimulator("v9pro");
 			simulator.Start();
 			simulator.GroupMessage(0, simulator.DataPool.GroupCollection.FirstOrDefault(), 888888, string.Empty, "Test", IntPtr.Zero);
 			Console.ReadKey();

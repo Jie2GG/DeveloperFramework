@@ -32,7 +32,7 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 		{
 			//AppInfo appInfo = this.App.Library.AppInfo;
 			//LogCenter.Instance.InfoSuccess(appInfo.Name, TYPE_GET_APPDirectory, this.Simulator.AddDirectory);
-			return this.Simulator.AddDirectory;
+			return this.Simulator.AppDirectory;
 		}
 
 		public override object ExecuteHaveNoAuth ()
