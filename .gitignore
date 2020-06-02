@@ -3,3 +3,5 @@
 .vs
 .user
 .cache
+packages
+!packages\DllExport.1.7.0
