@@ -35,31 +35,33 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
         #region --公开方法--
         public override object ExecuteHaveAuth ()
 		{
-            switch ((LogLevel)this.Level)
+			AppInfo appInfo = this.App.Library.AppInfo;
+
+			switch ((LogLevel)this.Level)
             {
 				case LogLevel.Info:
-					LogCenter.Instance.Info(this.Contents);
+					LogCenter.Instance.Info(appInfo.Name, this.Type, this.Contents);
 					break;
 				case LogLevel.Info_Receive:
-					LogCenter.Instance.InfoReceive(this.Contents);
+					LogCenter.Instance.InfoReceive(appInfo.Name, this.Type, this.Contents);
 					break;
 				case LogLevel.Info_Sending:
-					LogCenter.Instance.InfoSending(this.Contents);
+					LogCenter.Instance.InfoSending(appInfo.Name, this.Type, this.Contents);
 					break;
 				case LogLevel.Info_Success:
-					LogCenter.Instance.InfoSuccess(this.Contents);
+					LogCenter.Instance.InfoSuccess(appInfo.Name, this.Type, this.Contents);
 					break;
 				case LogLevel.Debug:
-					LogCenter.Instance.Debug(this.Contents);
+					LogCenter.Instance.Debug(appInfo.Name, this.Type, this.Contents);
 					break;
 				case LogLevel.Warning:
-					LogCenter.Instance.Warning(this.Contents);
+					LogCenter.Instance.Warning(appInfo.Name, this.Type, this.Contents);
 					break;
 				case LogLevel.Error:
-					LogCenter.Instance.Error(this.Contents);
+					LogCenter.Instance.Error(appInfo.Name, this.Type, this.Contents);
 					break;
 				case LogLevel.FatalError:
-					LogCenter.Instance.FatalError(this.Contents);
+					LogCenter.Instance.FatalError(appInfo.Name, this.Type, this.Contents);
 					break;
 			}
 			return RESULT_SUCCESS;

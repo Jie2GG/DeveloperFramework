@@ -17,10 +17,22 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
     [FunctionBinding(Function = nameof(CQPExport.CQ_setGroupWholeBan))]
     public class SetGroupWholeBanCommand : AbstractCommand
     {
+        #region --常量--
+        public const string TYPE_GROUP_WHOLE_BAN = "变更全体禁言状态";
+        #endregion
+
+        #region --属性--
+        public long GroupId { get; }
+        public bool IsSet { get; }
+        #endregion
+
         #region --构造函数--
-        public SetGroupWholeBanCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth)
+        public SetGroupWholeBanCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth, long groupId, bool isSet)
             : base(simulator, app, isAuth)
-        { }
+        {
+            this.GroupId = groupId;
+            this.IsSet = isSet;
+        }
         #endregion
 
         #region --公开方法--

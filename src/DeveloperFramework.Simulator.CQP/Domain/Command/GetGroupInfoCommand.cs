@@ -22,13 +22,15 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 
 		#region --属性--
 		public long GroupId { get; }
-        #endregion
+		public bool IsCache { get; }
+		#endregion
 
-        #region --构造函数--
-        public GetGroupInfoCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth, long groupId)
+		#region --构造函数--
+		public GetGroupInfoCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth, long groupId, bool isCache)
 			: base (simulator, app, isAuth)
 		{
 			this.GroupId = groupId;
+			this.IsCache = isCache;
 		}
         #endregion
 

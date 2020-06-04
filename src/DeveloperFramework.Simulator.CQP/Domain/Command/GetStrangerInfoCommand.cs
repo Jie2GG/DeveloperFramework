@@ -22,13 +22,15 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 
 		#region --属性--
 		public long QqId { get; }
+		public bool NoCache { get; }
 		#endregion
 
 		#region --构造函数--
-		public GetStrangerInfoCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth, long qqId)
+		public GetStrangerInfoCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth, long qqId, bool notCache)
 			: base (simulator, app, isAuth)
 		{
 			this.QqId = QqId;
+			this.NoCache = notCache;
 		}
         #endregion
 
@@ -37,7 +39,7 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 		{
 			//AppInfo appInfo = this.App.Library.AppInfo;
 			//LogCenter.Instance.InfoSuccess(appInfo.Name, TYPE_GET_STRANGER_INFO, "");
-			throw new NotImplementedException ();
+			return this.Simulator.DataPool.QQCollection.FirstOrDefault(w => w.Id == this.QqId).ToBase64String();
 		}
 
 		public override object ExecuteHaveNoAuth ()

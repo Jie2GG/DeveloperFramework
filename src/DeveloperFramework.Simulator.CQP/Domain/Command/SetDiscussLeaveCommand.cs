@@ -17,10 +17,20 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
     [FunctionBinding(Function = nameof(CQPExport.CQ_setDiscussLeave))]
     public class SetDiscussLeaveCommand : AbstractCommand
     {
+        #region --常量--
+        public const string TYPE_DISCUSS_LEAVE= "退出讨论组";
+        #endregion
+
+        #region --属性--
+        public long DiscussId { get; }
+        #endregion
+
         #region --构造函数--
-        public SetDiscussLeaveCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth)
+        public SetDiscussLeaveCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth, long discussId)
             : base(simulator, app, isAuth)
-        { }
+        {
+            this.DiscussId = discussId;
+        }
         #endregion
 
         #region --公开方法--

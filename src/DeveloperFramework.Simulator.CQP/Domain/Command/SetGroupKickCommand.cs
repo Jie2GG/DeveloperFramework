@@ -12,15 +12,29 @@ using System.Threading.Tasks;
 
 namespace DeveloperFramework.Simulator.CQP.Domain.Command
 {   /// <summary>
-    /// 置群踢除命令
+    /// 置群成员踢除命令
     /// </summary>
     [FunctionBinding(Function = nameof(CQPExport.CQ_setGroupKick))]
     public class SetGroupKickCommand : AbstractCommand
     {
+        #region --常量--
+        public const string TYPE_GROUP_KICK = "群成员踢除";
+        #endregion
+
+        #region --属性--
+        public long GroupId { get; }
+        public long QqId { get; }
+        public bool Refuses { get; }
+        #endregion
+
         #region --构造函数--
-        public SetGroupKickCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth)
+        public SetGroupKickCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth, long groupId, long qqId, bool refuses)
             : base(simulator, app, isAuth)
-        { }
+        {
+            this.GroupId = groupId;
+            this.QqId = qqId;
+            this.Refuses = refuses;
+        }
         #endregion
 
         #region --公开方法--

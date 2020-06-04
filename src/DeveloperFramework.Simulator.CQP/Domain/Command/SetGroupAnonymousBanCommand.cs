@@ -17,10 +17,24 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
     [FunctionBinding(Function = nameof(CQPExport.CQ_setGroupAnonymousBan))]
     public class SetGroupAnonymousBanCommand : AbstractCommand
     {
+        #region --常量--
+        public const string TYPE_GROUP_ANONYMOUS_BAN = "群匿名禁言变更";
+        #endregion
+
+        #region --属性--
+        public long GroupId { get; }
+        public GroupAnonymous Anonymous { get; }
+        public TimeSpan DurationTime { get; }
+        #endregion
+
         #region --构造函数--
-        public SetGroupAnonymousBanCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth)
+        public SetGroupAnonymousBanCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth, long groupId, IntPtr anonymous, long banTime)
             : base(simulator, app, isAuth)
-        { }
+        {
+            this.GroupId = groupId;
+            //this.Anonymous = 
+            this.DurationTime = TimeSpan.FromSeconds(banTime);
+        }
         #endregion
 
         #region --公开方法--

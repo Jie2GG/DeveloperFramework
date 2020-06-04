@@ -17,10 +17,24 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
     [FunctionBinding(Function = nameof(CQPExport.CQ_setGroupCard))]
     public class SetGroupCardCommand : AbstractCommand
     {
+        #region --常量--
+        public const string TYPE_GROUP_CARD = "群名片变更";
+        #endregion
+
+        #region --属性--
+        public long GroupId { get; }
+        public long QqId { get; }
+        public string NewCard { get; }
+        #endregion
+
         #region --构造函数--
-        public SetGroupCardCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth)
+        public SetGroupCardCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth, long groupId, long qqId, string newCard)
             : base(simulator, app, isAuth)
-        { }
+        {
+            this.GroupId = groupId;
+            this.QqId = qqId;
+            this.NewCard = newCard;
+        }
         #endregion
 
         #region --公开方法--

@@ -17,10 +17,26 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
     [FunctionBinding(Function = nameof(CQPExport.CQ_setGroupAddRequestV2))]
     public class SetGroupAddRequestV2Command : AbstractCommand
     {
+        #region --常量--
+        public const string TYPE_GROUP_ADD_REQUEST = "群添加或请求";
+        #endregion
+
+        #region --属性--
+        public string Identifying { get; }
+        public int RequestType { get; }
+        public int ResponseType { get; }
+        public string AppendMsg { get; }
+        #endregion
+
         #region --构造函数--
-        public SetGroupAddRequestV2Command(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth)
+        public SetGroupAddRequestV2Command(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth, string identifying, int requestType, int responseType, string appendMsg)
             : base(simulator, app, isAuth)
-        { }
+        {
+            this.Identifying = identifying;
+            this.RequestType = requestType;
+            this.ResponseType = responseType;
+            this.AppendMsg = appendMsg;
+        }
         #endregion
 
         #region --公开方法--

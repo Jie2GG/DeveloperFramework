@@ -18,21 +18,28 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
     public class SetFatalCommand : AbstractCommand
     {
         #region --常量--
-        public const string TYPE_SET_FATAL = "置致命错误";
+        public const string TYPE_SET_FATAL = "引发致命错误";
+        #endregion
+
+        #region --属性--
+        public string ErrorMsg { get; }
         #endregion
 
         #region --构造函数--
-        public SetFatalCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth)
+        public SetFatalCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth, string errorMsg)
             : base(simulator, app, isAuth)
-        { }
+        {
+            this.ErrorMsg = errorMsg;
+        }
         #endregion
 
         #region --公开方法--
         public override object ExecuteHaveAuth()
         {
-            //AppInfo appInfo = this.App.Library.AppInfo;
-            //LogCenter.Instance.InfoSuccess(appInfo.Name, TYPE_SET_FATAL, "");
-            throw new NotImplementedException();
+            //todo : let CQPSimulatorApp call error message dialog
+            AppInfo appInfo = this.App.Library.AppInfo;
+            LogCenter.Instance.FatalError(appInfo.Name, "致命错误", this.ErrorMsg);
+			return RESULT_SUCCESS;
         }
 
         public override object ExecuteHaveNoAuth()

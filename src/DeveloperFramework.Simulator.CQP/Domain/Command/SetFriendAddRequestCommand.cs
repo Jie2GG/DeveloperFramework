@@ -17,10 +17,25 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
     [FunctionBinding(Function = nameof(CQPExport.CQ_setFriendAddRequest))]
     public class SetFriendAddRequestCommand : AbstractCommand
     {
+        #region --常量--
+        public const string TYPE_FRIEND_ADD_REQUEST = "好友添加或请求";
+        #endregion
+
+        #region --属性--
+        public string Identifying { get; }
+        public int RequestType { get; }
+        public int ResponseType { get; }
+        public string AppendMsg { get; }
+        #endregion
+
         #region --构造函数--
-        public SetFriendAddRequestCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth)
+        public SetFriendAddRequestCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth, string identifying, int requestType, string appendMsg)
             : base(simulator, app, isAuth)
-        { }
+        {
+            this.Identifying = identifying;
+            this.RequestType = requestType;
+            this.AppendMsg = appendMsg;
+        }
         #endregion
 
         #region --公开方法--

@@ -12,15 +12,27 @@ using System.Threading.Tasks;
 
 namespace DeveloperFramework.Simulator.CQP.Domain.Command
 {   /// <summary>
-    /// 置群退出命令
+    /// 退出群组命令
     /// </summary>
     [FunctionBinding(Function = nameof(CQPExport.CQ_setGroupLeave))]
     public class SetGroupLeaveCommand : AbstractCommand
     {
+        #region --常量--
+        public const string TYPE_GROUP_LEAVE = "群组退出";
+        #endregion
+
+        #region --属性--
+        public long GroupId { get; }
+        public bool IsDisband { get; }
+        #endregion
+
         #region --构造函数--
-        public SetGroupLeaveCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth)
+        public SetGroupLeaveCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth, long groupId, bool isDisband)
             : base(simulator, app, isAuth)
-        { }
+        {
+            this.GroupId = groupId;
+            this.IsDisband = isDisband;
+        }
         #endregion
 
         #region --公开方法--

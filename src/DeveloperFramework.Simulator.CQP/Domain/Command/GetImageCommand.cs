@@ -22,15 +22,13 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 
 		#region --属性--
 		public string File { get; }
-		public string Format { get; }
         #endregion
 
         #region --构造函数--
-        public GetImageCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth, string file, string format)
+        public GetImageCommand(CQPSimulator simulator, CQPSimulatorApp app, bool isAuth, string file)
 			: base (simulator, app, isAuth)
 		{
 			this.File = file;
-			this.Format = format;
 		}
         #endregion
 

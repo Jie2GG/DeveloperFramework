@@ -109,7 +109,7 @@ namespace DeveloperFramework.Log.CQP
 		/// <param name="content">日志详细信息</param>
 		/// <param name="state">处理结果</param>
 		/// <param name="timeConsuming">处理耗费时长</param>
-		public void Debug (string from, string type, object content, bool? state, TimeSpan? timeConsuming)
+		public void Debug (string from, string type, object content, bool? state = null, TimeSpan? timeConsuming = null)
 		{
 			this.Write (LogLevel.Debug, from, type, content, state, timeConsuming);
 		}
@@ -262,7 +262,7 @@ namespace DeveloperFramework.Log.CQP
 		/// <param name="content">日志详细信息</param>
 		/// <param name="state">处理结果</param>
 		/// <param name="timeConsuming">处理耗费时长</param>
-		public void InfoReceive (string from, string type, object content, bool? state, TimeSpan? timeConsuming)
+		public void InfoReceive (string from, string type, object content, bool? state = null, TimeSpan? timeConsuming = null)
 		{
 			this.Write (LogLevel.Info_Receive, from, type, content, state, timeConsuming);
 		}
@@ -364,7 +364,7 @@ namespace DeveloperFramework.Log.CQP
 		/// <param name="content">日志详细信息</param>
 		/// <param name="state">处理结果</param>
 		/// <param name="timeConsuming">处理耗费时长</param>
-		public void Warning (string from, string type, object content, bool? state, TimeSpan? timeConsuming)
+		public void Warning (string from, string type, object content, bool? state = null, TimeSpan? timeConsuming = null)
 		{
 			this.Write (LogLevel.Warning, from, type, content, state, timeConsuming);
 		}
