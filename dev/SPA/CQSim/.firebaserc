@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "cqsimwork": {
+      "hosting": {
+        "CQSim": [
+          "cqsimwork"
+        ]
+      }
+    }
+  }
+}
