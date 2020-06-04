@@ -1,6 +1,7 @@
 ﻿using DeveloperFramework.LibraryModel.CQP;
 using DeveloperFramework.SimulatorModel.CQP;
 using DeveloperFramework.Utility;
+
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -60,7 +61,7 @@ namespace DeveloperFramework.Simulator.CQP
 			this.QQCollection = new Collection<QQ> ();
 			this.FriendCollection = new FriendCollection ();
 			this.GroupCollection = new GroupCollection ();
-			this.DiscussCollection = new DiscussCollection();
+			this.DiscussCollection = new DiscussCollection ();
 			this.MessageCollection = new ConcurrentBag<Message> ();
 		}
 		#endregion
