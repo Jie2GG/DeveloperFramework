@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 namespace DeveloperFramework.Simulator.CQP.Domain
 {
 	/// <summary>
-	/// 接收命令复合调用程序
+	/// 命令路由调用程序
 	/// </summary>
-	public class CompositeInvoker
+	public class CommandRouteInvoker
 	{
 		#region --字段--
 		private static readonly Assembly ExecuteAssembly = Assembly.GetAssembly (typeof (ICommand));
@@ -35,12 +35,12 @@ namespace DeveloperFramework.Simulator.CQP.Domain
 
 		#region --构造函数--
 		/// <summary>
-		/// 初始化 <see cref="CompositeInvoker"/> 类的新实例
+		/// 初始化 <see cref="CommandRouteInvoker"/> 类的新实例
 		/// </summary>
 		/// <param name="simulator">相关联的 <see cref="CQPSimulator"/></param>
 		/// <param name="app">相关联的 <see cref="CQPSimulatorApp"/></param>
 		/// <param name="isAuth">表示验证授权是否通过</param>
-		public CompositeInvoker (CQPSimulator simulator, CQPSimulatorApp app, bool isAuth)
+		public CommandRouteInvoker (CQPSimulator simulator, CQPSimulatorApp app, bool isAuth)
 		{
 			Simulator = simulator;
 			this.App = app;
