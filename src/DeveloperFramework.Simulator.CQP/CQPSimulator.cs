@@ -1,4 +1,5 @@
 ﻿using DeveloperFramework.CQP;
+using DeveloperFramework.Extension;
 using DeveloperFramework.Library.CQP;
 using DeveloperFramework.LibraryModel.CQP;
 using DeveloperFramework.Log.CQP;
@@ -28,17 +29,16 @@ namespace DeveloperFramework.Simulator.CQP
 	public class CQPSimulator : IFuncProcess
 	{
 		#region --常量--
-		public const string TYPE_INIT = "初始化";
+
 		public const string TYPE_GROUP_MESSAGE = "[↓]群组消息";
 		public const string TYPE_PRIVATE_MESSAGE_STATUS = "[↓]私聊消息(在线状态)";
 		public const string TYPE_PRIVATE_MESSAGE_FRIENDS = "[↓]私聊消息(好友)";
-		public const string TYPE_APP_LOAD = "应用加载";
-		public const string TYPE_APP_UNLOAD = "应用卸载";
 		#endregion
 
 		#region --字段--
 		private static readonly Regex _appIdRegex = new Regex (@"(?:[a-z]*)\.(?:[a-z\-_]*)\.(?:[a-zA-Z0-9\.\-_]*)", RegexOptions.Compiled);
-		private readonly ConcurrentQueue<TaskContext> _taskContexts;
+		private static readonly Regex _appInfoRegex = new Regex (@"([0-9]*),((?:[a-zA-Z0-9\.\-_]*))", RegexOptions.Compiled);
+		private ConcurrentQueue<TaskContext> _taskContexts;
 		private bool _isStart = false;
 		#endregion
 
@@ -58,11 +58,7 @@ namespace DeveloperFramework.Simulator.CQP
 		/// <summary>
 		/// 获取当前实例的开发应用路径
 		/// </summary>
-		public string DevAppDirectory { get; }
-		/// <summary>
-		/// 获取当前实例的已加载的应用路径
-		/// </summary>
-		public string RunningAppDirectory { get; }
+		public string DevDirectory { get; }
 		/// <summary>
 		/// 获取当前实例的应用数据路径
 		/// </summary>
@@ -76,87 +72,107 @@ namespace DeveloperFramework.Simulator.CQP
 		/// </summary>
 		public string BinDirectory { get; }
 		/// <summary>
-		/// 获取当前实例是否许可发送图片
+		/// 获取当前实例的应用数据路径
 		/// </summary>
-		public bool CanSendImage { get; }
+		public string DataAppDirectory { get; }
 		/// <summary>
-		/// 获取当前实例是否许可发送语音
+		/// 获取当前实例的大表情目录
 		/// </summary>
-		public bool CanSendRecord { get; }
+		public string DataBfaceDirectory { get; }
 		/// <summary>
-		/// 获取当前实例的唯一码
+		/// 获取当前实例的进场特效目录
 		/// </summary>
-		public string InstanceHash { get; }
+		public string DataShowDirectory { get; }
+		/// <summary>
+		/// 获取当前实例的图片目录
+		/// </summary>
+		public string DataImageDirectory { get; }
+		/// <summary>
+		/// 获取当前实例的语音目录
+		/// </summary>
+		public string DataRecordDirectory { get; }
+		/// <summary>
+		/// 获取当前实例的日志目录
+		/// </summary>
+		public string DataLogDirectory { get; }
+		/// <summary>
+		/// 获取当前实例的临时目录
+		/// </summary>
+		public string DataTmpDirectory { get; }
+		/// <summary>
+		/// 获取当前实例的临时应用存储路径
+		/// </summary>
+		public string AppRunTimeDirectory { get; }
+		/// <summary>
+		/// 获取当前实例的模拟器类型
+		/// </summary>
+		public CQPType CQPType { get; }
+		/// <summary>
+		/// 获取当前实例的 Api 版本
+		/// </summary>
+		public ApiType ApiType { get; }
 		#endregion
 
 		#region --构造函数--
 		/// <summary>
 		/// 初始化 <see cref="CQPSimulator"/> 类的新实例
 		/// </summary>
-		/// <param name="appDirectory">应用路径</param>
-		public CQPSimulator (string coolqVersion = "v9pro")
+		/// <param name="cqpType">初始化新模拟器的类型</param>
+		public CQPSimulator (CQPType cqpType, ApiType apiType)
 		{
-			this.InstanceHash = DateTime.Now.Ticks.ToString ("X").ToLower ();
-			this.AppDirectory = Path.Combine (AppDomain.CurrentDomain.BaseDirectory, "app");
-			this.DevAppDirectory = Path.Combine (AppDomain.CurrentDomain.BaseDirectory, "dev");
-			this.DataDirectory = Path.Combine (AppDomain.CurrentDomain.BaseDirectory, "data");
-			this.ConfDirectory = Path.Combine (AppDomain.CurrentDomain.BaseDirectory, "conf");
-			this.BinDirectory = Path.Combine (AppDomain.CurrentDomain.BaseDirectory, "bin");
-			this.RunningAppDirectory = Path.Combine (this.DataDirectory, "tmp", "capp", InstanceHash);
-			Directory.CreateDirectory (this.AppDirectory);
-			Directory.CreateDirectory (this.DevAppDirectory);
-			Directory.CreateDirectory (this.ConfDirectory);
-			Directory.CreateDirectory (this.BinDirectory);
-			Directory.CreateDirectory (this.DataDirectory);
-			Directory.CreateDirectory (Path.Combine (this.DataDirectory, "app"));
-			Directory.CreateDirectory (Path.Combine (this.DataDirectory, "bface"));
-			Directory.CreateDirectory (Path.Combine (this.DataDirectory, "image"));
-			Directory.CreateDirectory (Path.Combine (this.DataDirectory, "log"));
-			Directory.CreateDirectory (Path.Combine (this.DataDirectory, "record"));
-			Directory.CreateDirectory (Path.Combine (this.DataDirectory, "show"));
-			Directory.CreateDirectory (Path.Combine (this.DataDirectory, "tmp"));
-			Directory.CreateDirectory (Path.Combine (this.DataDirectory, "tmp", "capp"));
-			Directory.CreateDirectory (this.RunningAppDirectory);
-			Directory.CreateDirectory (Path.Combine (this.DataDirectory, $"{this.DataPool.RobotQQ.Id}"));
-			LogCenter.Instance.InfoSuccess (TYPE_INIT, "已生成目录结构");
-
-			switch (coolqVersion)
-			{
-				case "v9pro":
-					CanSendImage = true;
-					CanSendRecord = true;
-					break;
-				case "v9air":
-					CanSendImage = false;
-					CanSendRecord = false;
-					break;
-				case "lite":
-					CanSendImage = false;
-					CanSendRecord = false;
-					break;
-			}
-			LogCenter.Instance.InfoSuccess (TYPE_INIT, $"已根据版本:{coolqVersion} 定义模拟器特性");
-
-			// 初始化数据池
+			#region 初始化数据池
 			this.CQPApps = new List<CQPSimulatorApp> ();
 			this.DataPool = new CQPSimulatorDataPool ().Generate ();
-			LogCenter.Instance.InfoSuccess (TYPE_INIT, $"已加载 {this.DataPool.QQCollection.Count} 个QQ、{this.DataPool.FriendCollection.Count} 个好友、{this.DataPool.GroupCollection.Count} 个群、{this.DataPool.DiscussCollection.Count} 个讨论组");
+			Logger.Instance.InfoSuccess (CQPErrorCode.TYPE_INIT, $"已加载 {this.DataPool.QQCollection.Count} 个QQ、{this.DataPool.FriendCollection.Count} 个好友、{this.DataPool.GroupCollection.Count} 个群、{this.DataPool.DiscussCollection.Count} 个讨论组");
+			#endregion
 
-			// 初始化任务队列
+			#region 初始化目录
+			string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+			this.AppDirectory = Path.Combine (baseDirectory, "app");    // app 目录
+			this.DevDirectory = Path.Combine (baseDirectory, "dev");    // dev 目录
+			this.DataDirectory = Path.Combine (baseDirectory, "data");  // data 目录
+			this.ConfDirectory = Path.Combine (baseDirectory, "conf");  // conf 目录
+			this.BinDirectory = Path.Combine (baseDirectory, "bin");    // bin 目录
+			Directory.CreateDirectory (this.AppDirectory);
+			Directory.CreateDirectory (this.DevDirectory);
+			Directory.CreateDirectory (this.DataDirectory);
+			Directory.CreateDirectory (this.ConfDirectory);
+			Directory.CreateDirectory (this.BinDirectory);
+
+			this.DataAppDirectory = Path.Combine (this.DataDirectory, "app");       // data/app 目录
+			this.DataBfaceDirectory = Path.Combine (this.DataDirectory, "bface");     // data/bface 目录
+			this.DataShowDirectory = Path.Combine (this.DataDirectory, "show");      // data/show 目录
+			this.DataImageDirectory = Path.Combine (this.DataDirectory, "image");     // data/image 目录
+			this.DataRecordDirectory = Path.Combine (this.DataDirectory, "record");    // data/record 目录
+			this.DataLogDirectory = Path.Combine (this.DataDirectory, "log");       // data/log 目录
+			this.DataTmpDirectory = Path.Combine (this.DataDirectory, "tmp");       // data/tmp 目录
+			Directory.CreateDirectory (this.DataAppDirectory);
+			Directory.CreateDirectory (this.DataBfaceDirectory);
+			Directory.CreateDirectory (this.DataImageDirectory);
+			Directory.CreateDirectory (this.DataRecordDirectory);
+			Directory.CreateDirectory (this.DataLogDirectory);
+			Directory.CreateDirectory (this.DataTmpDirectory);
+
+			this.AppRunTimeDirectory = Path.Combine (this.DataTmpDirectory, "capp");    // data/tmp/capp 目录
+			Directory.CreateDirectory (this.AppRunTimeDirectory);
+			Logger.Instance.InfoSuccess (CQPErrorCode.TYPE_INIT, "已创建数据目录");
+			#endregion
+
+			#region 初始化版本
+			this.CQPType = cqpType;
+			this.ApiType = apiType;
+			Logger.Instance.InfoSuccess (CQPErrorCode.TYPE_INIT, $"{cqpType.GetDescription ()}, {apiType.GetDescription ()}");
+			#endregion
+
+			#region 初始化任务队列
 			this._taskContexts = new ConcurrentQueue<TaskContext> ();
-			LogCenter.Instance.InfoSuccess (TYPE_INIT, $"已创建任务队列");
+			Logger.Instance.InfoSuccess (CQPErrorCode.TYPE_INIT, $"已创建任务队列");
+			#endregion
 
+			#region 设置服务
 			// 设置 CQExport 服务
 			CQPExport.Instance.FuncProcess = this;
-		}
-		
-		/// <summary>
-		/// 初始化 <see cref="CQPSimulator"/> 类的新实例
-		/// </summary>
-		/// <param name="simulatorType">初始化新模拟器的类型</param>
-		public CQPSimulator (CQPSimulatorType simulatorType)
-		{
-
+			#endregion
 		}
 		#endregion
 
@@ -166,65 +182,24 @@ namespace DeveloperFramework.Simulator.CQP
 		/// </summary>
 		public void Start ()
 		{
-			if (this._isStart)
+			if (!this._isStart)
 			{
-				return;
-			}
+				Logger.Instance.Info ("已启动模拟器");
+				// 加载应用
+				this.LoadApps ();
 
-			LogCenter.Instance.InfoSuccess (TYPE_APP_LOAD, "应用加载开始");
-			string[] pathes = Directory.GetDirectories (this.DevAppDirectory);
-			int failCount = 0;
-			foreach (string path in pathes)
-			{
-				string appId = Path.GetFileName (path);     // 获取最后一段字符串
-				if (!_appIdRegex.IsMatch (appId))
+				foreach (CQPSimulatorApp app in this.CQPApps)
 				{
-					continue;   // 跳过加载
-				}
+					// 读取应用设置, 判断是否需要继续初始化某应用
+					bool startApp = true;
 
-				string dllName = Path.Combine (path, "app.dll");
-				string jsonName = Path.Combine (path, "app.json");
-
-				try
-				{
-					CQPDynamicLibrary library = new CQPDynamicLibrary (dllName, jsonName);
-					string appInfo = library.InvokeAppInfo ();
-					if (!appInfo.Equals ($"{library.AppInfo.ApiVersion},{appId}"))
+					if (startApp)
 					{
-						// 卸载 Library
-						library.Dispose ();
-						// 写入日志
-						LogCenter.Instance.Warning (TYPE_APP_LOAD, $"应用: {appId} 返回的 AppID 错误.");
-						failCount++;
-						continue;
+						InitializeApp (app);
 					}
-
-					int authCode = RandomUtility.RandomInt32 (0);
-					// 传递验证码
-					int resCode = library.InvokeInitialize (authCode);
-					if (resCode != 0)
-					{
-						// 卸载 Library
-						library.Dispose ();
-						// 写入日志
-						LogCenter.Instance.Error (TYPE_APP_LOAD, $"应用 {appId} 的 Initialize 方法未返回 0");
-						failCount++;
-						continue;
-					}
-
-					// 存入实例列表
-					this.CQPApps.Add (new CQPSimulatorApp (authCode, appId, library));
-
-					LogCenter.Instance.InfoSuccess (TYPE_APP_LOAD, $"应用: {appId} 加载成功");
 				}
-				catch (Exception ex)
-				{
-					LogCenter.Instance.Warning (TYPE_APP_LOAD, $"应用: {appId} 加载失败, 原因: {ex.Message}");
-				}
+				this._isStart = true;
 			}
-
-			LogCenter.Instance.InfoSuccess (TYPE_APP_LOAD, $"应用加载结束. 加载成功: {this.CQPApps.Count} 个, 失败: {failCount} 个");
-			this._isStart = true;
 		}
 		/// <summary>
 		/// 停止 <see cref="CQPSimulator"/>
@@ -236,32 +211,11 @@ namespace DeveloperFramework.Simulator.CQP
 				return;
 			}
 
-			LogCenter.Instance.InfoSuccess (TYPE_APP_UNLOAD, $"应用卸载开始");
-			for (int i = 0; i < this.CQPApps.Count; i++)
-			{
-				CQPSimulatorApp app = this.CQPApps[i];
+			Logger.Instance.Info ("正在准备退出模拟器...");
 
-				string appId = app.AppId;
+			UnloadApps ();
 
-				// 调用 CQExit 函数
-				foreach (AppEvent appEvent in app.Library.AppInfo.Events.Where (temp => temp.Type == AppEventType.CQExit))
-				{
-					try
-					{
-						app.Library.InvokeCQExit (appEvent);
-					}
-					catch (Exception ex)
-					{
-						LogCenter.Instance.Error (TYPE_APP_UNLOAD, $"应用: {appId} 卸载失败, 原因: {ex.Message}");
-					}
-				}
-
-				LogCenter.Instance.InfoSuccess (TYPE_APP_UNLOAD, $"应用: {appId} 卸载成功");
-
-				// 销毁对象
-				app.Library.Dispose ();
-			}
-			LogCenter.Instance.InfoSuccess (TYPE_APP_UNLOAD, $"应用卸载结束");
+			Logger.Instance.Info ("已退出模拟器");
 			this._isStart = false;
 		}
 		/// <summary>
@@ -286,7 +240,7 @@ namespace DeveloperFramework.Simulator.CQP
 
 			if (app == null)
 			{
-				LogCenter.Instance.Error ($"检测到非法的 Api 调用, 已阻止. 请确保调用的 Api 使用了 Initialize 下发的授权码");
+				Logger.Instance.Error ($"检测到非法的 Api 调用, 已阻止. 请确保调用的 Api 使用了 Initialize 下发的授权码");
 			}
 			else
 			{
@@ -319,7 +273,7 @@ namespace DeveloperFramework.Simulator.CQP
 		/// </summary>
 		public void GroupMessage (int msgId, long fromGroup, long fromQQ, string fromAnonymous, string msg, IntPtr font)
 		{
-			LogCenter.Instance.InfoSuccess (TYPE_GROUP_MESSAGE, $"群: {fromGroup} 帐号: {fromQQ} {msg}");
+			Logger.Instance.InfoSuccess (TYPE_GROUP_MESSAGE, $"群: {fromGroup} 帐号: {fromQQ} {msg}");
 			for (int i = 0; i < this.CQPApps.Count; i++)
 			{
 				CQPSimulatorApp app = this.CQPApps[i];
@@ -335,7 +289,7 @@ namespace DeveloperFramework.Simulator.CQP
 					}
 					catch (Exception ex)
 					{
-						LogCenter.Instance.Error (TYPE_APP_UNLOAD, $"应用: {appId} 事件调用失败, 原因: {ex.Message}");
+						//Logger.Instance.Error (TYPE_APP_UNLOAD, $"应用: {appId} 事件调用失败, 原因: {ex.Message}");
 					}
 				}
 			}
@@ -343,9 +297,253 @@ namespace DeveloperFramework.Simulator.CQP
 		#endregion
 
 		#region --私有方法--
-		private string[] GetLibrarys ()
+		/// <summary>
+		/// 加载应用列表
+		/// </summary>
+		private void LoadApps ()
 		{
+			Logger.Instance.Info (CQPErrorCode.TYPE_APP, "正在加载应用模块...");
 
+			// 读取所有文件夹
+			foreach (string path in Directory.GetDirectories (this.DevDirectory))
+			{
+				string appId = Path.GetFileName (path); // 获取最后一段字符串
+				if (!_appIdRegex.IsMatch (appId))   // 不匹配的 AppID
+				{
+					Logger.Instance.Warning (CQPErrorCode.TYPE_APP_LOAD_FAIL, CQPErrorCode.ERROR_APPID_IRREGULAR, "{0} 加载失败！错误：AppID({0})不符合AppID格式，请阅读开发文档进行修改", appId);
+					continue;
+				}
+
+				string dllName = Path.Combine (path, "app.dll");
+				string jsonName = Path.Combine (path, "app.json");
+
+				try
+				{
+					// 加载动态库
+					CQPDynamicLibrary library = new CQPDynamicLibrary (dllName, jsonName);
+
+					// 检查返回码
+					if (library.AppInfo.ResultCode != 1)
+					{
+						library.Dispose ();
+						Logger.Instance.Warning (CQPErrorCode.TYPE_APP_LOAD_FAIL, CQPErrorCode.ERROR_JSON_PARSE_FAIL, "{0} 加载失败! 错误: 应用信息Json串解析失败，请检查Json串是否正确", appId);
+						continue;
+					}
+					// 检查 Api 版本
+					if (library.AppInfo.ApiVersion != (int)this.ApiType)
+					{
+						library.Dispose ();
+						Logger.Instance.Warning (CQPErrorCode.TYPE_APP_LOAD_FAIL, CQPErrorCode.ERROR_API_OLD, "{0} 加载失败！错误：Api版本过旧，请获取新版应用或联系作者更新", appId);
+						continue;
+					}
+
+					this.CQPApps.Add (new CQPSimulatorApp (appId, library));
+					Logger.Instance.InfoSuccess (CQPErrorCode.TYPE_APP, $"应用 {library.AppInfo.Name}({appId}) 加载成功!");
+				}
+				catch (FileNotFoundException)
+				{
+					Logger.Instance.Warning (CQPErrorCode.TYPE_APP_LOAD_FAIL, CQPErrorCode.ERROR_JSON_READ_FAIL, "{0} 加载失败! 错误: {0}\\app.json文件读取失败", appId);
+				}
+			}
+
+			Logger.Instance.Info (CQPErrorCode.TYPE_APP, $"成功加载 {this.CQPApps.Count} 个应用");
+		}
+		/// <summary>
+		/// 卸载应用列表
+		/// </summary>
+		private void UnloadApps ()
+		{
+			Logger.Instance.Info (CQPErrorCode.TYPE_APP, "正在卸载应用...");
+			foreach (CQPSimulatorApp app in this.CQPApps)
+			{
+				UninitializeApp (app);
+				app.Library.Dispose ();	// 销毁应用
+			}
+			Logger.Instance.Info (CQPErrorCode.TYPE_APP, "应用卸载完成");
+		}
+		/// <summary>
+		/// 初始化指定的应用
+		/// </summary>
+		/// <param name="app">要初始化的应用</param>
+		private void InitializeApp (CQPSimulatorApp app)
+		{
+			// 获取动态库实例
+			CQPDynamicLibrary library = app.Library;
+
+			if (!library.IsInitialized)
+			{
+				string appId = app.AppId;
+				// 检查返回码
+				if (library.AppInfo.ResultCode != 1)
+				{
+					library.Dispose ();
+
+					Logger.Instance.Warning (CQPErrorCode.TYPE_APP_LOAD_FAIL, CQPErrorCode.ERROR_JSON_PARSE_FAIL, "{0} 加载失败! 错误: 应用信息Json串解析失败，请检查Json串是否正确", appId);
+				}
+
+				// 检查 Api 版本
+				if (library.AppInfo.ApiVersion != (int)this.ApiType)
+				{
+					library.Dispose ();
+
+					Logger.Instance.Warning (CQPErrorCode.TYPE_APP_LOAD_FAIL, CQPErrorCode.ERROR_API_OLD, "{0} 加载失败！错误：Api版本过旧，请获取新版应用或联系作者更新", appId);
+				}
+
+				// 检查应用返回信息
+				try
+				{
+					string appInfo = library.InvokeAppInfo () ?? string.Empty;
+					// 解析返回信息
+					Match match = _appInfoRegex.Match (appInfo);
+					if (!match.Success)
+					{
+						library.Dispose ();
+
+						Logger.Instance.Warning (CQPErrorCode.TYPE_APP_LOAD_FAIL, CQPErrorCode.ERROR_APPINFO_PARSE_FAIL, "{0} 加载失败！错误：AppInfo返回信息解析错误", appId);
+					}
+
+					// 解析 Api版本
+					if (int.Parse (match.Groups[1].Value) != (int)this.ApiType)
+					{
+						library.Dispose ();
+
+						Logger.Instance.Warning (CQPErrorCode.TYPE_APP_LOAD_FAIL, CQPErrorCode.ERROR_APPINFO_NOT_LOAD, "{0} 加载失败！错误：AppInfo返回的Api版本不支持直接加载，仅支持Api版本为9(及以上)的应用直接加载", appId);
+					}
+
+					// 解析 AppID
+					if (!appId.Equals (match.Groups[2].Value))
+					{
+						library.Dispose ();
+
+						Logger.Instance.Warning (CQPErrorCode.TYPE_APP_LOAD_FAIL, CQPErrorCode.ERROR_APPINFO_DIFFERENT, "{0} 加载失败！错误：{0}目录名的AppID与AppInfo返回的AppID不同", appId);
+					}
+				}
+				catch (Exception)
+				{
+					library.Dispose ();
+
+					Logger.Instance.Warning (CQPErrorCode.TYPE_APP_LOAD_FAIL, CQPErrorCode.ERROR_APPINFO_NOT_FOUNT, "{0} 加载失败！错误：AppInfo函数不存在或错误", appId);
+				}
+
+				// 传递 AuthCode
+				try
+				{
+					if (library.InvokeInitialize (app.AuthCode) != 0)
+					{
+						Logger.Instance.Warning (CQPErrorCode.TYPE_APP_LOAD_FAIL, CQPErrorCode.ERROR_AUTHCODE_FAIL, "{0} 加载失败！错误：Api授权接收函数(Initialize)返回值非0", appId);
+					}
+				}
+				catch (Exception ex)
+				{
+					Logger.Instance.Error (library.AppInfo.Name, $"{ex.Message}");
+				}
+			}
+
+			// 初始化应用
+			if (!library.IsStartup)
+			{
+				IEnumerable<AppEvent> events = GetEvents (library.AppInfo.Events, AppEventType.CQStartup);
+				foreach (AppEvent appEvent in events)
+				{
+					try
+					{
+						app.Library.InvokeCQStartup (appEvent); // 忽略返回值
+					}
+					catch (Exception ex)
+					{
+						Logger.Instance.Error (library.AppInfo.Name, $"{ex.Message}");
+					}
+				}
+			}
+		}
+		/// <summary>
+		/// 反初始化指定的应用
+		/// </summary>
+		/// <param name="app">要反初始化的应用</param>
+		private void UninitializeApp (CQPSimulatorApp app)
+		{
+			// 获取动态库实例
+			CQPDynamicLibrary library = app.Library;
+
+			if (library.IsInitialized && library.IsExit == false)
+			{
+				if (library.IsEnable)
+				{
+					DisableApp (app);
+				}
+
+				IEnumerable<AppEvent> events = GetEvents (library.AppInfo.Events, AppEventType.CQExit);
+				foreach (AppEvent appEvent in events)
+				{
+					try
+					{
+						library.InvokeCQExit (appEvent);    // 忽略返回值
+					}
+					catch (Exception ex)
+					{
+						Logger.Instance.Error (library.AppInfo.Name, $"{ex.Message}");
+					}
+				}
+			}
+		}
+		/// <summary>
+		/// 启用指定的应用
+		/// </summary>
+		/// <param name="app">要启用的应用</param>
+		private void EnableApp (CQPSimulatorApp app)
+		{
+			CQPDynamicLibrary library = app.Library;
+			if (!library.IsEnable)
+			{
+				if (!library.IsInitialized)
+				{
+					InitializeApp (app);
+				}
+
+				IEnumerable<AppEvent> events = GetEvents (library.AppInfo.Events, AppEventType.CQAppEnable);
+				foreach (AppEvent appEvent in events)
+				{
+					try
+					{
+						library.InvokeCQAppEnable (appEvent);   // 忽略返回值
+					}
+					catch (Exception ex)
+					{
+						Logger.Instance.Error (library.AppInfo.Name, $"{ex.Message}");
+					}
+				}
+			}
+		}
+		/// <summary>
+		/// 禁用指定的应用
+		/// </summary>
+		/// <param name="app">要禁用的应用</param>
+		private void DisableApp (CQPSimulatorApp app)
+		{
+			CQPDynamicLibrary library = app.Library;
+			if (library.IsEnable)
+			{
+				IEnumerable<AppEvent> events = GetEvents (library.AppInfo.Events, AppEventType.CQAppDisable);
+				foreach (AppEvent appEvent in events)
+				{
+					try
+					{
+						library.InvokeCQAppDisable (appEvent);  // 忽略返回值
+					}
+					catch (Exception ex)
+					{
+						Logger.Instance.Error (library.AppInfo.Name, $"{ex.Message}");
+					}
+				}
+			}
+		}
+		private static IEnumerable<AppEvent> GetEvents (IEnumerable<AppEvent> events, AppEventType type)
+		{
+			return from temp in events
+				   where temp.Type == type
+				   orderby temp.Id
+				   orderby temp.Priority
+				   select temp;
 		}
 		#endregion
 	}

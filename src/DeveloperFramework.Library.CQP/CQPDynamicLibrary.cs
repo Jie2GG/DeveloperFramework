@@ -2,6 +2,7 @@
 using DeveloperFramework.LibraryModel.CQP;
 using DeveloperFramework.Utility;
 using DeveloperFramework.Win32.LibraryCLR;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -78,6 +79,7 @@ namespace DeveloperFramework.Library.CQP
 		/// </summary>
 		/// <param name="libFileName">要加载的动态链接库 (DLL) 的路径</param>
 		/// <param name="jsonFileName">要加载的 Json 的路径</param>
+		/// <exception cref="FileNotFoundException">未找到指定的 Json 文件</exception>
 		public CQPDynamicLibrary (string libFileName, string jsonFileName)
 			: base (libFileName)
 		{
@@ -88,8 +90,7 @@ namespace DeveloperFramework.Library.CQP
 			}
 			using (StreamReader reader = new StreamReader (this._jsonPath, Encoding.UTF8))
 			{
-				this._appInfo = JsonSerializer.Deserialize<AppInfo> (reader.ReadToEnd (), 
-					new JsonSerializerOptions() {  ReadCommentHandling = JsonCommentHandling.Skip});
+				this._appInfo = JsonSerializer.Deserialize<AppInfo> (reader.ReadToEnd (), new JsonSerializerOptions () { ReadCommentHandling = JsonCommentHandling.Skip });
 			}
 		}
 		#endregion
@@ -112,9 +113,9 @@ namespace DeveloperFramework.Library.CQP
 		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
 		/// <exception cref="MissingMethodException">尝试访问未公开的函数</exception>
 		/// <returns>操作成功返回 0</returns>
-		public int InvokeInitialize(int authCode)
+		public int InvokeInitialize (int authCode)
 		{
-			int recode = this.GetFunction<CQ_Initialize>("Initialize")(authCode);
+			int recode = this.GetFunction<CQ_Initialize> ("Initialize") (authCode);
 			if (recode == 0) this.IsInitialized = true;
 			return recode;
 		}
@@ -127,9 +128,9 @@ namespace DeveloperFramework.Library.CQP
 		/// <returns>操作成功返回 0</returns>
 		public int InvokeCQStartup (AppEvent appEvent)
 		{
-            if (!this.IsInitialized)
-            {
-				throw new MethodAccessException($"未完成初始化，无法实行事件",new EntryPointNotFoundException());
+			if (!this.IsInitialized)
+			{
+				throw new MethodAccessException ($"未完成初始化，无法实行事件", new EntryPointNotFoundException ());
 			}
 			if (appEvent is null)
 			{
@@ -140,7 +141,7 @@ namespace DeveloperFramework.Library.CQP
 			{
 				throw new ArgumentException ($"函数信息不是 {AppEventType.CQStartup} 类型", nameof (appEvent));
 			}
-			int recode = this.GetFunction<CQ_Startup>(appEvent.Function)();
+			int recode = this.GetFunction<CQ_Startup> (appEvent.Function) ();
 			if (recode == 0) this.IsStartup = true;
 			return recode;
 		}
@@ -155,7 +156,7 @@ namespace DeveloperFramework.Library.CQP
 		{
 			if (!this.IsStartup)
 			{
-				throw new MethodAccessException(nameof(appEvent));
+				throw new MethodAccessException (nameof (appEvent));
 			}
 			if (appEvent is null)
 			{
@@ -166,8 +167,8 @@ namespace DeveloperFramework.Library.CQP
 			{
 				throw new ArgumentException ($"函数信息不是 {AppEventType.CQExit} 类型", nameof (appEvent));
 			}
-			int recode = this.GetFunction<CQ_Exit>(appEvent.Function)();
-			if(recode==0) this.IsExit = true;
+			int recode = this.GetFunction<CQ_Exit> (appEvent.Function) ();
+			if (recode == 0) this.IsExit = true;
 			return recode;
 		}
 		/// <summary>
@@ -188,7 +189,7 @@ namespace DeveloperFramework.Library.CQP
 			{
 				throw new ArgumentException ($"函数信息不是 {AppEventType.CQAppEnable} 类型", nameof (appEvent));
 			}
-			int recode = this.GetFunction<CQ_AppEnable>(appEvent.Function)();
+			int recode = this.GetFunction<CQ_AppEnable> (appEvent.Function) ();
 			if (recode == 0) this.IsEnable = true;
 			return recode;
 		}
@@ -210,8 +211,8 @@ namespace DeveloperFramework.Library.CQP
 			{
 				throw new ArgumentException ($"函数信息不是 {AppEventType.CQAppDisable} 类型", nameof (appEvent));
 			}
-			int recode = this.GetFunction<CQ_AppDisable>(appEvent.Function)();
-			if(recode==0) this.IsEnable = false;
+			int recode = this.GetFunction<CQ_AppDisable> (appEvent.Function) ();
+			if (recode == 0) this.IsEnable = false;
 			return recode;
 		}
 		/// <summary>

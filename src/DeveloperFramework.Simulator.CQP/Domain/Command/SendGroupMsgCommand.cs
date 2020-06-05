@@ -50,12 +50,12 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 
 			if (group == null)
 			{
-				LogCenter.Instance.Info (appInfo.Name, TYPE_SEND_MSG, $"无法向 [群: {this.FromGroup}] 发送消息, 未查询到与该群的关系");
+				Logger.Instance.Info (appInfo.Name, TYPE_SEND_MSG, $"无法向 [群: {this.FromGroup}] 发送消息, 未查询到与该群的关系");
 				return RESULT_NO_RELATIONSHIP;
 			}
 			else
 			{
-				LogCenter.Instance.InfoSending (appInfo.Name, TYPE_SEND_MSG, $"向 [群: {this.FromGroup}] 发送消息: {this.Message}");
+				Logger.Instance.InfoSending (appInfo.Name, TYPE_SEND_MSG, $"向 [群: {this.FromGroup}] 发送消息: {this.Message}");
 
 				// 构建可撤回消息
 				Message msg = new Message (this.Message, group, qq);
@@ -67,7 +67,7 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 		public override object ExecuteHaveNoAuth ()
 		{
 			AppInfo appInfo = this.App.Library.AppInfo;
-			LogCenter.Instance.Info (appInfo.Name, TYPE_SEND_MSG, $"检测到调用 Api [{nameof (CQPExport.CQ_sendGroupMsg)}] 未经授权, 请检查 app.json 是否赋予权限", null, null);
+			Logger.Instance.Info (appInfo.Name, TYPE_SEND_MSG, $"检测到调用 Api [{nameof (CQPExport.CQ_sendGroupMsg)}] 未经授权, 请检查 app.json 是否赋予权限", null, null);
 			return RESULT_API_UNAUTHORIZED;
 		}
 		#endregion
