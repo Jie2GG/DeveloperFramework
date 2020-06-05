@@ -38,7 +38,7 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 		{
 			AppInfo appInfo = this.App.Library.AppInfo;
 
-			LogCenter.Instance.InfoSuccess (appInfo.Name, TYPE_GET_COOKIES, $"请求 Cookies (由于不考虑登录状况, 仅返回空字符串)");
+			Logger.Instance.InfoSuccess (appInfo.Name, TYPE_GET_COOKIES, $"请求 Cookies (由于不考虑登录状况, 仅返回空字符串)");
 
 			return string.Empty;
 		}
@@ -46,7 +46,7 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 		public override object ExecuteHaveNoAuth ()
 		{
 			AppInfo appInfo = this.App.Library.AppInfo;
-			LogCenter.Instance.Warning (appInfo.Name, TYPE_CHECK_AUTHORIZATION, $"检测到调用 Api [{nameof (CQPExport.CQ_getCookiesV2)}] 未经授权, 请检查 app.json 是否赋予权限", null, null);
+			Logger.Instance.Warning (appInfo.Name, TYPE_CHECK_AUTHORIZATION, $"检测到调用 Api [{nameof (CQPExport.CQ_getCookiesV2)}] 未经授权, 请检查 app.json 是否赋予权限", null, null);
 			return RESULT_API_UNAUTHORIZED;
 		}
 		#endregion

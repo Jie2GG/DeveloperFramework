@@ -51,12 +51,12 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 
 			if (discuss == null)
 			{
-				LogCenter.Instance.Error (appInfo.Name, TYPE_SEND_MSG, $"无法向 [讨论组: {this.FromDiscuss}] 发送消息, 未查询到与该讨论组的关系");
+				Logger.Instance.Error (appInfo.Name, TYPE_SEND_MSG, $"无法向 [讨论组: {this.FromDiscuss}] 发送消息, 未查询到与该讨论组的关系");
 				return RESULT_NO_RELATIONSHIP;
 			}
 			else
 			{
-				LogCenter.Instance.InfoSending (appInfo.Name, TYPE_SEND_MSG, $"向 [讨论组: {this.FromDiscuss}] 发送消息: {this.Message}");
+				Logger.Instance.InfoSending (appInfo.Name, TYPE_SEND_MSG, $"向 [讨论组: {this.FromDiscuss}] 发送消息: {this.Message}");
 
 				// 构建可撤回的消息
 				Message msg = new Message (this.Message, discuss, qq);
@@ -67,7 +67,7 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 		public override object ExecuteHaveNoAuth ()
 		{
 			AppInfo appInfo = this.App.Library.AppInfo;
-			LogCenter.Instance.Info (appInfo.Name, TYPE_CHECK_AUTHORIZATION, $"检测到调用 Api [{nameof (CQPExport.CQ_sendDiscussMsg)}] 未经授权, 请检查 app.json 是否赋予权限", null, null);
+			Logger.Instance.Info (appInfo.Name, TYPE_CHECK_AUTHORIZATION, $"检测到调用 Api [{nameof (CQPExport.CQ_sendDiscussMsg)}] 未经授权, 请检查 app.json 是否赋予权限", null, null);
 			return RESULT_API_UNAUTHORIZED;
 		}
 		#endregion
