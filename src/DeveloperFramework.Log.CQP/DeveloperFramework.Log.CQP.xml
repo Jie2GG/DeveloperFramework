@@ -1,0 +1,477 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DeveloperFramework.Log.CQP</name>
+    </assembly>
+    <members>
+        <member name="T:DeveloperFramework.Log.CQP.ILogObserver">
+            <summary>
+            描述日志观察者的接口
+            </summary>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.ILogObserver.Initialize(System.Collections.Generic.ICollection{DeveloperFramework.Log.CQP.LogItem})">
+            <summary>
+            当在派生类中重写时, 处理加载已缓存的日志信息
+            </summary>
+            <param name="logs">日志信息集合</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.ILogObserver.ReceiveLog(DeveloperFramework.Log.CQP.LogItem)">
+            <summary>
+            当在派生类中重写时, 处理收到的新日志
+            </summary>
+            <param name="log">日志信息</param>
+        </member>
+        <member name="T:DeveloperFramework.Log.CQP.Logger">
+            <summary>
+            表示记录程序运行时结果的类
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.Logger.FROM_DEFAULT">
+            <summary>
+            获取一个值, 指示程序运行时记录的默认来源
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.Logger.TYPE_DEFAULT_DEBUG">
+            <summary>
+            获取一个值, 指示程序运行时 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Debug"/> 类型的默认描述
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.Logger.TYPE_DEFAULT_INFO">
+            <summary>
+            获取一个值, 指示程序运行时 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info"/> 类型的默认描述
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.Logger.TYPE_DEFAULT_INFO_SUCCESS">
+            <summary>
+            获取一个值, 指示程序运行时 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Success"/> 类型的默认描述
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.Logger.TYPE_DEFAULT_INFO_RECEIVE">
+            <summary>
+            获取一个值, 指示程序运行时 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Receive"/> 类型的默认描述
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.Logger.TYPE_DEFAULT_INFO_SENDING">
+            <summary>
+            获取一个值, 指示程序运行时 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Sending"/> 类型的默认描述
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.Logger.TYPE_DEFAULT_WARNING">
+            <summary>
+            获取一个值, 指示程序运行时 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Warning"/> 类型的默认描述
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.Logger.TYPE_DEFAULT_ERROR">
+            <summary>
+            获取一个值, 指示程序运行时 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Error"/> 类型的默认描述
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.Logger.TYPE_DEFAULT_FATAL">
+            <summary>
+            获取一个值, 指示程序运行时 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Fatal"/> 类型的默认描述
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.Log.CQP.Logger.Instance">
+            <summary>
+            获取 <see cref="T:DeveloperFramework.Log.CQP.Logger"/> 类的唯一实例
+            </summary>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.AddObserver(DeveloperFramework.Log.CQP.ILogObserver)">
+            <summary>
+            添加观察者
+            </summary>
+            <param name="observer">观察者对象</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.RemoveObserver(DeveloperFramework.Log.CQP.ILogObserver)">
+            <summary>
+            添加观察者
+            </summary>
+            <param name="observer">观察者对象</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Debug(System.String,System.Object)">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Debug"/> 类型的日志
+            </summary>
+            <param name="from">日志的来源模块名称</param>
+            <param name="content">日志详细信息</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Debug(System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Debug"/> 类型的日志
+            </summary>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Debug(System.String,System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Debug"/> 类型的日志
+            </summary>
+            <param name="type">日志的类型</param>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Debug(System.String,System.String,System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Debug"/> 类型的日志
+            </summary>
+            <param name="from">日志的来源模块名称</param>
+            <param name="type">日志的类型</param>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Info(System.String,System.Object)">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info"/> 类型的日志
+            </summary>
+            <param name="from">日志的来源模块名称</param>
+            <param name="content">日志详细信息</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Info(System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info"/> 类型的日志
+            </summary>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Info(System.String,System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info"/> 类型的日志
+            </summary>
+            <param name="type">日志的类型</param>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Info(System.String,System.String,System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info"/> 类型的日志
+            </summary>
+            <param name="from">日志的来源模块名称</param>
+            <param name="type">日志的类型</param>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.InfoSuccess(System.String,System.Object)">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Success"/> 类型的日志
+            </summary>
+            <param name="from">日志的来源模块名称</param>
+            <param name="content">日志详细信息</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.InfoSuccess(System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Success"/> 类型的日志
+            </summary>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.InfoSuccess(System.String,System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Success"/> 类型的日志
+            </summary>
+            <param name="type">日志的类型</param>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.InfoSuccess(System.String,System.String,System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Success"/> 类型的日志
+            </summary>
+            <param name="from">日志的来源模块名称</param>
+            <param name="type">日志的类型</param>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.InfoReceive(System.String,System.Object)">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Receive"/> 类型的日志
+            </summary>
+            <param name="from">日志的来源模块名称</param>
+            <param name="content">日志详细信息</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.InfoReceive(System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Receive"/> 类型的日志
+            </summary>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.InfoReceive(System.String,System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Receive"/> 类型的日志
+            </summary>
+            <param name="type">日志的类型</param>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.InfoReceive(System.String,System.String,System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Receive"/> 类型的日志
+            </summary>
+            <param name="from">日志的来源模块名称</param>
+            <param name="type">日志的类型</param>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.InfoSending(System.String,System.Object)">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Sending"/> 类型的日志
+            </summary>
+            <param name="from">日志的来源模块名称</param>
+            <param name="content">日志详细信息</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.InfoSending(System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Sending"/> 类型的日志
+            </summary>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.InfoSending(System.String,System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Sending"/> 类型的日志
+            </summary>
+            <param name="type">日志的类型</param>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.InfoSending(System.String,System.String,System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Sending"/> 类型的日志
+            </summary>
+            <param name="from">日志的来源模块名称</param>
+            <param name="type">日志的类型</param>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Warning(System.String,System.Object)">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Warning"/> 类型的日志
+            </summary>
+            <param name="from">日志的来源模块名称</param>
+            <param name="content">日志详细信息</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Warning(System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Warning"/> 类型的日志
+            </summary>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Warning(System.String,System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Warning"/> 类型的日志
+            </summary>
+            <param name="type">日志的类型</param>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Warning(System.String,System.String,System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Warning"/> 类型的日志
+            </summary>
+            <param name="from">日志的来源模块名称</param>
+            <param name="type">日志的类型</param>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Error(System.String,System.Object)">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Error"/> 类型的日志
+            </summary>
+            <param name="from">日志的来源模块名称</param>
+            <param name="content">日志详细信息</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Error(System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Error"/> 类型的日志
+            </summary>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Error(System.String,System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Error"/> 类型的日志
+            </summary>
+            <param name="type">日志的类型</param>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Error(System.String,System.String,System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Error"/> 类型的日志
+            </summary>
+            <param name="from">日志的来源模块名称</param>
+            <param name="type">日志的类型</param>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Fatal(System.String,System.Object)">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Error"/> 类型的日志
+            </summary>
+            <param name="from">日志的来源模块名称</param>
+            <param name="content">日志详细信息</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Fatal(System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Fatal"/> 类型的日志
+            </summary>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Fatal(System.String,System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Fatal"/> 类型的日志
+            </summary>
+            <param name="type">日志的类型</param>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Fatal(System.String,System.String,System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Fatal"/> 类型的日志
+            </summary>
+            <param name="from">日志的来源模块名称</param>
+            <param name="type">日志的类型</param>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Write(DeveloperFramework.Log.CQP.LogLevel,System.String,System.String,System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条日志, 并具有指定的级别、来源、类型、内容、状态和耗费时长
+            </summary>
+            <param name="level">日志的等级</param>
+            <param name="from">日志的来源模块名称</param>
+            <param name="type">日志的类型</param>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="consuming">处理耗费时长</param>
+        </member>
+        <member name="T:DeveloperFramework.Log.CQP.LogItem">
+            <summary>
+            描述日志信息
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.Log.CQP.LogItem.Time">
+            <summary>
+            获取当前实例产生的时间
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.Log.CQP.LogItem.From">
+            <summary>
+            获取当前实例的来源
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.Log.CQP.LogItem.Type">
+            <summary>
+            获取当前实例的类型
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.Log.CQP.LogItem.Content">
+            <summary>
+            获取当前实例的内容
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.Log.CQP.LogItem.State">
+            <summary>
+            获取当前实例的执行状态
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.Log.CQP.LogItem.TimeConsuming">
+            <summary>
+            获取当前实例描述耗费时长
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.Log.CQP.LogItem.Level">
+            <summary>
+            获取当前实例的等级
+            </summary>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.LogItem.#ctor(DeveloperFramework.Log.CQP.LogLevel,System.String,System.String,System.Object,System.Nullable{System.Boolean},System.Nullable{System.TimeSpan})">
+            <summary>
+            写入一条 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Debug"/> 类型的日志
+            </summary>
+            <param name="level">日志等级</param>
+            <param name="from">日志的来源模块名称</param>
+            <param name="type">日志的类型</param>
+            <param name="content">日志详细信息</param>
+            <param name="state">处理结果</param>
+            <param name="timeConsuming">处理耗费时长</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.LogItem.ToString">
+            <summary>
+            返回当前实例的字符串
+            </summary>
+            <returns>当前实例的字符串</returns>
+        </member>
+        <member name="T:DeveloperFramework.Log.CQP.LogLevel">
+            <summary>
+            描述日志的等级
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.LogLevel.Debug">
+            <summary>
+            调试 - 灰色
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.LogLevel.Info">
+            <summary>
+            信息 - 黑色
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.LogLevel.Info_Success">
+            <summary>
+            信息_成功 - 紫色
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.LogLevel.Info_Receive">
+            <summary>
+            信息_接收 - 蓝色
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.LogLevel.Info_Sending">
+            <summary>
+            信息_发送 - 绿色
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.LogLevel.Warning">
+            <summary>
+            警告 - 橙色
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.LogLevel.Error">
+            <summary>
+            错误 - 红色
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.LogLevel.Fatal">
+            <summary>
+            致命错误 - 深红色 (黑底)
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -14,4 +14,7 @@
     <ProjectReference Include="..\DeveloperFramework.SimulatorModel.CQP\DeveloperFramework.SimulatorModel.CQP.csproj" />
     <ProjectReference Include="..\DeveloperFramework.Utility\DeveloperFramework.Utility.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
 </Project>

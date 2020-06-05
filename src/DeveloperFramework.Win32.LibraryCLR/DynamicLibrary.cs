@@ -1,4 +1,5 @@
 ﻿using DeveloperFramework.Utility;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -256,7 +257,7 @@ namespace DeveloperFramework.Win32.LibraryCLR
 			IntPtr funPtr = Kernel32.GetProcAddress (this._hModule, funcName);
 			if (funPtr.ToInt64 () == 0)
 			{
-				throw new MissingMethodException ($"尝试访问不存在的公开函数 {funcName}");
+				throw new MissingMethodException (nameof (DynamicLibrary), funcName);
 			}
 
 			return funPtr;

@@ -42,6 +42,6 @@ namespace DeveloperFramework.Log.CQP
 		/// <summary>
 		/// 致命错误 - 深红色 (黑底)
 		/// </summary>
-		FatalError = 40
+		Fatal = 40
 	}
 }
