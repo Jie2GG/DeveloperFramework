@@ -40,28 +40,28 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 			switch ((LogLevel)this.Level)
             {
 				case LogLevel.Info:
-					LogCenter.Instance.Info(appInfo.Name, this.Type, this.Contents);
+					Logger.Instance.Info(appInfo.Name, this.Type, this.Contents);
 					break;
 				case LogLevel.Info_Receive:
-					LogCenter.Instance.InfoReceive(appInfo.Name, this.Type, this.Contents);
+					Logger.Instance.InfoReceive(appInfo.Name, this.Type, this.Contents);
 					break;
 				case LogLevel.Info_Sending:
-					LogCenter.Instance.InfoSending(appInfo.Name, this.Type, this.Contents);
+					Logger.Instance.InfoSending(appInfo.Name, this.Type, this.Contents);
 					break;
 				case LogLevel.Info_Success:
-					LogCenter.Instance.InfoSuccess(appInfo.Name, this.Type, this.Contents);
+					Logger.Instance.InfoSuccess(appInfo.Name, this.Type, this.Contents);
 					break;
 				case LogLevel.Debug:
-					LogCenter.Instance.Debug(appInfo.Name, this.Type, this.Contents);
+					Logger.Instance.Debug(appInfo.Name, this.Type, this.Contents);
 					break;
 				case LogLevel.Warning:
-					LogCenter.Instance.Warning(appInfo.Name, this.Type, this.Contents);
+					Logger.Instance.Warning(appInfo.Name, this.Type, this.Contents);
 					break;
 				case LogLevel.Error:
-					LogCenter.Instance.Error(appInfo.Name, this.Type, this.Contents);
+					Logger.Instance.Error(appInfo.Name, this.Type, this.Contents);
 					break;
-				case LogLevel.FatalError:
-					LogCenter.Instance.FatalError(appInfo.Name, this.Type, this.Contents);
+				case LogLevel.Fatal:
+					Logger.Instance.Fatal(appInfo.Name, this.Type, this.Contents);
 					break;
 			}
 			return RESULT_SUCCESS;
@@ -70,7 +70,7 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 		public override object ExecuteHaveNoAuth ()
 		{
 			AppInfo appInfo = this.App.Library.AppInfo;
-			LogCenter.Instance.Warning(appInfo.Name, TYPE_CHECK_AUTHORIZATION, $"检测到调用 Api [{nameof(CQPExport.CQ_addLog)}] 未经授权, 请检查 app.json 是否赋予权限", null, null);
+			Logger.Instance.Warning(appInfo.Name, TYPE_CHECK_AUTHORIZATION, $"检测到调用 Api [{nameof(CQPExport.CQ_addLog)}] 未经授权, 请检查 app.json 是否赋予权限", null, null);
 			return RESULT_API_UNAUTHORIZED;
 		}
         #endregion
