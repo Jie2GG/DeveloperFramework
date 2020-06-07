@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeveloperFramework.SimulatorModel.CQP
+namespace DeveloperFramework.LibraryModel.CQP
 {
 	/// <summary>
 	/// 描述 处理类型 枚举
