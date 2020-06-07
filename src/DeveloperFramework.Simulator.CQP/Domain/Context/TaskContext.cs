@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
 
-namespace DeveloperFramework.Simulator.CQP.Domain
+namespace DeveloperFramework.Simulator.CQP.Domain.Context
 {
 	/// <summary>
 	/// 描述任务上下文的类
@@ -12,27 +13,30 @@ namespace DeveloperFramework.Simulator.CQP.Domain
 	public class TaskContext
 	{
 		#region --字段--
-		private readonly Dictionary<string, dynamic> _dict; 
+		private readonly Dictionary<string, dynamic> _dict;
 		#endregion
 
 		#region --属性--
 		/// <summary>
+		/// 获取当前任务的时间测量工具
+		/// </summary>
+		public Stopwatch Stopwatch { get; }
+		/// <summary>
 		/// 获取当前任务的类型
 		/// </summary>
-		public int Type { get; } 
-		/// <summary>
-		/// 获取当前任务是否以线程方式运行
-		/// </summary>
-		public bool IsThread { get; }
+		public int Type { get; }
 		#endregion
 
 		#region --构造函数--
 		/// <summary>
 		/// 初始化 <see cref="TaskContext"/> 类的新实例
 		/// </summary>
-		public TaskContext ()
+		/// <param name="type">任务类型Id</param>
+		public TaskContext (int type)
 		{
 			this._dict = new Dictionary<string, dynamic> ();
+			this.Stopwatch = new Stopwatch ();
+			this.Type = type;
 		}
 		#endregion
 
@@ -54,7 +58,7 @@ namespace DeveloperFramework.Simulator.CQP.Domain
 		public dynamic GetValue (string key)
 		{
 			return this._dict[key];
-		} 
+		}
 		#endregion
 	}
 }
