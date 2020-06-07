@@ -9,11 +9,13 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+
 using DeveloperFramework.CQP;
 using DeveloperFramework.LibraryModel.CQP;
 using DeveloperFramework.Log.CQP;
 using DeveloperFramework.Simulator.CQP;
 using DeveloperFramework.Simulator.CQP.Domain;
+using DeveloperFramework.Simulator.CQP.Domain.Context;
 using DeveloperFramework.SimulatorModel.CQP;
 using DeveloperFramework.Utility;
 
@@ -27,9 +29,12 @@ namespace TestApplication
 			EnironmentSetup ();
 			CQPSimulator simulator = new CQPSimulator (CQPType.Pro, ApiType.V9);
 			simulator.Start ();
-			//simulator.GroupMessage(0, simulator.DataPool.GroupCollection.FirstOrDefault(), 888888, string.Empty, "Test", IntPtr.Zero);
-			simulator.Stop ();
+			//TaskContext context = new GroupMessageTaskContext (GroupMessageType.Group, simulator.DataPool.GroupCollection[0], simulator.DataPool.GroupCollection[0].MemberCollection[0], null, new Message ("aaa", simulator.DataPool.GroupCollection[0].MemberCollection[0]), IntPtr.Zero);
+			//simulator.AddTask (context);
+			simulator.GroupMessage (GroupMessageType.Group, 1, 10000, 947295340, "", "", IntPtr.Zero);
 
+			Console.ReadLine ();
+			simulator.Stop ();
 			Console.ReadLine ();
 		}
 

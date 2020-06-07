@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DeveloperFramework.Simulator.CQP.Domain.Context;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +13,20 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Expositor
 	/// </summary>
 	public abstract class TaskExpression
 	{
+		/// <summary>
+		/// 获取当前实例关联的模拟器
+		/// </summary>
+		public CQPSimulator Simulator { get; }
+
+		/// <summary>
+		/// 初始化 <see cref="TaskExpression"/> 类的新实例
+		/// </summary>
+		/// <param name="simulator">任务表达式关联的模拟器</param>
+		public TaskExpression (CQPSimulator simulator)
+		{
+			this.Simulator = simulator;
+		}
+
 		/// <summary>
 		/// 在派生类中重写时, 处理任务上下文的具体解释
 		/// </summary>

@@ -14,6 +14,9 @@ namespace DeveloperFramework.Simulator.CQP
 		public const string TYPE_INIT = "初始化";
 		public const string TYPE_APP = "应用";
 		public const string TYPE_APP_LOAD_FAIL = "应用加载失败";
+		public const string TYPE_MESSAGE_GROUP = "[↓]群组消息";
+		public const string TYPE_MESSAGE_PRIVATE_STATUS = "[↓]私聊消息(在线状态)";
+		public const string TYPE_MESSAGE_PRIVATE_FRIENDS = "[↓]私聊消息(好友)";
 
 		public const int ERROR_APPINFO_NOT_FOUNT = -105;
 		public const int ERROR_APPINFO_PARSE_FAIL = -107;

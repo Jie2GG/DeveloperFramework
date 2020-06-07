@@ -4,6 +4,9 @@ using DeveloperFramework.Library.CQP;
 using DeveloperFramework.LibraryModel.CQP;
 using DeveloperFramework.Log.CQP;
 using DeveloperFramework.Simulator.CQP.Domain;
+using DeveloperFramework.Simulator.CQP.Domain.Context;
+using DeveloperFramework.Simulator.CQP.Domain.Expositor;
+using DeveloperFramework.Simulator.CQP.Domain.Expression;
 using DeveloperFramework.SimulatorModel.CQP;
 using DeveloperFramework.Utility;
 
@@ -18,6 +21,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 
@@ -28,16 +32,12 @@ namespace DeveloperFramework.Simulator.CQP
 	/// </summary>
 	public class CQPSimulator : IFuncProcess
 	{
-		#region --常量--
-
-		public const string TYPE_GROUP_MESSAGE = "[↓]群组消息";
-		public const string TYPE_PRIVATE_MESSAGE_STATUS = "[↓]私聊消息(在线状态)";
-		public const string TYPE_PRIVATE_MESSAGE_FRIENDS = "[↓]私聊消息(好友)";
-		#endregion
-
 		#region --字段--
-		private static readonly Regex _appIdRegex = new Regex (@"(?:[a-z]*)\.(?:[a-z\-_]*)\.(?:[a-zA-Z0-9\.\-_]*)", RegexOptions.Compiled);
-		private static readonly Regex _appInfoRegex = new Regex (@"([0-9]*),((?:[a-zA-Z0-9\.\-_]*))", RegexOptions.Compiled);
+		private static readonly Regex AppIdRegex = new Regex (@"(?:[a-z]*)\.(?:[a-z\-_]*)\.(?:[a-zA-Z0-9\.\-_]*)", RegexOptions.Compiled);
+		private static readonly Regex AppInfoRegex = new Regex (@"([0-9]*),((?:[a-zA-Z0-9\.\-_]*))", RegexOptions.Compiled);
+		private static readonly List<TaskExpression> TaskExpressions = new List<TaskExpression> ();
+		private Task _taskProcess;
+		private CancellationTokenSource _taskSource;
 		private ConcurrentQueue<TaskContext> _taskContexts;
 		private bool _isStart = false;
 		#endregion
@@ -165,7 +165,11 @@ namespace DeveloperFramework.Simulator.CQP
 			#endregion
 
 			#region 初始化任务队列
+			this._taskSource = new CancellationTokenSource ();
+			this._taskProcess = new Task (this.ProcessTask, this._taskSource.Token);
 			this._taskContexts = new ConcurrentQueue<TaskContext> ();
+			// 任务表达式
+			TaskExpressions.Add (new SendGroupMessageExpression (this));
 			Logger.Instance.InfoSuccess (CQPErrorCode.TYPE_INIT, $"已创建任务队列");
 			#endregion
 
@@ -184,21 +188,25 @@ namespace DeveloperFramework.Simulator.CQP
 		{
 			if (!this._isStart)
 			{
+				this._isStart = true;
+
+				Logger.Instance.Info ("正在启动任务...");
+				this._taskProcess.Start ();
+
 				Logger.Instance.Info ("已启动模拟器");
 				// 加载应用
 				this.LoadApps ();
 
 				foreach (CQPSimulatorApp app in this.CQPApps)
 				{
-					// 读取应用设置, 判断是否需要继续初始化某应用
+					// 读取应用设置, 判断是否需要继续启用应用
 					bool startApp = true;
 
 					if (startApp)
 					{
-						InitializeApp (app);
+						EnableApp (app);
 					}
 				}
-				this._isStart = true;
 			}
 		}
 		/// <summary>
@@ -206,17 +214,98 @@ namespace DeveloperFramework.Simulator.CQP
 		/// </summary>
 		public void Stop ()
 		{
-			if (!this._isStart)
+			if (this._isStart)
 			{
-				return;
+				this._isStart = false;
+
+				Logger.Instance.Info ("正在准备退出模拟器...");
+				UnloadApps ();
+				Logger.Instance.Info ("已退出模拟器");
 			}
+		}
+		/// <summary>
+		/// 启用指定的应用
+		/// </summary>
+		/// <param name="app">要启用的应用</param>
+		public void EnableApp (CQPSimulatorApp app)
+		{
+			CQPDynamicLibrary library = app.Library;
+			if (!library.IsEnable)
+			{
+				if (!library.IsInitialized)
+				{
+					InitializeApp (app);
+				}
 
-			Logger.Instance.Info ("正在准备退出模拟器...");
-
-			UnloadApps ();
-
-			Logger.Instance.Info ("已退出模拟器");
-			this._isStart = false;
+				IEnumerable<AppEvent> events = GetEvents (app, AppEventType.CQAppEnable);
+				foreach (AppEvent appEvent in events)
+				{
+					try
+					{
+						library.InvokeCQAppEnable (appEvent);   // 忽略返回值
+					}
+					catch (Exception ex)
+					{
+						Logger.Instance.Error (library.AppInfo.Name, $"{ex.Message}");
+					}
+				}
+			}
+		}
+		/// <summary>
+		/// 禁用指定的应用
+		/// </summary>
+		/// <param name="app">要禁用的应用</param>
+		public void DisableApp (CQPSimulatorApp app)
+		{
+			CQPDynamicLibrary library = app.Library;
+			if (library.IsEnable)
+			{
+				IEnumerable<AppEvent> events = GetEvents (app, AppEventType.CQAppDisable);
+				foreach (AppEvent appEvent in events)
+				{
+					try
+					{
+						library.InvokeCQAppDisable (appEvent);  // 忽略返回值
+					}
+					catch (Exception ex)
+					{
+						Logger.Instance.Error (library.AppInfo.Name, $"{ex.Message}");
+					}
+				}
+			}
+		}
+		public void GroupMessage (GroupMessageType subType, int msgId, long fromGroup, long fromQQ, string fromAnonymous, string msg, IntPtr font)
+		{
+			foreach (CQPSimulatorApp app in this.CQPApps)
+			{
+				CQPDynamicLibrary library = app.Library;
+				if (library.IsEnable)
+				{
+					IEnumerable<AppEvent> events = GetEvents (app, AppEventType.GroupMessage);
+					foreach (AppEvent appEvent in events)
+					{
+						try
+						{
+							if (library.InvokeCQGroupMessage (appEvent, subType, msgId, fromGroup, fromQQ, fromAnonymous, msg, font) == HandleType.Intercept)
+							{
+								break;	// 返回拦截消息, 跳出循环
+							}
+						}
+						catch (Exception ex)
+						{
+							Logger.Instance.Error (library.AppInfo.Name, $"{ex.Message}");
+						}
+					}
+				}
+			}
+		}
+		/// <summary>
+		/// 向 <see cref="CQPSimulator"/> 投递一个任务
+		/// </summary>
+		/// <param name="context">描述任务的上下文</param>
+		public void AddTask (TaskContext context)
+		{
+			this._taskContexts.Enqueue (context);
 		}
 		/// <summary>
 		/// 获取函数处理过程
@@ -257,43 +346,6 @@ namespace DeveloperFramework.Simulator.CQP
 
 			return new CommandRouteInvoker (this, app, isAuth).GetCommandHandle (funcName, objs).Execute ();
 		}
-
-
-		/// <summary>
-		/// 向 <see cref="CQPSimulator"/> 投递一个任务
-		/// </summary>
-		/// <param name="context">描述任务的上下文</param>
-		public void AddTask (TaskContext context)
-		{
-			this._taskContexts.Enqueue (context);
-		}
-
-		/// <summary>
-		/// 群组消息事件调用
-		/// </summary>
-		public void GroupMessage (int msgId, long fromGroup, long fromQQ, string fromAnonymous, string msg, IntPtr font)
-		{
-			Logger.Instance.InfoSuccess (TYPE_GROUP_MESSAGE, $"群: {fromGroup} 帐号: {fromQQ} {msg}");
-			for (int i = 0; i < this.CQPApps.Count; i++)
-			{
-				CQPSimulatorApp app = this.CQPApps[i];
-
-				string appId = app.AppId;
-
-				// 调用 CQExit 函数
-				foreach (AppEvent appEvent in app.Library.AppInfo.Events.Where (temp => temp.Type == AppEventType.GroupMessage))
-				{
-					try
-					{
-						app.Library.InvokeCQGroupMessage (appEvent, GroupMessageType.Group, msgId, fromGroup, fromQQ, fromAnonymous, msg, font);
-					}
-					catch (Exception ex)
-					{
-						//Logger.Instance.Error (TYPE_APP_UNLOAD, $"应用: {appId} 事件调用失败, 原因: {ex.Message}");
-					}
-				}
-			}
-		}
 		#endregion
 
 		#region --私有方法--
@@ -308,7 +360,7 @@ namespace DeveloperFramework.Simulator.CQP
 			foreach (string path in Directory.GetDirectories (this.DevDirectory))
 			{
 				string appId = Path.GetFileName (path); // 获取最后一段字符串
-				if (!_appIdRegex.IsMatch (appId))   // 不匹配的 AppID
+				if (!AppIdRegex.IsMatch (appId))   // 不匹配的 AppID
 				{
 					Logger.Instance.Warning (CQPErrorCode.TYPE_APP_LOAD_FAIL, CQPErrorCode.ERROR_APPID_IRREGULAR, "{0} 加载失败！错误：AppID({0})不符合AppID格式，请阅读开发文档进行修改", appId);
 					continue;
@@ -357,7 +409,7 @@ namespace DeveloperFramework.Simulator.CQP
 			foreach (CQPSimulatorApp app in this.CQPApps)
 			{
 				UninitializeApp (app);
-				app.Library.Dispose ();	// 销毁应用
+				app.Library.Dispose (); // 销毁应用
 			}
 			Logger.Instance.Info (CQPErrorCode.TYPE_APP, "应用卸载完成");
 		}
@@ -394,7 +446,7 @@ namespace DeveloperFramework.Simulator.CQP
 				{
 					string appInfo = library.InvokeAppInfo () ?? string.Empty;
 					// 解析返回信息
-					Match match = _appInfoRegex.Match (appInfo);
+					Match match = AppInfoRegex.Match (appInfo);
 					if (!match.Success)
 					{
 						library.Dispose ();
@@ -442,7 +494,7 @@ namespace DeveloperFramework.Simulator.CQP
 			// 初始化应用
 			if (!library.IsStartup)
 			{
-				IEnumerable<AppEvent> events = GetEvents (library.AppInfo.Events, AppEventType.CQStartup);
+				IEnumerable<AppEvent> events = GetEvents (app, AppEventType.CQStartup);
 				foreach (AppEvent appEvent in events)
 				{
 					try
@@ -472,7 +524,7 @@ namespace DeveloperFramework.Simulator.CQP
 					DisableApp (app);
 				}
 
-				IEnumerable<AppEvent> events = GetEvents (library.AppInfo.Events, AppEventType.CQExit);
+				IEnumerable<AppEvent> events = GetEvents (app, AppEventType.CQExit);
 				foreach (AppEvent appEvent in events)
 				{
 					try
@@ -487,59 +539,38 @@ namespace DeveloperFramework.Simulator.CQP
 			}
 		}
 		/// <summary>
-		/// 启用指定的应用
+		/// 处理任务回调
 		/// </summary>
-		/// <param name="app">要启用的应用</param>
-		private void EnableApp (CQPSimulatorApp app)
+		private void ProcessTask ()
 		{
-			CQPDynamicLibrary library = app.Library;
-			if (!library.IsEnable)
-			{
-				if (!library.IsInitialized)
-				{
-					InitializeApp (app);
-				}
+			// 初始化任务工厂, 并设置任务以顺序运行
+			TaskFactory<bool> factory = new TaskFactory<bool> (TaskCreationOptions.PreferFairness, TaskContinuationOptions.PreferFairness);
 
-				IEnumerable<AppEvent> events = GetEvents (library.AppInfo.Events, AppEventType.CQAppEnable);
-				foreach (AppEvent appEvent in events)
+			while (this._isStart)
+			{
+				// 获取任务
+				if (this._taskContexts.TryDequeue (out TaskContext context))
 				{
-					try
+					context.Stopwatch.Start (); // 任务开始处理, 进行计时
+					foreach (TaskExpression expression in CQPSimulator.TaskExpressions)
 					{
-						library.InvokeCQAppEnable (appEvent);   // 忽略返回值
-					}
-					catch (Exception ex)
-					{
-						Logger.Instance.Error (library.AppInfo.Name, $"{ex.Message}");
+						factory.StartNew (() =>
+						{
+							return expression.Interpret (context);
+						});
 					}
 				}
 			}
 		}
 		/// <summary>
-		/// 禁用指定的应用
+		/// 获取指定事件按照 ID 和优先级排序后的结果
 		/// </summary>
-		/// <param name="app">要禁用的应用</param>
-		private void DisableApp (CQPSimulatorApp app)
+		/// <param name="events">要获取的事件源的应用</param>
+		/// <param name="type">事件类型</param>
+		/// <returns>事件列表</returns>
+		private static IEnumerable<AppEvent> GetEvents (CQPSimulatorApp app, AppEventType type)
 		{
-			CQPDynamicLibrary library = app.Library;
-			if (library.IsEnable)
-			{
-				IEnumerable<AppEvent> events = GetEvents (library.AppInfo.Events, AppEventType.CQAppDisable);
-				foreach (AppEvent appEvent in events)
-				{
-					try
-					{
-						library.InvokeCQAppDisable (appEvent);  // 忽略返回值
-					}
-					catch (Exception ex)
-					{
-						Logger.Instance.Error (library.AppInfo.Name, $"{ex.Message}");
-					}
-				}
-			}
-		}
-		private static IEnumerable<AppEvent> GetEvents (IEnumerable<AppEvent> events, AppEventType type)
-		{
-			return from temp in events
+			return from temp in app.Library.AppInfo.Events
 				   where temp.Type == type
 				   orderby temp.Id
 				   orderby temp.Priority
