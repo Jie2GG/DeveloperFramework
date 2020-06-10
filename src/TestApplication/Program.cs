@@ -5,6 +5,9 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reactive.Concurrency;
+using System.Reactive.Linq;
+using System.Reactive.Subjects;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -25,16 +28,23 @@ namespace TestApplication
 	{
 		public static void Main (string[] args)
 		{
-			Logger.Instance.AddObserver (new Program ());
-			EnironmentSetup ();
-			CQPSimulator simulator = new CQPSimulator (CQPType.Pro, ApiType.V9);
-			simulator.Start ();
+			IObservable<int> observable = Enumerable.Range (1, 100).ToObservable (NewThreadScheduler.Default);
+			Subject<int> subject = new Subject<int> ();
+
+			subject.Subscribe ((t) => Console.WriteLine (t));
+
+			observable.Subscribe (subject);
+
+			//Logger.Instance.AddObserver (new Program ());
+			//EnironmentSetup ();
+			//CQPSimulator simulator = new CQPSimulator (CQPType.Pro, ApiType.V9);
+			//simulator.Start ();
 			//TaskContext context = new GroupMessageTaskContext (GroupMessageType.Group, simulator.DataPool.GroupCollection[0], simulator.DataPool.GroupCollection[0].MemberCollection[0], null, new Message ("aaa", simulator.DataPool.GroupCollection[0].MemberCollection[0]), IntPtr.Zero);
 			//simulator.AddTask (context);
-			simulator.GroupMessage (GroupMessageType.Group, 1, 10000, 947295340, "", "", IntPtr.Zero);
+			////simulator.GroupMessage (GroupMessageType.Group, 1, 10000, 947295340, "", "", IntPtr.Zero);
 
-			Console.ReadLine ();
-			simulator.Stop ();
+			//Console.ReadLine ();
+			//simulator.Stop ();
 			Console.ReadLine ();
 		}
 
