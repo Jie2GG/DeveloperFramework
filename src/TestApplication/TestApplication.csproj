@@ -11,10 +11,15 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DeveloperFramework.CQP\DeveloperFramework.CQP.csproj" />
+    <PackageReference Include="System.Reactive" Version="4.4.1" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\DeveloperFramework.LibraryModel.CQP\DeveloperFramework.LibraryModel.CQP.csproj" />
     <ProjectReference Include="..\DeveloperFramework.Log.CQP\DeveloperFramework.Log.CQP.csproj" />
     <ProjectReference Include="..\DeveloperFramework.Simulator.CQP\DeveloperFramework.Simulator.CQP.csproj" />
     <ProjectReference Include="..\DeveloperFramework.Utility\DeveloperFramework.Utility.csproj" />
   </ItemGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="for /f %25%25n in (*.dll) do (&#xD;&#xA;     move &quot;./%25%25~nn.dll&quot; &quot;D:\Project\DeveloperFramework\src\TestApplication\bin\x86\Debug\net4.8\bin&quot;&#xD;&#xA;     if exist &quot;./%25%25~nn.xml&quot; (move &quot;./%25%25~nn.xml&quot; &quot;D:\Project\DeveloperFramework\src\TestApplication\bin\x86\Debug\net4.8\bin&quot;)&#xD;&#xA;     if exist &quot;./%25%25~nn.pdb&quot; (move &quot;./%25%25~nn.pdb&quot; &quot;D:\Project\DeveloperFramework\src\TestApplication\bin\x86\Debug\net4.8\bin&quot;)&#xD;&#xA;)" />
+  </Target>
 </Project>

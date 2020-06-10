@@ -24,7 +24,7 @@ namespace DeveloperFramework.Extension
 		/// <param name="args">参数列表</param>
 		public static void Warning (this Logger logger, string type, int errorCode, string message, params object[] args)
 		{
-			logger.Warning (type, string.Format ($"{message}({errorCode})", args), null, null);
+			logger.Warning (type, string.Format ($"{message}({errorCode})", args));
 		}
 	}
 }
