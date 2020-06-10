@@ -7,70 +7,65 @@ using System.Threading.Tasks;
 namespace DeveloperFramework.Log.CQP
 {
 	/// <summary>
-	/// 描述日志信息
+	/// 表示用于记录程序运行期间结果的详细信息
 	/// </summary>
 	public class LogItem
 	{
 		#region --属性--
 		/// <summary>
-		/// 获取当前实例产生的时间
+		/// 获取一个值, 指示当日志的产生时间
 		/// </summary>
-		public DateTime Time { get; }
+		public DateTime DateTime { get; }
 		/// <summary>
-		/// 获取当前实例的来源
+		/// 获取一个值, 指示当前日志的等级
+		/// </summary>
+		public LogLevel Level { get; }
+		/// <summary>
+		/// 获取一个值, 指示当前日志的源头
 		/// </summary>
 		public string From { get; }
 		/// <summary>
-		/// 获取当前实例的类型
+		/// 获取一个值, 指示当前日志的类型
 		/// </summary>
 		public string Type { get; }
 		/// <summary>
-		/// 获取当前实例的内容
+		/// 获取当前日志的详细信息
 		/// </summary>
 		public string Content { get; }
 		/// <summary>
-		/// 获取当前实例的执行状态
+		/// 获取一个值, 指示当前日志描述程序的运行状态
 		/// </summary>
-		public bool? State { get; }
+		public LogState State { get; set; }
 		/// <summary>
-		/// 获取当前实例描述耗费时长
+		/// 获取一个值, 指示当前日志从开始到结束所耗费的时长. 当 <see cref="State"/> 为 <see cref="LogState.None"/> 时, 该值为 <see langword="null"/>
 		/// </summary>
-		public TimeSpan? TimeConsuming { get; }
-		/// <summary>
-		/// 获取当前实例的等级
-		/// </summary>
-		public LogLevel Level { get; }
+		public TimeSpan? TimeSpan { get; set; }
 		#endregion
 
 		#region --构造函数--
 		/// <summary>
-		/// 写入一条 <see cref="LogLevel.Debug"/> 类型的日志
+		/// 初始化 <see cref="LogItem"/> 类的新实例
 		/// </summary>
 		/// <param name="level">日志等级</param>
-		/// <param name="from">日志的来源模块名称</param>
-		/// <param name="type">日志的类型</param>
-		/// <param name="content">日志详细信息</param>
-		/// <param name="state">处理结果</param>
-		/// <param name="timeConsuming">处理耗费时长</param>
-		public LogItem (LogLevel level, string from, string type, object content, bool? state, TimeSpan? timeConsuming)
+		/// <param name="from">日志来源</param>
+		/// <param name="type">日志类型</param>
+		/// <param name="content">详细信息</param>
+		public LogItem (LogLevel level, string from, string type, object content)
 		{
+			this.DateTime = DateTime.Now;
 			this.Level = level;
 			this.From = from;
 			this.Type = type;
-			this.State = state;
-			this.TimeConsuming = timeConsuming;
-			this.Time = DateTime.Now;
-
 
 			if (content is string)
 			{
 				this.Content = (string)content;
 			}
-			else if (content is Exception)
+			if (content is Exception)
 			{
-				this.Content = ((Exception)content).ToString ();
+				this.Content = content.ToString ();
 			}
-			else
+			if (content is object)
 			{
 				this.Content = content.ToString ();
 			}
@@ -79,24 +74,22 @@ namespace DeveloperFramework.Log.CQP
 
 		#region --公开方法--
 		/// <summary>
-		/// 返回当前实例的字符串
+		/// 获取当前实例格式化后的字符串
 		/// </summary>
-		/// <returns>当前实例的字符串</returns>
+		/// <returns>格式化后的字符串</returns>
 		public override string ToString ()
 		{
 			StringBuilder builder = new StringBuilder ();
-			builder.Append ($"等级: {this.Level}\t来源: {this.From}\t类型: {this.Type}");
-			if (this.State != null)
+			builder.AppendFormat ("时间: {0:HH:mm:ss}", this.DateTime);
+			builder.AppendLine ();
+			builder.AppendFormat ("等级: {0}\t来源: {1}\t类型: {2}\t", this.Level, this.From.Length, this.Type);
+			if (this.TimeSpan != null)
 			{
-				builder.Append ($"\t状态: {(this.State.Value ? "√" : "×")}");
-			}
-			if (this.TimeConsuming != null)
-			{
-				builder.Append ($"/{this.TimeConsuming.Value}");
+				builder.AppendFormat ("状态: {0}\t耗时: {1:0.00}s", this.State, this.TimeSpan.Value.TotalSeconds);
 			}
 			builder.AppendLine ();
-			builder.AppendLine ("详细信息:");
-			builder.AppendLine ($"\t{this.Content}");
+			builder.AppendLine ("详情:");
+			builder.AppendLine (this.Content.ToString ());
 			return builder.ToString ();
 		}
 		#endregion
