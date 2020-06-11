@@ -16,8 +16,9 @@ jobs:
           nuget restore "$Env:GITHUB_WORKSPACE\src"
       - name: Build SDK
         run: |
-          $Env:GITHUB_WORKSPACE\src\DllExport.bat -action Restore
-          $Env:GITHUB_WORKSPACE\src\DllExport.bat -hMSBuild /t:Build /p:Configuration=Release /p:Platform=x86
+          cd "$Env:GITHUB_WORKSPACE\src"
+          DllExport.bat -action Restore
+          DllExport.bat -hMSBuild /t:Build /p:Configuration=Release /p:Platform=x86
       - name: Tree
         run: |
           tree /F /A $Env:GITHUB_WORKSPACE\src
