@@ -26,5 +26,5 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: ReleaseExample
-          path: ${{github.workspace}}src\TestApplication\bin\x86\Release
+          path: ${{github.workspace}}\src\TestApplication\bin\x86\Release
           retention-days: 1
