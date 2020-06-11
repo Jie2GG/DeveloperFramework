@@ -17,8 +17,8 @@ jobs:
       - name: Build SDK
         run: |
           cd "$Env:GITHUB_WORKSPACE\src"
-          DllExport.bat -action Restore
-          DllExport.bat -hMSBuild /t:Build /p:Configuration=Release /p:Platform=x86
+          .\DllExport.bat -action Restore
+          .\DllExport.bat -hMSBuild /t:Build /p:Configuration=Release /p:Platform=x86
       - name: Tree
         run: |
           tree /F /A $Env:GITHUB_WORKSPACE\src
