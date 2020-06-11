@@ -18,10 +18,6 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Context
 
 		#region --属性--
 		/// <summary>
-		/// 获取当前任务的时间测量工具
-		/// </summary>
-		public Stopwatch Stopwatch { get; }
-		/// <summary>
 		/// 获取当前任务的类型
 		/// </summary>
 		public int Type { get; }
@@ -35,7 +31,6 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Context
 		public TaskContext (int type)
 		{
 			this._dict = new Dictionary<string, dynamic> ();
-			this.Stopwatch = new Stopwatch ();
 			this.Type = type;
 		}
 		#endregion
