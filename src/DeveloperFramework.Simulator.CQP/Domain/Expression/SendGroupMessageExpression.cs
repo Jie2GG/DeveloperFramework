@@ -30,6 +30,7 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Expression
 		{
 			if (context is GroupMessageTaskContext groupContext)
 			{
+
 				GroupMessageType subType = groupContext.SubType;
 				Message msg = groupContext.Message;
 				Group fromGroup = groupContext.FromGroup;
@@ -40,11 +41,17 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Expression
 				// 存入消息列表
 				this.Simulator.DataPool.MessageCollection.Add (msg);
 
-				// 调用app
-				this.Simulator.GroupMessage (subType, msg.Id, fromGroup, fromQQ, fromAnonymous == null ? string.Empty : fromAnonymous.ToBase64String (), msg, font);
-				context.Stopwatch.Stop ();
-
-				Logger.Instance.InfoReceive (CQPErrorCode.TYPE_MESSAGE_GROUP, $"群: {groupContext.FromGroup.Id} 账号: {groupContext.FromQQ.Id} {groupContext.Message.Text}", true, context.Stopwatch.Elapsed);
+				int logId = Logger.Instance.BeginInfoReceive(CQPErrorCode.TYPE_MESSAGE_GROUP, $"群: {groupContext.FromGroup.Id} 账号: {groupContext.FromQQ.Id} {groupContext.Message.Text}");
+				try
+				{
+					// 调用app
+					this.Simulator.GroupMessage(subType, msg.Id, fromGroup, fromQQ, fromAnonymous == null ? string.Empty : fromAnonymous.ToBase64String(), msg, font);
+					Logger.Instance.EndLog(logId, LogState.Success);
+				}
+				catch
+                {
+					Logger.Instance.EndLog(logId, LogState.Failure);
+				}
 			}
 			return false;
 		}

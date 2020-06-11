@@ -67,7 +67,7 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Command
 		public override object ExecuteHaveNoAuth ()
 		{
 			AppInfo appInfo = this.App.Library.AppInfo;
-			Logger.Instance.Info (appInfo.Name, TYPE_CHECK_AUTHORIZATION, $"检测到调用 Api [{nameof (CQPExport.CQ_sendDiscussMsg)}] 未经授权, 请检查 app.json 是否赋予权限", null, null);
+			Logger.Instance.Info (appInfo.Name, TYPE_CHECK_AUTHORIZATION, $"检测到调用 Api [{nameof (CQPExport.CQ_sendDiscussMsg)}] 未经授权, 请检查 app.json 是否赋予权限");
 			return RESULT_API_UNAUTHORIZED;
 		}
 		#endregion

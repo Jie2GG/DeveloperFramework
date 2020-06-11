@@ -2,17 +2,11 @@ name: BuildTestApplication
 on:
   push:
     branches:
-      - cqbef_Simulator.CQP
+      - dllexp
 jobs:
   build:
     runs-on: windows-latest
     steps:
-      - name: Download DllExport
-        shell: powershell
-        run: |
-          $target = "DllExport.zip";
-          Invoke-WebRequest -Uri (Invoke-WebRequest 'https://api.github.com/repos/3F/DllExport/releases' | ConvertFrom-Json |  %{$_.psobject.properties.Value } |  select assets  | %{$_.psobject.properties.Value } | Select -ExpandProperty "browser_download_url" | where { $_.EndsWith(".zip") } | select -First 1) -OutFile $target;
-          Expand-Archive $target -DestinationPath "C:\DllExport";
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Nuget.exe
@@ -22,7 +16,8 @@ jobs:
           nuget restore "$Env:GITHUB_WORKSPACE\src"
       - name: Build SDK
         run: |
-          C:\DllExport\packages\DllExport\hMSBuild.bat $Env:GITHUB_WORKSPACE\src /t:Build /p:Configuration=Release /p:Platform=x86
+          $Env:GITHUB_WORKSPACE\src\DllExport.bat -action Restore
+          $Env:GITHUB_WORKSPACE\src\DllExport.bat -hMSBuild /t:Build /p:Configuration=Release /p:Platform=x86
       - name: Tree
         run: |
           tree /F /A $Env:GITHUB_WORKSPACE\src
