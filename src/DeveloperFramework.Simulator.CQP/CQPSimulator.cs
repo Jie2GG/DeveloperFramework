@@ -169,7 +169,7 @@ namespace DeveloperFramework.Simulator.CQP
 			this._taskProcess = new Task (this.ProcessTask, this._taskSource.Token);
 			this._taskContexts = new ConcurrentQueue<TaskContext> ();
 			// 任务表达式
-			TaskExpressions.Add (new SendGroupMessageExpression (this));
+			TaskExpressions.Add (new GroupMessageExpression (this));
 			Logger.Instance.InfoSuccess (CQPErrorCode.TYPE_INIT, $"已创建任务队列");
 			#endregion
 
@@ -274,8 +274,20 @@ namespace DeveloperFramework.Simulator.CQP
 				}
 			}
 		}
-		public void GroupMessage (GroupMessageType subType, int msgId, long fromGroup, long fromQQ, string fromAnonymous, string msg, IntPtr font)
+		/// <summary>
+		/// 推送群消息
+		/// </summary>
+		/// <param name="subType">消息子类型</param>
+		/// <param name="msgId">消息Id</param>
+		/// <param name="fromGroup">来源群号</param>
+		/// <param name="fromQQ">来源QQ</param>
+		/// <param name="fromAnonymous">来源匿名者</param>
+		/// <param name="msg">消息内容</param>
+		/// <param name="font">字体指针</param>
+		public void PushGroupMessage (GroupMessageType subType, int msgId, long fromGroup, long fromQQ, string fromAnonymous, string msg, IntPtr font)
 		{
+			int id = Logger.Instance.BeginInfoReceive (CQPErrorCode.TYPE_MESSAGE_GROUP, $"群: {fromGroup} 账号: {fromQQ} {msg}");
+
 			foreach (CQPSimulatorApp app in this.CQPApps)
 			{
 				CQPDynamicLibrary library = app.Library;
@@ -288,7 +300,7 @@ namespace DeveloperFramework.Simulator.CQP
 						{
 							if (library.InvokeCQGroupMessage (appEvent, subType, msgId, fromGroup, fromQQ, fromAnonymous, msg, font) == HandleType.Intercept)
 							{
-								break;	// 返回拦截消息, 跳出循环
+								break;  // 返回拦截消息, 跳出循环
 							}
 						}
 						catch (Exception ex)
@@ -298,6 +310,8 @@ namespace DeveloperFramework.Simulator.CQP
 					}
 				}
 			}
+
+			Logger.Instance.EndLog (id, LogState.Success);
 		}
 		/// <summary>
 		/// 向 <see cref="CQPSimulator"/> 投递一个任务
@@ -551,7 +565,6 @@ namespace DeveloperFramework.Simulator.CQP
 				// 获取任务
 				if (this._taskContexts.TryDequeue (out TaskContext context))
 				{
-					context.Stopwatch.Start (); // 任务开始处理, 进行计时
 					foreach (TaskExpression expression in CQPSimulator.TaskExpressions)
 					{
 						factory.StartNew (() =>
