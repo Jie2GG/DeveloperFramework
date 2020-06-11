@@ -15,13 +15,13 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Expression
 	/// <summary>
 	/// 发送群消息的任务表达式
 	/// </summary>
-	public class SendGroupMessageExpression : TaskExpression
+	public class GroupMessageExpression : TaskExpression
 	{
 		/// <summary>
-		/// 初始化 <see cref="SendGroupMessageExpression"/> 类的新实例
+		/// 初始化 <see cref="GroupMessageExpression"/> 类的新实例
 		/// </summary>
 		/// <param name="simulator">任务表达式关联的模拟器</param>
-		public SendGroupMessageExpression (CQPSimulator simulator)
+		public GroupMessageExpression (CQPSimulator simulator)
 			: base (simulator)
 		{
 		}
@@ -41,10 +41,7 @@ namespace DeveloperFramework.Simulator.CQP.Domain.Expression
 				this.Simulator.DataPool.MessageCollection.Add (msg);
 
 				// 调用app
-				this.Simulator.GroupMessage (subType, msg.Id, fromGroup, fromQQ, fromAnonymous == null ? string.Empty : fromAnonymous.ToBase64String (), msg, font);
-				context.Stopwatch.Stop ();
-
-				Logger.Instance.InfoReceive (CQPErrorCode.TYPE_MESSAGE_GROUP, $"群: {groupContext.FromGroup.Id} 账号: {groupContext.FromQQ.Id} {groupContext.Message.Text}", true, context.Stopwatch.Elapsed);
+				this.Simulator.PushGroupMessage (subType, msg.Id, fromGroup, fromQQ, fromAnonymous == null ? string.Empty : fromAnonymous.ToBase64String (), msg, font);
 			}
 			return false;
 		}
