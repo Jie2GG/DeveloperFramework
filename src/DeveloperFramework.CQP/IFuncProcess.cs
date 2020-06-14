@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DeveloperFramework.CQP
 {
 	/// <summary>
-	/// 提供用于处理函数调用过程的接口
+	/// 定义用于提供函数处理过程的接口
 	/// </summary>
 	public interface IFuncProcess
 	{
 		/// <summary>
-		/// 在派生类中重写时, 处理函数调用过程
+		/// 在派生类中重写时, 处理函数过程
 		/// </summary>
-		/// <param name="objs">传入的欲处理对象</param>
+		/// <param name="authCode">授权码</param>
+		/// <param name="funcName">函数名称</param>
+		/// <param name="args">参数列表</param>
 		/// <returns>返回指定的结果</returns>
-		object GetProcess (int authCode, [CallerMemberName] string funcName = null, params object[] objs);
+		dynamic FuncProcess (int authCode, string funcName, params object[] args);
 	}
 }

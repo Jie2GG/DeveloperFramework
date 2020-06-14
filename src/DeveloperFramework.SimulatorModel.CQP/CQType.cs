@@ -10,7 +10,7 @@ namespace DeveloperFramework.SimulatorModel.CQP
 	/// <summary>
 	/// 描述 CQP应用模拟器类型 枚举
 	/// </summary>
-	public enum CQPType
+	public enum CQType
 	{
 		/// <summary>
 		/// 酷Q Air

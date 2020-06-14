@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,102 +15,127 @@ namespace DeveloperFramework.LibraryModel.CQP
 		/// <summary>
 		/// [敏感]取Cookies
 		/// </summary>
+		[Description ("[敏感]取Cookies")]
 		GetCookiesOrCsrfToken = 20,
 		/// <summary>
 		/// 接收语音
 		/// </summary>
+		[Description ("接收语音")]
 		GetRecord = 30,
 		/// <summary>
 		/// 发送群消息
 		/// </summary>
+		[Description ("发送群消息")]
 		SendGroupMessage = 101,
 		/// <summary>
 		/// 发送讨论组消息
 		/// </summary>
-		sendDiscussMessage = 103,
+		[Description ("发送讨论组消息")]
+		SendDiscussMessage = 103,
 		/// <summary>
 		/// 发送私聊消息
 		/// </summary>
-		sendPrivateMsssage = 106,
+		[Description ("发送私聊消息")]
+		SendPrivateMsssage = 106,
 		/// <summary>
 		/// [敏感]发送赞
 		/// </summary>
-		sendLike = 110,
+		[Description ("[敏感]发送赞")]
+		SendLike = 110,
 		/// <summary>
 		/// 置群员移除
 		/// </summary>
-		setGroupKick = 120,
+		[Description ("置群员移除")]
+		SetGroupKick = 120,
 		/// <summary>
 		/// 置群员禁言
 		/// </summary>
-		setGroupBan = 121,
+		[Description ("置群员禁言")]
+		SetGroupBan = 121,
 		/// <summary>
 		/// 置群管理员
 		/// </summary>
-		setGroupAdmin = 122,
+		[Description ("置群管理员")]
+		SetGroupAdmin = 122,
 		/// <summary>
 		/// 置全群禁言
 		/// </summary>
-		setGroupWholeBan = 123,
+		[Description ("置全群禁言")]
+		SetGroupWholeBan = 123,
 		/// <summary>
 		/// 置匿名群员禁言
 		/// </summary>
-		setGroupAnonymousBan = 124,
+		[Description ("置匿名群员禁言")]
+		SetGroupAnonymousBan = 124,
 		/// <summary>
 		/// 置群匿名设置
 		/// </summary>
-		setGroupAnonymous = 125,
+		[Description ("置群匿名设置")]
+		SetGroupAnonymous = 125,
 		/// <summary>
 		/// 置群成员名片
 		/// </summary>
-		setGroupCard = 126,
+		[Description ("置群成员名片")]
+		SetGroupCard = 126,
 		/// <summary>
 		/// [敏感]置群退出
 		/// </summary>
-		setGroupLeave = 127,
+		[Description ("[敏感]置群退出")]
+		SetGroupLeave = 127,
 		/// <summary>
 		/// 置群成员专属头衔
 		/// </summary>
-		setGroupSpecialTitle = 128,
+		[Description ("置群成员专属头衔")]
+		SetGroupSpecialTitle = 128,
 		/// <summary>
 		/// 取群成员信息
 		/// </summary>
-		getGroupMemberInfo = 130,
+		[Description ("取群成员信息")]
+		GetGroupMemberInfo = 130,
 		/// <summary>
 		/// 取陌生人信息
 		/// </summary>
-		getStrangerInfo = 131,
+		[Description ("取陌生人信息")]
+		GetStrangerInfo = 131,
 		/// <summary>
 		/// 取群信息
 		/// </summary>
-		getGroupInfo = 132,
+		[Description ("取群信息")]
+		GetGroupInfo = 132,
 		/// <summary>
 		/// 置讨论组退出
 		/// </summary>
-		setDiscussLeave = 140,
+		[Description ("置讨论组退出")]
+		SetDiscussLeave = 140,
 		/// <summary>
 		/// 置好友添加请求
 		/// </summary>
-		setFriendAddRequest = 150,
+		[Description ("置好友添加请求")]
+		SetFriendAddRequest = 150,
 		/// <summary>
 		/// 置群添加请求
 		/// </summary>
-		setGroupAddRequest = 151,
+		[Description ("置群添加请求")]
+		SetGroupAddRequest = 151,
 		/// <summary>
 		/// 取群成员列表
 		/// </summary>
-		getGroupMemberList = 160,
+		[Description ("取群成员列表")]
+		GetGroupMemberList = 160,
 		/// <summary>
 		/// 取群列表
 		/// </summary>
-		getGroupList = 161,
+		[Description ("取群列表")]
+		GetGroupList = 161,
 		/// <summary>
 		/// 取好友列表
 		/// </summary>
-		getFriendList = 162,
+		[Description ("取好友列表")]
+		GetFriendList = 162,
 		/// <summary>
 		/// 撤回消息
 		/// </summary>
-		deleteMsg = 180
+		[Description ("撤回消息")]
+		DeleteMsg = 180
 	}
 }

@@ -5,60 +5,49 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Reactive.Concurrency;
-using System.Reactive.Linq;
-using System.Reactive.Subjects;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-using DeveloperFramework.CQP;
 using DeveloperFramework.LibraryModel.CQP;
 using DeveloperFramework.Log.CQP;
-using DeveloperFramework.Simulator.CQP;
-using DeveloperFramework.Simulator.CQP.Domain;
-using DeveloperFramework.Simulator.CQP.Domain.Context;
-using DeveloperFramework.SimulatorModel.CQP;
 using DeveloperFramework.Utility;
 
 namespace TestApplication
 {
-	public class Program : ILogObserver
+	public class Program : DeveloperFramework.Log.CQP.IObservable<LogItem>
 	{
 		public static void Main (string[] args)
 		{
-			IObservable<int> observable = Enumerable.Range (1, 100).ToObservable (NewThreadScheduler.Default);
-			Subject<int> subject = new Subject<int> ();
+			Logger.Instance.AddObserver (new Program ());
+			EnironmentSetup ();
+			
 
-			subject.Subscribe ((t) => Console.WriteLine (t));
-
-			observable.Subscribe (subject);
-
-			//Logger.Instance.AddObserver (new Program ());
-			//EnironmentSetup ();
-			//CQPSimulator simulator = new CQPSimulator (CQPType.Pro, ApiType.V9);
-			//simulator.Start ();
-			//TaskContext context = new GroupMessageTaskContext (GroupMessageType.Group, simulator.DataPool.GroupCollection[0], simulator.DataPool.GroupCollection[0].MemberCollection[0], null, new Message ("aaa", simulator.DataPool.GroupCollection[0].MemberCollection[0]), IntPtr.Zero);
-			//simulator.AddTask (context);
-			////simulator.GroupMessage (GroupMessageType.Group, 1, 10000, 947295340, "", "", IntPtr.Zero);
-
-			//Console.ReadLine ();
-			//simulator.Stop ();
 			Console.ReadLine ();
 		}
 
-		public void Initialize (ICollection<LogItem> logs)
+		private List<LogItem> items = new List<LogItem> ();
+
+		public void Initialize (IEnumerable<LogItem> list)
 		{
-			foreach (var item in logs)
+			foreach (LogItem item in list)
 			{
-				ReceiveLog (item);
+				OnAdd (item);
 			}
 		}
 
-		public void ReceiveLog (LogItem log)
+		public void OnAdd (LogItem item)
 		{
-			Console.WriteLine (log);
+			Console.WriteLine (item.ToString ());
+		}
+
+		public void OnRemove (LogItem item)
+		{ }
+
+		public void OnReplace (LogItem item)
+		{
+			Console.WriteLine (item.ToString ());
 		}
 
 		public static void EnironmentSetup ()

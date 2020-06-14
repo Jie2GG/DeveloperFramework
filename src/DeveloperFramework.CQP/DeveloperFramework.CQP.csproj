@@ -85,12 +85,19 @@
   <ItemGroup>
     <Compile Include="CQPAuthAttribute.cs" />
     <Compile Include="CQPExport.cs" />
-    <Compile Include="CQPResult.cs" />
+    <Compile Include="CQPExportBindingAttribute.cs" />
     <Compile Include="IFuncProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DllExport">
+      <Version>1.7.1</Version>
+      <Visible>false</Visible>
+      <Wz>1</Wz>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DeveloperFramework.Extension\DeveloperFramework.Extension.csproj">
@@ -101,13 +108,6 @@
       <Project>{4512B6AD-3E66-48C5-A617-098B86894148}</Project>
       <Name>DeveloperFramework.LibraryModel.CQP</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="DllExport">
-      <Version>1.7.1</Version>
-      <Visible>false</Visible>
-      <Wz>1</Wz>
-    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ImportGroup Label=".NET DllExport">

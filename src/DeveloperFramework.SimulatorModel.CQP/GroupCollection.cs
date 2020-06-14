@@ -12,7 +12,7 @@ namespace DeveloperFramework.SimulatorModel.CQP
 	/// <summary>
 	/// 描述 群列表 类型
 	/// </summary>
-	public class GroupCollection : Collection<Group>
+	public class GroupCollection : ObservableCollection<Group>
 	{
 		#region --构造函数--
 		/// <summary>

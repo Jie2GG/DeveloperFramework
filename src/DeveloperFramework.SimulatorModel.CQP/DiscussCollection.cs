@@ -10,7 +10,7 @@ namespace DeveloperFramework.SimulatorModel.CQP
 	/// <summary>
 	/// 描述 讨论组列表 类型
 	/// </summary>
-	public class DiscussCollection : Collection<Discuss>
+	public class DiscussCollection : ObservableCollection<Discuss>
 	{
 		#region --构造函数--
 		/// <summary>

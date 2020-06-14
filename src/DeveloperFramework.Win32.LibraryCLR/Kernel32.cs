@@ -14,22 +14,22 @@ namespace DeveloperFramework.Win32.LibraryCLR
 		#endregion
 
 		#region --函数定义--
-		[DllImport (LibraryName, EntryPoint = nameof (LoadLibraryA), CallingConvention = CallingConvention.StdCall)]
+		[DllImport (LibraryName, EntryPoint = nameof (LoadLibraryA), CallingConvention = CallingConvention.StdCall, SetLastError = true)]
 		internal static extern IntPtr LoadLibraryA (string lpLibFileName);
 
-		[DllImport (LibraryName, EntryPoint = nameof (FreeLibrary), CallingConvention = CallingConvention.StdCall)]
+		[DllImport (LibraryName, EntryPoint = nameof (FreeLibrary), CallingConvention = CallingConvention.StdCall, SetLastError = true)]
 		internal static extern int FreeLibrary (IntPtr hModule);
 
-		[DllImport (LibraryName, EntryPoint = nameof (FreeLibraryAndExitThread), CallingConvention = CallingConvention.StdCall)]
+		[DllImport (LibraryName, EntryPoint = nameof (FreeLibraryAndExitThread), CallingConvention = CallingConvention.StdCall, SetLastError = true)]
 		internal static extern int FreeLibraryAndExitThread (IntPtr hLibModule, int dwExitCode);
 
-		[DllImport (LibraryName, EntryPoint = nameof (GetProcAddress), CallingConvention = CallingConvention.StdCall)]
+		[DllImport (LibraryName, EntryPoint = nameof (GetProcAddress), CallingConvention = CallingConvention.StdCall, SetLastError = true)]
 		internal static extern IntPtr GetProcAddress (IntPtr hModule, string lpProcName);
 
-		[DllImport (LibraryName, EntryPoint = nameof (GetLastError), CallingConvention = CallingConvention.StdCall)]
+		[DllImport (LibraryName, EntryPoint = nameof (GetLastError), CallingConvention = CallingConvention.StdCall, SetLastError = true)]
 		internal static extern int GetLastError ();
 
-		[DllImport (LibraryName, EntryPoint = nameof (FormatMessageA), CallingConvention = CallingConvention.StdCall)]
+		[DllImport (LibraryName, EntryPoint = nameof (FormatMessageA), CallingConvention = CallingConvention.StdCall, SetLastError = true)]
 		internal static extern int FormatMessageA (int dwFlags, ref IntPtr lpSource, int dwMessageId, int dwLanageId, ref string lpBuffer, int nSize, ref IntPtr args);
 		#endregion
 	}

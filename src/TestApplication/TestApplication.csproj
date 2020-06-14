@@ -11,9 +11,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="System.Reactive" Version="4.4.1" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\DeveloperFramework.LibraryModel.CQP\DeveloperFramework.LibraryModel.CQP.csproj" />
     <ProjectReference Include="..\DeveloperFramework.Log.CQP\DeveloperFramework.Log.CQP.csproj" />
     <ProjectReference Include="..\DeveloperFramework.Simulator.CQP\DeveloperFramework.Simulator.CQP.csproj" />

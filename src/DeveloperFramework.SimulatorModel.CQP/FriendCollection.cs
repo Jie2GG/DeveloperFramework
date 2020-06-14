@@ -13,7 +13,7 @@ namespace DeveloperFramework.SimulatorModel.CQP
 	/// <summary>
 	/// 描述 好友列表 类型
 	/// </summary>
-	public class FriendCollection : Collection<Friend>
+	public class FriendCollection : ObservableCollection<Friend>
 	{
 		#region --构造函数--
 		/// <summary>

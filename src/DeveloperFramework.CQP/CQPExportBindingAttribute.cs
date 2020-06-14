@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeveloperFramework.Simulator.CQP.Domain
+namespace DeveloperFramework.CQP
 {
 	/// <summary>
-	/// 表示函数绑定的标记
+	/// 表示定义CQP函数目标绑定的特性
 	/// </summary>
 	[AttributeUsage (AttributeTargets.Class)]
-	public class FunctionBindingAttribute : Attribute
+	public class CQPExportBindingAttribute : Attribute
 	{
 		/// <summary>
-		/// 获取或设置绑定的函数名称
+		/// 获取或设置函数的名称
 		/// </summary>
-		public string Function { get; set; }		
+		public string FunctionName { get; set; }
 	}
 }
