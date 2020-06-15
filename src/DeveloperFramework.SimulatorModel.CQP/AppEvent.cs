@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace DeveloperFramework.LibraryModel.CQP
+namespace DeveloperFramework.SimulatorModel.CQP
 {
 	/// <summary>
 	/// 描述 CQP 应用动态库的事件信息
@@ -15,27 +15,27 @@ namespace DeveloperFramework.LibraryModel.CQP
 		/// <summary>
 		/// 事件ID
 		/// </summary>
-		[JsonPropertyName("id")]
+		[JsonPropertyName ("id")]
 		public int Id { get; set; }
 		/// <summary>
 		/// 事件类型
 		/// </summary>
-		[JsonPropertyName("type")]
+		[JsonPropertyName ("type")]
 		public AppEventType Type { get; set; }
 		/// <summary>
 		/// 事件名称
 		/// </summary>
-		[JsonPropertyName("name")]
+		[JsonPropertyName ("name")]
 		public string Name { get; set; }
 		/// <summary>
 		/// 事件函数
 		/// </summary>
-		[JsonPropertyName("function")]
+		[JsonPropertyName ("function")]
 		public string Function { get; set; }
 		/// <summary>
 		/// 事件优先级
 		/// </summary>
-		[JsonPropertyName("priority")]
+		[JsonPropertyName ("priority")]
 		public int Priority { get; set; }
 	}
 }

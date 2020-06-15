@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeveloperFramework.LibraryModel.CQP
+namespace DeveloperFramework.SimulatorModel.CQP
 {
 	/// <summary>
-	/// 描述 CQP 应用动态库的好友添加请求事件类型
+	/// 描述 CQP 应用动态库的群文件上传事件类型
 	/// </summary>
-	public enum FriendAddRequestType
+	public enum GroupUploadType
 	{
 		/// <summary>
-		/// 好友添加请求
+		/// 群文件上传
 		/// </summary>
-		FriendAddRequest = 1
+		FileUpload = 1
 	}
 }

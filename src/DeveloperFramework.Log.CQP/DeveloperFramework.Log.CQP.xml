@@ -1,0 +1,640 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DeveloperFramework.Log.CQP</name>
+    </assembly>
+    <members>
+        <member name="T:DeveloperFramework.Log.CQP.IObservable`1">
+            <summary>
+            定义基于推送通知的实用程序的接口
+            </summary>
+            <typeparam name="T">推送通知的实际类型</typeparam>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.IObservable`1.Initialize(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            当在派生类中重写时, 当成功注册为监听对象时调用
+            </summary>
+            <param name="list"></param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.IObservable`1.OnAdd(`0)">
+            <summary>
+            当在派生类中重写时, 当添加新通知时调用
+            </summary>
+            <param name="item">要添加的新通知项</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.IObservable`1.OnRemove(`0)">
+            <summary>
+            当在派生类中重写时, 当移除一个通知时调用
+            </summary>
+            <param name="item">被移除的通知项</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.IObservable`1.OnReplace(`0)">
+            <summary>
+            当在派生类中重写时, 当通知内容被修改时调用
+            </summary>
+            <param name="item">被修改的通知项</param>
+        </member>
+        <member name="T:DeveloperFramework.Log.CQP.Logger">
+            <summary>
+            表示记录程序运行时结果的类
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.Logger.FROM_DEFAULT">
+            <summary>
+            获取一个值, 指示程序运行时记录的默认来源
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.Logger.TYPE_DEFAULT_DEBUG">
+            <summary>
+            获取一个值, 指示程序运行时 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Debug"/> 类型的默认描述
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.Logger.TYPE_DEFAULT_INFO">
+            <summary>
+            获取一个值, 指示程序运行时 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info"/> 类型的默认描述
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.Logger.TYPE_DEFAULT_INFO_SUCCESS">
+            <summary>
+            获取一个值, 指示程序运行时 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Success"/> 类型的默认描述
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.Logger.TYPE_DEFAULT_INFO_RECEIVE">
+            <summary>
+            获取一个值, 指示程序运行时 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Receive"/> 类型的默认描述
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.Logger.TYPE_DEFAULT_INFO_SENDING">
+            <summary>
+            获取一个值, 指示程序运行时 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Sending"/> 类型的默认描述
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.Logger.TYPE_DEFAULT_WARNING">
+            <summary>
+            获取一个值, 指示程序运行时 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Warning"/> 类型的默认描述
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.Logger.TYPE_DEFAULT_ERROR">
+            <summary>
+            获取一个值, 指示程序运行时 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Error"/> 类型的默认描述
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.Logger.TYPE_DEFAULT_FATAL">
+            <summary>
+            获取一个值, 指示程序运行时 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Fatal"/> 类型的默认描述
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.Logger.Instance">
+            <summary>
+            获取当前 <see cref="T:DeveloperFramework.Log.CQP.Logger"/> 的唯一实例
+            </summary>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.AddObserver(DeveloperFramework.Log.CQP.IObservable{DeveloperFramework.Log.CQP.LogItem})">
+            <summary>
+            添加日志观察成员
+            </summary>
+            <param name="item">要添加的日志观察成员</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.RemoveObserver(DeveloperFramework.Log.CQP.IObservable{DeveloperFramework.Log.CQP.LogItem})">
+            <summary>
+            移除日志观察成员
+            </summary>
+            <param name="item">要移除的日志观察成员</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Initialize(System.Collections.Generic.IEnumerable{DeveloperFramework.Log.CQP.LogItem})">
+            <summary>
+            引发最后一个注册的监听对象获取现有缓存池中的日志
+            </summary>
+            <param name="list">日志列表</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.OnAdd(DeveloperFramework.Log.CQP.LogItem)">
+            <summary>
+            引发所有已注册观察者添加的新日志
+            </summary>
+            <param name="item">用于通知观察者的 <see cref="T:DeveloperFramework.Log.CQP.LogItem"/> 实例</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.OnRemove(DeveloperFramework.Log.CQP.LogItem)">
+            <summary>
+            引发所有已注册观察者移除一项日志
+            </summary>
+            <param name="item">用于通知观察者的 <see cref="T:DeveloperFramework.Log.CQP.LogItem"/> 实例</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.OnReplace(DeveloperFramework.Log.CQP.LogItem)">
+            <summary>
+            引发所有已注册观察者替换一项日志
+            </summary>
+            <param name="item">用于通知观察者的 <see cref="T:DeveloperFramework.Log.CQP.LogItem"/> 实例</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginLog(DeveloperFramework.Log.CQP.LogLevel,System.String,System.String,System.Object)">
+            <summary>
+            开启写入一个可计时的新日志
+            </summary>
+            <param name="level">日志等级</param>
+            <param name="from">日志来源</param>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.EndLog(System.Int32,DeveloperFramework.Log.CQP.LogState)">
+            <summary>
+            结束一个可计时的新日志, 并刷新需要表现的结果
+            </summary>
+            <param name="id">日志索引. 该值由 <see cref="M:DeveloperFramework.Log.CQP.Logger.BeginLog(DeveloperFramework.Log.CQP.LogLevel,System.String,System.String,System.Object)"/> 方法返回</param>
+            <param name="state">运行结果.</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Log(DeveloperFramework.Log.CQP.LogLevel,System.String,System.String,System.Object)">
+            <summary>
+            写入一个新日志
+            </summary>
+            <param name="level">日志等级</param>
+            <param name="from">日志来源</param>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Debug(System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Debug"/> 类型的新日志
+            </summary>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Debug(System.String,System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Debug"/> 类型的新日志
+            </summary>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Debug(System.String,System.String,System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Debug"/> 类型的新日志
+            </summary>
+            <param name="from">日志来源</param>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Info(System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info"/> 类型的新日志
+            </summary>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Info(System.String,System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info"/> 类型的新日志
+            </summary>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Info(System.String,System.String,System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info"/> 类型的新日志
+            </summary>
+            <param name="from">日志来源</param>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.InfoSuccess(System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Success"/> 类型的新日志
+            </summary>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.InfoSuccess(System.String,System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Success"/> 类型的新日志
+            </summary>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.InfoSuccess(System.String,System.String,System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Success"/> 类型的新日志
+            </summary>
+            <param name="from">日志来源</param>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.InfoReceive(System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Receive"/> 类型的新日志
+            </summary>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.InfoReceive(System.String,System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Receive"/> 类型的新日志
+            </summary>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.InfoReceive(System.String,System.String,System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Receive"/> 类型的新日志
+            </summary>
+            <param name="from">日志来源</param>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.InfoSending(System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Sending"/> 类型的新日志
+            </summary>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.InfoSending(System.String,System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Sending"/> 类型的新日志
+            </summary>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.InfoSending(System.String,System.String,System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Sending"/> 类型的新日志
+            </summary>
+            <param name="from">日志来源</param>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Warning(System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Warning"/> 类型的新日志
+            </summary>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Warning(System.String,System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Warning"/> 类型的新日志
+            </summary>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Warning(System.String,System.String,System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Warning"/> 类型的新日志
+            </summary>
+            <param name="from">日志来源</param>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Error(System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Error"/> 类型的新日志
+            </summary>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Error(System.String,System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Error"/> 类型的新日志
+            </summary>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Error(System.String,System.String,System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Error"/> 类型的新日志
+            </summary>
+            <param name="from">日志来源</param>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Fatal(System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Fatal"/> 类型的新日志
+            </summary>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Fatal(System.String,System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Fatal"/> 类型的新日志
+            </summary>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.Fatal(System.String,System.String,System.Object)">
+            <summary>
+            写入一个 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Error"/> 类型的新日志
+            </summary>
+            <param name="from">日志来源</param>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginDebug(System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Debug"/> 类型的新日志
+            </summary>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginDebug(System.String,System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Debug"/> 类型的新日志
+            </summary>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginDebug(System.String,System.String,System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Debug"/> 类型的新日志
+            </summary>
+            <param name="from">日志来源</param>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginInfo(System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info"/> 类型的新日志
+            </summary>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginInfo(System.String,System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info"/> 类型的新日志
+            </summary>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginInfo(System.String,System.String,System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info"/> 类型的新日志
+            </summary>
+            <param name="from">日志来源</param>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginInfoSuccess(System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Success"/> 类型的新日志
+            </summary>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginInfoSuccess(System.String,System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Success"/> 类型的新日志
+            </summary>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginInfoSuccess(System.String,System.String,System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Success"/> 类型的新日志
+            </summary>
+            <param name="from">日志来源</param>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginInfoReceive(System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Receive"/> 类型的新日志
+            </summary>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginInfoReceive(System.String,System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Receive"/> 类型的新日志
+            </summary>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginInfoReceive(System.String,System.String,System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Receive"/> 类型的新日志
+            </summary>
+            <param name="from">日志来源</param>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginInfoSending(System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Sending"/> 类型的新日志
+            </summary>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginInfoSending(System.String,System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Sending"/> 类型的新日志
+            </summary>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginInfoSending(System.String,System.String,System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Info_Sending"/> 类型的新日志
+            </summary>
+            <param name="from">日志来源</param>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginWarning(System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Warning"/> 类型的新日志
+            </summary>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginWarning(System.String,System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Warning"/> 类型的新日志
+            </summary>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginWarning(System.String,System.String,System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Warning"/> 类型的新日志
+            </summary>
+            <param name="from">日志来源</param>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginError(System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Error"/> 类型的新日志
+            </summary>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginError(System.String,System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Error"/> 类型的新日志
+            </summary>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginError(System.String,System.String,System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Error"/> 类型的新日志
+            </summary>
+            <param name="from">日志来源</param>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginFatal(System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Fatal"/> 类型的新日志
+            </summary>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginFatal(System.String,System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Fatal"/> 类型的新日志
+            </summary>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.Logger.BeginFatal(System.String,System.String,System.Object)">
+            <summary>
+            开启一个可计时的 <see cref="F:DeveloperFramework.Log.CQP.LogLevel.Fatal"/> 类型的新日志
+            </summary>
+            <param name="from">日志来源</param>
+            <param name="type">日志类型</param>
+            <param name="content">日志内容</param>
+            <returns>新添加日志的唯一索引</returns>
+        </member>
+        <member name="T:DeveloperFramework.Log.CQP.LogItem">
+            <summary>
+            表示用于记录程序运行期间结果的详细信息
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.Log.CQP.LogItem.DateTime">
+            <summary>
+            获取一个值, 指示当日志的产生时间
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.Log.CQP.LogItem.Level">
+            <summary>
+            获取一个值, 指示当前日志的等级
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.Log.CQP.LogItem.From">
+            <summary>
+            获取一个值, 指示当前日志的源头
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.Log.CQP.LogItem.Type">
+            <summary>
+            获取一个值, 指示当前日志的类型
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.Log.CQP.LogItem.Content">
+            <summary>
+            获取当前日志的详细信息
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.Log.CQP.LogItem.State">
+            <summary>
+            获取一个值, 指示当前日志描述程序的运行状态
+            </summary>
+        </member>
+        <member name="P:DeveloperFramework.Log.CQP.LogItem.TimeSpan">
+            <summary>
+            获取一个值, 指示当前日志从开始到结束所耗费的时长. 当 <see cref="P:DeveloperFramework.Log.CQP.LogItem.State"/> 为 <see cref="F:DeveloperFramework.Log.CQP.LogState.None"/> 时, 该值为 <see langword="null"/>
+            </summary>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.LogItem.#ctor(DeveloperFramework.Log.CQP.LogLevel,System.String,System.String,System.Object)">
+            <summary>
+            初始化 <see cref="T:DeveloperFramework.Log.CQP.LogItem"/> 类的新实例
+            </summary>
+            <param name="level">日志等级</param>
+            <param name="from">日志来源</param>
+            <param name="type">日志类型</param>
+            <param name="content">详细信息</param>
+        </member>
+        <member name="M:DeveloperFramework.Log.CQP.LogItem.ToString">
+            <summary>
+            获取当前实例格式化后的字符串
+            </summary>
+            <returns>格式化后的字符串</returns>
+        </member>
+        <member name="T:DeveloperFramework.Log.CQP.LogLevel">
+            <summary>
+            描述日志的等级
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.LogLevel.Debug">
+            <summary>
+            调试 - 灰色
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.LogLevel.Info">
+            <summary>
+            信息 - 黑色
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.LogLevel.Info_Success">
+            <summary>
+            信息_成功 - 紫色
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.LogLevel.Info_Receive">
+            <summary>
+            信息_接收 - 蓝色
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.LogLevel.Info_Sending">
+            <summary>
+            信息_发送 - 绿色
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.LogLevel.Warning">
+            <summary>
+            警告 - 橙色
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.LogLevel.Error">
+            <summary>
+            错误 - 红色
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.LogLevel.Fatal">
+            <summary>
+            致命错误 - 深红色 (黑底)
+            </summary>
+        </member>
+        <member name="T:DeveloperFramework.Log.CQP.LogState">
+            <summary>
+            表示程序运行状态的枚举
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.LogState.None">
+            <summary>
+            无状态
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.LogState.Success">
+            <summary>
+            程序执行成功
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.LogState.Failure">
+            <summary>
+            程序执行失败
+            </summary>
+        </member>
+        <member name="F:DeveloperFramework.Log.CQP.LogState.Running">
+            <summary>
+            程序正在执行
+            </summary>
+        </member>
+    </members>
+</doc>

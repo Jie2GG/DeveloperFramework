@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DeveloperFramework.Extension;
 
-namespace DeveloperFramework.LibraryModel.CQP
+namespace DeveloperFramework.SimulatorModel.CQP
 {
 	/// <summary>
 	/// 描述 CQP 应用的 Anonymous 类型

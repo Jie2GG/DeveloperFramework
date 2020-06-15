@@ -4,20 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeveloperFramework.LibraryModel.CQP
+namespace DeveloperFramework.SimulatorModel.CQP
 {
 	/// <summary>
-	/// 描述 处理类型 枚举
+	/// 描述 CQP 应用动态库的群禁言事件类型
 	/// </summary>
-	public enum HandleType
+	public enum GroupBanSpeakType
 	{
 		/// <summary>
-		/// 忽略消息
+		/// 解除禁言
 		/// </summary>
-		Discard = 0,
+		RemoveBanSpeak = 1,
 		/// <summary>
-		/// 拦截消息
+		/// 禁言
 		/// </summary>
-		Intercept = 1
+		BanSpeak = 2
 	}
 }

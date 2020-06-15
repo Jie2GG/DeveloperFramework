@@ -1,4 +1,5 @@
-﻿using DeveloperFramework.SimulatorModel.CQP;
+﻿using DeveloperFramework.Log.CQP;
+using DeveloperFramework.SimulatorModel.CQP;
 
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace DeveloperFramework.Simulator.CQP
 	/// </summary>
 	public class CQSimulator
 	{
+		public CQSimulatorDirectory Directorys { get; }
 		public CQSimulatorDataPool DataPool { get; }
 		public CQType SimulatorType { get; }
 		public ApiType ApiType { get; }
@@ -26,6 +28,9 @@ namespace DeveloperFramework.Simulator.CQP
 		{
 			this.SimulatorType = simulatorType;
 			this.ApiType = apiType;
+
+			this.DataPool = new CQSimulatorDataPool ();
+			this.Directorys = new CQSimulatorDirectory (AppDomain.CurrentDomain.BaseDirectory);
 		}
 
 		#region --公开方法--

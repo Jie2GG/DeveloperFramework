@@ -7,6 +7,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="4.7.2" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\DeveloperFramework.Extension\DeveloperFramework.Extension.csproj" />
     <ProjectReference Include="..\DeveloperFramework.Utility\DeveloperFramework.Utility.csproj" />
   </ItemGroup>

@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeveloperFramework.LibraryModel.CQP
+namespace DeveloperFramework.SimulatorModel.CQP
 {
 	/// <summary>
-	/// 描述 CQP 应用动态库的讨论组消息事件类型
+	/// 描述 CQP 应用动态库的群消息事件类型
 	/// </summary>
-	public enum DiscussMessageType
+	public enum GroupMessageType
 	{
 		/// <summary>
-		/// 讨论组
+		/// 群消息
 		/// </summary>
-		Discuss = 1
+		Group = 1
 	}
 }

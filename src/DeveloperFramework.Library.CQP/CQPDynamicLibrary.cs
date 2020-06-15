@@ -47,6 +47,8 @@ namespace DeveloperFramework.Library.CQP
 		/// 初始化 <see cref="CQPDynamicLibrary"/> 类的新实例
 		/// </summary>
 		/// <param name="libFileName">要加载的动态链接库 (DLL) 的路径</param>
+		/// <exception cref="BadImageFormatException">试图加载格式不正确的程序</exception>
+		/// <exception cref="DllNotFoundException">找不到指定的模块</exception>
 		public CQPDynamicLibrary (string libFileName)
 			: base (libFileName)
 		{
@@ -59,7 +61,7 @@ namespace DeveloperFramework.Library.CQP
 		/// </summary>
 		/// <returns>AppID 和 Api版本的信息</returns>
 		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
-		/// <exception cref="MissingMethodException">当前访问函数未公开</exception>
+		/// <exception cref="EntryPointNotFoundException">在 DLL 中找不到名为 funcName 的入口点</exception>
 		public string InvokeAppInfo ()
 		{
 			return this.GetFunction<CQ_AppInfo> ("AppInfo") ();
@@ -69,6 +71,8 @@ namespace DeveloperFramework.Library.CQP
 		/// </summary>
 		/// <param name="authCode">授权码, 作为此应用调用公开接口的凭据</param>
 		/// <returns>授权结果, 成功返回零, 失败返回其它值</returns>
+		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
+		/// <exception cref="EntryPointNotFoundException">在 DLL 中找不到名为 funcName 的入口点</exception>
 		public int InvokeInitialize (int authCode)
 		{
 			return this.GetFunction<CQ_Initialize> ("Initialize") (authCode);
@@ -78,6 +82,8 @@ namespace DeveloperFramework.Library.CQP
 		/// </summary>
 		/// <param name="funcName">实际函数的名称</param>
 		/// <returns>保留值, 暂时不表示任何操作结果</returns>
+		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
+		/// <exception cref="EntryPointNotFoundException">在 DLL 中找不到名为 funcName 的入口点</exception>
 		public int InvokeStartup (string funcName)
 		{
 			if (string.IsNullOrEmpty (funcName))
@@ -92,6 +98,8 @@ namespace DeveloperFramework.Library.CQP
 		/// </summary>
 		/// <param name="funcName">实际函数的名称</param>
 		/// <returns>保留值, 暂时不表示任何操作结果</returns>
+		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
+		/// <exception cref="EntryPointNotFoundException">在 DLL 中找不到名为 funcName 的入口点</exception>
 		public int InvokeExit (string funcName)
 		{
 			if (string.IsNullOrEmpty (funcName))
@@ -106,6 +114,8 @@ namespace DeveloperFramework.Library.CQP
 		/// </summary>
 		/// <param name="funcName">实际函数的名称</param>
 		/// <returns>保留值, 暂时不表示任何操作结果</returns>
+		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
+		/// <exception cref="EntryPointNotFoundException">在 DLL 中找不到名为 funcName 的入口点</exception>
 		public int InvokeAppEnable (string funcName)
 		{
 			if (string.IsNullOrEmpty (funcName))
@@ -120,6 +130,8 @@ namespace DeveloperFramework.Library.CQP
 		/// </summary>
 		/// <param name="funcName">实际函数的名称</param>
 		/// <returns>保留值, 暂时不表示任何操作结果</returns>
+		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
+		/// <exception cref="EntryPointNotFoundException">在 DLL 中找不到名为 funcName 的入口点</exception>
 		public int InvokeAppDisable (string funcName)
 		{
 			if (string.IsNullOrEmpty (funcName))
@@ -139,6 +151,8 @@ namespace DeveloperFramework.Library.CQP
 		/// <param name="msg">消息内容</param>
 		/// <param name="font">字体指针</param>
 		/// <returns>0 表示该消息继续向下传递, 1 表示该消息被截断</returns>
+		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
+		/// <exception cref="EntryPointNotFoundException">在 DLL 中找不到名为 funcName 的入口点</exception>
 		public int IncokePrivateMessage (string funcName, int subType, int msgId, long fromQQ, string msg, IntPtr font)
 		{
 			if (string.IsNullOrEmpty (funcName))
@@ -173,6 +187,8 @@ namespace DeveloperFramework.Library.CQP
 		/// <param name="msg">消息内容</param>
 		/// <param name="font">字体指针</param>
 		/// <returns>0 表示该消息继续向下传递, 1 表示该消息被截断</returns>
+		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
+		/// <exception cref="EntryPointNotFoundException">在 DLL 中找不到名为 funcName 的入口点</exception>
 		public int InvokeGroupMessage (string funcName, int subType, int msgId, long fromGroup, long fromQQ, string fromAnonymous, string msg, IntPtr font)
 		{
 			if (string.IsNullOrEmpty (funcName))
@@ -213,6 +229,8 @@ namespace DeveloperFramework.Library.CQP
 		/// <param name="msg">消息内容</param>
 		/// <param name="font">字体指针</param>
 		/// <returns>0 表示该消息继续向下传递, 1 表示该消息被截断</returns>
+		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
+		/// <exception cref="EntryPointNotFoundException">在 DLL 中找不到名为 funcName 的入口点</exception>
 		public int InvokeDiscussMessage (string funcName, int subType, int msgId, long fromDiscuss, long fromQQ, string msg, IntPtr font)
 		{
 			if (string.IsNullOrEmpty (funcName))
@@ -246,6 +264,8 @@ namespace DeveloperFramework.Library.CQP
 		/// <param name="fromQQ">来源QQ</param>
 		/// <param name="file">文件信息</param>
 		/// <returns>0 表示该消息继续向下传递, 1 表示该消息被截断</returns>
+		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
+		/// <exception cref="EntryPointNotFoundException">在 DLL 中找不到名为 funcName 的入口点</exception>
 		public int InvokeGroupUpload (string funcName, int subType, int sendTime, long fromGroup, long fromQQ, string file)
 		{
 			if (string.IsNullOrEmpty (funcName))
@@ -278,6 +298,8 @@ namespace DeveloperFramework.Library.CQP
 		/// <param name="fromGroup">来源群号</param>
 		/// <param name="operatedQQ">被操作QQ</param>
 		/// <returns>0 表示该消息继续向下传递, 1 表示该消息被截断</returns>
+		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
+		/// <exception cref="EntryPointNotFoundException">在 DLL 中找不到名为 funcName 的入口点</exception>
 		public int InvokeGroupManageChanged (string funcName, int subType, int sendTime, long fromGroup, long operatedQQ)
 		{
 			if (string.IsNullOrEmpty (funcName))
@@ -297,6 +319,8 @@ namespace DeveloperFramework.Library.CQP
 		/// <param name="fromQQ">来源QQ</param>
 		/// <param name="operatedQQ">被操作QQ</param>
 		/// <returns>0 表示该消息继续向下传递, 1 表示该消息被截断</returns>
+		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
+		/// <exception cref="EntryPointNotFoundException">在 DLL 中找不到名为 funcName 的入口点</exception>
 		public int InvokeGroupMemberDecrease (string funcName, int subType, int sendTime, long fromGroup, long fromQQ, long operatedQQ)
 		{
 			if (string.IsNullOrEmpty (funcName))
@@ -316,6 +340,8 @@ namespace DeveloperFramework.Library.CQP
 		/// <param name="fromQQ">来源QQ</param>
 		/// <param name="operatedQQ">被操作QQ</param>
 		/// <returns>0 表示该消息继续向下传递, 1 表示该消息被截断</returns>
+		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
+		/// <exception cref="EntryPointNotFoundException">在 DLL 中找不到名为 funcName 的入口点</exception>
 		public int InvokeGroupMemberIncrease (string funcName, int subType, int sendTime, long fromGroup, long fromQQ, long operatedQQ)
 		{
 			if (string.IsNullOrEmpty (funcName))
@@ -336,6 +362,8 @@ namespace DeveloperFramework.Library.CQP
 		/// <param name="operatedQQ">被操作QQ</param>
 		/// <param name="duration">时长</param>
 		/// <returns>0 表示该消息继续向下传递, 1 表示该消息被截断</returns>
+		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
+		/// <exception cref="EntryPointNotFoundException">在 DLL 中找不到名为 funcName 的入口点</exception>
 		public int InvokeGroupBanSpeak (string funcName, int subType, int sendTime, long fromGroup, long fromQQ, long operatedQQ, long duration)
 		{
 			if (string.IsNullOrEmpty (funcName))
@@ -353,6 +381,8 @@ namespace DeveloperFramework.Library.CQP
 		/// <param name="sendTime">发送时间</param>
 		/// <param name="fromQQ">来源QQ</param>
 		/// <returns>0 表示该消息继续向下传递, 1 表示该消息被截断</returns>
+		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
+		/// <exception cref="EntryPointNotFoundException">在 DLL 中找不到名为 funcName 的入口点</exception>
 		public int InvokeFriendAdd (string funcName, int subType, int sendTime, long fromQQ)
 		{
 			if (string.IsNullOrEmpty (funcName))
@@ -372,6 +402,8 @@ namespace DeveloperFramework.Library.CQP
 		/// <param name="appendMsg">附加消息</param>
 		/// <param name="responseFlag">反馈标识</param>
 		/// <returns>0 表示该消息继续向下传递, 1 表示该消息被截断</returns>
+		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
+		/// <exception cref="EntryPointNotFoundException">在 DLL 中找不到名为 funcName 的入口点</exception>
 		public int InvokeFriendAddRequest (string funcName, int subType, int sendTime, long fromQQ, string appendMsg, string responseFlag)
 		{
 			if (string.IsNullOrEmpty (funcName))
@@ -412,6 +444,8 @@ namespace DeveloperFramework.Library.CQP
 		/// <param name="appendMsg">附加消息</param>
 		/// <param name="responseFlag">反馈标识</param>
 		/// <returns>0 表示该消息继续向下传递, 1 表示该消息被截断</returns>
+		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
+		/// <exception cref="EntryPointNotFoundException">在 DLL 中找不到名为 funcName 的入口点</exception>
 		public int InvokeGroupAddRequest (string funcName, int subType, int sendTime, long fromGroup, long fromQQ, string appendMsg, string responseFlag)
 		{
 			if (string.IsNullOrEmpty (funcName))
@@ -446,6 +480,8 @@ namespace DeveloperFramework.Library.CQP
 		/// </summary>
 		/// <param name="funcName">实际函数的名称</param>
 		/// <returns>保留值, 暂时不表示任何操作结果</returns>
+		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
+		/// <exception cref="EntryPointNotFoundException">在 DLL 中找不到名为 funcName 的入口点</exception>
 		public int InvokeMenu (string funcName)
 		{
 			if (string.IsNullOrEmpty (funcName))
@@ -460,6 +496,8 @@ namespace DeveloperFramework.Library.CQP
 		/// </summary>
 		/// <param name="funcName">实际函数的名称</param>
 		/// <returns>悬浮窗数据</returns>
+		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
+		/// <exception cref="EntryPointNotFoundException">在 DLL 中找不到名为 funcName 的入口点</exception>
 		public string InvokeStatus (string funcName)
 		{
 			if (string.IsNullOrEmpty (funcName))

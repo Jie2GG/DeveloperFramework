@@ -10,7 +10,7 @@ namespace DeveloperFramework.Simulator.CQP
 	/// <summary>
 	/// 表示酷Q应用模拟器数据目录类
 	/// </summary>
-	public class CQSimulatorDataDirectory
+	public class CQSimulatorDirectory
 	{
 		#region --字段--
 		private readonly string _appDir;
@@ -45,10 +45,10 @@ namespace DeveloperFramework.Simulator.CQP
 
 		#region --构造函数--
 		/// <summary>
-		/// 初始化 <see cref="CQSimulatorDataDirectory"/> 类的新实例, 并指定具体的父路径
+		/// 初始化 <see cref="CQSimulatorDirectory"/> 类的新实例, 并指定具体的父路径
 		/// </summary>
 		/// <param name="baseDirectory">父路径</param>
-		public CQSimulatorDataDirectory (string baseDirectory)
+		public CQSimulatorDirectory (string baseDirectory)
 		{
 			this._appDir = Path.Combine (baseDirectory, "app");
 			this._dataDir = Path.Combine (baseDirectory, "data");

@@ -19,6 +19,7 @@ namespace DeveloperFramework.Win32.LibraryCLR
 		#region --字段--
 		private static readonly List<string> _baseDirectories;
 		private IntPtr _hModule;
+		private readonly string _libraryName;
 		private readonly string _libraryPath;
 		private readonly string _libraryDirectory;
 		private bool _isDispose;
@@ -26,11 +27,15 @@ namespace DeveloperFramework.Win32.LibraryCLR
 
 		#region --属性--
 		/// <summary>
-		/// 获取当前加载动态链接库 (DLL) 的路径
+		/// 获取当前加载的动态链接库 (DLL) 的文件名称
+		/// </summary>
+		public string LibraryName => this._libraryName;
+		/// <summary>
+		/// 获取当前加载的动态链接库 (DLL) 的路径
 		/// </summary>
 		public string LibraryPath => this._libraryPath;
 		/// <summary>
-		/// 获取当前加载动态链接库 (DLL) 的目录
+		/// 获取当前加载的动态链接库 (DLL) 的目录
 		/// </summary>
 		public string LibraryDirectory => this._libraryDirectory;
 		#endregion
@@ -48,8 +53,8 @@ namespace DeveloperFramework.Win32.LibraryCLR
 		/// 初始化 <see cref="DynamicLibrary"/> 类的新实例, 并加载指定的动态链接库 (DLL)
 		/// </summary>
 		/// <param name="libFileName">要加载的动态链接库 (DLL) 的路径</param>
-		/// <exception cref="FileLoadException">视图加载格式不正确的程序集</exception>
-		/// <exception cref="FileNotFoundException">无法找到指定的程序集</exception>
+		/// <exception cref="BadImageFormatException">试图加载格式不正确的程序</exception>
+		/// <exception cref="DllNotFoundException">找不到指定的模块</exception>
 		public DynamicLibrary (string libFileName)
 		{
 			foreach (string item in DynamicLibrary._baseDirectories)
@@ -60,19 +65,20 @@ namespace DeveloperFramework.Win32.LibraryCLR
 					// 初始化属性
 					this._isDispose = false;
 					this._libraryPath = fullPath;
+					this._libraryName = Path.GetFileName (fullPath);
 					this._libraryDirectory = Path.GetDirectoryName (fullPath);
 
 					// 加载动态库
 					this._hModule = Kernel32.LoadLibraryA (fullPath);
 					if (this._hModule.ToInt64 () == 0)
 					{
-						throw new FileLoadException ($"试图加载格式不正确的程序集 {fullPath}");
+						throw new BadImageFormatException ("试图加载格式不正确的程序", libFileName);
 					}
 					return;
 				}
 			}
 
-			throw new FileNotFoundException ("无法找到指定的程序集", libFileName);
+			throw new DllNotFoundException ($"无法加载 DLL \"{libFileName}\": 找不到指定的模块");
 		}
 		/// <summary>
 		/// 释放 <see cref="DynamicLibrary"/> 类所使用的资源
@@ -121,7 +127,7 @@ namespace DeveloperFramework.Win32.LibraryCLR
 		/// <param name="funcName">函数名称</param>
 		/// <returns>指定委托类型的实例</returns>
 		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
-		/// <exception cref="MissingMethodException">尝试访问未公开的函数</exception>
+		/// <exception cref="EntryPointNotFoundException">在 DLL 中找不到名为 funcName 的入口点</exception>
 		/// <exception cref="ArgumentException">TDelegate 不是委托，或它是一个开放式泛型类型</exception>
 		public TDelegate GetFunction<TDelegate> (string funcName)
 			where TDelegate : Delegate
@@ -134,7 +140,7 @@ namespace DeveloperFramework.Win32.LibraryCLR
 			IntPtr funPtr = Kernel32.GetProcAddress (this._hModule, funcName);
 			if (funPtr.ToInt64 () == 0)
 			{
-				throw new MissingMethodException (nameof (DynamicLibrary), funcName);
+				throw new EntryPointNotFoundException ($"在 DLL \"{this.LibraryName}\" 中找不到名为 \"{funcName}\" 的入口点");
 			}
 
 			return Marshal.GetDelegateForFunctionPointer<TDelegate> (funPtr);
@@ -192,7 +198,7 @@ namespace DeveloperFramework.Win32.LibraryCLR
 		/// <returns>当前 <see cref="DynamicLibrary"/> 对象的值的字符串表示形式</returns>
 		public override string ToString ()
 		{
-			return $"{Path.GetFileName (this.LibraryPath)} -> {this._hModule}";
+			return $"DLL: {this.LibraryName} -> ({this._hModule})";
 		}
 		#endregion
 	}
