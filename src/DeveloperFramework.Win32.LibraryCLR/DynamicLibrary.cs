@@ -22,7 +22,7 @@ namespace DeveloperFramework.Win32.LibraryCLR
 		private readonly string _libraryName;
 		private readonly string _libraryPath;
 		private readonly string _libraryDirectory;
-		private bool _isDispose;
+		private bool _disposedValue;
 		#endregion
 
 		#region --属性--
@@ -63,7 +63,7 @@ namespace DeveloperFramework.Win32.LibraryCLR
 				if (File.Exists (fullPath))
 				{
 					// 初始化属性
-					this._isDispose = false;
+					this._disposedValue = false;
 					this._libraryPath = fullPath;
 					this._libraryName = Path.GetFileName (fullPath);
 					this._libraryDirectory = Path.GetDirectoryName (fullPath);
@@ -85,7 +85,8 @@ namespace DeveloperFramework.Win32.LibraryCLR
 		/// </summary>
 		~DynamicLibrary ()
 		{
-			Dispose ();
+			// 不要更改此代码。请将清理代码放入“Dispose(bool disposing)”方法中
+			Dispose (disposing: false);
 		}
 		#endregion
 
@@ -96,7 +97,7 @@ namespace DeveloperFramework.Win32.LibraryCLR
 		/// <returns>返回从操作系统底层获取的结果代码</returns>
 		public int GetResultCode ()
 		{
-			if (this._isDispose)
+			if (this._disposedValue)
 			{
 				throw new ObjectDisposedException (nameof (DynamicLibrary));
 			}
@@ -109,7 +110,7 @@ namespace DeveloperFramework.Win32.LibraryCLR
 		/// <returns>返回从操作系统底层获取的详细执行信息</returns>
 		public string GetResultMessage ()
 		{
-			if (this._isDispose)
+			if (this._disposedValue)
 			{
 				throw new ObjectDisposedException (nameof (DynamicLibrary));
 			}
@@ -132,7 +133,7 @@ namespace DeveloperFramework.Win32.LibraryCLR
 		public TDelegate GetFunction<TDelegate> (string funcName)
 			where TDelegate : Delegate
 		{
-			if (this._isDispose)
+			if (this._disposedValue)
 			{
 				throw new ObjectDisposedException (nameof (DynamicLibrary));
 			}
@@ -150,16 +151,9 @@ namespace DeveloperFramework.Win32.LibraryCLR
 		/// </summary>
 		public void Dispose ()
 		{
-			if (!this._isDispose)
-			{
-				this._isDispose = true;
-			}
-			if (this._hModule.ToInt64 () != 0)
-			{
-				// 释放指针
-				Kernel32.FreeLibrary (this._hModule);
-				this._hModule = IntPtr.Zero;
-			}
+			// 不要更改此代码。请将清理代码放入“Dispose(bool disposing)”方法中
+			Dispose (disposing: true);
+			GC.SuppressFinalize (this);
 		}
 		/// <summary>
 		/// 返回一个值，该值指示此实例是否等于指定的对象
@@ -199,6 +193,28 @@ namespace DeveloperFramework.Win32.LibraryCLR
 		public override string ToString ()
 		{
 			return $"DLL: {this.LibraryName} -> ({this._hModule})";
+		}
+		#endregion
+
+		#region --私有方法--
+		/// <summary>
+		/// 执行与释放或重置非托管资源关联的应用程序定义的详细任务
+		/// </summary>
+		/// <param name="disposing">是否释放托管状态</param>
+		protected virtual void Dispose (bool disposing)
+		{
+			if (!_disposedValue)
+			{
+				if (disposing)
+				{ }
+				if (this._hModule.ToInt64 () != 0)
+				{
+					Kernel32.FreeLibrary (this._hModule);
+				}
+
+				this._hModule = IntPtr.Zero;
+				_disposedValue = true;
+			}
 		}
 		#endregion
 	}

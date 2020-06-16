@@ -16,38 +16,14 @@ using DeveloperFramework.Utility;
 
 namespace TestApplication
 {
-	public class Program : DeveloperFramework.Log.CQP.IObservable<LogItem>
+	public class Program
 	{
-		public static void Main (string[] args)
+		public static void Main ()
 		{
-			Logger.Instance.AddObserver (new Program ());
+			//Logger.Instance.AddObserver (new Program ());
 			EnironmentSetup ();
-			
 
 			Console.ReadLine ();
-		}
-
-		private List<LogItem> items = new List<LogItem> ();
-
-		public void Initialize (IEnumerable<LogItem> list)
-		{
-			foreach (LogItem item in list)
-			{
-				OnAdd (item);
-			}
-		}
-
-		public void OnAdd (LogItem item)
-		{
-			Console.WriteLine (item.ToString ());
-		}
-
-		public void OnRemove (LogItem item)
-		{ }
-
-		public void OnReplace (LogItem item)
-		{
-			Console.WriteLine (item.ToString ());
 		}
 
 		public static void EnironmentSetup ()
@@ -55,7 +31,6 @@ namespace TestApplication
 			string output = Path.GetDirectoryName (Assembly.GetExecutingAssembly ().Location);
 			DirectoryCopy (NestedFoundDirectory ("env"), output);
 		}
-
 		private static string NestedFoundDirectory (string directoryName)
 		{
 			try
@@ -68,7 +43,6 @@ namespace TestApplication
 			}
 			catch { throw; }
 		}
-
 		private static void DirectoryCopy (string sourceDirName, string destDirName)
 		{
 			DirectoryInfo dir = new DirectoryInfo (sourceDirName);

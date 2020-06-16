@@ -300,7 +300,7 @@ namespace DeveloperFramework.Library.CQP
 		/// <returns>0 表示该消息继续向下传递, 1 表示该消息被截断</returns>
 		/// <exception cref="ObjectDisposedException">当前对象已经被释放</exception>
 		/// <exception cref="EntryPointNotFoundException">在 DLL 中找不到名为 funcName 的入口点</exception>
-		public int InvokeGroupManageChanged (string funcName, int subType, int sendTime, long fromGroup, long operatedQQ)
+		public int InvokeGroupManagerChanged (string funcName, int subType, int sendTime, long fromGroup, long operatedQQ)
 		{
 			if (string.IsNullOrEmpty (funcName))
 			{

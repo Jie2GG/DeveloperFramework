@@ -9,7 +9,7 @@ namespace DeveloperFramework.SimulatorModel.CQP
 	/// <summary>
 	/// 描述 CQP 应用动态库的群管理员改变事件类型
 	/// </summary>
-	public enum GroupManagerChangeType
+	public enum GroupManagerChangedType
 	{
 		/// <summary>
 		/// 取消管理员

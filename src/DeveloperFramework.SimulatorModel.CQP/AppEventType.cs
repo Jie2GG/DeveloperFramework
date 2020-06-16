@@ -22,7 +22,7 @@ namespace DeveloperFramework.SimulatorModel.CQP
 		/// <summary>
 		/// 群文件上传事件
 		/// </summary>
-		GroupFileUpload = 11,
+		GroupUpload = 11,
 		/// <summary>
 		/// 私聊消息事件
 		/// </summary>
@@ -30,7 +30,7 @@ namespace DeveloperFramework.SimulatorModel.CQP
 		/// <summary>
 		/// 群管理员变动事件
 		/// </summary>
-		GroupManagerChange = 101,
+		GroupManagerChanged = 101,
 		/// <summary>
 		/// 群成员减少事件
 		/// </summary>
@@ -42,7 +42,7 @@ namespace DeveloperFramework.SimulatorModel.CQP
 		/// <summary>
 		/// 群禁言事件
 		/// </summary>
-		GroupMemberBanSpeak = 104,
+		GroupBanSpeak = 104,
 		/// <summary>
 		/// 好友已添加事件
 		/// </summary>
