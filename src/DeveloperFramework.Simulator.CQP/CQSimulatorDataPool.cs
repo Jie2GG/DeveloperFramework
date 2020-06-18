@@ -15,29 +15,29 @@ namespace DeveloperFramework.Simulator.CQP
 	/// </summary>
 	public class CQSimulatorDataPool
 	{
-		#region -属性---
+		#region --属性--
 		/// <summary>
-		/// 获取当前数据池存储的机器人QQ实例
+		/// 获取当前实例的机器人QQ
 		/// </summary>
-		public QQ RobotQQ { get; set; }
+		public QQ RobotQQ { get; }
 		/// <summary>
-		/// 获取当前数据池的QQ数据列表
+		/// 获取当前实例的QQ列表
 		/// </summary>
-		public ObservableCollection<QQ> QQCollection { get; }
+		public QQCollection QQCollection { get; }
 		/// <summary>
-		/// 获取当前数据池的好友列表数据
+		/// 获取当前实例的好友列表 (<see cref="QQCollection"/> 中也应包含此列表中的内容)
 		/// </summary>
 		public FriendCollection FriendCollection { get; }
 		/// <summary>
-		/// 获取当前数据池的群列表
+		/// 获取当前实例的群组列表
 		/// </summary>
 		public GroupCollection GroupCollection { get; }
 		/// <summary>
-		/// 获取当前数据池的讨论组列表
+		/// 获取当前实例的讨论组列表
 		/// </summary>
 		public DiscussCollection DiscussCollection { get; }
 		/// <summary>
-		/// 获取当前数据池用于存放 "发送" 或 "接收" 撤回或未撤回的消息
+		/// 获取当前实例的存放 "发送" 或 "接收" 的消息缓存
 		/// </summary>
 		public ConcurrentBag<Message> MessageCollection { get; }
 		#endregion
@@ -48,7 +48,7 @@ namespace DeveloperFramework.Simulator.CQP
 		/// </summary>
 		public CQSimulatorDataPool ()
 		{
-			this.QQCollection = new ObservableCollection<QQ> ();
+			this.QQCollection = new QQCollection ();
 			this.FriendCollection = new FriendCollection ();
 			this.GroupCollection = new GroupCollection ();
 			this.DiscussCollection = new DiscussCollection ();

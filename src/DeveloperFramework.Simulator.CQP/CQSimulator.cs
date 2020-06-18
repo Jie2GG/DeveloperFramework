@@ -14,27 +14,51 @@ namespace DeveloperFramework.Simulator.CQP
 	/// </summary>
 	public class CQSimulator
 	{
-		public CQSimulatorDirectory Directorys { get; }
-		public CQSimulatorDataPool DataPool { get; }
-		public CQType SimulatorType { get; }
+		#region --属性--
+		/// <summary>
+		/// 获取当前实例模拟的酷Q类型
+		/// </summary>
+		public CQType CQType { get; }
+		/// <summary>
+		/// 获取当前实例模拟的Api类型
+		/// </summary>
 		public ApiType ApiType { get; }
+		/// <summary>
+		/// 获取当前实例加载的应用程序
+		/// </summary>
+		public List<CQApplication> Applications { get; }
+		#endregion
 
+		#region --构造函数--
 		/// <summary>
 		/// 初始化 <see cref="CQSimulator"/> 类的新实例, 同时指定模拟方式和 Api 版本
 		/// </summary>
-		/// <param name="simulatorType">CQ应用模拟器类型</param>
-		/// <param name="apiType"></param>
-		public CQSimulator (CQType simulatorType, ApiType apiType)
+		/// <param name="cqType">CQ应用模拟器类型</param>
+		/// <param name="apiType">Api类型</param>
+		public CQSimulator (CQType cqType, ApiType apiType)
 		{
-			this.SimulatorType = simulatorType;
+			this.CQType = cqType;
 			this.ApiType = apiType;
 
-			this.DataPool = new CQSimulatorDataPool ();
-			this.Directorys = new CQSimulatorDirectory (AppDomain.CurrentDomain.BaseDirectory);
+			#region 初始化属性
+			this.Applications = new List<CQApplication> ();
+			#endregion
+
+			#region 加载应用
+			this.Load ();
+			#endregion
+
+			#region 加载数据
+			// TOOD: 加载好友, 群, 讨论组
+			#endregion
 		}
+		#endregion
 
 		#region --公开方法--
+		public void Load ()
+		{
 
+		}
 		#endregion
 	}
 }
