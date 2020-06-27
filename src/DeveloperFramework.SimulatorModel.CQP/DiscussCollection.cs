@@ -8,25 +8,29 @@ using System.Threading.Tasks;
 namespace DeveloperFramework.SimulatorModel.CQP
 {
 	/// <summary>
-	/// 描述 讨论组列表 类型
+	/// 描述讨论组列表的类
 	/// </summary>
-	public class DiscussCollection : ObservableCollection<Discuss>
+	public class DiscussCollection : Collection<Discuss>, IToBase64
 	{
 		#region --构造函数--
 		/// <summary>
-		/// 初始化为空的 <see cref="FriendCollection"/> 类的新实例
+		/// 初始化为空的 <see cref="DiscussCollection"/> 类的新实例
 		/// </summary>
 		public DiscussCollection ()
+			: base ()
 		{
 		}
+		#endregion
+
+		#region --公开方法--
 		/// <summary>
-		/// 新实例初始化 <see cref="FriendCollection"/> 包装指定列表的类
+		/// 返回当前实例的 Base64 字符串
 		/// </summary>
-		/// <param name="list">用于包装由新的集合的列表</param>
-		public DiscussCollection (IList<Discuss> list)
-			: base (list)
+		/// <returns>当前实例的 Base64 字符串</returns>
+		public string ToBase64 ()
 		{
-		} 
+			return string.Empty;
+		}
 		#endregion
 	}
 }

@@ -1,29 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DeveloperFramework.SimulatorModel.CQP
 {
 	/// <summary>
-	/// 描述 讨论组成员列表 类型
+	/// 描述讨论组成员列表的类
 	/// </summary>
-	public class DiscussMemberCollection : Collection<DiscussMember>
+	public class DiscussMemberCollection : FixedCollection<DiscussMember>
 	{
+		#region --构造函数--
 		/// <summary>
-		/// 初始化为空的 <see cref="DiscussMemberCollection"/> 类的新实例
+		/// 初始化 <see cref="DiscussMemberCollection"/> 类的新实例, 该实例为空并且具有固定的容量
 		/// </summary>
-		public DiscussMemberCollection ()
-			: base ()
-		{ }
+		/// <param name="capacity">新列表最初可以存储的元素数</param>
+		/// <exception cref="ArgumentOutOfRangeException">capacity 小于 0</exception>
+		public DiscussMemberCollection (int capacity)
+			: base (capacity)
+		{
+		}
+		#endregion
+
+		#region --公开方法--
 		/// <summary>
-		/// 新实例初始化 <see cref="GroupMemberCollection"/> 包装指定列表的类
+		/// 返回当前实例的 Base64 字符串
 		/// </summary>
-		/// <param name="list">用于包装由新的集合的列表</param>
-		public DiscussMemberCollection (IList<DiscussMember> list)
-			: base (list)
-		{ }
+		/// <returns>当前实例的 Base64 字符串</returns>
+		public override string ToBase64 ()
+		{
+			return string.Empty;
+		}
+		#endregion
 	}
 }

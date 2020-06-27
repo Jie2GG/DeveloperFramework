@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DeveloperFramework.SimulatorModel.CQP
+﻿namespace DeveloperFramework.SimulatorModel.CQP
 {
 	/// <summary>
-	/// 描述 讨论组成员 类型
+	/// 描述讨论组成员的类
 	/// </summary>
 	public class DiscussMember : QQ
 	{
@@ -15,13 +9,12 @@ namespace DeveloperFramework.SimulatorModel.CQP
 		/// <summary>
 		/// 初始化 <see cref="DiscussMember"/> 类的新实例
 		/// </summary>
-		/// <param name="id">QQ号</param>
-		/// <param name="nick">昵称</param>
-		/// <param name="sex">性别</param>
-		/// <param name="age">年龄</param>
-		public DiscussMember (long id, string nick, Sex sex, int age)
-			: base (id, nick, sex, age)
-		{ }
+		/// <param name="id">绑定于当前实例的唯一标识 (ID)</param>
+		public DiscussMember (long id)
+			: base (id)
+		{
+
+		}
 		#endregion
 	}
 }

@@ -1,19 +1,16 @@
-﻿using DeveloperFramework.Extension;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using DeveloperFramework.Extension;
 
 namespace DeveloperFramework.SimulatorModel.CQP
 {
 	/// <summary>
-	/// 描述 好友列表 类型
+	/// 描述好友列表的类
 	/// </summary>
-	public class FriendCollection : ObservableCollection<Friend>
+	public class FriendCollection : Collection<Friend>, IToBase64
 	{
 		#region --构造函数--
 		/// <summary>
@@ -23,21 +20,14 @@ namespace DeveloperFramework.SimulatorModel.CQP
 			: base ()
 		{
 		}
-		/// <summary>
-		/// 新实例初始化 <see cref="FriendCollection"/> 包装指定列表的类
-		/// </summary>
-		/// <param name="list">用于包装由新的集合的列表</param>
-		public FriendCollection (IList<Friend> list)
-			: base (list)
-		{ } 
 		#endregion
 
 		#region --公开方法--
 		/// <summary>
-		/// 获取当前实例的 Base64 字符串
+		/// 返回当前实例的 Base64 字符串
 		/// </summary>
 		/// <returns>当前实例的 Base64 字符串</returns>
-		public string ToBase64String ()
+		public string ToBase64 ()
 		{
 			using (BinaryWriter writer = new BinaryWriter (new MemoryStream ()))
 			{

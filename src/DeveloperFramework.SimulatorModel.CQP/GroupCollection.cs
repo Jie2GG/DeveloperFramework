@@ -1,18 +1,20 @@
 ﻿using DeveloperFramework.Extension;
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace DeveloperFramework.SimulatorModel.CQP
 {
 	/// <summary>
-	/// 描述 群列表 类型
+	/// 描述群列表的类
 	/// </summary>
-	public class GroupCollection : ObservableCollection<Group>
+	public class GroupCollection : Collection<Group>, IToBase64
 	{
 		#region --构造函数--
 		/// <summary>
@@ -22,41 +24,26 @@ namespace DeveloperFramework.SimulatorModel.CQP
 			: base ()
 		{
 		}
-		/// <summary>
-		/// 新实例初始化 <see cref="GroupCollection"/> 包装指定列表的类
-		/// </summary>
-		/// <param name="list">用于包装由新的集合的列表</param>
-		public GroupCollection (IList<Group> list)
-			: base (list)
-		{ }
 		#endregion
 
 		#region --公开方法--
 		/// <summary>
-		/// 获取当前实例的 <see cref="byte"/> 数组
+		/// 返回当前实例的 Base64 字符串
 		/// </summary>
-		/// <returns>当前实例的 <see cref="byte"/> 数组</returns>
-		public byte[] ToByteArray ()
+		/// <returns>当前实例的 Base64 字符串</returns>
+		public string ToBase64 ()
 		{
 			using (BinaryWriter writer = new BinaryWriter (new MemoryStream ()))
 			{
-				writer.Write_Ex (this.Count);
+				writer.Write_Ex (this.Count);   // 写入个数
 				foreach (Group group in this)
 				{
 					writer.Write_Ex (group.Id);
 					writer.Write_Ex (group.Name);
 				}
-				return writer.ToArray ();
+				return Convert.ToBase64String (writer.ToArray ());
 			}
 		}
-		/// <summary>
-		/// 获取当前实例的 Base64 字符串
-		/// </summary>
-		/// <returns>当前实例的 Base64 字符串</returns>
-		public string ToBase64String ()
-		{
-			return Convert.ToBase64String (this.ToByteArray ());
-		} 
 		#endregion
 	}
 }

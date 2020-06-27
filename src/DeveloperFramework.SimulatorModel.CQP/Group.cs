@@ -1,138 +1,101 @@
-﻿using DeveloperFramework.Extension;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using DeveloperFramework.Extension;
 
 namespace DeveloperFramework.SimulatorModel.CQP
 {
 	/// <summary>
-	/// 描述 群 类型
+	/// 描述群组的类
 	/// </summary>
-	public class Group : IEquatable<Group>
+	public class Group : IToBase64
 	{
-		#region --常量--
-		private const int _minValue = 10000;
+		#region --字段--
+		private string[] _memberLevels;
 		#endregion
 
 		#region --属性--
 		/// <summary>
-		/// 表示当前实例 <see cref="Group"/> 的最小值.
+		/// 获取当前实例的唯一标识 (ID)
 		/// </summary>
-		public static readonly long MinValue = 10000;
+		public long Id { get; }
 		/// <summary>
-		/// 获取或设置当前实例的唯一标识 (群号)
-		/// </summary>
-		public long Id { get; set; }
-		/// <summary>
-		/// 获取或设置当前实例的群名称
+		/// 获取或设置当前实例的名字
 		/// </summary>
 		public string Name { get; set; }
 		/// <summary>
-		/// 获取或设置当前实例的群当前人数
+		/// 获取当前实例的成员列表
 		/// </summary>
-		public int CurrentMemberCount { get; set; }
+		public GroupMemberCollection Members { get; }
 		/// <summary>
-		/// 获取或设置当前实例的最大群人数
+		/// 获取当前实例的文件列表
 		/// </summary>
-		public int MaxMemberCount { get; set; }
+		public Collection<GroupFile> Files { get; }
 		/// <summary>
-		/// 获取当前实例的群成员列表
+		/// 获取或设置当前实例的成员等级列表
 		/// </summary>
-		public GroupMemberCollection MemberCollection { get; }
+		public string[] MemberLevels
+		{
+			get => this._memberLevels;
+			set
+			{
+				int length = Enum.GetValues (typeof (GroupMemberType)).Length;
+
+				if (value.Length != length)
+				{
+					throw new ArgumentException ($"数组长度必须为: {length}");
+				}
+
+				this._memberLevels = value;
+			}
+		}
 		#endregion
 
 		#region --构造函数--
 		/// <summary>
 		/// 初始化 <see cref="Group"/> 类的新实例
 		/// </summary>
-		/// <param name="id">当前实例指定的 Id</param>
-		/// <param name="name">当前实例指定的群名</param>
-		/// <param name="currentCount">当前实例当前的群人数</param>
-		/// <param name="maxCount">当前实例最大群人数</param>
-		/// <exception cref="ArgumentOutOfRangeException">id 小于 <see cref="MinValue"/></exception>
-		public Group (long id, string name, int currentCount, int maxCount)
+		/// <param name="id">绑定于当前实例的唯一标识 (ID)</param>
+		/// <param name="maxCount">设置当前实例的最大成员人数</param>
+		public Group (long id, int maxCount)
 		{
-			if (id < _minValue)
-			{
-				throw new ArgumentOutOfRangeException (nameof (id));
-			}
-
 			this.Id = id;
-			this.Name = name;
-			this.CurrentMemberCount = currentCount;
-			this.MaxMemberCount = maxCount;
-			this.MemberCollection = new GroupMemberCollection ();
+			this.Members = new GroupMemberCollection (this, maxCount);
+			this.Files = new Collection<GroupFile> ();
 		}
 		#endregion
 
 		#region --公开方法--
 		/// <summary>
-		/// 获取当前实例的 <see cref="byte"/> 数组
+		/// 根据群成员等级获取对应的等级名称
 		/// </summary>
-		/// <returns>当前实例的 <see cref="byte"/> 数组</returns>
-		public virtual byte[] ToByteArray ()
+		/// <param name="level">群成员等级枚举</param>
+		/// <returns>等级枚举对应的等级字符串</returns>
+		public string GetLevelName (GroupMemberLevel level)
+		{
+			if (this.MemberLevels is null)
+			{
+				return string.Empty;
+			}
+			return this.MemberLevels[(int)level];
+		}
+		/// <summary>
+		/// 返回当前实例的 Base64 字符串
+		/// </summary>
+		/// <returns>Base64 字符串</returns>
+		public string ToBase64 ()
 		{
 			using (BinaryWriter writer = new BinaryWriter (new MemoryStream ()))
 			{
 				writer.Write_Ex (this.Id);
 				writer.Write_Ex (this.Name);
-				writer.Write_Ex (this.CurrentMemberCount);
-				writer.Write_Ex (this.MaxMemberCount);
-				return writer.ToArray ();
-			}
-		}
-		/// <summary>
-		/// 获取当前实例的 Base64 字符串
-		/// </summary>
-		/// <returns>当前实例的 Base64 字符串</returns>
-		public virtual string ToBase64String ()
-		{
-			return Convert.ToBase64String (this.ToByteArray ());
-		}
-		/// <summary>
-		/// 指示当前对象是否等于同一类型的另一个对象
-		/// </summary>
-		/// <param name="obj">一个与此对象进行比较的对象</param>
-		/// <returns>如果当前对象等于 obj 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-		public bool Equals (Group obj)
-		{
-			if (obj is null)
-			{
-				return false;
-			}
+				writer.Write_Ex (this.Members.Count);
+				writer.Write_Ex (this.Members.Capacity);
 
-			return this.Id.Equals (obj.Id) && this.Name.Equals (obj.Name) && this.CurrentMemberCount.Equals (obj.CurrentMemberCount) && this.MaxMemberCount.Equals (obj.MaxMemberCount) && this.MemberCollection.Equals (obj.MemberCollection);
-		}
-		/// <summary>
-		/// 指示当前对象是否等于同一类型的另一个对象
-		/// </summary>
-		/// <param name="obj">一个与此对象进行比较的对象</param>
-		/// <returns>如果当前对象等于 obj 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-		public override bool Equals (object obj)
-		{
-			return this.Equals (obj as Group);
-		}
-		/// <summary>
-		/// 返回此实例的哈希代码
-		/// </summary>
-		/// <returns>32 位有符号整数哈希代码</returns>
-		public override int GetHashCode ()
-		{
-			return this.Id.GetHashCode () & this.Name.GetHashCode () & this.CurrentMemberCount.GetHashCode () & this.MaxMemberCount.GetHashCode () & this.MemberCollection.GetHashCode ();
-		}
-		#endregion
-
-		#region --运算符--
-		/// <summary>
-		/// 定义将 <see cref="Group"/> 转换为 <see cref="long"/>
-		/// </summary>
-		/// <param name="value">要转换的 <see cref="Group"/> 实例</param>
-		public static implicit operator long (Group value)
-		{
-			return value.Id;
+				return Convert.ToBase64String (writer.ToArray ());
+			}
 		}
 		#endregion
 	}

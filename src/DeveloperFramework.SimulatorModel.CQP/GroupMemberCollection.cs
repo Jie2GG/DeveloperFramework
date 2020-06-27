@@ -1,96 +1,54 @@
-﻿using DeveloperFramework.Extension;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using DeveloperFramework.Extension;
 
 namespace DeveloperFramework.SimulatorModel.CQP
 {
 	/// <summary>
-	/// 描述 群成员列表 类型
+	/// 描述群成员列表的类
 	/// </summary>
-	public class GroupMemberCollection : Collection<GroupMember>, IEquatable<GroupMemberCollection>
+	public class GroupMemberCollection : FixedCollection<GroupMember>
 	{
+		#region --属性--
+		/// <summary>
+		/// 获取当前实例绑定的群组实例
+		/// </summary>
+		public Group Group { get; }
+		#endregion
+
 		#region --构造函数--
 		/// <summary>
-		/// 初始化为空的 <see cref="GroupMemberCollection"/> 类的新实例
+		/// 初始化 <see cref="GroupMemberCollection"/> 类的新实例, 该实例为空并且具有固定的容量
 		/// </summary>
-		public GroupMemberCollection ()
-			: base ()
+		/// <param name="group">新列表绑定的 <see cref="CQP.Group"/> 实例</param>
+		/// <param name="capacity">新列表最初可以存储的元素数</param>
+		/// <exception cref="ArgumentOutOfRangeException">capacity 小于 0</exception>
+		public GroupMemberCollection (Group group, int capacity)
+			: base (capacity)
 		{
+			this.Group = group;
 		}
-		/// <summary>
-		/// 新实例初始化 <see cref="GroupMemberCollection"/> 包装指定列表的类
-		/// </summary>
-		/// <param name="list">用于包装由新的集合的列表</param>
-		public GroupMemberCollection (IList<GroupMember> list)
-			: base (list)
-		{ }
 		#endregion
 
 		#region --公开方法--
 		/// <summary>
-		/// 获取当前实例的 Base64 字符串
+		/// 返回当前实例的 Base64 字符串
 		/// </summary>
 		/// <returns>当前实例的 Base64 字符串</returns>
-		public string ToBase64String ()
+		public override string ToBase64 ()
 		{
 			using (BinaryWriter writer = new BinaryWriter (new MemoryStream ()))
 			{
 				writer.Write_Ex (this.Count);
-				foreach (GroupMember member in this)
+				foreach (GroupMember item in this)
 				{
-					writer.Write_Ex (member.ToByteArray ());
+					writer.Write_Ex (item.ToByteArray (this.Group));
 				}
+
 				return Convert.ToBase64String (writer.ToArray ());
 			}
-		}
-		/// <summary>
-		/// 指示当前对象是否等于同一类型的另一个对象
-		/// </summary>
-		/// <param name="obj">一个与此对象进行比较的对象</param>
-		/// <returns>如果当前对象等于 obj 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-		public bool Equals (GroupMemberCollection other)
-		{
-			if (other is null)
-			{
-				return false;
-			}
-
-			if (this.Count != other.Count)
-			{
-				return false;
-			}
-
-			for (int i = 0; i < this.Count; i++)
-			{
-				if (!this[i].Equals (other[i]))
-				{
-					return false;
-				}
-			}
-
-			return true;
-		}
-		/// <summary>
-		/// 指示当前对象是否等于同一类型的另一个对象
-		/// </summary>
-		/// <param name="obj">一个与此对象进行比较的对象</param>
-		/// <returns>如果当前对象等于 obj 参数，则为 <see langword="true"/>；否则为 <see langword="false"/></returns>
-		public override bool Equals (object obj)
-		{
-			return this.Equals (obj as GroupMemberCollection);
-		}
-		/// <summary>
-		/// 返回此实例的哈希代码
-		/// </summary>
-		/// <returns>32 位有符号整数哈希代码</returns>
-		public override int GetHashCode ()
-		{
-			return base.GetHashCode ();
 		}
 		#endregion
 	}

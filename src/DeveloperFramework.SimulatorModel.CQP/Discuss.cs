@@ -1,70 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DeveloperFramework.SimulatorModel.CQP
+﻿namespace DeveloperFramework.SimulatorModel.CQP
 {
 	/// <summary>
-	/// 描述 讨论组 类型
+	/// 描述讨论组的类
 	/// </summary>
 	public class Discuss
 	{
-		#region --常量--
-		private const int _minValue = 10000;
-		#endregion
-
 		#region --属性--
 		/// <summary>
-		/// 表示当前实例 <see cref="Group"/> 的最小值.
+		/// 获取当前实例的唯一标识 (ID)
 		/// </summary>
-		public static readonly long MinValue = 10000;
+		public long Id { get; }
 		/// <summary>
-		/// 获取或设置当前实例的唯一标识 (群号)
+		/// 获取或设置当前实例的名字
 		/// </summary>
-		public long Id { get; set; }
+		public string Name { get; set; }
 		/// <summary>
-		/// 获取当前实例的讨论组成员列表
+		/// 获取当前实例的成员列表
 		/// </summary>
-		public DiscussMemberCollection MemberCollection { get; }
+		public DiscussMemberCollection Member { get; }
 		#endregion
 
 		#region --构造函数--
 		/// <summary>
 		/// 初始化 <see cref="Discuss"/> 类的新实例
 		/// </summary>
-		/// <param name="id">当前实例指定的 Id</param>
-		/// <exception cref="ArgumentOutOfRangeException">id 小于 <see cref="MinValue"/></exception>
+		/// <param name="id">绑定于当前实例的唯一标识 (ID)</param>
 		public Discuss (long id)
 		{
-			if (id < _minValue)
-			{
-				throw new ArgumentOutOfRangeException (nameof (id));
-			}
-
 			this.Id = id;
-
-			this.MemberCollection = new DiscussMemberCollection ();
-		}
-		#endregion
-
-		#region --运算符--
-		/// <summary>
-		/// 定义将 <see cref="long"/> 转换为 <see cref="Discuss"/>
-		/// </summary>
-		/// <param name="value">要转换的值</param>
-		public static implicit operator Discuss (long value)
-		{
-			return new Discuss (value);
-		}
-		/// <summary>
-		/// 定义将 <see cref="Discuss"/> 转换为 <see cref="long"/>
-		/// </summary>
-		/// <param name="value">要转换的 <see cref="Discuss"/> 实例</param>
-		public static implicit operator long (Discuss value)
-		{
-			return value.Id;
+			this.Member = new DiscussMemberCollection (50);  // 根据TX官方解释, 讨论组最多 50人
 		}
 		#endregion
 	}
